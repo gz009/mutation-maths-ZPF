@@ -27,14 +27,33 @@ scanned book. See [What is deliberately absent](#what-is-deliberately-absent).
 | **X v2.0** | [Learning Z — Four-Library Audit](docs/Learning_Z__PartX_v2.0__Four_Library_Audit__Study_Dossier.pdf) | 17 | A twelve-week route to $Z$ through books already owned, audited across four libraries, with the gaps named honestly |
 | **Tutorial** | [Proof Techniques — Sage 10.9 notebook companion](docs/Proof_Techniques_TUTORIAL__Sage_10.9_Notebook_Companion__22_Cells_8_Books.pdf) | 14 | Assumes no proof background. Six techniques cell by cell, Tao's nine steps, the CAS boundary, and $\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N$ actually proved |
 
+## The working folder
+
+`Partition_Function_Study/` **is** the live study folder — the directory JupyterLab
+opens, not a copy of it. Notebooks are edited there and committed from there.
+
+It also holds the two reference libraries, which are **not** in this repo:
+
+| inside the working folder | what it is | in git? |
+|---|---|---|
+| `Z_Ref_Books/` | 23 books, 10 topic folders, 256 MB | **no** — `.gitignore` |
+| `Maths_Proof_Skill/` | 8 books, 2,164 pp, 22 MB | **no** — `.gitignore` |
+| `archive_v1.0/` | superseded Part X PDFs | no — published copy is in `docs/` |
+| `*.ipynb` | the four notebooks | **yes** |
+
+Clone this repo and you get the notebooks, the sources and the dossiers; the
+books you supply yourself, using `guidelines/`. Drop them into
+`Partition_Function_Study/Z_Ref_Books/` and `…/Maths_Proof_Skill/` and git will
+ignore them exactly as it does here.
+
 ## The notebooks
 
 | notebook | kernel | what it does |
 |---|---|---|
-| [`Partition_Function_01_Ising_Transfer_Matrix.ipynb`](notebooks/Partition_Function_01_Ising_Transfer_Matrix.ipynb) | Python 3 | 1D Ising by transfer matrix, numerically. Includes the honest-failure cell: eight independent Metropolis chains that *should* all return $\langle M\rangle=0$ and visibly fail to mix past $\beta\approx1.5$ |
-| [`Partition_Function_01_Sage_10.9_Ising_Transfer_Matrix.ipynb`](notebooks/Partition_Function_01_Sage_10.9_Ising_Transfer_Matrix.ipynb) | SageMath 10.9 | The same physics done symbolically — eigenvalues, free energy, correlation length $\xi=1/\ln(\lambda_+/\lambda_-)$ derived rather than fitted |
-| [`Proof_Techniques_01_Sage_10.9_From_Pure_to_Applied.ipynb`](notebooks/Proof_Techniques_01_Sage_10.9_From_Pure_to_Applied.ipynb) | SageMath 10.9 | 22 cells: direct, cases, counterexample, contrapositive, contradiction, induction — every example drawn from the Ising transfer matrix |
-| [`SageMath_10.9_Test_and_Symbolic_Ising.ipynb`](notebooks/SageMath_10.9_Test_and_Symbolic_Ising.ipynb) | SageMath 10.9 | Kernel smoke test |
+| [`Partition_Function_01_Ising_Transfer_Matrix.ipynb`](Partition_Function_Study/Partition_Function_01_Ising_Transfer_Matrix.ipynb) | Python 3 | 1D Ising by transfer matrix, numerically. Includes the honest-failure cell: eight independent Metropolis chains that *should* all return $\langle M\rangle=0$ and visibly fail to mix past $\beta\approx1.5$ |
+| [`Partition_Function_01_Sage_10.9_Ising_Transfer_Matrix.ipynb`](Partition_Function_Study/Partition_Function_01_Sage_10.9_Ising_Transfer_Matrix.ipynb) | SageMath 10.9 | The same physics done symbolically — eigenvalues, free energy, correlation length $\xi=1/\ln(\lambda_+/\lambda_-)$ derived rather than fitted |
+| [`Proof_Techniques_01_Sage_10.9_From_Pure_to_Applied.ipynb`](Partition_Function_Study/Proof_Techniques_01_Sage_10.9_From_Pure_to_Applied.ipynb) | SageMath 10.9 | 22 cells: direct, cases, counterexample, contrapositive, contradiction, induction — every example drawn from the Ising transfer matrix |
+| [`SageMath_10.9_Test_and_Symbolic_Ising.ipynb`](Partition_Function_Study/SageMath_10.9_Test_and_Symbolic_Ising.ipynb) | SageMath 10.9 | Kernel smoke test |
 
 ### Running them
 
@@ -67,7 +86,7 @@ Two Sage facts these notebooks were built around, both learned the hard way:
 ```sh
 make all          # builds all 7 PDFs beside their sources
 make clean        # removes aux files
-make check-no-books   # fails if any PDF outside docs/ is ever tracked
+make check            # no stray PDFs tracked + guidelines still in sync
 ```
 
 Requires a TeX Live with `tikz`, `pgfplots`, `tcolorbox` and `newtx`.
@@ -77,6 +96,10 @@ Each part was verified to rebuild to its published page count.
 
 `guidelines/` holds the two reading manifests — which book to open, which
 section, and in what order. They describe books that are **not** in this repo.
+
+Each manifest also sits inside its own book folder, where git cannot see it
+(the folder is ignored). `make check-guidelines` reports if the two copies have
+drifted apart; `make sync-guidelines` re-copies the live one into `guidelines/`.
 
 * [`Maths_Proof_Skill__MANIFEST.md`](guidelines/Maths_Proof_Skill__MANIFEST.md) — 8 books, 2,164 pp, but **week 1 is 42 pages**: Devlin §3 and Thurston
 * [`Z_Ref_Books__MANIFEST.md`](guidelines/Z_Ref_Books__MANIFEST.md) — 23 books across 10 topic folders, the route to $Z$
