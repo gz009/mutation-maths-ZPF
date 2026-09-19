@@ -103,6 +103,7 @@ drifted apart; `make sync-guidelines` re-copies the live one into `guidelines/`.
 
 * [`Maths_Proof_Skill__MANIFEST.md`](guidelines/Maths_Proof_Skill__MANIFEST.md) — 8 books, 2,164 pp, but **week 1 is 42 pages**: Devlin §3 and Thurston
 * [`Z_Ref_Books__MANIFEST.md`](guidelines/Z_Ref_Books__MANIFEST.md) — 23 books across 10 topic folders, the route to $Z$
+* [`BOOKSHELF_INVENTORY.md`](guidelines/BOOKSHELF_INVENTORY.md) — all 31 books with page counts and MD5s, so you can confirm you hold the same editions these dossiers were written against
 
 ## Scripts
 
@@ -127,6 +128,16 @@ local disk. `.gitignore` blocks them three ways:
 
 The manifests in `guidelines/` tell you which editions to obtain and exactly
 which sections to read. That is the part worth sharing.
+
+## Licence
+
+Dual-licensed — see [LICENSE](LICENSE).
+
+| | licence |
+|---|---|
+| `docs/`, `src/`, `guidelines/`, `README.md`, `CLAUDE.md` | **CC BY 4.0** — share and adapt, including commercially, with attribution |
+| `scripts/`, the notebooks, `Makefile` | **MIT** |
+| the 31 books in `Z_Ref_Books/` and `Maths_Proof_Skill/` | **not covered, not distributed** — they are third-party, they stay on local disk, and each remains under its publisher's copyright |
 
 ## Standing method
 

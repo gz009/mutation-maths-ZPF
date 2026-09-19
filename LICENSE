@@ -1,0 +1,85 @@
+mutation-maths-ZPF — licensing
+==============================
+
+This repository is dual-licensed. Which licence applies depends on which part of
+the repository a file is in.
+
+-------------------------------------------------------------------------------
+1. DOCUMENTS  —  Creative Commons Attribution 4.0 International (CC BY 4.0)
+-------------------------------------------------------------------------------
+
+Applies to:
+
+    docs/          the seven produced PDFs
+    src/           the LaTeX that builds them
+    guidelines/    the reading manifests
+    README.md, CLAUDE.md
+
+Copyright (c) 2026 Fokhruz Zaman (github.com/gz009)
+
+These works are licensed under the Creative Commons Attribution 4.0
+International License. You are free to share and adapt them for any purpose,
+including commercially, provided you give appropriate credit, link to the
+licence, and indicate if changes were made.
+
+    Human-readable summary:  https://creativecommons.org/licenses/by/4.0/
+    Full legal code:         https://creativecommons.org/licenses/by/4.0/legalcode
+
+The full legal code is not reproduced here; the URL above is the canonical text
+and governs.
+
+Suggested attribution:
+
+    "Where Mathematics Comes From — Part VI Idea Analysis" (or the relevant
+    title) by Fokhruz Zaman, from github.com/gz009/mutation-maths-ZPF,
+    licensed under CC BY 4.0.
+
+-------------------------------------------------------------------------------
+2. CODE  —  MIT License
+-------------------------------------------------------------------------------
+
+Applies to:
+
+    scripts/                      all Python
+    Partition_Function_Study/     the Jupyter notebooks
+    Makefile
+
+MIT License
+
+Copyright (c) 2026 Fokhruz Zaman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+3. WHAT IS NOT COVERED — third-party books
+-------------------------------------------------------------------------------
+
+The directories
+
+    Partition_Function_Study/Z_Ref_Books/
+    Partition_Function_Study/Maths_Proof_Skill/
+
+hold 31 reference books by other authors. They are present on the author's local
+disk only. They are NOT part of this repository, are NOT distributed by it, and
+are NOT licensed by either licence above. Each remains under its own publisher's
+copyright.
+
+.gitignore excludes them; `make check-no-books` fails the build if one is ever
+staged. guidelines/BOOKSHELF_INVENTORY.md lists them with checksums so that a
+reader who owns the same editions can verify they have the same files.
