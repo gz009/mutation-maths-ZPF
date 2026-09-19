@@ -1,0 +1,75 @@
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Source ledger}
+\markboth{Source ledger}{}
+
+Every substantive claim, with its author and year. Contested items are marked.
+
+\begin{center}\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.35cm}>{\raggedright\arraybackslash}p{6.4cm}>{\raggedright\arraybackslash}p{8.8cm}@{}}
+\toprule
+\rowcolor{slate!14}
+\textbf{Year} & \textbf{Result} & \textbf{Who / where, and status}\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{quantum}Mutation}}\\
+1963 & Proton tunnelling produces mutagenic tautomers & Löwdin, \textit{Rev.\ Mod.\ Phys.} \textbf{35}, 724\\
+1974--75 & Kinetic proofreading (classical) & Hopfield, \textit{PNAS} 1974; Ninio 1975\\
+1993 & Spontaneous DNA decay; deamination rates & Lindahl, \textit{Nature} \textbf{362}, 709\\
+2013--20 & Mutational signatures from the 96-channel spectrum & Alexandrov et al., \textit{Nature} \textbf{500}; PCAWG, \textit{Nature} \textbf{578}\\
+2015 & Mismatch repair tracks chromatin $\Rightarrow$ $>$2-fold rate variation & Supek \& Lehner, \textit{Nature} \textbf{521}, 81\\
+2022 & Mutation bias correlates with essentiality in \textit{Arabidopsis} & Monroe et al., \textit{Nature} \textbf{602} \;\textsc{contested}\\
+2022 & Open-quantum-systems treatment of G--C proton transfer; tautomer population $\approx1.7\times10^{-4}$ & Slocombe, Sacchi \& Al-Khalili, \textit{Commun.\ Phys.} \textbf{5}, 109 \;\textsc{link to mutation not closed}\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{nano}Docking, dynamics, sampling}}\\
+2002 & Metadynamics & Laio \& Parrinello, \textit{PNAS} \textbf{99}, 12562\\
+2008 & Inhomogeneous solvation theory (WaterMap) & Abel et al., \textit{JACS} \textbf{130}, 2817\\
+2015 & FEP$+$ reaching $\sim$1 kcal/mol on congeneric series & Wang et al., \textit{JACS} \textbf{137}, 2695\\
+2018 & VAMPnets: learning the transfer operator from data & Mardt, Pasquali, Wu \& Noé, \textit{Nat Commun} \textbf{9}, 5\\
+2018 & Tensor field networks; \texttt{e3nn} & Thomas et al.; Geiger \& Smidt\\
+2019 & \textbf{Boltzmann generators} & Noé, Olsson, Köhler \& Wu, \textit{Science} \textbf{365}, eaaw1147\\
+2020 & VAMP variational theory & Wu \& Noé, \textit{J Nonlinear Sci} \textbf{30}\\
+2022 & MACE: equivariant higher-order message passing & Batatia et al., NeurIPS\\
+2023 & Flow matching & Lipman et al.\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{ember}Structure prediction}}\\
+2021 & AlphaFold\,2; Invariant Point Attention & Jumper et al., \textit{Nature} \textbf{596}\\
+2022 & Conformational ensembles via MSA subsampling & Del Alamo et al., \textit{eLife} \textbf{11}, e75751\\
+2023 & ESMFold / ESM-2 protein language model & Lin et al., \textit{Science} \textbf{379}\\
+2024 & \textbf{AlphaFold\,3}: diffusion over atomic coordinates & Abramson et al., \textit{Nature} \textbf{630}, 493\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{indigo}Mathematical background}}\\
+--- & Partition function evaluation is \#P-hard & standard complexity result for the general case\\
+--- & Perron--Frobenius / Koopman operator duality & classical ergodic theory\\
+--- & Mori--Zwanzig projection and the memory kernel & classical non-equilibrium statistical mechanics\\
+1997--99 & Non-equilibrium work relations & Jarzynski, \textit{PRL} \textbf{78}; Crooks, \textit{PRE} \textbf{60}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{How this dossier relates to the others}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  d/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=8pt,
+            text width=3.55cm,align=center,minimum height=2.5cm},
+  ar/.style={-{Stealth[length=5pt,width=4pt]},line width=1.1pt,draw=slate!70}]
+ \node[d=deepblue] (a) at (0,0)     {\textbf{Part VI}\\[3pt]\textit{$e^{\pi i}+1=0$}\\[3pt]{\scriptsize mathematics is built from embodied metaphor}};
+ \node[d=bio]      (b) at (4.25,0)  {\textbf{Part VII}\\[3pt]\textit{Beyond the Reach of the Body?}\\[3pt]{\scriptsize so extend the body, re-ground, externalise}};
+ \node[d=lab]      (c) at (8.50,0)  {\textbf{Part VIII}\\[3pt]\textit{Your Errors Are Not Noise}\\[3pt]{\scriptsize \Tone\ applied to our own AMR run}};
+ \node[d=indigo]   (d) at (12.75,0) {\textbf{Part IX}\\[3pt]\textit{The Measure, Not the Point}\\[3pt]{\scriptsize \Ttwo\ and \Tthree: where the mathematics runs out}};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[ar] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+
+\vspace{14pt}
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=5pt,fill=indigo,text=white,inner sep=13pt,text width=15.6cm,align=center]
+ {\mbox{\large\bfseries We can compute points but not measures, states but not rates.}\\[7pt]
+  \normalfont\small
+  Mutation, docking and folding are three faces of that one sentence. The obstruction is the
+  partition function, and the most promising attack on it is to stop sampling the measure and start
+  learning it.};
+\end{tikzpicture}
+\end{center}

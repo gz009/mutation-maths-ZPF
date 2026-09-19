@@ -1,0 +1,133 @@
+\clearpage
+\renewcommand{\sectioncolor}{quantum}
+\section{Five escapes past intuition, with dates}\label{sec:escapes}
+\markboth{Five escapes}{}
+
+This is not speculation. Each of the following is a documented case of mathematics deliberately built
+past embodied intuition. Each followed \textbf{the same two-step pattern}, and recognising that
+pattern is what makes the method repeatable.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% ---- timeline axis ----
+\draw[slate!55,line width=1.3pt,-{Stealth[length=6pt]}] (0,0)--(16.6,0);
+\foreach \x/\y in {0.5/1829,3.6/1868,6.4/1932,8.5/1936,11.3/1990,15.3/2011}{
+  \draw[slate!55,line width=0.8pt] (\x,-0.13)--(\x,0.13);
+  \node[font=\scriptsize,text=slate,below=3pt] at (\x,-0.1) {\y};}
+% ---- event nodes above ----
+\node[rounded corners=3pt,draw=quantum,line width=0.9pt,fill=quantum!8,inner sep=5pt,
+      text width=3.0cm,align=center,anchor=south] (e1) at (1.0,0.55)
+  {\textbf{Non-Euclidean geometry}\\{\scriptsize Lobachevsky 1829\\Bolyai 1832 · Riemann 1854}};
+\node[rounded corners=3pt,draw=bio,line width=0.9pt,fill=bio!8,inner sep=5pt,
+      text width=2.7cm,align=center,anchor=north] (e2) at (3.6,-0.62)
+  {\textbf{Beltrami's model}\\{\scriptsize 1868 --- the \emph{re-grounding}}};
+\node[rounded corners=3pt,draw=quantum,line width=0.9pt,fill=quantum!8,inner sep=5pt,
+      text width=2.8cm,align=center,anchor=south] (e3) at (6.4,0.55)
+  {\textbf{Hilbert space}\\{\scriptsize von Neumann 1932}};
+\node[rounded corners=3pt,draw=quantum,line width=0.9pt,fill=quantum!8,inner sep=5pt,
+      text width=2.8cm,align=center,anchor=north] (e4) at (9.1,-0.62)
+  {\textbf{Quantum logic}\\{\scriptsize Birkhoff \& von Neumann 1936}};
+\node[rounded corners=3pt,draw=quantum,line width=0.9pt,fill=quantum!8,inner sep=5pt,
+      text width=3.2cm,align=center,anchor=south] (e5) at (12.1,0.55)
+  {\textbf{Non-commutative geometry}\\{\scriptsize Connes, 1980s; book 1994}};
+\node[rounded corners=3pt,draw=quantum,line width=0.9pt,fill=quantum!8,inner sep=5pt,
+      text width=3.1cm,align=center,anchor=north] (e6) at (15.3,-0.62)
+  {\textbf{Sheaf-theoretic contextuality}\\{\scriptsize Abramsky \& Brandenburger 2011}};
+\foreach \n/\x in {e1/1.0,e3/6.4,e5/12.1}{\draw[slate!50,line width=0.6pt] (\x,0.05)--(\x,0.5);}
+\foreach \n/\x in {e2/3.6,e4/9.1,e6/15.3}{\draw[slate!50,line width=0.6pt] (\x,-0.05)--(\x,-0.57);}
+% re-grounding arrow
+\draw[bio,line width=1pt,-{Stealth[length=5pt]}] (2.68,1.30) to[out=0,in=115] (3.45,0.08);
+\node[font=\scriptsize,text=bio,align=center,anchor=west] at (3.62,1.42) {39 years later:\\the re-grounding};
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 2.}\; Chronology of the five escapes. Note the gap between the symbolic escape (1829)
+and its re-grounding in a drawable model (1868). That gap is the cost of unintuitive mathematics,
+measured in decades.
+\end{minipage}\end{center}
+
+\subsection{The two-step pattern}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  s/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!8,inner sep=9pt,
+            text width=7.3cm,align=left,minimum height=3.1cm}]
+ \node[s=quantum] (a) at (-4.35,0)
+   {\textbf{\color{quantum}\normalsize STEP 1 --- Symbolic escape}\\[4pt]
+    Negate or delete the assumption that \emph{feels} necessary. Derive consequences. Check for
+    contradiction.\\[5pt]
+    {\scriptsize You are now computing with something you cannot picture. This is uncomfortable,
+    slow, and historically takes decades to be accepted.}};
+ \node[s=bio] (b) at (4.35,0)
+   {\textbf{\color{bio}\normalsize STEP 2 --- Re-grounding}\\[4pt]
+    Build a \emph{new blend} --- a model, a diagram, a calculus --- that makes the structure
+    manipulable by hand and eye again.\\[5pt]
+    {\scriptsize Beltrami's disk. Feynman's diagrams. The ZX-calculus. This is when the mathematics
+    becomes \emph{usable} rather than merely valid.}};
+ \draw[-{Stealth[length=7pt,width=6pt]},line width=1.5pt,draw=slate] (-0.6,0)--(0.6,0);
+\end{tikzpicture}
+\end{center}
+
+\subsection{The cases, one paragraph each}
+
+\begin{auditbox}[title={1. Non-Euclidean geometry \normalfont(Lobachevsky 1829 · Bolyai 1832 · Riemann 1854 · Beltrami 1868)}]
+The parallel postulate felt \emph{necessary} precisely because it matched embodied spatial
+experience. The escape was symbolic: negate it, derive consequences, find no contradiction. Only
+\textbf{39 years later} did Beltrami build the pseudosphere model, and then Klein and Poincaré their
+disk models --- new blends that re-grounded the abstract structure in something you could draw.
+\end{auditbox}
+
+\begin{auditbox}[title={2. Hilbert space \normalfont(von Neumann, \textit{Mathematische Grundlagen der Quantenmechanik}, 1932)}]
+An electron's state is a ray in an infinite-dimensional complex projective space; observables are
+self-adjoint operators; measurement is a projection. Not visualisable. But look at the assembly:
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  q/.style={rounded corners=3pt,draw=#1,line width=0.85pt,fill=#1!9,inner sep=5pt,
+            text width=2.85cm,align=center,minimum height=1.15cm}]
+ \node[q=slate]   (a) at (0,0)     {vectors as \textbf{arrows}\\{\scriptsize grounded}};
+ \node[q=slate]   (b) at (3.35,0)  {inner product as \textbf{angle \& length}\\{\scriptsize grounded}};
+ \node[q=sand]    (c) at (6.70,0)  {infinite dimension\\{\scriptsize via the \textbf{BMI}}};
+ \node[q=crimson] (d) at (10.05,0) {complexification\\{\scriptsize via the \textbf{rotation metaphor}}};
+ \node[q=quantum] (e) at (13.55,0) {\textbf{Hilbert space}};
+ \foreach \x/\y in {a/b,b/c,c/d,d/e}{\draw[-{Stealth[length=4pt]},line width=0.85pt,draw=slate] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\textbf{The machinery of Part VI is what built quantum mechanics' state space.} The BMI of Chapter 9
+and the $90^{\circ}$ rotation metaphor of Case Study 3 are load-bearing components of the formalism
+you would use to model an electron in a protein.
+\end{auditbox}
+
+\begin{auditbox}[title={3. Quantum logic \normalfont(Birkhoff \& von Neumann, \textit{Annals of Mathematics}, 1936)}]
+The lattice of propositions about a quantum system is \textbf{non-distributive}. Distributivity feels
+necessary because of the container/collection metaphor: if the marble is in box $A$ or box $B$, it is
+in one of them. Delete that, and you have a logic for systems where it is not so.
+\end{auditbox}
+
+\begin{auditbox}[title={4. Non-commutative geometry \normalfont(Connes, 1980s; \textit{Noncommutative Geometry}, 1994)}]
+\textbf{The sharpest case for your question.} Classical geometry says a space is a set of points, and
+functions on it commute because you evaluate at a point. Quantum observables do not commute. Connes'
+move: \emph{stop insisting on points.} Take the algebra as primary, drop commutativity, and see what
+``geometry'' survives --- you get a geometry with no points, which is what a quantum ``space''
+requires.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize]
+ \node[rounded corners=3pt,fill=crimson!10,draw=crimson,line width=0.9pt,inner sep=6pt,
+       text width=6.4cm,align=center] (a) at (-4.0,0)
+   {\textbf{the embodied assumption}\\``a space is made of points you could stand at''};
+ \node[rounded corners=3pt,fill=bio!10,draw=bio,line width=0.9pt,inner sep=6pt,
+       text width=6.4cm,align=center] (b) at (4.0,0)
+   {\textbf{delete it, keep the algebra}\\$C^{*}$-algebra, spectral triple, no points};
+ \draw[-{Stealth[length=6pt]},line width=1.2pt,draw=slate] (a)--(b)
+   node[midway,above=2pt,font=\scriptsize,text=slate]{Move 2};
+\end{tikzpicture}
+\end{center}
+\end{auditbox}
+
+\begin{auditbox}[title={5. Sheaf-theoretic contextuality \normalfont(Abramsky \& Brandenburger, \textit{New J.\ Phys.}, 2011)}]
+Quantum contextuality and non-locality turn out to be exactly the obstruction to gluing local
+sections of a presheaf into a global section. A piece of mid-century algebraic topology became the
+right language for a phenomenon with no classical picture at all --- and, as \S\ref{ss:context}
+argued, plausibly the right language for context-dependent molecular identity too.
+\end{auditbox}

@@ -1,0 +1,73 @@
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Verification ledger --- what was checked, and how}
+\markboth{Verification ledger}{}
+
+Every claim of fact in this tutorial was checked on your machine on \textbf{19 September 2026}.
+Where a check could not be made, it says so.
+
+\begin{center}\footnotesize
+\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5.0cm} >{\raggedright\arraybackslash}p{5.6cm} >{\raggedright\arraybackslash}p{5.0cm}@{}}
+\toprule
+\rowcolor{slate!13}
+\textbf{claim} & \textbf{how checked} & \textbf{result}\\
+\midrule
+Notebook has 22 cells, 10 of them code & \bk{json.load} over the \bk{.ipynb} &
+ \textcolor{bio}{\textbf{22 cells, 10 code, 12 markdown}}\\
+\rowcolor{slate!5}
+Notebook runs clean under Sage & scan every cell's outputs for \bk{output\_type=='error'} &
+ \textcolor{bio}{\textbf{0 errors}}, 10 cells executed\\
+Kernel is Sage 10.9 & \bk{metadata.kernelspec} &
+ \bk{SageMath 10.9} / \bk{sagemath-10.9}\\
+\rowcolor{slate!5}
+Eight proof books present & \bk{find} over \bk{Maths\_Proof\_Skill/} &
+ 8 PDFs, 6 folders, \textbf{22 MB}\\
+Copies are byte-identical to sources & MD5 of every copy vs.\ its original &
+ \textcolor{bio}{\textbf{8/8 match}}; originals untouched\\
+\rowcolor{slate!5}
+Quotations in §2--§4 & read from \emph{your} PDFs, not from memory &
+ Devlin §3.1; D\&L Def.~2.1.15 and §2.3.6; Thurston; Tao\\
+Cell numbers cited in §5--§8 & re-extracted from the notebook and cross-checked &
+ corrected once during drafting --- see note below\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}[title={One correction made while writing this document}]
+An early draft cited the CAS-failure demonstration as cell~19. Re-extracting the cell list showed
+cell~19 is the \emph{theorem verification} and the CAS demonstration is \textbf{cell~21}. Every
+\textcolor{proof}{\textbf{CELL~$n$}} tag in this document was then re-derived from the notebook file
+rather than from the draft. \textbf{This is the same discipline the document argues for}: a claim
+that was only plausible got checked against the source, and it was wrong.
+\end{warnbox}
+
+\subsection{Three things this tutorial deliberately does not claim}
+
+\begin{enumerate}\setlength{\itemsep}{4pt}
+\item \textbf{That you can now write proofs.} You can now \emph{read} six techniques and recognise
+ which one a proof is using. Writing them is weeks 2--4, and it is exercises, not reading.
+\item \textbf{That the notebook's Sage checks prove anything.} They do not, and the notebook says so
+ in capitals at cell~17. Every proof in it is in the markdown.
+\item \textbf{That the four-week route is enough for Axler.} It gets you to the point where Axler
+ §7.B is readable. \emph{Readable}, not easy --- that is Week 1 of the twelve-week partition-function
+ plan, and a different document.
+\end{enumerate}
+
+\vfill
+\begin{center}
+\begin{tcolorbox}[enhanced,width=0.94\textwidth,colback=proof!6,colframe=proof,
+ boxrule=1.2pt,arc=5pt,left=12pt,right=12pt,top=10pt,bottom=10pt]
+\centering
+{\large\bfseries\color{proof} The one sentence to keep}\\[7pt]
+\begin{minipage}{0.88\textwidth}\centering
+Computation tells you \emph{that} something is true for the cases you ran.\\
+A proof tells you \emph{why} it is true, for all the cases you will never run.\\[6pt]
+{\footnotesize\color{slate}Devlin: \emph{``a proof of a statement must explain why that statement is
+true.''}\\
+Thurston: \emph{``a continuing desire for human understanding of a proof, in addition to knowledge
+that the theorem is true.''}}
+\end{minipage}
+\end{tcolorbox}
+\end{center}
+\vfill

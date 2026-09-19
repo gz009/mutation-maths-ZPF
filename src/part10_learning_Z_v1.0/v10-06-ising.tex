@@ -1,0 +1,129 @@
+\clearpage
+\renewcommand{\sectioncolor}{ember}
+\section{The worked calculation: 1D Ising, three ways}
+\markboth{1D Ising}{}
+
+\noindent Everything in this section and the next was computed for this dossier and is reproducible
+from the companion notebook. It uses \texttt{numpy} only.
+
+\subsection{The model, and where the linear algebra enters}
+
+$N$ spins $s_i=\pm1$ on a ring, $E(s)=-J\sum s_i s_{i+1}-h\sum s_i$. Write the Boltzmann weight so
+each \emph{bond} contributes one factor:
+\[
+e^{-\beta E}=\prod_{i=1}^{N}\underbrace{\exp\!\Big[\beta J s_i s_{i+1}+\tfrac{\beta h}{2}(s_i+s_{i+1})\Big]}_{\textstyle T(s_i,\,s_{i+1})}
+\qquad
+T=\begin{pmatrix} e^{\beta(J+h)} & e^{-\beta J}\\[2pt] e^{-\beta J} & e^{\beta(J-h)}\end{pmatrix}
+\]
+Chaining the factors and closing the ring turns the sum over $2^N$ configurations into a trace:
+\[
+\boxed{\;Z=\sum_{s_1}\cdots\sum_{s_N}T(s_1,s_2)\cdots T(s_N,s_1)=\operatorname{Tr}\big(T^N\big)=\lambda_+^N+\lambda_-^N\;}
+\]
+\[
+\lambda_\pm=e^{\beta J}\cosh\beta h\pm\sqrt{e^{2\beta J}\sinh^2\!\beta h+e^{-2\beta J}}
+\]
+
+\begin{keyidea}[title={Notice exactly which theorems did the work}]
+$T$ is symmetric and has positive entries, so \textbf{Axler §7.B} gives an orthonormal eigenbasis;
+\textbf{§7.C} says $T$ is a positive operator, so $\lambda_\pm>0$; \textbf{§10.A} says the trace is
+basis-independent, so $\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N$ without choosing coordinates.
+
+\textbf{A sum over $2^N$ states collapsed to two numbers, using three sections of a linear algebra
+textbook you already own.}
+\end{keyidea}
+
+\subsection{Method A versus Method B: they agree to machine precision}
+
+\begin{center}\small
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+\rowcolor{ember!13}
+\textbf{$N$} & \textbf{$2^N$ states} & \textbf{$\beta$} & \textbf{$Z$ from $\operatorname{Tr}(T^N)$} & \textbf{$Z$ from brute force}\\
+\midrule
+4  & 16     & 1.0 & $1.2123293134\times10^{2}$ & $1.2123293134\times10^{2}$\\
+8  & 256    & 1.0 & $9.1604387226\times10^{3}$ & $9.1604387226\times10^{3}$\\
+12 & 4{,}096  & 1.0 & $7.7491438244\times10^{5}$ & $7.7491438244\times10^{5}$\\
+16 & 65{,}536 & 0.2 & $9.0061138775\times10^{4}$ & $9.0061138775\times10^{4}$\\
+16 & 65{,}536 & 0.5 & $4.4784000941\times10^{5}$ & $4.4784000941\times10^{5}$\\
+\rowcolor{ember!7}
+16 & 65{,}536 & 1.0 & $6.8584536591\times10^{7}$ & $6.8584536591\times10^{7}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 1.}\; Worst relative disagreement across all twelve test cases:
+$\mathbf{7.56\times10^{-13}}$ --- machine precision. A sum over 65{,}536 configurations and the trace
+of a $2\times2$ matrix are the same number.
+\end{minipage}\end{center}
+
+\subsection{Thermodynamics: everything is a derivative of \texorpdfstring{$\ln Z$}{ln Z}}
+
+As $N\to\infty$ only the larger eigenvalue survives, because $(\lambda_-/\lambda_+)^N\to0$. At $h=0$,
+$\lambda_+=2\cosh\beta J$, so
+\[
+f=-\tfrac1\beta\ln\!\big(2\cosh\beta J\big),\qquad
+u=-J\tanh\beta J,\qquad
+\frac{C}{k_B}=\left(\frac{\beta J}{\cosh\beta J}\right)^{2}
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=15.4cm,height=5.4cm,
+  xlabel={\footnotesize temperature $T=1/\beta$}, xmin=0.25,xmax=5.2,ymin=-1.15,ymax=0.55,
+  tick label style={font=\scriptsize}, label style={font=\footnotesize},
+  grid=major, grid style={slate!18,line width=0.3pt}, axis line style={slate!60},
+  legend style={font=\scriptsize,draw=none,fill=none,at={(0.5,1.26)},anchor=north,legend columns=2}]
+ \addplot[ember,line width=1.4pt,domain=0.25:5.2,samples=200]{-tanh(1/x)};
+ \addlegendentry{energy per spin $u=-\tanh\beta$}
+ \addplot[nano,line width=1.4pt,domain=0.25:5.2,samples=200]{((1/x)/cosh(1/x))^2};
+ \addlegendentry{heat capacity $C/k_B$}
+ \draw[slate!45,dashed,line width=0.7pt] (axis cs:0.25,0)--(axis cs:5.2,0);
+ \node[font=\scriptsize,text=nano,anchor=south west] at (axis cs:1.25,0.40) {Schottky peak};
+ \node[font=\scriptsize,text=ember,anchor=north west] at (axis cs:3.05,-0.28) {$u\to0$: disorder};
+ \node[font=\scriptsize,text=ember,anchor=south west] at (axis cs:0.33,-0.99) {$u\to-1$: fully aligned};
+ \draw[ember!60,line width=0.6pt] (axis cs:1.15,-0.97)--(axis cs:0.55,-0.91);
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 4.}\; Exact thermodynamics of the 1D Ising chain, from $\ln\lambda_+$ alone. Note
+there is \emph{no} phase transition: $f$ is smooth for all $T>0$. That is a theorem --- a
+one-dimensional system with short-range interactions cannot order at finite temperature. The bump in
+$C$ is a Schottky anomaly, not a critical point.
+\end{minipage}\end{center}
+
+\subsection{The eigenvalue gap \emph{is} the correlation length}
+
+This is the deepest line in the whole calculation, and it is one line of linear algebra:
+\[
+\langle s_0 s_r\rangle=\left(\frac{\lambda_-}{\lambda_+}\right)^{r}=e^{-r/\xi},
+\qquad\boxed{\;\xi=\frac{1}{\ln(\lambda_+/\lambda_-)}\;}
+\]
+
+\begin{center}\small
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+\rowcolor{ember!13}
+$\beta$ & $\lambda_+$ & $\lambda_-$ & $\lambda_+/\lambda_-$ & $\xi$\\
+\midrule
+0.2 & 2.04013 & 0.40267 & 5.0665 & 0.616\\
+0.5 & 2.25525 & 1.04219 & 2.1640 & 1.295\\
+1.0 & 3.08616 & 2.35040 & 1.3130 & 3.672\\
+1.5 & 4.70482 & 4.25856 & 1.1048 & 10.034\\
+2.0 & 7.52439 & 7.25372 & 1.0373 & 27.296\\
+2.5 & 12.26458 & 12.10041 & 1.0136 & 74.205\\
+\rowcolor{alert!8}
+3.0 & 20.13532 & 20.03575 & 1.0050 & \textbf{201.714}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 2.}\; As temperature falls the spectral gap closes and the correlation length grows
+\emph{exponentially} --- from 0.6 to 202 lattice spacings. \textbf{Keep this sentence: the spectral
+gap of the transfer matrix controls how far correlations reach.} It returns in §6 as the reason Monte
+Carlo fails, and in Part~IX §6 as the reason the transfer \emph{operator} is the right object for
+molecular kinetics.
+\end{minipage}\end{center}

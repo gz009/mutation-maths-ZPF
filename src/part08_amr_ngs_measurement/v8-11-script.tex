@@ -1,0 +1,124 @@
+\clearpage
+\renewcommand{\sectioncolor}{ember}
+\section{The drop-in script}
+\markboth{The script}{}
+
+Written and placed at \texttt{handbook\_illumina/scripts/11\_tilecycle\_gate.py}. Standard library
+only, apart from \texttt{samtools} on \texttt{PATH}. Deterministic: same BAM in, same answer out.
+
+\begin{center}
+\begin{tcolorbox}[enhanced,width=\textwidth,colback=ink,colframe=ember,boxrule=1pt,arc=3pt,
+  fontupper=\ttfamily\scriptsize\color{white},left=9pt,right=9pt,top=8pt,bottom=8pt,
+  title={\bfseries How to run it},fonttitle=\bfseries\small,coltitle=white,colbacktitle=ember]
+\# 1. map the reads back to your own assembly (once per run)\\
+minimap2 -ax sr contigs.fasta reads.fastq.gz \textbar\ samtools sort -o all\_vs\_contigs.bam\\
+samtools index all\_vs\_contigs.bam\\[6pt]
+\# 2. run the gate\\
+python handbook\_illumina/scripts/11\_tilecycle\_gate.py \textbackslash\\
+\hspace*{2em}all\_vs\_contigs.bam contigs.fasta qc/tilecycle\\[6pt]
+\# 3. exclude what it flags, then re-assemble\\
+\hspace*{1em}qc/tilecycle.mask.tsv \ \ -\/->\ \ two columns: tile, cycle
+\end{tcolorbox}
+\end{center}
+
+\subsection{What it does, in five steps}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  s/.style={rounded corners=3pt,draw=ember,line width=0.9pt,fill=ember!8,inner sep=6pt,
+            text width=2.72cm,align=center,minimum height=2.0cm},
+  ar/.style={-{Stealth[length=5pt,width=4pt]},line width=1.1pt,draw=ember!75}]
+ \node[s] (a) at (0,0)     {\textbf{1.} count aligned bases and \emph{real} mismatches per (tile, cycle)};
+ \node[s] (b) at (3.70,0)  {\textbf{2.} take the \textbf{median} rate across tiles as that cycle's background};
+ \node[s] (c) at (7.40,0)  {\textbf{3.} flag cells far above background, with a tiny binomial tail probability};
+ \node[s] (d) at (11.10,0) {\textbf{4.} report the substitution spectrum and the \emph{reported} Q of the wrong bases};
+ \node[s,draw=bio,fill=bio!8] (e) at (14.80,0) {\textbf{5.} write \texttt{.mask.tsv} --- exclude before assembly};
+ \foreach \x/\y in {a/b,b/c,c/d,d/e}{\draw[ar] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+Step 2 is the only subtle one. Using the \emph{median} across tiles rather than the mean means a
+handful of broken tiles cannot inflate the baseline they are being judged against. That is the whole
+of ``robust statistics'' as it applies here.
+\end{minipage}\end{center}
+
+\subsection{It has been tested}
+
+\texttt{samtools} is not installed on the machine this document was written on, so the script could
+not be run against our real BAM here. It was instead validated on \textbf{synthetic data with a known
+planted fault} --- 5 tiles $\times$ 60 cycles, background error $5\times10^{-4}$, and one cell
+(tile 1103, cycle 21) forced to a 70\,\% error rate with all wrong bases labelled \textbf{Q37}, to
+reproduce exactly the failure mode we saw on our own run.
+
+\begin{center}
+\begin{tcolorbox}[enhanced,width=0.95\textwidth,colback=ink,colframe=bio,boxrule=1pt,arc=3pt,
+  fontupper=\ttfamily\scriptsize\color{white},left=9pt,right=9pt,top=8pt,bottom=8pt,
+  title={\bfseries Actual output of the validation run},fonttitle=\bfseries\small,coltitle=white,colbacktitle=bio]
+tile-cycles examined      300  (5 tiles x 60 cycles)\\
+aligned bases             78,000\\
+substitution rate  before 0.002769   (Q25.58)\\
+substitution rate  after  0.000437   (Q33.59)\\[5pt]
+FLAGGED 1 tile-cycle(s) = 0.3333\% of the run\\
+\hspace*{2em}bases discarded      260 (0.3333\%)\\
+\hspace*{2em}mismatches removed   182 (84.3\% of all errors)\\[5pt]
+\hspace*{2em}~~tile~~cycle~~~~~~rate~~background~~~excess~~~reported Q of the wrong bases\\
+\hspace*{2em}~~1103~~~~~21~~~~0.7000~~~~0.003846~~~~~182x~~~182 at Q37
+\end{tcolorbox}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+It found the planted fault exactly, discarded 0.33\,\% of the bases, and removed 84\,\% of the
+errors. \textbf{Next step for the team: run it against the real \texttt{all\_vs\_contigs.bam} and
+confirm it recovers the four known tile-cycles (8/1101, 16/2111, 85/1113, 93/2113).} If it does, put
+it in the standard pipeline.
+\end{minipage}\end{center}
+
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Where every number came from}
+\markboth{Source ledger}{}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.1cm}>{\raggedright\arraybackslash}p{10.5cm}@{}}
+\toprule
+\rowcolor{slate!14}
+\textbf{Claim} & \textbf{Source file}\\
+\midrule
+858{,}085 reads $\cdot$ 200{,}631{,}460 bases $\cdot$ 71.6$\times$ & \texttt{METHODS\_v1.7.md} §1\\
+2{,}803{,}313 bp $\cdot$ 38 contigs $\cdot$ N50 319{,}865 & \texttt{assembly\_results/quast\_report/report.txt}\\
+118 gene calls from 5 databases & \texttt{METHODS\_v1.7.md} §4.2\\
+28{,}266 mismatches; 843 masked positions; 4 failed tile-cycles &
+ \texttt{handbook\_illumina/results/02\_empirical\_errors.json}\\
+Per-tile error rates, substitution spectra, reported Q &
+ \texttt{handbook\_illumina/results/02b\_spike\_cycles.json}\\
+Q30, trimming, over-trimming experiment (Runs A/B/C) & \texttt{TUTORIAL\_QC\_and\_Read\_Cleaning.md} Parts 5--7\\
+Contig coverage $\Rightarrow$ copy number & \texttt{assembly\_results/spades\_assembly/contigs.fasta} headers\\
+lukF-PV 82.31 \%, hlgB 99.90 \%, the v1.0 PVL error & \texttt{METHODS\_v1.7.md} §4.6\\
+Identity margins 98.42--100 \% & \texttt{METHODS\_v1.7.md} §5\\
+$\varphi$Sa3 boundary limitation & \texttt{METHODS\_v1.7.md} §6, item 3\\
+SNR $=\sqrt{N}$; phasing transition matrix & \texttt{handbook\_illumina/theory/T6\_photons\_noise.md}, \texttt{T7\_signal\_statistics.md}\\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{\color{slate}External results cited}}\\
+Assembly feasibility condition & Bresler, Bresler \& Tse, \textit{BMC Bioinformatics} 2013\\
+Base quality score recalibration & DePristo et al.\ 2011; GATK BQSR documentation\\
+Robust low-rank $+$ sparse separation & Candès, Li, Ma \& Wright, \textit{JACM} 2011\\
+DeepVariant & Poplin et al., \textit{Nat Biotechnol} 2018\\
+DeepConsensus & Baid et al., \textit{Nat Biotechnol} 2023\\
+ESM-2 protein language model & Lin et al., \textit{Science} 2023\\
+AlphaFold2 & Jumper et al., \textit{Nature} 2021\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{16pt}
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=5pt,fill=lab,text=white,inner sep=13pt,text width=15.6cm,align=center]
+ {\mbox{\large\bfseries Our data is good. Our error model was not.}\\[7pt]
+  \normalfont\small
+  51\,\% of the errors live in under 0.1\,\% of the run, and against that kind of fault,
+  more coverage makes the answer worse. Finding the structure costs a script.
+  Not finding it costs about 50$\times$ of sequencing, on every run, forever.};
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,93 @@
+\clearpage
+\renewcommand{\sectioncolor}{measure}
+\section{The live attack on \texorpdfstring{$Z$}{Z}}
+\markboth{The attack on Z}{}
+
+If $Z$ is the villain, the interesting question is who is attacking it. One idea stands out, because
+it does not try to sample the measure faster --- it tries to \emph{learn the measure directly}.
+
+\subsection{Boltzmann generators}
+
+\begin{evidence}[title={Noé, Olsson, Köhler \& Wu, \textit{Science} \textbf{365}, eaaw1147 (2019)}]
+Instead of running molecular dynamics until it mixes, \textbf{learn an invertible map} $f$ from a
+simple Gaussian in latent space to configuration space, trained so that pushing the Gaussian through
+$f$ approximates the Boltzmann distribution. Because $f$ is invertible with a tractable Jacobian, you
+know the density of every generated sample exactly --- so you can \textbf{reweight to the true
+Boltzmann distribution} and recover unbiased equilibrium statistics.
+\end{evidence}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% latent gaussian
+\begin{scope}[shift={(0,0)}]
+ \draw[nano,line width=1.3pt,domain=-1.9:1.9,samples=100,smooth,fill=nano,fill opacity=0.15]
+   plot (\x,{1.25*exp(-1.6*\x*\x)});
+ \draw[slate!50,line width=0.7pt,-{Stealth[length=4pt]}] (-2.2,0)--(2.3,0);
+ \node[font=\scriptsize\bfseries,text=nano,anchor=north] at (0,-0.28) {latent space};
+ \node[font=\scriptsize,text=slate,anchor=north] at (0,-0.62) {a Gaussian --- trivial to sample};
+\end{scope}
+% the map
+\draw[measure,line width=1.6pt,-{Stealth[length=7pt]}] (2.7,0.55)--(5.4,0.55);
+\node[font=\scriptsize\bfseries,text=measure,anchor=south] at (4.05,0.68) {$f$ \ (invertible)};
+\draw[measure,line width=1.2pt,-{Stealth[length=6pt]}] (5.4,0.12)--(2.7,0.12);
+\node[font=\scriptsize,text=measure,anchor=north] at (4.05,0.08) {$f^{-1}$, with exact Jacobian};
+% boltzmann
+\begin{scope}[shift={(8.6,0)}]
+ \draw[measure,line width=1.3pt,domain=-2.9:2.9,samples=240,smooth,fill=measure,fill opacity=0.15]
+   plot (\x,{1.05*exp(-7*(\x-1.4)^2) + 0.80*exp(-6*(\x+1.5)^2) + 0.34*exp(-11*\x*\x)});
+ \draw[slate!50,line width=0.7pt,-{Stealth[length=4pt]}] (-3.2,0)--(3.3,0);
+ \node[font=\scriptsize\bfseries,text=measure,anchor=north] at (0,-0.28) {configuration space};
+ \node[font=\scriptsize,text=slate,anchor=north] at (0,-0.62) {$\mu(x)\propto e^{-\beta U(x)}$ --- multimodal, sharp};
+\end{scope}
+% the payoff
+\node[rounded corners=4pt,fill=bio!10,draw=bio,line width=1.1pt,inner sep=7pt,
+      text width=15.4cm,align=center,font=\scriptsize] at (6.0,-1.55)
+  {\textbf{\color{bio}Why this is different from every enhanced-sampling method:}
+   it never has to \emph{cross} the barriers. Independent samples are drawn in latent space, where
+   there are no barriers, and mapped into configuration space one at a time.};
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 8.}\; The Boltzmann generator idea. This is the most genuinely new piece of
+mathematics in the whole of this dossier: it changes the question from ``how do I sample this
+measure'' to ``can I learn a change of variables that makes it easy''.
+\end{minipage}\end{center}
+
+\begin{critbox}[title={The honest caveat --- and it is a serious one}]
+Boltzmann generators have been demonstrated on \textbf{small systems}. Whether they scale to a
+protein--ligand complex is \textbf{open}: the flow must learn a measure in $\mathbb{R}^{3N}$ with
+$N\sim10^4$, sharp, multimodal, and with topology that changes as bonds rotate.
+
+\textbf{That is precisely the right situation for a mathematician.} It is a clearly posed problem,
+with a working prototype, a known obstruction, and no known solution. Compare that with ``model the
+cell'', which is none of those things.
+\end{critbox}
+
+\subsection{The wider family this belongs to}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{5.7cm}@{}}
+\toprule
+\rowcolor{measure!13}
+\textbf{\color{measure}Idea} & \textbf{\color{measure}What it learns} & \textbf{\color{measure}Status}\\
+\midrule
+Normalizing flows & an invertible change of variables with exact density &
+ works; scaling open\\
+Diffusion models & a denoising process whose stationary law is the target &
+ what AF3's structure module already is --- but not trained to the \emph{Boltzmann} target\\
+Flow matching \newline (Lipman et al.\ 2023) & a velocity field transporting one measure to another &
+ cheaper training; being applied to ensembles now\\
+\rowcolor{measure!6}
+Optimal transport & the geometry of the space \emph{of measures} itself &
+ the natural language for comparing two ensembles, and underused\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thesisbox}[title={The unifying observation}]
+Every entry in that table is an answer to the same question: \textbf{how do you represent and
+manipulate a probability measure in very high dimension?} That is a mathematical question, not a
+biological one --- which is exactly why it is tractable, and exactly why biology should be paying
+attention to it.
+\end{thesisbox}

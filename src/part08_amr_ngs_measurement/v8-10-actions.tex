@@ -1,0 +1,61 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{Five actions, ranked by payoff $\div$ effort}
+\markboth{Five actions}{}
+
+\begin{center}\small
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{5.0cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{5.2cm}@{}}
+\toprule
+\rowcolor{bio!14}
+\textbf{\#} & \textbf{\color{bio}Action} & \textbf{\color{bio}Effort} & \textbf{\color{bio}What it buys}\\
+\midrule
+\rowcolor{bio!7}
+\textbf{1} & \textbf{Run the tile-cycle gate on every run and mask what it flags} &
+ \textbf{Already written} --- \S10. One command. & Removes 38\,\% of our substitution errors. Takes
+ measured Q from 29.4 to 32.5. \textbf{Do this one first.}\\
+\textbf{2} & Add \emph{which tile, which cycle} as a covariate wherever we recalibrate quality &
+ One extra term; a day &
+ The standard recalibration (GATK BQSR) groups by reported-Q, cycle and dinucleotide context --- it
+ has \textbf{no tile term at all}. Ours should.\\
+\textbf{3} & Report best-hit \emph{versus best competing family} for every gene call, not just for PVL &
+ A few hours; generalise \texttt{06\_pvl\_test.py} &
+ Removes the class of error that produced the wrong PVL call in v1.0, and retires the threshold
+ argument in our Limitations.\\
+\textbf{4} & Report copy number as an interval, using integer constraints + graph balance &
+ A day or two &
+ Turns Limitation 3 (``the $\sim$42.4 kb $\varphi$Sa3 span is an estimate'') into a stated confidence
+ interval.\\
+\rowcolor{alert!7}
+\textbf{5} & \textbf{Do not buy more Illumina depth.} If we need a closed genome, buy $\sim$20$\times$
+ nanopore and hybrid-assemble & procurement, not research &
+ Attacks the one limit that is genuinely information-theoretic. More short reads cannot.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{dobox}[title={The whole argument, in one picture}]
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=8pt,
+            text width=4.85cm,align=center,minimum height=2.5cm}]
+ \node[b=alert] (a) at (-5.65,0)
+   {\textbf{\color{alert}The problem}\\[4pt] errors are \textbf{structured}, but the pipeline
+    assumes they are \textbf{scattered}};
+ \node[b=sand] (b) at (0,0)
+   {\textbf{\color{sand}The current fix}\\[4pt] 71.6$\times$ blanket coverage\\
+    {\scriptsize --- works for scattered errors, \textbf{fails completely} for structured ones}};
+ \node[b=bio] (c) at (5.65,0)
+   {\textbf{\color{bio}The actual fix}\\[4pt] find the structure and remove it\\
+    {\scriptsize 50 lines, seconds of runtime, no new data}};
+ \draw[-{Stealth[length=6pt]},line width=1.3pt,draw=slate] (a)--(b);
+ \draw[-{Stealth[length=6pt]},line width=1.3pt,draw=bio] (b)--(c);
+\end{tikzpicture}
+\end{center}
+\end{dobox}
+
+\begin{plain}
+None of this says our result is wrong. It is not --- the validation reproduced the published
+findings, and §3.4 shows the underlying data is genuinely good. What it says is that we are paying
+for safety in the wrong currency, and that the one fault which actually reached our data is the one
+kind that paying more cannot fix.
+\end{plain}

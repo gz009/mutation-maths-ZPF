@@ -1,0 +1,123 @@
+\clearpage
+\subsection{The whole architecture on one page}
+
+Everything Part VI does is an assembly. Below is the full dependency graph: bodily experience at the
+foot, the equation at the crown. Read it upward. Each arrow is a metaphor or a blend that
+\emph{exports inferential structure} from the level below to the level above.
+
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[scale=1,font=\scriptsize,
+  every node/.style={transform shape},
+  band/.style={rounded corners=3pt,fill=#1,draw=none,opacity=0.10},
+  bandlbl/.style={rotate=90,font=\scriptsize\bfseries,text=#1,anchor=center},
+  gnode/.style={rounded corners=3pt,draw=slate,line width=0.7pt,fill=slate!8,
+                text width=2.6cm,align=center,inner sep=4pt,font=\scriptsize},
+  mnode/.style={rounded corners=3pt,draw=purple,line width=0.9pt,fill=purple!8,
+                text width=3.0cm,align=center,inner sep=4.5pt,font=\scriptsize},
+  anode/.style={rounded corners=3pt,draw=csA,line width=0.9pt,fill=csA!9,
+                text width=3.35cm,align=center,inner sep=4.5pt,font=\scriptsize},
+  bnode/.style={rounded corners=3pt,draw=csB,line width=0.9pt,fill=csB!12,
+                text width=3.35cm,align=center,inner sep=4.5pt,font=\scriptsize},
+  cnode/.style={rounded corners=3pt,draw=csC,line width=0.9pt,fill=csC!9,
+                text width=3.35cm,align=center,inner sep=4.5pt,font=\scriptsize},
+  dnode/.style={rounded corners=3pt,draw=csD,line width=1pt,fill=csD!11,
+                text width=4.4cm,align=center,inner sep=5pt,font=\scriptsize},
+  up/.style={-{Stealth[length=4.5pt,width=3.5pt]},line width=0.75pt,draw=#1,opacity=0.85},
+  ]
+
+%----- bands -----
+\fill[band=slate]   (-0.55,-0.55) rectangle (17.05,1.15);
+\fill[band=purple]  (-0.55, 1.45) rectangle (17.05,3.15);
+\fill[band=skyblue] (-0.55, 3.45) rectangle (17.05,8.55);
+\fill[band=csD]     (-0.55, 8.85) rectangle (17.05,12.35);
+
+\node[bandlbl=slate]  at (-0.25, 0.30) {EMBODIED};
+\node[bandlbl=purple] at (-0.25, 2.30) {GROUNDING};
+\node[bandlbl=skyblue]at (-0.25, 6.00) {LINKING METAPHORS \& BLENDS};
+\node[bandlbl=csD]    at (-0.25,10.60) {SYNTHESIS};
+
+%----- Layer 0 : embodied -----
+\node[gnode] (g1) at (1.60,0.3) {subitizing \&\\object collection};
+\node[gnode] (g2) at (5.00,0.3) {object construction\\(wholes \& parts)};
+\node[gnode] (g3) at (8.40,0.3) {motion through\\a landscape};
+\node[gnode] (g4) at (11.80,0.3) {mental rotation\\\textit{\scriptsize(Shepard \& Metzler)}};
+\node[gnode] (g5) at (15.20,0.3) {recurrence \&\\iterated processes};
+\coordinate (g6) at (15.20,0.3);
+
+%----- Layer 1 : grounding metaphors -----
+\node[mnode] (m1) at (1.60,2.3) {\meta{Numbers Are Object Collections}};
+\node[mnode] (m2) at (5.10,2.3) {\meta{Arithmetic Is Object Construction}};
+\node[mnode] (m3) at (8.60,2.3) {\meta{Numbers Are Points on a Line}};
+\node[mnode] (m4) at (12.10,2.3) {\meta{Change Is Motion}};
+\node[mnode] (m5) at (15.60,2.3) {\textbf{BMI}\\\textit{Basic Metaphor of Infinity}};
+
+%----- Layer 2 : the three machines -----
+% CS1 column
+\node[anode] (a1) at (2.05,4.35) {\blend{Cartesian Plane blend}\\{\scriptsize geometry $\leftrightarrow$ algebra}};
+\node[anode] (a2) at (2.05,5.85) {\blend{Unit Circle blend}\\{\scriptsize 3 stages, 4 domains}};
+\node[anode] (a3) at (2.05,7.35) {\meta{Trigonometry metaphor}\\{\scriptsize angles become numbers}};
+\node[anode] (a4) at (6.00,4.35) {\meta{Functions Are Numbers}};
+\node[anode] (a5) at (6.00,5.85) {\meta{Recurrence Is Circularity}};
+\node[anode] (a6) at (6.00,7.35) {\meta{Polar--Trigonometry metaphor}};
+% CS2 column
+\node[bnode] (b1) at (9.95,4.35) {\blend{Exponential blend}\\{\scriptsize sums $\mapsto$ products}};
+\node[bnode] (b2) at (9.95,5.85) {7-step \textbf{mathematicization of change}};
+\node[bnode] (b3) at (9.95,7.35) {\blend{Power-Series blend}\\{\scriptsize 6 fused domains}};
+% CS3 column
+\node[cnode] (c1) at (13.90,4.35) {\meta{Multiplication by $-1$\\Is Rotation by $180^\circ$}};
+\node[cnode] (c2) at (13.90,5.85) {\blend{Rotation-Plane blend}};
+\node[cnode] (c3) at (13.90,7.35) {\meta{$90^\circ$ Rotation metaphor}\\{\scriptsize $\Rightarrow n^2=-1,\;n=i$}};
+
+%----- Layer 3 : synthesis -----
+\node[dnode] (d1) at (3.55,9.65) {\blend{Trigonometric Complex Plane blend}\\{\scriptsize $r\cis\theta=r(\cos\theta+i\sin\theta)$}};
+\node[dnode] (d2) at (8.60,9.65) {\blend{Taylor Series blend}\\{\scriptsize $a_n=f^{(n)}(0)/n!$}};
+\node[dnode] (d3) at (13.65,9.65) {\meta{A Function Is a Set of Ordered Pairs}};
+\node[rounded corners=4pt,draw=csD,line width=1.2pt,fill=csD!18,text width=8.6cm,align=center,
+      inner sep=6pt,font=\scriptsize] (d4) at (8.60,11.55)
+      {\textbf{\color{csD}EULER'S BLEND} --- 5 domains\\{\scriptsize power series $\cdot$ Taylor series $\cdot$ $e^{i\theta}$ $\cdot$ $\cos\theta+i\sin\theta$ $\cdot$ sets of ordered pairs}};
+
+%----- the crown -----
+\node[rounded corners=5pt,fill=deepblue,text=white,inner sep=9pt,font=\Large\bfseries] (eq)
+   at (8.60,13.25) {$e^{\pi i}+1=0$};
+
+%----- arrows -----
+\draw[up=slate] (g1)--(m1); \draw[up=slate] (g2)--(m2); \draw[up=slate] (g3)--(m3);
+\draw[up=slate] (g3)--(m4); \draw[up=slate] (g4)--(m3); \draw[up=slate] (g5)--(m4);
+\draw[up=slate] (g5)--(m5); \draw[up=slate] (g4)--(m5);
+
+\draw[up=purple] (m3)--(a1.south); \draw[up=purple] (m1.north)--(a1.south west);
+\draw[up=purple] (m2.north)--(a4.south west); \draw[up=purple] (m4)--(b2.south west);
+\draw[up=purple] (m5.north)--(b3.south east); \draw[up=purple] (m2.north)--(b1.south west);
+\draw[up=purple] (m3.north)--(c1.south west); \draw[up=purple] (m5.north)--(b2.south east);
+
+\draw[up=csA] (a1)--(a2); \draw[up=csA] (a2)--(a3);
+\draw[up=csA] (a1.east)--(a4.west); \draw[up=csA] (a3.east)--(a6.west);
+\draw[up=csA] (a2.east)--(a5.west);
+\draw[up=csB] (b1)--(b2); \draw[up=csB] (b2)--(b3);
+\draw[up=csC] (c1)--(c2); \draw[up=csC] (c2)--(c3);
+\draw[up=csA] (a4.north)--(b3.south west);
+
+\draw[up=csA] (a6.north)--(d1.south west);
+\draw[up=csC] (c3.north)--(d1.south east);
+\draw[up=csB] (b3.north)--(d2.south);
+\draw[up=csB] (b3.north east)--(d3.south west);
+\draw[up=csD] (d1.north)--(d4.west);
+\draw[up=csD] (d2.north)--(d4.south);
+\draw[up=csD] (d3.north)--(d4.east);
+\draw[-{Stealth[length=6pt,width=5pt]},line width=1.4pt,draw=deepblue] (d4)--(eq);
+
+%----- side annotations -----
+\node[font=\scriptsize\bfseries,text=csA,anchor=west] at (0.35,8.28) {CASE STUDY 1};
+\node[font=\scriptsize\bfseries,text=csB,anchor=west] at (8.22,8.38) {CASE STUDY 2};
+\node[font=\scriptsize\bfseries,text=csC,anchor=west] at (12.20,8.28) {CASE STUDY 3};
+\node[font=\scriptsize\bfseries,text=csD,anchor=west] at (0.35,12.10) {CASE STUDY 4};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; The dependency graph of Part VI. Nothing in the upper bands is a definition
+adopted for convenience: every one of them is presented by Lakoff \& Núñez as \emph{inherited} from
+the band beneath it. The claim the diagram encodes --- and the claim I audit in \S\ref{sec:audit} ---
+is that if you delete the bottom two bands, the top band stops meaning anything.
+\end{minipage}\end{center}

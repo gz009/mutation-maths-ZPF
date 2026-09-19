@@ -1,0 +1,114 @@
+\clearpage
+\renewcommand{\sectioncolor}{quantum}
+\section{After sequencing: the look-alike gene trap}
+\markboth{The paralogue trap}{}
+
+\noindent\textbf{\color{quantum}The biology question:} \emph{when BLAST returns an 82\,\% hit to
+lukF-PV, is the gene there or not?}
+
+\noindent This is the one place in our pipeline where a mathematical mistake has \emph{already}
+produced a wrong biological conclusion --- documented in our own \texttt{METHODS\_v1.7.md} §4.6 as
+``the incorrect PVL inference in report v1.0''.
+
+\subsection{What the data actually looks like}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% axis: identity 38..102 mapped to x 0..14.2
+\def\X(#1){(#1-38)/64*14.2}
+\draw[slate!55,line width=1.2pt,-{Stealth[length=5pt]}] (0,0)--(14.7,0);
+\foreach \i in {40,50,60,70,80,90,100}{
+  \pgfmathsetmacro{\xx}{(\i-38)/64*14.2}
+  \draw[slate!55] (\xx,-0.12)--(\xx,0.12);
+  \node[font=\scriptsize,below=3pt] at (\xx,-0.1) {\i};}
+\node[font=\scriptsize,text=slate,anchor=north] at (7.1,-1.85)
+   {BLAST nucleotide identity to the reference gene (\%)};
+% threshold lines, labels BELOW
+\foreach \t/\lab/\c in {80/{80\,\% floor\\ResFinder}/quantum, 90/{90\,\% floor\\VFDB}/quantum}{
+  \pgfmathsetmacro{\xx}{(\t-38)/64*14.2}
+  \draw[\c,line width=1pt,dash pattern=on 3pt off 2pt] (\xx,-0.72)--(\xx,0.95);
+  \node[font=\scriptsize,text=\c,anchor=north,align=center] at (\xx,-0.78) {\lab};}
+% real calls
+\foreach \i in {100,100,100,99.95,99.88,99.85,99.59,99.48,99.10,98.42}{
+  \pgfmathsetmacro{\xx}{(\i-38)/64*14.2}
+  \fill[bio] (\xx,0) circle (2.4pt);}
+\pgfmathsetmacro{\xg}{(99.2-38)/64*14.2}
+\node[font=\scriptsize\bfseries,text=bio,anchor=south east,align=right] at (\xg+0.55,1.28)
+  {\textbf{every reported call}\\98.42 -- 100 \%};
+\draw[bio,line width=0.7pt] (\xg,0.20)--(\xg,1.22);
+% lukF-PV
+\pgfmathsetmacro{\xl}{(82.31-38)/64*14.2}
+\fill[alert] (\xl,0) circle (3.0pt);
+\node[font=\scriptsize\bfseries,text=alert,anchor=south,align=center] at (\xl,0.38)
+  {\textbf{lukF-PV} 82.31 \%\\{\scriptsize 98.8 \% of the gene covered}};
+% gyrA/parC
+\pgfmathsetmacro{\xc}{(41-38)/64*14.2}
+\fill[ember] (\xc,0) circle (3.0pt);
+\node[font=\scriptsize\bfseries,text=ember,anchor=south west,align=left] at (\xc-0.05,0.38)
+  {gyrA$\leftrightarrow$parC\\{\scriptsize cross-hit $\approx$41 \%}};
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 7.}\; The identity landscape from \texttt{METHODS\_v1.7.md} §5. The 90\,\% VFDB
+threshold was chosen \emph{specifically} to keep the leukocidin paralogue out. It works --- but it
+works because somebody already knew the answer.
+\end{minipage}\end{center}
+
+\begin{alertbox}[title={Why the threshold is the wrong tool, even though it gave the right answer}]
+Notice what saved us. It was \textbf{not} the 82.31\,\% number. It was that the same region hits
+\texttt{hlgB} --- gamma-haemolysin, the known $\approx$80\,\%-identity paralogue of \texttt{lukF-PV}
+--- at \textbf{99.90\,\%}. The reasoning was:
+\begin{center}\itshape
+this looks like lukF-PV, but it looks far more like hlgB, and hlgB is definitely present.
+\end{center}
+That is a \textbf{comparison between two hypotheses}, not a comparison against a fixed number. And
+comparison between two hypotheses has a standard mathematical form:
+\[
+\Lambda \;=\;
+\frac{P(\text{this alignment}\mid \text{the gene is really }\texttt{lukF-PV})}
+     {P(\text{this alignment}\mid \text{it is really the paralogue }\texttt{hlgB})}
+\]
+We computed $\Lambda$ by hand, in prose, once. \textbf{It should be computed by the script, for every
+call, automatically.}
+\end{alertbox}
+
+\begin{plain}
+Percent identity throws away the most informative thing in the alignment: \emph{which} positions
+differ. Two genes can both be 95\,\% identical to a reference and yet one of them differs only at
+positions that every member of the family varies at, while the other differs at the conserved
+catalytic residues. Percent identity scores them the same. A profile --- a model of which positions
+are allowed to vary --- does not.
+\end{plain}
+
+\subsection{Three replacements, in increasing order of effort}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.7cm}>{\raggedright\arraybackslash}p{6.2cm}>{\raggedright\arraybackslash}p{6.2cm}@{}}
+\toprule
+\rowcolor{quantum!13}
+\textbf{\color{quantum}Method} & \textbf{\color{quantum}What it does} & \textbf{\color{quantum}Effort / payoff}\\
+\midrule
+\textbf{Best-vs-second-best ratio} \newline (do this first) &
+ For every call, also report the best hit to a \emph{different} gene family, and the ratio. Our
+ \texttt{06\_pvl\_test.py} already does this for PVL --- generalise it to all five databases. &
+ \textbf{A few hours.} Removes the entire class of error that produced the v1.0 mistake. Requires no
+ new software.\\
+\textbf{Profile HMMs} \newline (HMMER) &
+ Score against a \emph{model of the family} rather than one sequence. Positions that are conserved
+ across the family are weighted more heavily. &
+ A day, plus building profiles. This is what AMRFinderPlus already uses internally.\\
+\textbf{Protein language model embeddings} \newline (ESM-2) &
+ Represent each protein as a learned vector; orthologues cluster, paralogues separate --- even at
+ identical percent identity. &
+ Genuinely better for hard families. See \S8 for the caution that comes with it.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{dobox}[title={Why this matters beyond one gene}]
+Our Limitations section currently has to defend a threshold. With a likelihood ratio it would not
+have to: the number would carry its own justification. And the same machinery covers the
+\texttt{gyrA}/\texttt{parC} cross-hit at $\approx$41\,\%, which we currently exclude with a hand-set
+$\ge$90\,\% orthologue filter --- another threshold that happens to be right.
+\end{dobox}

@@ -1,0 +1,315 @@
+\clearpage
+\renewcommand{\sectioncolor}{csA}
+\section{Case Study 1 — Analytic Geometry and Trigonometry}
+\markboth{Case Study 1 · Analytic Geometry \& Trigonometry}{}
+\noindent\chip{csA}{BOOK pp.\ 383--398}\;\chip{slate}{PDF pp.\ 402--417}\;\chip{csA}{DELIVERS: $\cos\pi=-1$ and a second meaning for $\pi$}
+
+\vspace{6pt}
+\subsection{The Cartesian Plane blend}
+
+Descartes' plane is presented not as a definition but as a \textbf{blend} of two conceptual domains
+that share no vocabulary: one has numbers and no points, the other has points and no numbers.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.5cm} c >{\raggedright\arraybackslash}p{7.3cm}@{}}
+\toprule
+\rowcolor{csA!12}
+\multicolumn{1}{@{}l}{\textbf{\color{csA}Domain 1 · Number lines}} & &
+\multicolumn{1}{l@{}}{\textbf{\color{csA}Domain 2 · Euclidean plane, X\,$\perp$\,Y}}\\
+\midrule
+number line $x$ / $y$                       & $\leftrightarrow$ & line X / line Y\\
+number $m$ on line $x$                      & $\leftrightarrow$ & line M parallel to Y\\
+the ordered pair $(m,n)$                    & $\leftrightarrow$ & the point where M intersects N\\
+the ordered pair $(0,0)$                    & $\leftrightarrow$ & the point where X intersects Y\\
+a function $y=f(x)$                         & $\leftrightarrow$ & a curve\\
+an equation linking $x$ and $y$             & $\leftrightarrow$ & a figure\\
+solutions of two simultaneous equations     & $\leftrightarrow$ & intersection points of two figures\\
+\midrule
+\rowcolor{csA!7}
+the $n$-tuple $(n_1,n_2,\dots)$             & $\leftrightarrow$ & a point in $n$-dimensional space\\
+\rowcolor{csA!7}
+the collection of all $n$-tuples            & $\leftrightarrow$ & an $n$-dimensional space\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 1.}\; The Cartesian Plane blend \pg{385--386}{404--405}. The last two rows are the
+book's own extension, and they are the cognitive explanation of a familiar teaching phrase: this is
+\emph{how} we claim to ``visualise'' a space we cannot see.
+\end{minipage}\end{center}
+
+\begin{ideabox}[title={Why calling it a blend is not pedantry}]
+A blend has \textbf{emergent structure}: entities and entailments present in neither input domain.
+Nothing in arithmetic contains a point; nothing in Euclid contains a number. Once fused, the
+composite supports inference in both directions --- you reason about curves with algebra and about
+equations with motion. Lakoff \& Núñez's recurring move is to show that what a textbook presents as
+an \emph{observation} is in fact a \emph{construction} with a describable anatomy.
+\end{ideabox}
+
+\subsection{\texorpdfstring{\meta{Functions Are Numbers}}{Functions Are Numbers}: the first linking metaphor}
+
+Literally, functions are not numbers --- addition tables do not contain them. The metaphor maps any
+arithmetic operation on the $y$-\emph{values} of two functions onto the corresponding operation on
+the \emph{functions themselves}. Their sharpest observation follows immediately:
+
+\begin{keybox}[title={The two ``$+$'' signs are not the same sign \normalfont\itshape(book p.~386 / pdf p.~405)}]
+\[
+\underbrace{(f+g)}_{\substack{\text{\color{purple}metaphorical }+\\ \text{\color{purple}created by this mapping}}}\!\!(x)
+\;=\;
+\underbrace{f(x)+g(x)}_{\substack{\text{\color{teal}literal }+\\ \text{\color{teal}addition of two numbers}}}
+\]
+This metaphor is load-bearing later: it is what licenses treating a \textbf{power series as an
+infinite sum of functions} in Case Study 2.
+\end{keybox}
+
+\subsection{The Unit Circle blend, built in three stages}
+
+This is the most carefully staged construction in Part VI, and the staging is the point: at each
+stage \emph{new entities emerge} that were in neither input.
+
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,scale=1]
+\def\R{1.55}
+%---------------- STAGE 1 ----------------
+\begin{scope}[shift={(0,0)}]
+  \node[anchor=south,font=\bfseries\small,text=csA] at (0,2.35) {STAGE 1};
+  \node[anchor=north,text width=4.6cm,align=center,font=\scriptsize,text=slate] at (0,-2.25)
+    {circle {\scriptsize(centre, radius)} $\oplus$ Cartesian plane\\[1pt]
+     \textbf{\color{csA}emerges:} radius has \emph{length} $1$};
+  \draw[slate!40,-{Stealth[length=4pt]}] (-2,0)--(2,0);
+  \draw[slate!40,-{Stealth[length=4pt]}] (0,-2)--(0,2);
+  \draw[csA,line width=1.2pt] (0,0) circle (\R);
+  \draw[crimson,line width=1.3pt] (0,0)--(\R,0);
+  \node[font=\scriptsize,text=crimson,below] at (0.78,-0.02) {$1$};
+  \fill[ink] (0,0) circle (1.5pt);
+  \node[font=\scriptsize,below left=-1pt] at (0,0) {$(0,0)$};
+\end{scope}
+%---------------- STAGE 2 ----------------
+\begin{scope}[shift={(5.7,0)}]
+  \node[anchor=south,font=\bfseries\small,text=csA] at (0,2.35) {STAGE 2};
+  \node[anchor=north,text width=4.9cm,align=center,font=\scriptsize,text=slate] at (0,-2.25)
+    {$\oplus$ an angle $\theta$, vertex at centre, leg\,1 on the $x$-axis\\[1pt]
+     \textbf{\color{csA}emerges:} the subtended \emph{arc}, which \emph{has a length}, i.e.\ a number};
+  \draw[slate!40,-{Stealth[length=4pt]}] (-2,0)--(2,0);
+  \draw[slate!40,-{Stealth[length=4pt]}] (0,-2)--(0,2);
+  \draw[csA,line width=1.2pt] (0,0) circle (\R);
+  \draw[crimson,line width=1.3pt] (0,0)--(\R,0);
+  \draw[crimson,line width=1.3pt] (0,0)--(55:\R);
+  \draw[gold,line width=2.4pt] (0:\R) arc (0:55:\R);
+  \draw[amber] (0,0)+(0:0.5) arc (0:55:0.5);
+  \node[font=\scriptsize,text=amber] at (27:0.72) {$\theta$};
+  \node[font=\scriptsize,text=gold!70!black,anchor=west] at (30:\R+0.12) {arc length};
+  \fill[csA] (55:\R) circle (1.6pt);
+  \node[font=\scriptsize,anchor=south west] at (55:\R) {$P=(x_1,y_1)$};
+\end{scope}
+%---------------- STAGE 3 ----------------
+\begin{scope}[shift={(11.9,0)}]
+  \node[anchor=south,font=\bfseries\small,text=csA] at (0,2.35) {STAGE 3};
+  \node[anchor=north,text width=5.0cm,align=center,font=\scriptsize,text=slate] at (0,-2.25)
+    {$\oplus$ a right triangle\\[1pt]
+     \textbf{\color{csA}entailed:} hypotenuse $=1$; sides $a,b$ acquire \emph{numerical} lengths};
+  \draw[slate!40,-{Stealth[length=4pt]}] (-2,0)--(2,0);
+  \draw[slate!40,-{Stealth[length=4pt]}] (0,-2)--(0,2);
+  \draw[csA,line width=1.2pt] (0,0) circle (\R);
+  \draw[gold,line width=2.4pt] (0:\R) arc (0:55:\R);
+  \fill[teal,opacity=0.16] (0,0)--(55:\R)--({\R*cos(55)},0)--cycle;
+  \draw[crimson,line width=1.3pt] (0,0)--(55:\R) node[midway,above left=-2pt,font=\scriptsize]{$1$};
+  \draw[teal,line width=1.3pt] (0,0)--({\R*cos(55)},0)
+        node[midway,below,font=\scriptsize]{$a=\cos\theta$};
+  \draw[purple,line width=1.3pt] ({\R*cos(55)},0)--(55:\R);
+  \draw[purple!45,line width=0.5pt] ({\R*cos(55)+0.04},0.62)--(2.05,0.62);
+  \node[font=\scriptsize,text=purple,anchor=west] at (2.05,0.62) {$b=\sin\theta$};
+  \draw[slate] ({\R*cos(55)-0.16},0) -- ++(0,0.16) -- ++(0.16,0);
+  \fill[csA] (55:\R) circle (1.6pt);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{center}\begin{minipage}{0.95\textwidth}\footnotesize\color{slate}
+\textbf{Figure 2.}\; The three stages of the Unit Circle blend, reconstructed from the book's Figures
+CS\,1.2--1.4 and its four-column blend tables \pg{388--392}{407--411}. The final blend fuses
+\textbf{four} domains: circle-with-centre-and-radius, Cartesian plane, angle-with-two-legs,
+right-triangle-with-hypotenuse.
+\end{minipage}\end{center}
+
+\subsection{The Trigonometry metaphor}
+
+\begin{warmbox}[title={Why a metaphor is needed at all}]
+Angles are \emph{not} numbers. You can ``add'' two angles intuitively by putting their vertices
+together with a leg in common (the book's Figure CS\,1.1) --- but that gives you no arithmetic:
+no subtraction, no division, no raising an angle to a power.
+\begin{bookquote}{book p.~387 / pdf p.~406}
+\textit{In plane geometry, there are angles but no numbers. If we are going to do arithmetic
+calculation on angles, we have to get angles to be numbers. That is a job for a metaphor.}
+\end{bookquote}
+\end{warmbox}
+
+Given the blend, the metaphor itself is startlingly small --- three lines:
+
+\begin{center}
+\begin{tikzpicture}[font=\small,
+  src/.style={rounded corners=3pt,fill=csA!10,draw=csA,line width=0.9pt,inner sep=6pt,text width=5.0cm,align=center},
+  tgt/.style={rounded corners=3pt,fill=teal!10,draw=teal,line width=0.9pt,inner sep=6pt,text width=4.6cm,align=center},
+  ar/.style={-{Stealth[length=6pt,width=5pt]},line width=1.1pt,draw=purple}]
+  \node[font=\footnotesize\bfseries,text=csA] at (-2.9,1.55) {SOURCE DOMAIN};
+  \node[font=\footnotesize\bfseries,text=teal] at (4.3,1.55) {TARGET DOMAIN};
+  \node[font=\scriptsize,text=slate] at (-2.9,1.15) {the Unit Circle blend};
+  \node[font=\scriptsize,text=slate] at (4.3,1.15) {trigonometric functions};
+  \node[src] (s1) at (-2.9,0.45) {length of the \textbf{arc} subtended by $\theta$};
+  \node[src] (s2) at (-2.9,-0.85) {length of \textbf{side $a$}};
+  \node[src] (s3) at (-2.9,-1.95) {length of \textbf{side $b$}};
+  \node[tgt] (t1) at (4.3,0.45) {the \textbf{number} assigned to $\theta$};
+  \node[tgt] (t2) at (4.3,-0.85) {the value of $\cos\theta$};
+  \node[tgt] (t3) at (4.3,-1.95) {the value of $\sin\theta$};
+  \draw[ar] (s1)--(t1); \draw[ar] (s2)--(t2); \draw[ar] (s3)--(t3);
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; The Trigonometry metaphor \pg{393}{412}. Angles become numbers by being
+identified with arc \emph{lengths} --- and lengths are already numbers, because the Number-Line blend
+is inside the Cartesian plane, which is inside the Unit Circle blend.
+\end{minipage}\end{center}
+
+\subsubsection{The entailments — these are consequences, not stipulations}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.15cm} c >{\raggedright\arraybackslash}p{4.7cm} >{\raggedleft\arraybackslash}p{4.1cm}@{}}
+\toprule
+\rowcolor{csA!12}
+\textbf{\color{csA}In the blend} & & \textbf{\color{csA}Entailed in arithmetic} & \textbf{\color{csA}Source}\\
+\midrule
+the unit circle $x^2+y^2=1$              & $\Rightarrow$ & $\sin^2\theta+\cos^2\theta=1$ & Pythagoras, hyp.\ $=1$\\
+$\theta$ is a right angle                & $\Rightarrow$ & $\theta=\pi/2$                & circumference $=2\pi$\\
+$\theta$ spans half the circle           & $\Rightarrow$ & $\theta=\pi$                  & circumference $=2\pi$\\
+$\theta$ spans the whole circle          & $\Rightarrow$ & $\theta=2\pi$                 & circumference $=2\pi$\\
+$\theta$ is zero                         & $\Rightarrow$ & $\sin 0=\sin\pi=0$            & blend geometry\\
+\rowcolor{gold!22}
+$\theta$ is two right angles ($180^\circ$)& $\Rightarrow$ & $\boldsymbol{\cos\pi=-1}$    & \textbf{the Euler link}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 2.}\; Entailments of the Trigonometry metaphor \pg{393}{412}, highlighted row added by me.
+\end{minipage}\end{center}
+
+\begin{ideabox}[title={The payoff you must not skim past}]
+$\pi$'s appearance in Euler's equation is \textbf{not} an accident of analysis. It is the
+arc-length-to-number assignment of this metaphor. And $-1$ is $\cos\pi$. The book says so explicitly,
+forty pages before it needs the fact:
+\begin{bookquote}{book p.~394 / pdf p.~413}
+\textit{In Case Study 4, where we take up Euler's famous equation $e^{i\pi}+1=0$, we will see that
+the relationship among $\pi$, $0$, and $1$ in that equation is exactly the relationship given by the
+Trigonometry metaphor. The relationship between $\pi$ and $-1$ in Euler's equation arises from the
+fact that in the blend, $\cos\pi=-1$.}
+\end{bookquote}
+\end{ideabox}
+
+\subsection{\texorpdfstring{\meta{Recurrence Is Circularity}}{Recurrence Is Circularity}}
+
+Periodicity falls straight out of the blend. The tracing point may go round $k$ times; legs $a$ and
+$b$ are unchanged; therefore $\sin(\theta+2k\pi)=\sin\theta$. Unrolled onto the Cartesian plane,
+that is the wave.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% --- circle on the left ---
+\begin{scope}[shift={(0,0)},scale=0.95]
+  \draw[slate!35] (-1.5,0)--(1.5,0); \draw[slate!35] (0,-1.5)--(0,1.5);
+  \draw[csA,line width=1.3pt] (0,0) circle (1.2);
+  \foreach \a/\c in {0/crimson,90/teal,180/crimson,270/teal}{\fill[\c] (\a:1.2) circle (1.7pt);}
+  \draw[crimson,line width=1pt,-{Stealth[length=4pt]}] (0,0)--(50:1.2);
+  \draw[gold,line width=2pt] (0:1.2) arc (0:50:1.2);
+  \node[font=\scriptsize,text=gold!70!black] at (25:0.62) {$\theta$};
+  \node[font=\scriptsize,below=1pt] at (0,-1.5) {the Unit Circle blend};
+  % rotation arrow
+  \draw[purple,line width=0.9pt,-{Stealth[length=4.5pt]}] (110:1.55) arc (110:20:1.55);
+  \node[font=\scriptsize,text=purple] at (65:1.85) {$k$ turns};
+\end{scope}
+% --- arrow ---
+\draw[-{Stealth[length=7pt,width=6pt]},line width=1.3pt,draw=purple] (1.85,0)--(2.75,0);
+\node[font=\scriptsize,text=purple,above=1pt] at (2.3,0.08) {unroll};
+% --- waves on the right ---
+\begin{scope}[shift={(3.1,0)}]
+  \begin{axis}[at={(0,-2.1cm)},width=12.9cm,height=4.35cm,
+      axis lines=middle, xmin=-0.4,xmax=13.1, ymin=-1.45,ymax=1.45,
+      xtick={0,3.14159,6.28318,9.42477,12.56637},
+      xticklabels={$0$,$\pi$,$2\pi$,$3\pi$,$4\pi$},
+      ytick={-1,1}, yticklabel style={font=\tiny}, xticklabel style={font=\tiny},
+      tick style={slate}, axis line style={slate!60},
+      legend style={font=\tiny,draw=none,fill=none,at={(0.99,1.22)},anchor=north east,legend columns=2},
+      clip=false]
+    % period band
+    \addplot[draw=none,fill=gold,opacity=0.14] coordinates
+      {(0,-1.45)(6.28318,-1.45)(6.28318,1.45)(0,1.45)}\closedcycle;
+    \addplot[csA,line width=1.2pt,domain=-0.2:13,samples=260]{sin(deg(x))};
+    \addlegendentry{$\sin\theta$}
+    \addplot[crimson,line width=1.2pt,dashed,domain=-0.2:13,samples=260]{cos(deg(x))};
+    \addlegendentry{$\cos\theta$}
+    \node[font=\tiny,text=gold!60!black] at (axis cs:3.14159,1.26) {period $=2\pi$};
+    \draw[gold!70!black,line width=0.7pt,{Stealth[length=3pt]}-{Stealth[length=3pt]}]
+       (axis cs:0,1.13)--(axis cs:6.28318,1.13);
+    \fill[crimson] (axis cs:3.14159,-1) circle (1.6pt);
+    \node[font=\tiny,text=crimson,below right=-1pt] at (axis cs:3.14159,-1) {$\cos\pi=-1$};
+  \end{axis}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{-8pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 4.}\; Circularity unrolled into recurrence (the book's Figure CS\,1.5,
+\pg{395}{414}). The values are confined to the strip $[-1,1]$ \emph{because} the radius in the blend
+is $1$ --- another entailment rather than a stipulation.
+\end{minipage}\end{center}
+
+\noindent Their further claim is the anthropological one, and it is the moment the book stops being
+about mathematics only:
+
+\begin{bookquote}{book p.~395 / pdf p.~414}
+\textit{In English and many other languages, the Recurrence Is Circularity metaphor occurs in the
+conceptual system of the language in general, completely outside mathematics.\ldots\ We speak of
+recurrent events as happening ``over and over''\ldots\ Cultures in which history is believed to
+recur are spoken of as having ``circular concepts of time.''}
+\end{bookquote}
+
+\noindent So the mathematics of recurrence is written in circular functions \emph{because human
+beings already conceptualise recurrence as circularity} --- not the other way round.
+
+\subsection{Polar coordinates, and the second meaning of \texorpdfstring{$\pi$}{pi}}
+
+The \meta{Polar--Trigonometry metaphor} maps $(r,\theta)\mapsto(r\cos\theta,\,r\sin\theta)$. Lakoff
+\& Núñez insist on its metaphoricity in one sentence that is easy to read past and worth underlining:
+
+\begin{bookquote}{book p.~396 / pdf p.~415}
+\textit{Recall that the Cartesian plane in itself has no trigonometry---no angles-as-numbers, no
+sines and cosines.}
+\end{bookquote}
+
+\begin{keybox}[title={The result of Case Study 1: $\pi$ acquires a second meaning}]
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  m/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=7pt,
+            text width=5.3cm,align=center}]
+  \node[circle,fill=deepblue,text=white,font=\large\bfseries,inner sep=7pt] (pi) at (0,0) {$\pi$};
+  \node[m=csA]  (m1) at (-5.15,0) {\textbf{ratio} of circumference\\to diameter\\[2pt]
+       {\scriptsize the classical, geometric sense}};
+  \node[m=gold!80!black] (m2) at (5.15,0) {\textbf{standard of recurrence}\\$2\pi$ = one period,\\$\pi$ = half a period\\[2pt]
+       {\scriptsize the new sense, created by the blend}};
+  \draw[-{Stealth[length=5pt]},line width=1pt,draw=csA] (m1)--(pi);
+  \draw[-{Stealth[length=5pt]},line width=1pt,draw=gold!80!black] (pi)--(m2);
+  \node[font=\scriptsize,text=purple,align=center] at (-1.63,0.58) {Euclidean\\geometry};
+  \node[font=\scriptsize,text=purple,align=center] at (1.63,0.58) {Trigonometry\\metaphor};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{bookquote}{book p.~397 / pdf p.~416}
+\textit{Where $\pi$ was previously only the ratio of the circumference of a circle to its diameter,
+$2\pi$ now becomes a measure of periodicity for recurrent phenomena, with $\pi$ as the measure of
+half a period. This is a new idea: a new meaning for $\pi$.}
+\end{bookquote}
+\textbf{Same number. Different idea. Linked by metaphor.} And the generalisation they draw --- ``the
+meaning of a symbol like $\pi$ is not merely its numerical value'' \pg{397}{416} --- is the thesis of
+the whole Part in miniature.
+\end{keybox}

@@ -1,0 +1,66 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{The missing object, made concrete: the transfer operator}
+\markboth{The transfer operator}{}
+
+\noindent\Ttwo\;\emph{This mathematics is mature. It is simply not used in pharmacology.}\medskip
+
+A structure predictor gives you a point in conformation space. The object that propagates a
+\emph{distribution} over that space has a name.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+\def\U(#1){1.55 - 1.05*exp(-3.6*(#1-1.8)^2) - 1.30*exp(-3.0*(#1-5.4)^2) - 0.85*exp(-4.0*(#1-8.8)^2)}
+\draw[slate!45,line width=1.3pt,domain=-0.2:10.6,samples=300,smooth]
+  plot (\x,{\U(\x)});
+\node[font=\scriptsize,text=slate,anchor=east] at (-0.35,1.05) {$-\ln\mu(x)$};
+\foreach \x/\lab/\c in {1.8/{A}/nano, 5.4/{B}/bio, 8.8/{C}/ember}{
+  \fill[\c] (\x,{\U(\x)}) circle (3pt);
+  \node[font=\small\bfseries,text=\c,anchor=north] at (\x,-0.30) {\lab};}
+\draw[measure,line width=1.1pt,-{Stealth[length=5pt]}] (2.30,1.28) to[out=35,in=145] (4.85,1.02);
+\node[font=\scriptsize,text=measure,anchor=south] at (3.6,1.50) {$k_{AB}$};
+\draw[measure,line width=1.1pt,-{Stealth[length=5pt]}] (4.85,0.70) to[out=-150,in=-30] (2.35,0.92);
+\node[font=\scriptsize,text=measure,anchor=north] at (3.6,0.55) {$k_{BA}$};
+\draw[measure,line width=1.1pt,-{Stealth[length=5pt]}] (5.95,1.02) to[out=30,in=150] (8.30,1.22);
+\node[font=\scriptsize,text=measure,anchor=south] at (7.1,1.42) {$k_{BC}$};
+\node[rounded corners=4pt,fill=bio!10,draw=bio,line width=1.1pt,inner sep=8pt,
+      text width=3.75cm,align=center,font=\scriptsize,anchor=west] at (11.05,0.85)
+  {\textbf{\color{bio}\footnotesize the transfer operator}\\[4pt]
+   $\mathcal{P}_t\,\mu_0 \;=\; \mu_t$\\[4pt]
+   its eigenvalues are the\\\textbf{relaxation timescales};\\its eigenvectors are the\\\textbf{slow coordinates}};
+\draw[bio!60,line width=0.8pt,-{Stealth[length=4.5pt]}] (9.9,0.9)--(10.9,0.9);
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 7.}\; A structure predictor returns basin B (the deepest). The pharmacology is in
+$k_{AB}$, $k_{BA}$, $k_{BC}$ --- and in whether basin A exists at all, which is where a cryptic
+pocket would be.
+\end{minipage}\end{center}
+
+\begin{tier2}[title={Why this is the right object, and not just a nice picture}]
+Let $\mu_0$ be any starting distribution over conformations. The \textbf{transfer operator}
+$\mathcal{P}_t$ (Perron--Frobenius) propagates it forward by time $t$; its adjoint is the
+\textbf{Koopman operator}, which propagates observables instead of densities. Three facts make this
+the natural object:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Its \textbf{leading eigenvector is the equilibrium measure} $\mu$. So the ensemble problem and
+ the kinetics problem are the \emph{same} spectral problem.
+\item Its \textbf{remaining eigenvalues give the relaxation timescales} $t_i=-\tau/\ln\lambda_i$ ---
+ exactly the rates you want, with no need to define ``the'' reaction coordinate first.
+\item The \textbf{eigenvectors are the slow collective variables}. The CV-choice problem that plagues
+ metadynamics is solved rather than guessed.
+\end{enumerate}
+\textbf{And it is learnable from short simulations.} You do not need one trajectory that crosses
+every barrier; you need many short ones that each sample locally, and the operator stitches them
+together. This is what Markov state models do, and what VAMPnets (Mardt et al., \textit{Nat Commun}
+\textbf{9}, 5, 2018) learn directly, on the theoretical footing of VAMP (Wu \& Noé, \textit{J
+Nonlinear Sci} \textbf{30}, 2020).
+\end{tier2}
+
+\begin{dobox}[title={The gap worth pointing a student at}]
+Koopman theory is mature. VAMPnets showed it can be learned from data. \textbf{Almost nobody in drug
+discovery uses it to predict $k_{\text{off}}$.} Predicting residence time rather than affinity would
+change medicinal chemistry more than a better docking score would --- and unlike the Tier 3 problems,
+the mathematics already exists.
+\end{dobox}

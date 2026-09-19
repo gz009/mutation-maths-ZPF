@@ -1,0 +1,75 @@
+\clearpage
+\renewcommand{\sectioncolor}{proof}
+\section{How to use these three things together}
+\markboth{How to use this}{}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+ b/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!8,inner sep=9pt,
+           text width=4.9cm,align=left,minimum height=3.6cm},
+ ar/.style={-{Stealth[length=5.5pt]},line width=1.2pt,draw=slate!70}]
+ \node[b=bookcol] (a) at (-5.6,0) {\textbf{\color{bookcol}THE BOOKS}\\[4pt]
+  \bk{Maths\_Proof\_Skill/}\\[4pt]{\scriptsize 8 books, 2{,}164 pp.\\
+  You read \textbf{134} of them: Devlin §3 (25 pp) and Thurston (17 pp), then dip into
+  Diedrichs \& Lovett for drills.}};
+ \node[b=proof] (b) at (0,0) {\textbf{\color{proof}THIS DOCUMENT}\\[4pt]
+  {\scriptsize Explains the notebook cell by cell, and pulls the \emph{method} out of the books ---
+  definitions, the nine steps for finding a proof, the six techniques, and the trap.}\\[4pt]
+  {\scriptsize Read it beside the notebook.}};
+ \node[b=nano] (c) at (5.6,0) {\textbf{\color{nano}THE NOTEBOOK}\\[4pt]
+  \bk{Proof\_Techniques\_01\_...ipynb}\\[4pt]{\scriptsize 22 cells. Where you \emph{do} it ---
+  run the cells, hunt the counterexamples, and watch a CAS mislead you.}};
+ \draw[ar] (a)--(b); \draw[ar] (b)--(c);
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; The books supply the method, this document supplies the map, the notebook is
+where you practise. None of the three works well alone.
+\end{minipage}\end{center}
+
+\section{What a proof is --- three definitions, from three of your books}
+\markboth{What a proof is}{}
+
+\begin{bookbox}[title={Devlin, \textit{Introduction to Mathematical Thinking}, §3.1 (p.~117 book, \bk{01\_Start\_Here})}]
+\begin{quote}\itshape
+``Proofs are constructed for two main purposes: to establish truth and to communicate to others\ldots\
+a proof of a statement must explain \textbf{why} that statement is true.''
+\end{quote}
+Note the second purpose. A proof that convinces only you is half a proof.
+\end{bookbox}
+
+\begin{bookbox}[title={Diedrichs \& Lovett, \textit{Transition to Advanced Mathematics}, Definition 2.1.15 (\bk{02\_Main\_Reference})}]
+\begin{quote}\itshape
+``A proof of a mathematical statement is a \textbf{sound argument} that establishes the truth of the
+conclusion from the truth of the stated hypotheses.''
+\end{quote}
+Sharper and more formal. Notice what it does \emph{not} say: nothing about examples, computation or
+evidence.
+\end{bookbox}
+
+\begin{bookbox}[title={Thurston, \textit{On Proof and Progress in Mathematics}, p.~2 (\bk{01\_Start\_Here})}]
+\begin{quote}\itshape
+``How do mathematicians advance human \textbf{understanding} of mathematics? \ldots\ what we are
+doing is finding ways for people to understand and think about mathematics.''
+\end{quote}
+Thurston reframes the whole activity. He then gives the four-colour theorem as his example: it was
+proved by massive computation, and the controversy
+\begin{quote}\itshape
+``had little to do with doubt people had as to the veracity of the theorem or the correctness of the
+proof. Rather, it reflected a continuing desire for \textbf{human understanding} of a proof, in
+addition to knowledge that the theorem is true.''
+\end{quote}
+\textbf{That is your situation exactly}, every time Sage prints \bk{True}.
+\end{bookbox}
+
+\begin{techbox}[title={Putting the three together}]
+A proof is
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item a \textbf{sound argument} (Diedrichs \& Lovett) --- each step follows by a rule of logic from
+ definitions, axioms, or theorems already proved;
+\item that \textbf{explains why} (Devlin) --- not merely that;
+\item and \textbf{communicates} that explanation to a reader (Devlin, Thurston).
+\end{enumerate}
+A computation can satisfy none of these and still be correct. That is the whole difficulty.
+\end{techbox}

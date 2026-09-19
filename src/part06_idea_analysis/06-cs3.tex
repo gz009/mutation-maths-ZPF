@@ -1,0 +1,309 @@
+\clearpage
+\renewcommand{\sectioncolor}{csC}
+\section{Case Study 3 — What is \texorpdfstring{$i$}{i}?}
+\markboth{Case Study 3 · What is $i$?}{}
+\noindent\chip{csC}{BOOK pp.\ 420--432}\;\chip{slate}{PDF pp.\ 439--451}\;\chip{csC}{DELIVERS: the complex plane \emph{derived}, not stipulated}
+
+\vspace{6pt}
+\subsection{A cognitive diagnosis of three centuries of resistance}
+
+\begin{bookquote}{book p.~420 / pdf p.~439}
+\textit{Mathematicians simply could not make it fit their idea of what a number was supposed to be. A
+number was supposed to be a magnitude. $\sqrt{-1}$ is not a magnitude comparable to the magnitudes
+of real numbers. No tree can be $\sqrt{-1}$ units high. You cannot owe someone $\sqrt{-1}$ dollars.}
+\end{bookquote}
+
+\noindent The book then runs the elementary trichotomy argument --- and the point is not the argument
+(which is trivial) but \emph{what it costs}:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  cs/.style={rounded corners=3pt,draw=csC,line width=0.9pt,fill=csC!7,inner sep=6pt,
+             text width=4.6cm,align=center,minimum height=1.45cm}]
+\node[fill=ink,text=white,rounded corners=4pt,inner sep=7pt,font=\small\bfseries] (q) at (0,1.55)
+   {Is $i$ ordered among the reals?};
+\node[cs] (c1) at (-5.35,-0.35) {if $i>0$, then $i^{2}>0$\\[2pt]\textcolor{crimson}{but $i^{2}=-1$}};
+\node[cs] (c2) at (0,-0.35)     {if $i<0$, then $i^{2}>0$\\[2pt]\textcolor{crimson}{but $i^{2}=-1$}};
+\node[cs] (c3) at (5.35,-0.35)  {if $i=0$, then $i^{2}=0$\\[2pt]\textcolor{crimson}{but $i^{2}=-1$}};
+\foreach \n in {c1,c2,c3}{\draw[-{Stealth[length=5pt]},line width=0.9pt,draw=csC] (q)--(\n);}
+\node[rounded corners=4pt,fill=crimson,text=white,inner sep=7pt,text width=13cm,align=center,
+      font=\small] (out) at (0,-2.25)
+  {$i$ is \textbf{not ordered anywhere} relative to the reals --- it does not even have the central
+   property of ``number'': indicating a magnitude that can be linearly compared.};
+\foreach \n in {c1,c2,c3}{\draw[-{Stealth[length=5pt]},line width=0.9pt,draw=crimson] (\n)--(out);}
+\end{tikzpicture}
+\end{center}
+
+\begin{critbox}[title={What $i$ loses --- measured against the grounding metaphors}]
+\begin{center}\small
+\begin{tabular}{@{}l c c c c@{}}
+\toprule
+\rowcolor{csC!12}
+\textbf{\color{csC}Property inherited from\ldots} & $\mathbb{N}$ & $\mathbb{Z},\mathbb{Q}$ & $\mathbb{R}$ & $i$\\
+\midrule
+subitizable (perceived at a glance)              & \textcolor{moss}{\checkmark} & \textcolor{crimson}{$\times$} & \textcolor{crimson}{$\times$} & \textcolor{crimson}{$\times$}\\
+a collection of physical objects                 & \textcolor{moss}{\checkmark} & \textcolor{crimson}{$\times$} & \textcolor{crimson}{$\times$} & \textcolor{crimson}{$\times$}\\
+a magnitude, linearly ordered                    & \textcolor{moss}{\checkmark} & \textcolor{moss}{\checkmark} & \textcolor{moss}{\checkmark} & \textcolor{crimson}{$\times$}\\
+\rowcolor{csC!7}
+obeys closure \& the laws of arithmetic          & \textcolor{moss}{\checkmark} & \textcolor{moss}{\checkmark} & \textcolor{moss}{\checkmark} & \textcolor{moss}{\checkmark}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+\textbf{Only the last row survives.} As the book puts it \pg{422}{441}: ``If $i$ is to be a number,
+it is a number only by virtue of closure and the laws of arithmetic.''
+\end{critbox}
+
+\subsection{Closure as the engine of every extension}
+
+Their historical-cognitive claim is worth stating carefully, because it is the load-bearing thesis of
+this case study. Closure is an \emph{entailment} of the four grounding metaphors for arithmetic ---
+it arises naturally when only $+$ and $\times$ are in view. Greek-style essentialism then
+\emph{reanalyses} it as part of the \textbf{essence} of ``number''. After that, every extension is
+forced.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  lev/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!9,inner sep=7pt,
+              text width=2.5cm,align=center,minimum height=1.1cm},
+  up/.style={-{Stealth[length=6pt,width=5pt]},line width=1.2pt,draw=csC}]
+\node[lev=slate]  (N) at (0,0)     {$\mathbb{N}$\\{\scriptsize naturals}};
+\node[lev=slate]  (Z) at (3.3,0)   {$\mathbb{Z}$\\{\scriptsize integers}};
+\node[lev=slate]  (Q) at (6.6,0)   {$\mathbb{Q}$\\{\scriptsize rationals}};
+\node[lev=slate]  (R) at (9.9,0)   {$\mathbb{R}$\\{\scriptsize reals}};
+\node[lev=csC]    (C) at (13.2,0)  {$\mathbb{C}$\\{\scriptsize complex}};
+\foreach \a/\b in {N/Z,Z/Q,Q/R,R/C}{\draw[up] (\a)--(\b);}
+\node[font=\scriptsize,text=purple,align=center,anchor=south] at (1.65,0.68) {$4-4=?$\\$3-5=?$};
+\node[font=\scriptsize,text=purple,align=center,anchor=south] at (4.95,0.68) {$2\div3=?$};
+\node[font=\scriptsize,text=purple,align=center,anchor=south] at (8.25,0.68) {$x^{2}=2$};
+\node[font=\scriptsize,text=crimson,align=center,anchor=south] at (11.55,0.68) {$x^{2}+1=0$};
+\node[font=\scriptsize,text=slate,align=center,anchor=north,text width=3.1cm] at (1.65,-0.72)
+   {zero \& negatives};
+\node[font=\scriptsize,text=slate,align=center,anchor=north,text width=3.1cm] at (4.95,-0.72)
+   {fractions};
+\node[font=\scriptsize,text=slate,align=center,anchor=north,text width=3.1cm] at (8.25,-0.72)
+   {irrationals};
+\node[font=\scriptsize,text=crimson,align=center,anchor=north,text width=3.1cm] at (11.55,-0.72)
+   {\textbf{imaginaries}};
+\draw[decorate,decoration={brace,amplitude=5pt,mirror},slate,line width=0.8pt]
+   (-1.35,-1.55)--(11.25,-1.55);
+\node[font=\scriptsize,text=slate,below=6pt,text width=12cm,align=center] at (4.95,-1.6)
+   {every one of these violates the grounding metaphor \meta{Numbers Are Object Collections} ---
+    you cannot subitize a negative, a fraction, or $\sqrt2$};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 10.}\; The closure ladder \pg{421--423}{440--442}. The book's summary of the tension:
+``the technical idea that closure is part of the essence of arithmetic operations on `numbers' has
+been in conflict with `number' as characterized by subitizing and the grounding metaphors. But within
+technical mathematics, the imperative of essence implied the imperative of closure.''
+\end{minipage}\end{center}
+
+\clearpage
+\subsection{The construction of the complex plane from rotation}
+
+This is the most elegant piece of reverse-engineering in the book: the complex plane is
+\emph{derived} in four moves from a fact about mental rotation.
+
+%---------------- MOVE 1 ----------------
+\noindent\begin{minipage}[t]{0.505\textwidth}
+\vspace{0pt}
+\textbf{\color{csC}\textsf{MOVE 1.}\; The flip on the number line}\\[6pt]
+\begin{tikzpicture}[font=\footnotesize]
+  \draw[slate!60,line width=1pt,-{Stealth[length=4pt]}] (-0.3,0)--(7.3,0);
+  \foreach \x/\l in {0.5/{$-3$},1.5/{$-2$},2.5/{$-1$},3.5/{$0$},4.5/{$1$},5.5/{$2$},6.5/{$3$}}{
+    \fill[slate] (\x,0) circle (1.6pt); \node[below=3pt,font=\scriptsize] at (\x,0) {\l};}
+  \fill[crimson] (4.5,0) circle (2.5pt); \fill[crimson] (2.5,0) circle (2.5pt);
+  \draw[crimson,line width=1.1pt,-{Stealth[length=5pt]}] (4.5,0.16) to[out=115,in=65] (2.5,0.16);
+  \draw[csC!70,line width=1.1pt,-{Stealth[length=5pt]}] (2.5,-0.62) to[out=-115,in=-65] (4.5,-0.62);
+  \node[font=\scriptsize,text=crimson,above] at (3.5,0.66) {$R_{-1}$};
+  \node[font=\scriptsize,text=csC!70,below] at (3.5,-1.02) {$R_{-1}$ again $\Rightarrow$ back to start};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.455\textwidth}
+\vspace{2pt}\footnotesize\color{slate}
+$-n$ and $+n$ are \emph{symmetric about the origin}. Cognitively we register that symmetry as a
+\textbf{mental rotation} --- flipping the positive half-line onto the negative half-line, preserving
+distance. Applying it twice returns you to where you started: $R_{-1}(R_{-1}(n))=n$.\\[5pt]
+\textcolor{csC}{\textbf{\meta{Multiplication by $-1$ Is Rotation to the Symmetry Point}}}\\[3pt]
+\textit{``The spatial operation $R_{-1}$ is part of the cognitive apparatus we use to conceptualize
+the relationship between positive and negative numbers. It is not part of the formal mathematics.''}
+\;\textsc{\scriptsize book p.~425 / pdf p.~444}
+\end{minipage}
+
+\vspace{13pt}
+%---------------- MOVE 2 ----------------
+\noindent\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\textbf{\color{csC}\textsf{MOVE 2.}\; Addition falls out of Euclid}\\[4pt]
+\begin{tikzpicture}[font=\footnotesize,scale=1.05]
+  \draw[slate!45,-{Stealth[length=4pt]}] (-0.9,0)--(3.2,0);
+  \draw[slate!45,-{Stealth[length=4pt]}] (0,-0.7)--(0,2.75);
+  \coordinate (O) at (0,0); \coordinate (P) at (1.95,0.72); \coordinate (Q) at (0.70,1.55);
+  \coordinate (Rr) at (2.65,2.27);
+  \draw[slate!55,dashed] (P)--(Rr)--(Q);
+  \draw[csC,line width=1.3pt,-{Stealth[length=5pt]}] (O)--(P);
+  \node[font=\scriptsize,text=csC,below right=-3pt] at (P) {$P=(a,b)$};
+  \draw[teal,line width=1.3pt,-{Stealth[length=5pt]}] (O)--(Q);
+  \node[font=\scriptsize,text=teal,above left=-3pt] at (Q) {$Q=(c,d)$};
+  \draw[purple,line width=1.4pt,-{Stealth[length=5.5pt]}] (O)--(Rr);
+  \node[font=\scriptsize,text=purple,anchor=south] at ($(Rr)+(-0.1,0.08)$) {$R=(a{+}c,\;b{+}d)$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.545\textwidth}
+\vspace{12pt}\footnotesize\color{slate}
+The \blend{Rotation-Plane blend} \emph{contains the Euclidean plane}. So a theorem of the Euclidean
+plane is inherited free of charge:\\[4pt]
+\textit{``Each pair of intersecting line segments uniquely determines a parallelogram.''}\\[4pt]
+Place $O$ at the origin and let the segments be $OP$ and $OQ$. The fourth vertex $R$ is then
+\emph{uniquely determined}, and its coordinates are the coordinate-wise sums.\\[5pt]
+\textcolor{csC}{\textbf{Vector addition of complex numbers is not a stipulation --- it is inherited
+geometry.}}\;\textsc{\scriptsize book p.~426--427 / pdf p.~445--446, Fig.~CS\,3.1}
+\end{minipage}
+
+\vspace{10pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 11.}\; Moves 1 and 2 of the derivation. The \blend{Rotation-Plane blend} combines the
+\blend{Rotation-Number-Line blend} with the \blend{Cartesian Plane blend}; in it, rotation by
+$180^{\circ}$ \emph{is} multiplication by $-1$, and it applies to \emph{every} line through the
+origin, not just the $x$-axis.
+\end{minipage}\end{center}
+
+\vspace{4pt}
+%---------------- MOVE 3 ----------------
+\noindent\begin{minipage}[t]{0.40\textwidth}
+\vspace{0pt}
+\textbf{\color{csC}\textsf{MOVE 3.}\; Give $90^{\circ}$ an arithmetic correlate}\\[6pt]
+\begin{tikzpicture}[font=\footnotesize,scale=1.12]
+  \draw[slate!40,-{Stealth[length=4pt]}] (-1.75,0)--(1.9,0);
+  \draw[slate!40,-{Stealth[length=4pt]}] (0,-1.75)--(0,1.9);
+  \draw[csC!35,line width=0.8pt,dashed] (0,0) circle (1.35);
+  \fill[csC] (1.35,0) circle (2.2pt); \node[font=\scriptsize,below right=-2pt] at (1.35,0) {$(1,0)$};
+  \fill[teal] (0,1.35) circle (2.2pt); \node[font=\scriptsize,above right=-2pt] at (0,1.35) {$(0,1)$};
+  \fill[crimson] (-1.35,0) circle (2.2pt); \node[font=\scriptsize,below left=-2pt] at (-1.35,0) {$(-1,0)$};
+  \draw[teal,line width=1.2pt,-{Stealth[length=5pt]}] (1.52,0.14) arc (5:85:1.53);
+  \node[font=\scriptsize,text=teal] at (52:1.92) {$\times n$};
+  \draw[crimson,line width=1.2pt,-{Stealth[length=5pt]}] (0.14,1.52) arc (85:175:1.53);
+  \node[font=\scriptsize,text=crimson] at (130:1.92) {$\times n$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.565\textwidth}
+\vspace{6pt}\footnotesize\color{slate}
+In the rotation plane, rotation by $180^{\circ}$ \emph{is} multiplication by a number. Rotation by
+$90^{\circ}$ has \textbf{no arithmetic correlate at all}. So supply one --- that is the whole of the
+new metaphor:
+\begin{center}\small
+\begin{tabular}{@{}l c l@{}}
+\toprule
+\rowcolor{csC!12}
+\textbf{\color{csC}SPACE} & & \textbf{\color{csC}ARITHMETIC}\\
+\midrule
+rotation by $90^{\circ}$      & $\mapsto$ & multiplication by $n$\\
+two rotations by $90^{\circ}$ & $\mapsto$ & multiplication by $n^{2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+Now compute. $90^{\circ}$ applied to $(1,0)$ gives $(0,1)$; a second $90^{\circ}$ gives $(-1,0)$.
+So $n^{2}\cdot(1,0)=(-1,0)\cdot(1,0)$, hence
+\[\boxed{\;n^{2}=-1,\qquad n=\sqrt{-1}=i\;}\]
+\end{minipage}
+
+\vspace{10pt}
+%---------------- MOVE 4 ----------------
+\noindent\begin{minipage}[t]{0.345\textwidth}
+\vspace{0pt}
+\textbf{\color{csC}\textsf{MOVE 4.}\; The four-cycle}\\[4pt]
+\begin{tikzpicture}[font=\footnotesize,scale=1.05]
+  \draw[slate!25,line width=0.8pt] (0,0) circle (1.5);
+  \foreach \a/\lab/\val/\c in {0/{$i^{4}=1$}/{$(1,0)$}/csC, 90/{$i^{1}=i$}/{$(0,1)$}/teal,
+                               180/{$i^{2}=-1$}/{$(-1,0)$}/crimson, 270/{$i^{3}=-i$}/{$(0,-1)$}/purple}{
+     \fill[\c] (\a:1.5) circle (2.4pt);}
+  \node[font=\scriptsize,text=csC,right=3pt]   at (0:1.5)   {$i^{4}=1$};
+  \node[font=\scriptsize,text=teal,above=3pt]  at (90:1.5)  {$i^{1}=i$};
+  \node[font=\scriptsize,text=crimson,left=3pt]at (180:1.5) {$i^{2}=-1$};
+  \node[font=\scriptsize,text=purple,below=3pt]at (270:1.5) {$i^{3}=-i$};
+  \foreach \a in {0,90,180,270}{
+     \draw[slate,line width=1pt,-{Stealth[length=4.5pt]}] (\a+8:1.5) arc (\a+8:\a+82:1.5);}
+  \node[font=\scriptsize,text=slate,align=center] at (0,0) {each step\\$=\times i$\\$=90^{\circ}$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.625\textwidth}
+\vspace{4pt}
+\begin{tcolorbox}[enhanced,colback=white,colframe=csC,boxrule=1pt,arc=3pt,left=7pt,right=7pt,
+  top=5pt,bottom=5pt,title={\bfseries The multiplication rule, derived in four lines},
+  fonttitle=\bfseries\small,coltitle=white,colbacktitle=csC]
+\small
+\begin{align*}
+(a+bi)(c+di) &= (a+bi)c+(a+bi)di && \text{\scriptsize distributive law}\\
+             &= ac+bci+adi+bd\,i^{2} && \text{\scriptsize distributive law}\\
+             &= ac+bci+adi-bd && \text{\scriptsize by } i^{2}=-1\\
+             &= (ac-bd)+(bc+ad)\,i && \text{\scriptsize associative law}
+\end{align*}
+\end{tcolorbox}
+\vspace{2pt}
+{\footnotesize\color{slate} Nothing here is postulated. Distributivity, associativity and
+commutativity are already present because we are inside a special case of the \blend{Cartesian Plane
+blend}; $i^{2}=-1$ came out of Move 3. \pg{430}{449}}
+\end{minipage}
+
+\vspace{8pt}
+\begin{ideabox}[title={Why the $i$-axis is at $90^{\circ}$ --- the question formal presentations cannot answer}]
+Multiplication by $-1$ is rotation by $180^{\circ}$. A rotation of $180^{\circ}$ is the result of two
+$90^{\circ}$ rotations. Since $i\cdot i=-1$, \textbf{multiplication by $i$ must be rotation by
+$90^{\circ}$} --- two of them give $180^{\circ}$, i.e.\ multiplication by $-1$.
+\begin{bookquote}{book p.~429 / pdf p.~448}
+\textit{The complex plane is just the $90^{\circ}$ rotation plane---the rotation plane with the
+structure imposed by the $90^{\circ}$ Rotation metaphor added to it. Multiplication by $i$ is ``just''
+rotation by $90^{\circ}$. This is not arbitrary; it makes sense.}
+\end{bookquote}
+\end{ideabox}
+
+\clearpage
+\subsection{Three ways to present \texorpdfstring{$\mathbb{C}$}{C} --- and what each one costs}
+
+The book closes Case Study 3 by comparing its own account with the two that are actually taught.
+This table is mine, built from their discussion \pg{431--432}{450--451}.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.05cm}>{\raggedright\arraybackslash}p{4.35cm}>{\raggedright\arraybackslash}p{4.35cm}>{\raggedright\arraybackslash}p{4.2cm}@{}}
+\toprule
+\rowcolor{csC!12}
+& \textbf{\color{csC}A. Rotation account}\newline{\scriptsize (the book's)} &
+\textbf{\color{csC}B. Plane + rules} & \textbf{\color{csC}C. Pure ordered pairs}\newline{\scriptsize (Dedekind--Weierstrass spirit)}\\
+\midrule
+Why is the $i$-axis at $90^{\circ}$? & \textcolor{moss}{\textbf{Derived}} from
+  $i^2=-1$ and $\times(-1)=180^{\circ}$ & \textcolor{amber}{\textbf{Unexplained}} --- it is drawn that way &
+  \textcolor{crimson}{\textbf{No axes exist}}\\
+Why does addition work like vectors? & \textcolor{moss}{\textbf{Euclid's parallelogram theorem}},
+  inherited & \textcolor{amber}{Stipulated rule} & \textcolor{amber}{Stipulated rule}\\
+Why that multiplication rule? & \textcolor{moss}{Four lines of algebra from $i^2=-1$} &
+  \textcolor{amber}{Stipulated: $(ac{-}bd,\,bc{+}ad)$} & \textcolor{amber}{Stipulated}\\
+\rowcolor{csC!6}
+Geometry present? & yes, constitutively & yes, decoratively & \textcolor{crimson}{none at all}\\
+\rowcolor{csC!6}
+What it is good for & \textbf{understanding} & calculation & \textbf{proof}, generalisation, rigour\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 4.}\; My comparison, from the book's closing argument \pg{431--432}{450--451}.
+Their verdict on B and C: ``they give very little insight into the conceptual structure of the
+complex numbers---into \emph{why} they are the way they are.'' The rightmost column is not a
+criticism of formal mathematics; it is a statement about a division of labour.
+\end{minipage}\end{center}
+
+\begin{warmbox}[title={The key word is \emph{motivate} --- and the crux is proof vs.\ understanding}]
+\begin{bookquote}{book p.~431 / pdf p.~450}
+\textit{The crux of the issue here is the difference between proof and understanding. As our
+quotation from Benjamin Peirce (in Case Study 1) indicates, it is possible to prove a deep
+mathematical result without understanding it at all\ldots\ For us, mathematics is not just about
+proof and computation. It is about ideas.}
+\end{bookquote}
+\noindent They anticipate the obvious objection --- \emph{aren't rotations just a way of visualising
+$\sqrt{-1}$, useful for pedagogy but not part of the mathematics?} --- and answer no, on the ground
+that the rotation account is \emph{true given the conceptual metaphors and blends commonplace in
+classical mathematics}, and that it alone reveals the structure.
+\end{warmbox}

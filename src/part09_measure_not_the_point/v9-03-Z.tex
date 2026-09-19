@@ -1,0 +1,98 @@
+\clearpage
+\renewcommand{\sectioncolor}{measure}
+\section{The villain: why everything reduces to \texorpdfstring{$Z$}{Z}}
+\markboth{The partition function}{}
+
+Everything a molecule does at equilibrium follows from one number.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  out/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=7pt,
+              text width=4.35cm,align=center,minimum height=1.85cm},
+  ar/.style={-{Stealth[length=5pt,width=4pt]},line width=1.1pt,draw=measure!80}]
+\node[rounded corners=5pt,fill=measure,text=white,inner sep=10pt,font=\small,align=center] (Z) at (0,0)
+  {\textbf{THE PARTITION FUNCTION}\\[5pt]
+   $Z=\displaystyle\int e^{-\beta U(x)}\,dx$\\[3pt]{\scriptsize $\beta=1/k_BT$}};
+\node[out=bio]     (a) at (-6.0,3.0) {\textbf{free energy}\\$F=-k_BT\ln Z$};
+\node[out=nano]    (b) at (0,3.55)   {\textbf{binding affinity}\\$\Delta G=-k_BT\ln\frac{Z_{\text{b}}}{Z_{\text{f}}}$};
+\node[out=ember]   (c) at (6.0,3.0)  {\textbf{the ensemble}\\$\mu(x)=e^{-\beta U(x)}/Z$};
+\node[out=quantum] (d) at (-6.0,-3.0){\textbf{entropy}\\$S=-\partial F/\partial T$};
+\node[out=sand]    (e) at (0,-3.55)  {\textbf{populations of states}\\$p_i=Z_i/Z$};
+\node[out=indigo]  (f) at (6.0,-3.0) {\textbf{transition rates}\\{\scriptsize via barriers on $-\ln\mu$}};
+\foreach \n in {a,b,c,d,e,f}{\draw[ar] (Z)--(\n);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 2.}\; Six quantities molecular biology asks for daily. All six are functions of one
+integral --- and we cannot compute it.
+\end{minipage}\end{center}
+
+\begin{tier3}[title={Why it is genuinely hard, not merely expensive}]
+$Z$ is a $3N$-dimensional integral over a function with an enormous number of sharp, well-separated
+maxima. For a modest protein $N\sim10^4$ atoms, so the integral is over $\mathbb{R}^{30{,}000}$.
+
+\textbf{No quadrature scheme reaches that dimension.} The only general approach is Monte Carlo ---
+and Monte Carlo converges at $O(n^{-1/2})$ \emph{provided it mixes}. On a rugged landscape with
+barriers $\gg k_BT$, it does not mix: escape from a basin takes time $\propto e^{\beta\Delta U}$, so
+sampling time is \emph{exponential in the barrier height}.
+
+\begin{center}\small
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\rowcolor{alert!12}
+\textbf{Approach} & \textbf{What it costs} & \textbf{Where it breaks}\\
+\midrule
+brute-force MD & $10^{-15}$\,s timesteps & needs $10^{17}$ steps to reach 100\,s\\
+free energy perturbation (FEP) & GPU-days per ligand \emph{pair} & only between chemically similar ligands\\
+metadynamics / umbrella sampling & hours--days & requires guessing good collective variables\\
+\rowcolor{alert!7}
+exact evaluation & --- & \textbf{\#P-hard}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tier3}
+
+\subsection{What we do instead --- and what it costs us}
+
+Because $Z$ is out of reach, every practical method quietly replaces the measure with its mode:
+\[
+\underbrace{\mu(x)=\frac{e^{-\beta U(x)}}{Z}}_{\text{what the molecule \emph{is}}}
+\qquad\longrightarrow\qquad
+\underbrace{\hat{x}=\arg\max_x\, e^{-\beta U(x)}}_{\text{what we compute}}
+\]
+This substitution is invisible in the output --- you get a structure, or a pose, or a number --- and
+it is exactly wrong whenever the measure is \textbf{multimodal}, which for a functioning protein it
+always is.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=15.2cm,height=6.2cm,
+  xlabel={\footnotesize a collective coordinate (e.g.\ a domain hinge angle)},
+  ylabel={\footnotesize probability density $\mu(x)$},
+  xmin=-3.4,xmax=3.4,ymin=0,ymax=1.05,
+  xtick=\empty, ytick=\empty,
+  axis line style={slate!60}, label style={font=\footnotesize},
+  clip=false]
+ \addplot[measure,line width=1.5pt,domain=-3.4:3.4,samples=300,smooth,
+          fill=measure,fill opacity=0.14]
+   {0.95*exp(-6*(x-1.35)^2) + 0.72*exp(-5*(x+1.45)^2) + 0.30*exp(-9*(x-0.05)^2)};
+ \addplot[only marks,mark=*,mark size=3pt,color=sand!80!black] coordinates {(1.35,0.95)};
+ \node[font=\scriptsize\bfseries,text=sand!70!black,anchor=south] at (axis cs:1.35,0.99)
+   {what a structure predictor returns};
+ \node[font=\scriptsize\bfseries,text=measure,anchor=south] at (axis cs:-1.45,0.76)
+   {a second populated state};
+ \node[font=\scriptsize,text=measure,anchor=south] at (axis cs:0.05,0.33) {a transition state};
+ \draw[slate,line width=0.8pt,{Stealth[length=4pt]}-{Stealth[length=4pt]}]
+   (axis cs:-1.45,0.10)--(axis cs:1.35,0.10);
+ \node[font=\scriptsize,text=slate,anchor=north] at (axis cs:-0.05,0.10)
+   {the rate between them is the pharmacology};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; A schematic conformational measure. The gold point is the entire output of a
+structure prediction. Everything that makes the protein a \emph{machine} --- the second state, the
+barrier between them, the residence time --- is in the part that is discarded.
+\end{minipage}\end{center}

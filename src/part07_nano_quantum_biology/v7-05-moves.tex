@@ -1,0 +1,149 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{The method: five moves you can actually run}\label{sec:moves}
+\markboth{The five moves}{}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  m/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!8,inner sep=8pt,
+            text width=2.72cm,align=center,minimum height=3.0cm},
+  ar/.style={-{Stealth[length=5.5pt,width=4.5pt]},line width=1.2pt,draw=bio!75}]
+ \node[m=nano]    (m1) at (0,0)     {\textbf{\color{nano}MOVE 1}\\[3pt]\textbf{Audit the metaphor}\\[3pt]
+    {\scriptsize find the embodied assumption inside the failing concept}};
+ \node[m=quantum] (m2) at (3.45,0)  {\textbf{\color{quantum}MOVE 2}\\[3pt]\textbf{Delete it, keep the inference}\\[3pt]
+    {\scriptsize Connes' move}};
+ \node[m=bio]     (m3) at (6.90,0)  {\textbf{\color{bio}MOVE 3}\\[3pt]\textbf{Re-ground with a picture calculus}\\[3pt]
+    {\scriptsize highest historical yield}};
+ \node[m=sand]    (m4) at (10.35,0) {\textbf{\color{sand}MOVE 4}\\[3pt]\textbf{Extend the literal body}\\[3pt]
+    {\scriptsize instruments, sensorimotor loops}};
+ \node[m=ember]   (m5) at (13.80,0) {\textbf{\color{ember}MOVE 5}\\[3pt]\textbf{Externalise the bookkeeping}\\[3pt]
+    {\scriptsize machines, proof assistants}};
+ \foreach \a/\b in {m1/m2,m2/m3,m3/m4,m4/m5}{\draw[ar] (\a)--(\b);}
+ \draw[ar,dashed,draw=slate] (m5.south) to[out=-90,in=-90,looseness=0.32] (m1.south);
+ \node[font=\scriptsize,text=slate,fill=white,inner sep=2pt] at (6.9,-2.28)
+   {new instruments and new computations feed the next audit};
+\end{tikzpicture}
+\end{center}
+\vspace{6pt}
+
+\begin{movebox}[title={MOVE 1 --- Audit the metaphor that is failing}]
+Take a concept that is breaking and find the embodied assumption inside it. This is the step the
+pasted text's ten-point loop does not have, and it is the one specific to your problem.
+
+\textbf{Worked example, from your own target domain.} The statement \emph{``species $X$ has
+concentration $[X]$''} presupposes the \meta{continuous substance} metaphor --- stuff you could pour.
+Inside a bacterial cell with twelve copies of a transcription factor, that metaphor is simply false.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  q/.style={rounded corners=3pt,draw=#1,line width=0.85pt,fill=#1!9,inner sep=6pt,
+            text width=3.7cm,align=center,minimum height=1.3cm}]
+ \node[q=crimson] (a) at (0,0)    {\textbf{the hidden metaphor}\\concentration $=$ pourable stuff};
+ \node[q=sand]    (b) at (4.45,0) {\textbf{where it breaks}\\$N\sim10$ molecules per cell};
+ \node[q=bio]     (c) at (8.90,0) {\textbf{the replacement}\\discrete counts, not densities};
+ \node[q=bio]     (d) at (13.5,0) {\textbf{the mathematics}\\chemical master equation\\{\scriptsize Gillespie 1976--77}};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[-{Stealth[length=4pt]},line width=0.85pt,draw=slate] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+The stochastic simulation algorithm did not arrive because someone wanted more mathematics. It
+arrived because someone noticed a metaphor had stopped applying.
+\end{movebox}
+
+\begin{movebox}[title={MOVE 2 --- Delete the offending assumption, keep the inference}]
+Connes' move, generalised. Candidate assumptions to attack for nanoscale biology, with the
+mathematics each deletion opens:
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.3cm}>{\raggedright\arraybackslash}p{8.9cm}@{}}
+\toprule
+\rowcolor{bio!12}
+\textbf{\color{bio}Embodied assumption to delete} & \textbf{\color{bio}What opens up}\\
+\midrule
+``a system has a definite state''        & density matrices; open-system dynamics; Lindblad 1976\\
+``a space is made of points''            & non-commutative geometry; pointless topology, locales\\
+``wholes are unions of parts''           & entanglement, non-separability; operads\\
+``properties are simultaneously determinate'' & contextuality; quantum logic; sheaf cohomology\\
+\rowcolor{bio!6}
+``there is a global clock''              & \textbf{in a cell there is not} --- molecular events share no time coordinate\\
+\rowcolor{bio!6}
+``identity persists''                    & indistinguishability; anyons; and, in biology, the fact that a ``protein X'' is a population, not an individual\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{movebox}
+
+\begin{movebox}[title={MOVE 3 --- Re-ground with a new pictorial calculus \normalfont\itshape(the highest-yield move in the history of this problem)}]
+Once you hold an unvisualisable abstract structure, invent a \textbf{diagrammatic} calculus that
+makes it manipulable by hand and eye.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  d/.style={rounded corners=3pt,draw=bio,line width=0.9pt,fill=bio!8,inner sep=6pt,
+            text width=2.85cm,align=center,minimum height=1.35cm}]
+ \node[d] at (0,0)     {\textbf{Feynman diagrams}\\{\scriptsize 1948}};
+ \node[d] at (3.35,0)  {\textbf{Penrose notation}\\{\scriptsize 1971}};
+ \node[d] at (6.70,0)  {\textbf{string diagrams}\\{\scriptsize monoidal categories}};
+ \node[d] at (10.05,0) {\textbf{ZX-calculus}\\{\scriptsize Coecke \& Duncan 2008}};
+ \node[d] at (13.40,0) {\textbf{tensor networks}\\{\scriptsize MPS, PEPS}};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+The ZX-calculus deserves dwelling on: it turns Hilbert-space computation into \textbf{rewriting
+pictures by local rules}, and it is provably complete for qubit quantum mechanics. You are not
+visualising the state space. You are re-grounding the computation in pattern-matching on diagrams ---
+something bodies are extremely good at.
+
+\textbf{This is the most direct available answer to ``our cognition is limited'': build a new body for
+the mathematics to live in.}
+\end{movebox}
+
+\begin{movebox}[title={MOVE 4 --- Extend the literal body with instruments}]
+The move people forget, and the most concrete one.
+
+The reason we have \emph{any} nanoscale intuition is that Binnig and Rohrer's scanning tunnelling
+microscope (1981; Nobel Prize 1986) and the atomic force microscope (Binnig, Quate \& Gerber, 1986)
+put atoms into a \textbf{sensorimotor loop} --- force feedback and images for objects $10^{-9}$\,m
+across. New mathematics followed directly:
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  s/.style={rounded corners=3pt,draw=#1,line width=0.9pt,fill=#1!9,inner sep=6pt,
+            text width=3.15cm,align=center,minimum height=1.45cm}]
+ \node[s=sand] (a) at (0,0)     {\textbf{new instrument}\\STM 1981 · AFM 1986};
+ \node[s=sand] (b) at (4.1,0)   {\textbf{new sensorimotor loop}\\force feedback, images of atoms};
+ \node[s=nano] (c) at (8.2,0)   {\textbf{new grounding metaphor}\\bonds as springs you can \emph{pull}};
+ \node[s=bio]  (d) at (12.55,0) {\textbf{new mathematics}\\Bell 1978; Evans \& Ritchie 1997;\\Jarzynski 1997, Crooks 1999};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[-{Stealth[length=4.5pt]},line width=1pt,draw=slate] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+Single-molecule pulling produced the Bell--Evans--Ritchie theory of forced unbinding, and then the
+non-equilibrium work relations that let you extract \emph{equilibrium} free energies from
+\emph{irreversible} pulling experiments.
+
+\textbf{Lakoff \& Núñez's own theory predicts this}: new embodied experience $\to$ new grounding
+metaphors $\to$ new mathematics. The answer is not to escape embodiment. It is to \textbf{extend the
+body}.
+\end{movebox}
+
+\begin{movebox}[title={MOVE 5 --- Externalise the bookkeeping}]
+Genuinely new in this century, and the most direct assault on the original worry.
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{11.6cm}@{}}
+\toprule
+\rowcolor{ember!12}
+\textbf{\color{ember}Instrument} & \textbf{\color{ember}Proof of concept}\\
+\midrule
+Proof assistants & The \textbf{Liquid Tensor Experiment}: Scholze posed it in December 2020 because he
+ did not fully trust his own proof; completed in Lean in July 2022. Mathematics too large to hold in
+ one head, verified anyway.\\
+Learned structure & \textbf{AlphaFold2} (Jumper et al., \textit{Nature}, 2021) did not give humans
+ folding intuition. It found structure in a space no human can traverse.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+\begin{critbox}[title={But be honest about what this buys}]
+It changes what \textbf{verification} costs. It does not by itself change what \textbf{understanding}
+means. A Lean proof with no idea analysis behind it is Benjamin Peirce all over again ---
+\textit{``we have proved it, and therefore we know it must be truth.''} Part VI is precisely the
+argument that this is not enough. Move 5 without Move 3 gives you correctness without comprehension.
+\end{critbox}
+\end{movebox}

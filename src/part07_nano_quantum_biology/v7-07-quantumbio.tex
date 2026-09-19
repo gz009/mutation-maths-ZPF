@@ -1,0 +1,68 @@
+\clearpage
+\renewcommand{\sectioncolor}{quantum}
+\section{Quantum biology: an honest ledger}\label{sec:qbio}
+\markboth{Quantum biology}{}
+
+This field has a credibility problem, and the pasted text presents it without grading. A student
+handed that version will be misled --- not about the mathematics, but about which phenomena are
+actually there to be modelled. Here is the spread.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{5.1cm}>{\raggedright\arraybackslash}p{8.8cm}@{}}
+\toprule
+\rowcolor{quantum!13}
+\textbf{\color{quantum}Status} & \textbf{\color{quantum}Phenomenon} & \textbf{\color{quantum}Evidence}\\
+\midrule
+\rowcolor{bio!13}
+\textbf{SOLID} & Hydrogen tunnelling in enzyme catalysis &
+ Well established and uncontroversial. Kinetic isotope effects far larger than semiclassical theory
+ permits. Model with standard rate theory plus tunnelling corrections.\\
+\addlinespace[2pt]
+\rowcolor{bio!7}
+\textbf{STRONG, not closed} & Radical-pair magnetoreception in migratory birds &
+ Proposed by Schulten et al.\ 1978; cryptochrome identified as the candidate protein. Hore \&
+ Mouritsen 2016 (\textit{Annu.\ Rev.\ Biophys.}) is the standard review; Xu et al., \textit{Nature}
+ 2021, showed magnetic sensitivity of robin cryptochrome-4 \emph{in vitro}. Behavioural link is
+ strong; the \emph{in vivo} chain is not yet closed.\\
+\addlinespace[2pt]
+\rowcolor{sand!16}
+\textbf{SUBSTANTIALLY REVISED} & ``Long-lived electronic coherence'' in photosynthetic light
+ harvesting &
+ Engel et al., \textit{Nature}, 2007 was the celebrated result. Subsequent work attributes much of
+ the observed long-lived beating to \textbf{vibrational}, not electronic, coherence. \textbf{The
+ strong original claims did not survive.} Some coherent transport physics remains; the headline does
+ not.\\
+\addlinespace[2pt]
+\rowcolor{crimson!10}
+\textbf{WIDELY REJECTED} & Orchestrated objective reduction in microtubules (Penrose--Hameroff) &
+ Tegmark, \textit{Phys.\ Rev.\ E}, 2000, estimated decoherence times in the brain many orders of
+ magnitude too short. This is the standard objection and it has not been answered.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 3.}\; Grading matters practically: it tells you which phenomena will reward
+mathematical effort and which will waste it.
+\end{minipage}\end{center}
+
+\begin{auditbox}[title={The genuine mathematical problem underneath all four}]
+Whatever you believe about any individual phenomenon, the \emph{mathematical} situation is the same
+and it is hard:
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=3pt,draw=#1,line width=0.9pt,fill=#1!9,inner sep=6pt,
+            text width=3.15cm,align=center,minimum height=1.35cm}]
+ \node[b=quantum] (a) at (0,0)     {\textbf{quantum system}\\{\scriptsize chromophore, radical pair}};
+ \node[b=ember]   (b) at (4.05,0)  {$+$ \textbf{warm, wet environment}\\{\scriptsize $300$\,K protein scaffold}};
+ \node[b=sand]    (c) at (8.10,0)  {$+$ \textbf{strong coupling}\\{\scriptsize not weak, not Markovian}};
+ \node[b=bio]     (d) at (12.5,0)  {$+$ \textbf{biological function}\\{\scriptsize must actually do something}};
+ \node[rounded corners=4pt,fill=crimson!10,draw=crimson,line width=1.1pt,inner sep=7pt,
+       text width=15.2cm,align=center] at (6.25,-1.95)
+  {\textbf{\color{crimson}No clean general theory exists for this regime.} Lindblad requires weak
+   coupling and Markovianity. HEOM is numerically exact but scales badly. \textbf{This is Gap 3, and
+   it is where a mathematician could genuinely contribute.}};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[-{Stealth[length=4pt]},line width=0.85pt,draw=slate] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+\end{auditbox}

@@ -1,0 +1,81 @@
+\clearpage
+\renewcommand{\sectioncolor}{nano}
+\section{A four-week route through the eight books}
+\markboth{Four-week route}{}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+ wk/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!8,inner sep=8pt,
+            text width=3.3cm,align=left,minimum height=3.5cm},
+ hd/.style={font=\scriptsize\bfseries\color{white}},
+ ar/.style={-{Stealth[length=5pt]},line width=1.2pt,draw=slate!60}]
+ \node[wk=proof] (w1) at (0,0)    {\textbf{\color{proof}WEEK 1 --- 42 pp}\\[4pt]
+   Devlin §3 (25 pp)\\ Thurston (17 pp)\\[4pt] then read the notebook's
+   \emph{markdown only}, top to bottom};
+ \node[wk=nano]  (w2) at (4.0,0)  {\textbf{\color{nano}WEEK 2 --- logic}\\[4pt]
+   D\&L Ch.\,1\\ §1.1 propositions\\ §1.3 equivalences\\ \textbf{§1.5--1.6 quantifiers}\\[4pt]
+   $+$ notebook cells 4--6};
+ \node[wk=sand]  (w3) at (8.0,0)  {\textbf{\color{sand}WEEK 3 --- the six}\\[4pt]
+   D\&L Ch.\,2\\ §2.1 valid arguments\\ §2.2 first strategies\\ \textbf{§2.3 strategies}\\[4pt]
+   $+$ notebook cells 7--15};
+ \node[wk=bio]   (w4) at (12.0,0) {\textbf{\color{bio}WEEK 4 --- induction}\\[4pt]
+   D\&L §4.5\\[4pt] $+$ notebook cells 16--19\\[4pt]
+   \textbf{then exercises 5 and 6 with the notebook closed}};
+ \foreach \a/\b in {w1/w2,w2/w3,w3/w4}{\draw[ar] (\a)--(\b);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 4.}\; You do not read 2{,}164 pages. Week 1 is \textbf{42 pages}; the rest is drill.
+Diedrichs \& Lovett is a gym, not a novel --- read one technique, do ten exercises, move on.
+\end{minipage}\end{center}
+
+\subsection{What each book is actually for}
+
+\begin{center}\footnotesize
+\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm} c >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{7.2cm}@{}}
+\toprule
+\rowcolor{nano!13}
+\textbf{book} & \textbf{pp} & \textbf{folder} & \textbf{what it is for, and when}\\
+\midrule
+\textbf{Devlin}, \emph{Introduction to Mathematical Thinking} & 117 & \bk{01\_Start\_Here} &
+ \textbf{Start here, this week.} The shortest complete route into proof that exists. §3 is 25 pages
+ and covers every technique in the notebook\\
+\rowcolor{nano!4}
+\textbf{Thurston}, \emph{On Proof and Progress} & 17 & \bk{01\_Start\_Here} &
+ \textbf{Read in one sitting, early.} Not a textbook --- a Fields medallist asking what proof is
+ \emph{for}. It will change what you think you are doing\\
+\textbf{Diedrichs \& Lovett}, \emph{Transition to Advanced Mathematics} & 552 & \bk{02\_Main\_Reference} &
+ \textbf{Your drill manual.} Ch.\,2 names exactly the six techniques; hundreds of exercises with
+ answers. Weeks 2--4\\
+\rowcolor{nano!4}
+\textbf{Stewart \& Tall}, \emph{Foundations of Mathematics} & 409 & \bk{03\_Second\_Bridge} &
+ \textbf{The second voice.} When D\&L's explanation does not land, read theirs. Same material,
+ different telling\\
+\textbf{Tao}, \emph{Solving Mathematical Problems} & 116 & \bk{04\_Problem\_Strategy} &
+ \textbf{Strategy, not technique.} Read \emph{after} you have attempted and failed at real problems
+ --- see §4 of this tutorial\\
+\rowcolor{nano!4}
+\textbf{Halmos}, \emph{Naive Set Theory} & 112 & \bk{05\_Logic\_and\_Sets} &
+ Terse and beautiful; read \emph{after} Devlin, for elegance\\
+\textbf{O'Leary}, \emph{First Course in Mathematical Logic and Set Theory} & 466 & \bk{05\_Logic\_and\_Sets} &
+ Full reference for formal logic. \textbf{Not a first read}\\
+\rowcolor{nano!4}
+\textbf{Radozycki}, \emph{Solving Problems in Mathematical Analysis I} & 375 & \bk{06\_Worked\_Problems} &
+ \textbf{Read the solutions as models of written argument.} Most books show results; this one shows
+ the \emph{writing}\\
+\midrule
+\rowcolor{nano!10}
+\textbf{8 books} & \textbf{2{,}164} & 6 folders & all MD5-verified byte-identical to their originals\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{dobox}[title={The one habit that matters}]
+After every proof you read, close the book and \textbf{write it out from memory}. Where you stall is
+exactly where you did not understand it --- and you will not discover that any other way. D\&L
+§2.3.6 puts it plainly: \emph{``we do not include in the proof all of the ideas, mental movements,
+dead ends, or examples that led up to our proof.''} The written proof hides the search. Redoing it
+is how you find the search again.
+\end{dobox}

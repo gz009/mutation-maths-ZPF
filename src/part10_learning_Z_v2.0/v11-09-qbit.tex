@@ -1,0 +1,68 @@
+\clearpage
+\renewcommand{\sectioncolor}{qbit}
+\section{On QBIT --- scoping the ambition honestly}
+\markboth{Scoping QBIT}{}
+
+You built \bk{TensoQi101} and \bk{QBIT-HIS} to reach \emph{Quantum Biological Information Theory} and
+attack three problems with it: mutation, docking, structure prediction. The libraries are excellent.
+The scoping deserves to be precise, because getting it wrong costs years.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm}c>{\raggedright\arraybackslash}p{11.3cm}@{}}
+\toprule
+\rowcolor{qbit!13}
+\textbf{\color{qbit}Problem} & \textbf{quantum?} & \textbf{\color{qbit}What it actually needs}\\
+\midrule
+\textbf{Protein structure prediction} & \no &
+ Classical statistical mechanics and geometry. \textbf{There is no quantum mechanics in AlphaFold.}
+ Your route here is PBoC2 $\to$ Bressloff $\to$ the transfer-operator material of Part IX.\\
+\addlinespace[2pt]
+\textbf{Protein--ligand docking} & \pt &
+ Classical statistical mechanics for the free energy; quantum only to \emph{parameterise} $U(x)$.
+ \textbf{That is precisely what your four DFT texts are for} --- and why GROMACS is on your machine.\\
+\addlinespace[2pt]
+\rowcolor{qbit!7}
+\textbf{Mutation} & \yes &
+ \textbf{Genuinely quantum, in one specific place}: proton tunnelling in base pairs (Löwdin 1963;
+ Slocombe, Sacchi \& Al-Khalili 2022). But most spontaneous mutation is classical --- replication
+ error, deamination, oxidative damage.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keyidea}[title={The honest shape of QBIT}]
+\begin{center}\itshape\large
+Quantum information theory is the right language for\\one third of one of your three problems.
+\end{center}
+\vspace{3pt}
+That is not a demotion of the ambition --- it is a sharpening of it. Two consequences:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{The information-theoretic angle that generalises across all three is Shannon and
+ Kolmogorov, not qubits.} Entropy, mutual information, large deviations and rate functions apply to
+ gene expression, ligand binding and conformational ensembles alike. Nielsen \& Chuang \textbf{ch.~11}
+ gives you the classical half before the quantum half.
+\item \textbf{Where quantum genuinely enters --- the tunnelling substrate of mutation --- your real
+ obstacle is Part IX's Tier 3:} non-Markovian open-system dynamics at strong coupling, in a
+ structured bath. \textbf{N\&C ch.~8} is the entry; \textbf{Bru \& de Siqueira Pedra (2020)} is the
+ rigorous destination; HEOM is in neither and would have to be acquired.
+\end{enumerate}
+\end{keyidea}
+
+\begin{critbox}[title={Two books in QBIT-HIS to read with your guard up}]
+\textbf{Khrennikov, \textit{Open Quantum Systems in Biology, Cognitive and Social Sciences} (2023).}
+The open-systems mathematics is standard and useful. The programme of applying quantum formalism to
+cognition and social science is \textbf{idiosyncratic and not accepted}. Take the formalism; leave
+the interpretation.\\[5pt]
+\textbf{\textit{Towards Quantum Integrated Information Theory} (1806.01421).} Speculative, and built
+on IIT, which is itself contested. Not a foundation to build on.\\[5pt]
+By contrast \textbf{Marais et al., \textit{The future of quantum biology} (2018)} --- also in
+\bk{QBIT-HIS} --- is a legitimate review and the right place to calibrate what is established versus
+what is hoped for. Read it before the other two.
+\end{critbox}
+
+\begin{plain}
+The most valuable thing in your QBIT folder is not the quantum material. It is \textit{Physical
+Biology of the Cell} and Bressloff --- statistical mechanics applied to real cells, with numbers.
+Those two books connect to all three of your target problems. The quantum books connect to one
+corner of one of them, and that corner happens to be the hardest open problem in the field.
+\end{plain}

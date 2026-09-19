@@ -1,0 +1,84 @@
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Verification ledger}
+\markboth{Verification ledger}{}
+
+Every book below was opened and its page count read, on 19 September 2026.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.3cm}r>{\raggedright\arraybackslash}p{7.6cm}@{}}
+\toprule
+\rowcolor{slate!14}
+\textbf{Book} & \textbf{pp} & \textbf{Library / folder}\\
+\midrule
+Feynman, \textit{Statistical Mechanics: A Set of Lectures} & 371 & \bk{Pure\_Maths/Module\_8}\\
+Le Gall, \textit{Measure Theory, Probability and Stochastic Processes} & 409 & \bk{Pure\_Maths/Module\_8}\\
+Lauritzen, \textit{Fundamentals of Mathematical Statistics} & --- & \bk{Pure\_Maths/Module\_8}\\
+Axler, \textit{Measure, Integration \& Real Analysis} (2022) & 430 & \bk{Pure\_Maths/Module\_5}\\
+Rudin, \textit{Principles of Mathematical Analysis} & --- & \bk{Pure\_Maths/Module\_6}\\
+Axler, \textit{Linear Algebra Done Right} (2015) & 352 & \bk{Pure\_Maths/Module\_1/Tensor-College}\\
+Kuttler, \textit{Linear Algebra and Analysis} (2020) & --- & \bk{Pure\_Maths/Module\_1/more-libgen}\\
+\midrule
+\textbf{Shankar, \textit{Principles of Quantum Mechanics} 2ed} & \textbf{696} & \bk{TensoQi101/Main\_Ref\_Texts}\\
+Nielsen \& Chuang, \textit{QC and QI} (10th anniv.) & 710 & \bk{TensoQi101/Main\_Ref\_Texts}\\
+Schumacher \& Westmoreland, \textit{Quantum Processes\ldots} & 483 & \bk{TensoQi101/Main\_Ref\_Texts}\\
+Sakurai \& Napolitano, \textit{Modern QM} 3ed (+2 soln.) & --- & \bk{TensoQi101/Aux\_Ref\_Texts}\\
+4 DFT texts (incl.\ Harvard practical guide) & 11--53 & \bk{TensoQi101/PoQM/DFT\_Density\_Functional\_Theory}\\
+\midrule
+\textbf{Phillips et al., \textit{Physical Biology of the Cell} 2ed} & \textbf{1089} & \bk{QBIT-HIS/PBoC2}\\
+Bressloff, \textit{Stochastic Processes in Cell Biology} Vol.~1 & 773 & \bk{QBIT-HIS/PBoC2}\\
+Bressloff, Vol.~2 & --- & \bk{QBIT-HIS/PBoC2}\\
+Attard, \textit{Quantum Statistical Mechanics from First Principles} & 285 & \bk{QBIT-HIS}\\
+Bru \& de Siqueira Pedra, \textit{C*-Algebras and Math.\ Found.\ of QSM} & 497 & \bk{QBIT-HIS}\\
+Khrennikov, \textit{Open Quantum Systems in Biology\ldots} & 371 & \bk{QBIT-HIS} \;\textsc{\scriptsize contested}\\
+Barato \& Seifert, thermodynamic uncertainty relation & 11 & \bk{QBIT-HIS/PBoC2}\\
+Marais et al., \textit{The future of quantum biology} & 14 & \bk{QBIT-HIS}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Method}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5.2cm}>{\raggedright\arraybackslash}p{11.4cm}@{}}
+\toprule
+\rowcolor{slate!12}
+\textbf{Claim} & \textbf{How it was checked}\\
+\midrule
+681 books across four libraries & \bk{find} for \bk{*.pdf *.epub *.mobi *.djvu} in each tree\\
+``Shankar, 14 hits for \emph{partition function}'' & \bk{pdftotext} piped to \bk{grep -ic} over every PDF $>$1\,MB in \bk{TensoQi101}\\
+Shankar §21.2 quotations & extracted from the text layer; equation numbers 21.2.44 and 21.2.59 as printed\\
+Feynman chapter and section titles & table of contents, text layer\\
+Axler section titles and page numbers & table of contents, text layer\\
+Tables 1--3, Figures 4--5 (§5--§6) & computed by the companion notebook; \bk{numpy} 1.26.4, fixed seeds\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The dossier series}
+
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  d/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=6pt,
+            text width=2.75cm,align=center,minimum height=2.2cm},
+  ar/.style={-{Stealth[length=4.5pt,width=3.5pt]},line width=1pt,draw=slate!70}]
+ \node[d=deepblue] (a) at (0,0)     {\textbf{VI}\\\textit{$e^{\pi i}+1=0$}\\{\scriptsize embodied metaphor}};
+ \node[d=bio]      (b) at (3.35,0)  {\textbf{VII}\\\textit{Beyond the Reach of the Body?}};
+ \node[d=lab]      (c) at (6.70,0)  {\textbf{VIII}\\\textit{Your Errors Are Not Noise}};
+ \node[d=indigo]   (d) at (10.05,0) {\textbf{IX}\\\textit{The Measure, Not the Point}};
+ \node[d=shelf]    (e) at (13.40,0) {\textbf{X v2.0}\\\textit{Learning $Z$}\\{\scriptsize you already own it}};
+ \foreach \x/\y in {a/b,b/c,c/d,d/e}{\draw[ar] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+
+\vspace{12pt}
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=5pt,fill=indigo,text=white,inner sep=13pt,text width=15.6cm,align=center]
+ {\mbox{\large\bfseries The library was never the constraint.}\\[7pt]
+  \normalfont\small
+  681 books, four folders, and everything the partition function needs except one free PDF on mixing
+  times. What was missing was not the books --- it was knowing which three sections of which one to
+  read first, and that $2^{N}$ configurations collapse to two numbers.};
+\end{tikzpicture}
+\end{center}

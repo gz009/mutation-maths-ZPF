@@ -1,0 +1,61 @@
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Complete index --- all 22 cells}
+\markboth{Index of all 22 cells}{}
+
+Twelve markdown cells carry the mathematics; ten code cells carry the checks. \textbf{The
+mathematics is in the markdown.} If you read only the code you will learn Sage and no proof.
+
+\newcommand{\md}{\textcolor{proof}{\scriptsize\bfseries MD}}
+\newcommand{\cd}{\textcolor{bio}{\scriptsize\bfseries CODE}}
+\begin{center}\footnotesize
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}c c >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{6.4cm} >{\raggedright\arraybackslash}p{5.2cm}@{}}
+\toprule
+\rowcolor{slate!13}
+\textbf{\#} & \textbf{type} & \textbf{nb §} & \textbf{what it does} & \textbf{what to take from it}\\
+\midrule
+1  & \md & Title, §0 & Defines proof; lists the three books used throughout & The two-line definition of a proof. Memorise it\\
+\rowcolor{slate!5}
+2  & \md & §1 & Section heading & ---\\
+3  & \cd & §1 & \bk{version()}; declares \bk{beta} real & \textbf{Never name a variable \bk{N}} --- \bk{N()} is Sage's numeric evaluator\\
+\rowcolor{slate!5}
+4  & \md & §2 & Implication $p\Rightarrow q$; the two beginner errors & False $p$ makes $p\Rightarrow q$ \emph{true}; converse $\ne$ original\\
+5  & \cd & §2 & Truth table from \bk{(not p) or q} & That expression \emph{is} the definition of $\Rightarrow$\\
+\rowcolor{slate!5}
+6  & \md & §2 & Quantifiers $\forall,\exists$ and their negation & \textbf{The asymmetry}: disproving $\forall$ costs one example; proving it costs an argument\\
+7  & \cd & §3 & Builds $T$ in \bk{SR}; \bk{T.is\_symmetric()} & Sage \emph{checked} a $2\times2$; the proof explains \emph{why}, for any number of states\\
+\rowcolor{slate!5}
+8  & \md & §4 & Proof by cases: $\lambda_+\ge\lambda_-$ & And the honest footnote --- the cases were unnecessary. Look for the one-liner first\\
+9  & \cd & §4 & \bk{exponentialize().simplify\_full()} gives $2e^{-\beta}$ & Your first sight of the method that closes hyperbolic identities\\
+\rowcolor{slate!5}
+10 & \md & §5 & Three claims, two false. \emph{Think before running} & The pause is the exercise. Predict, then check\\
+11 & \cd & §5 & $\left(\begin{smallmatrix}1&1\\0&2\end{smallmatrix}\right)$ and $I$ kill claims 1--2; claim 3 survives & A surviving claim is not a proved claim\\
+\rowcolor{slate!5}
+12 & \md & §5--6 & The lesson; then contrapositive & Why Axler says \emph{orthonormal}, not just ``a basis of eigenvectors''\\
+13 & \cd & §6 & Truth table: $p\Rightarrow q$ vs $\neg q\Rightarrow\neg p$ & Identical in all four rows $\Rightarrow$ interchangeable. Same statement, easier door\\
+\rowcolor{slate!5}
+14 & \md & §7 & Contradiction: no 1D phase transition at finite $\beta$ & Assume the opposite; derive $2\cosh\beta_c=0$; impossible\\
+15 & \cd & §7 & \bk{solve(2*cosh(beta)==0)} returns \bk{[]}; four derivatives finite & Empty solution set matches the argument --- \emph{corroborates}, does not prove\\
+\rowcolor{slate!5}
+16 & \md & §8 & Induction; the diagonal-power lemma proved & Base case $+$ inductive step $=$ infinitely many claims, finite work\\
+17 & \cd & §8 & Checks $n=1\ldots20$, then says so in capitals & \textbf{20 checks are 20 facts.} The proof is the step, and only the step\\
+\rowcolor{slate!5}
+18 & \md & §9 & \textbf{The theorem}, four steps, each licensed & The payoff. Holds for $N=10^{100}$\\
+19 & \cd & §9 & Diagonalises $T_0$; \bk{proves\_zero} on $ns=1,2,3,7,12$ & \bk{eigenmatrix\_right()} returns \textbf{(D,\,P)} --- diagonal first. Getting this backwards silently breaks the check\\
+\rowcolor{slate!5}
+20 & \md & §10 & ``Where the CAS will lie to you'' & Framing for the cell below\\
+21 & \cd & §10 & Four methods on an identically-zero expression & Three say \bk{False}. \textbf{A CAS \bk{False} is a failure to simplify, not a disproof}\\
+\rowcolor{slate!5}
+22 & \md & §11--12 & Pure/applied/computational table; 8 exercises & Exercise 6 is the induction left open in §9. Do it\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warnbox}[title={Read in this order}]
+\textbf{First pass:} cells 1, 4, 6, 8, 10, 12, 14, 16, 18, 22 --- the markdown alone. That is the
+mathematics, and it is about forty minutes.\\[4pt]
+\textbf{Second pass:} run the code cells and check each output against what the markdown predicted.
+Where they differ, the markdown is right and you mis-read the code.\\[4pt]
+\textbf{Third pass:} do the exercises in cell 22 with the notebook \emph{closed}.
+\end{warnbox}

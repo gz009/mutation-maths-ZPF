@@ -1,0 +1,38 @@
+% ---- Part VII additional palette ----
+\definecolor{bio}    {HTML}{1B7F5C}
+\definecolor{quantum}{HTML}{6C3FA8}
+\definecolor{nano}   {HTML}{0E7C9D}
+\definecolor{ember}  {HTML}{C1502E}
+\definecolor{sand}   {HTML}{B8860B}
+\definecolor{plum}   {HTML}{8E3B62}
+
+\newtcolorbox{auditbox}[1][]{
+  enhanced, breakable, colback=nano!5, colframe=nano, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=nano,arc=2pt,boxrule=0pt},
+  #1}
+
+\newtcolorbox{movebox}[1][]{
+  enhanced, breakable, colback=bio!5, colframe=bio, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=bio,arc=2pt,boxrule=0pt},
+  #1}
+
+% verdict marks
+\newcommand{\yes}{\textcolor{bio}{\textbf{\checkmark}}}
+\newcommand{\no}{\textcolor{crimson}{\textbf{$\times$}}}
+\newcommand{\pt}{\textcolor{sand}{\textbf{$\sim$}}}
+\newcommand{\src}[1]{{\scriptsize\color{slate}#1}}
+
+% ---- Part VII running header ----
+\fancyhead[L]{\footnotesize\color{slate}\textsc{Beyond the Reach of the Body?}\,$\cdot$\,\textsc{Part VII}}
+
+\hypersetup{
+  pdftitle={Beyond the Reach of the Body? --- Inventing mathematics for the nano-, quantum- and cellular scale},
+  pdfsubject={Part VII companion to the Lakoff \& Nunez Part VI idea-analysis dossier},
+  pdfkeywords={embodied mathematics, conceptual metaphor, noncommutative geometry, contextuality,
+    sheaf theory, ZX-calculus, quantum biology, non-equilibrium thermodynamics, reaction networks}}

@@ -1,0 +1,111 @@
+%============ TITLE PAGE ============
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  % background wash
+  \fill[deepblue] (current page.north west) rectangle
+       ([yshift=-11.2cm]current page.north east);
+  % subtle grid on the wash
+  \begin{scope}
+    \clip (current page.north west) rectangle ([yshift=-11.2cm]current page.north east);
+    \draw[white,opacity=0.07,step=0.5cm]
+      ([yshift=-11.2cm]current page.north west) grid (current page.north east);
+    % faint big circle
+    \draw[white,opacity=0.13,line width=1.1pt]
+      ([xshift=15.2cm,yshift=-5.4cm]current page.north west) circle (4.3cm);
+    \draw[white,opacity=0.13,line width=1.1pt]
+      ([xshift=15.2cm,yshift=-5.4cm]current page.north west) circle (2.6cm);
+  \end{scope}
+
+  % ---- the unit-circle emblem ----
+  \begin{scope}[shift={([xshift=15.2cm,yshift=-5.4cm]current page.north west)},scale=1.62]
+    \draw[white!45,line width=0.7pt,-{Stealth[length=4pt]}] (-1.75,0)--(1.9,0) node[right,font=\tiny,text=white!70]{$\Re$};
+    \draw[white!45,line width=0.7pt,-{Stealth[length=4pt]}] (0,-1.75)--(0,1.9) node[above,font=\tiny,text=white!70]{$\Im$};
+    \draw[gold,line width=1.4pt] (0,0) circle (1.35);
+    % angle sweep
+    \fill[gold,opacity=0.18] (0,0) -- (1.35,0) arc (0:180:1.35) -- cycle;
+    \draw[rose,line width=1.5pt,-{Stealth[length=6pt]}] (0,0)--(-1.35,0);
+    \node[circle,fill=rose,inner sep=1.7pt] at (-1.35,0){};
+    \node[font=\scriptsize\bfseries,text=white,below left=1pt and -2pt] at (-1.35,0){$-1$};
+    \node[circle,fill=white,inner sep=1.7pt] at (1.35,0){};
+    \node[font=\scriptsize\bfseries,text=white,below right=1pt and -2pt] at (1.35,0){$1$};
+    \node[circle,fill=teal!70!white,inner sep=1.7pt] at (0,1.35){};
+    \node[font=\scriptsize\bfseries,text=white,right=2pt] at (0,1.35){$i$};
+    \node[font=\scriptsize,text=gold] at (0.30,0.72) {$\pi$};
+    \draw[white,opacity=.5,line width=.5pt,dashed] (0,0)--(0,1.35);
+  \end{scope}
+
+  % ---- title text ----
+  \node[anchor=north west,text=white,align=left,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-2.05cm]current page.north west)
+    {\fontsize{10}{12}\selectfont\color{gold}\textsc{a mathematical idea analysis}\\[2pt]
+     \fontsize{9}{11}\selectfont\color{white!70}study dossier $\cdot$ foundations self-study};
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-3.35cm]current page.north west)
+    {\fontsize{46}{50}\selectfont\bfseries $e^{\pi i}+1=0$};
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt,text width=11.2cm]
+    at ([xshift=2.05cm,yshift=-5.55cm]current page.north west)
+    {\fontsize{19}{23}\selectfont\bfseries\color{white}
+     The Cognitive Structure of\\ Classical Mathematics\\[9pt]
+     \fontsize{11}{15}\selectfont\color{white!78}\normalfont
+     A step-by-step analysis of \textbf{Part VI} of\\
+     \textit{Where Mathematics Comes From}\\
+     by George Lakoff \& Rafael E.\ Núñez (2000/2001)\\[4pt]
+     \color{gold}\small Case Studies 1--4 $\;\cdot\;$ book pp.\ 381--452 $\;\cdot\;$ pdf pp.\ 400--471};
+
+  % ---- four case-study chips ----
+  \foreach \i/\c/\t/\s in {0/csA/{CS 1}/{Analytic Geometry\\\& Trigonometry},
+                           1/csB/{CS 2}/{What is $e$?},
+                           2/csC/{CS 3}/{What is $i$?},
+                           3/csD/{CS 4}/{How the ideas\\fit together}}{
+    \node[anchor=north west,inner sep=0pt]
+      at ([xshift={2.05cm+\i*4.3cm},yshift=-12.6cm]current page.north west)
+      {\begin{tikzpicture}
+         \node[fill=\c,text=white,rounded corners=4pt,minimum width=3.85cm,
+               minimum height=2.15cm,align=left,inner sep=9pt,anchor=north west,
+               font=\footnotesize] at (0,0)
+           {\textbf{\large \t}\\[3pt]\s};
+       \end{tikzpicture}};}
+
+  % ---- the Peirce epigraph ----
+  \node[anchor=north west,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-15.9cm]current page.north west)
+    {\begin{tikzpicture}
+       \node[draw=gold,line width=1.1pt,rounded corners=3pt,fill=gold!7,
+             text width=16.35cm,align=left,inner sep=13pt,font=\small,anchor=north west] at (0,0)
+         {\textit{\color{ink}Gentlemen, that is surely true, it is absolutely paradoxical; we cannot
+          understand it, and we don't know what it means. But we have proved it, and therefore we
+          know it must be truth.}\\[5pt]
+          {\footnotesize\color{slate}\textsc{Benjamin Peirce}, lecturing on Euler's proof that
+          $e^{\pi i}=-1$ --- quoted by Lakoff \& Núñez, book p.~383 / pdf p.~402.}\\[7pt]
+          {\footnotesize\color{deepblue}\textbf{The whole of Part VI is an attack on that sentence.}}};
+     \end{tikzpicture}};
+
+  % ---- what's inside ----
+  \node[anchor=north west,inner sep=0pt,text width=16.6cm,align=left,font=\footnotesize,text=ink]
+    at ([xshift=2.05cm,yshift=-19.35cm]current page.north west)
+    {\color{deepblue}\textbf{\normalsize What is in this dossier}\\[5pt]
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{csA}{\textbf{$\blacksquare$}}\; the four case studies, reconstructed step by step\\[3pt]
+       \textcolor{csB}{\textbf{$\blacksquare$}}\; every metaphor and blend drawn as a diagram
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{csC}{\textbf{$\blacksquare$}}\; the derivations, with the load-bearing step marked\\[3pt]
+       \textcolor{csD}{\textbf{$\blacksquare$}}\; verbatim evidence with page citations
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{crimson}{\textbf{$\blacksquare$}}\; a candid audit: six places the argument leaks\\[3pt]
+       \textcolor{moss}{\textbf{$\blacksquare$}}\; a reading plan against your own shelf
+     \end{minipage}};
+
+  % ---- bottom rule + metadata ----
+  \node[anchor=south west,align=left,text=slate,font=\scriptsize,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=2.05cm]current page.south west)
+    {\color{deepblue}\rule{16.9cm}{1.2pt}\\[6pt]
+     Prepared from a full reading of the source PDF.\;
+     Every quotation is verbatim; every claim carries a page citation.\\
+     Diagrams are original reconstructions of the blends and metaphors the text describes in prose and tables.};
+\end{tikzpicture}
+\end{titlepage}

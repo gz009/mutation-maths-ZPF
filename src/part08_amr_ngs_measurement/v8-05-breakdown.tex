@@ -1,0 +1,102 @@
+\clearpage
+\renewcommand{\sectioncolor}{ember}
+\section{Why more coverage cannot fix it --- and this part is a theorem}
+\markboth{Why coverage fails}{}
+
+\noindent\textbf{\color{ember}The biology question:} \emph{surely if we sequence deeply enough, the
+majority of reads gives the right answer?}
+
+\noindent Usually yes. Inside a failed tile-cycle, \textbf{no} --- and the failure is not gradual, it
+is total.
+
+\subsection{The 50\,\% wall}
+
+Consensus calling takes a vote. A vote is only trustworthy while most voters are right. The technical
+name for the point where an estimator stops working is its \textbf{breakdown point}, and for a
+majority vote it is exactly 50\,\%.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=15.2cm,height=6.6cm,
+  xlabel={\footnotesize depth of coverage at a position ($\times$)},
+  ylabel={\footnotesize P(consensus call is \emph{wrong})},
+  xmin=1,xmax=71,ymin=-0.04,ymax=1.08,
+  xtick={1,11,21,31,41,51,61,71},
+  ytick={0,0.25,0.5,0.75,1},
+  tick label style={font=\scriptsize}, label style={font=\footnotesize},
+  grid=major, grid style={slate!18,line width=0.3pt}, axis line style={slate!60},
+  legend style={font=\scriptsize,draw=none,fill=none,at={(0.5,1.28)},anchor=north,legend columns=2},
+  clip=false]
+ \addplot[bio,line width=1.6pt,mark=*,mark size=1.4pt] coordinates
+   {(3,9.641e-7)(5,1.821e-9)(7,3.613e-12)(9,7.370e-15)(11,1.531e-17)(15,0)(21,0)(31,0)(41,0)(51,0)(61,0)(71,0)};
+ \addlegendentry{our clean error rate, $e=5.67\times10^{-4}$ --- vote works perfectly}
+ \addplot[alert,line width=1.6pt,mark=*,mark size=1.7pt] coordinates
+   {(3,0.7609)(5,0.8123)(7,0.8494)(9,0.8776)(11,0.8996)(15,0.9312)(21,0.9598)(31,0.9828)(41,0.9924)(51,0.9966)(61,0.9984)(71,0.9993)};
+ \addlegendentry{inside a failed tile-cycle, $e=0.682$ --- vote collapses}
+ \draw[slate,dashed,line width=0.8pt] (axis cs:1,0.5)--(axis cs:71,0.5);
+ \node[font=\scriptsize,text=slate,anchor=south east] at (axis cs:71,0.51) {coin flip};
+ \node[font=\scriptsize\bfseries,text=alert,anchor=north west] at (axis cs:22,0.86)
+   {more depth $\Rightarrow$ \emph{more} confidence in the wrong base};
+ \draw[alert,line width=0.8pt,-{Stealth[length=4pt]}] (axis cs:48,0.86)--(axis cs:62,0.985);
+ \node[font=\scriptsize\bfseries,text=bio,anchor=west] at (axis cs:14,0.13)
+   {11$\times$ already gives $1.5\times10^{-17}$ --- effectively zero};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 5.}\; Binomial consensus error versus depth, at our two measured error rates. Green:
+the clean rate from §3.4. Red: the local rate inside tile 1101 at cycle 8.
+\end{minipage}\end{center}
+
+\begin{plain}
+If most of your witnesses are lying, calling more witnesses does not help --- it just makes the jury
+more certain of the wrong verdict. Our four bad tile-cycles are rooms full of witnesses who all tell
+the same lie, and the machine gave them all excellent references.
+\end{plain}
+
+\begin{alertbox}[title={What this means in practice}]
+\begin{center}\small
+\begin{tabular}{@{}l r r@{}}
+\toprule
+\rowcolor{alert!12}
+\textbf{Depth} & \textbf{P(wrong) at $e=5.67\times10^{-4}$} & \textbf{P(wrong) at $e=0.682$}\\
+\midrule
+11$\times$ & $1.5\times10^{-17}$ & 0.8996\\
+21$\times$ & $6.8\times10^{-31}$ & 0.9598\\
+51$\times$ & $9.6\times10^{-71}$ & 0.9966\\
+\rowcolor{alert!8}
+71$\times$ (\emph{our actual depth}) & $2.9\times10^{-97}$ & \textbf{0.9993}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{3pt}
+\textbf{We paid for 71$\times$. Against the clean error it was 60$\times$ more than needed. Against
+the real error it bought us a 99.9\,\% chance of being confidently wrong.}
+\end{alertbox}
+
+\subsection{The one-line summary of the mathematics}
+
+\begin{labbox}[title={The mismatch between the model and the world}]
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!7,inner sep=9pt,
+            text width=7.2cm,align=left,minimum height=3.3cm}]
+ \node[b=slate] (a) at (-4.2,0)
+   {\textbf{\color{slate}What our pipeline assumes}\\[4pt]
+    Errors are \textbf{independent} and \textbf{identically distributed} --- every base has roughly
+    the same chance of being wrong, independently of every other.\\[4pt]
+    {\scriptsize Under this model, averaging is \emph{optimal}. More depth is always better.}};
+ \node[b=alert] (b) at (4.2,0)
+   {\textbf{\color{alert}What the data shows}\\[4pt]
+    Errors are \textbf{structured} --- concentrated in a handful of (tile, cycle) cells, with a
+    characteristic substitution spectrum.\\[4pt]
+    {\scriptsize Under this model, averaging is \emph{catastrophic} exactly where it matters, and
+    more depth is actively harmful.}};
+ \draw[-{Stealth[length=7pt]},line width=1.5pt,draw=ember] (-0.55,0)--(0.55,0);
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+The fix is not more data. The fix is to \textbf{find the structure and remove it} --- which is what
+\S10 does, in 50 lines, at no cost.
+\end{labbox}

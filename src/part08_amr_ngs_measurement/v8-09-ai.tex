@@ -1,0 +1,90 @@
+\clearpage
+\renewcommand{\sectioncolor}{nano}
+\section{What AI actually adds here --- and one thing to be careful of}
+\markboth{AI, honestly}{}
+
+\noindent\textbf{\color{nano}The biology question:} \emph{everyone says AI will transform genomics.
+For our pipeline, specifically, what does it do?}
+
+\subsection{The honest ledger}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{5.5cm}c>{\raggedright\arraybackslash}p{6.4cm}@{}}
+\toprule
+\rowcolor{nano!13}
+\textbf{\color{nano}Step} & \textbf{\color{nano}What exists} & &\textbf{\color{nano}Use to us}\\
+\midrule
+Base calling & DeepConsensus (Baid et al., \textit{Nat Biotechnol} 2023) --- transformer on raw
+ PacBio signal; Dorado/Bonito for nanopore & \pt &
+ Real but not ours: these are long-read tools. Illumina base-calling gains are now small --- our own
+ handbook §T7.4 traces Bustard $\to$ Ibis $\to$ AYB, 4.0\,\% $\to$ 2.8\,\% error.\\
+Variant calling & DeepVariant (Poplin et al., \textit{Nat Biotechnol} 2018) & \pt &
+ Mature and excellent --- but relevant only if we move from \emph{assembly} to \emph{resequencing
+ against a reference}.\\
+\rowcolor{bio!8}
+Gene identification & \textbf{Protein language models (ESM-2; Lin et al., \textit{Science} 2023)} & \yes &
+ \textbf{Directly useful.} Embeddings separate orthologues from paralogues far better than percent
+ identity --- this is the \S7 problem.\\
+Genome-scale priors & Nucleotide Transformer (\textit{Nat Methods} 2024); Evo (\textit{Science} 2024) & \pt &
+ Promising, and see the warning below.\\
+Structure & AlphaFold2 (Jumper et al., \textit{Nature} 2021) & \pt &
+ Useful for interpreting a novel QRDR substitution; not part of routine screening.\\
+\rowcolor{bio!8}
+Analysis assistance & what we already do --- AI as shell and scripting assistant & \yes &
+ \textbf{Already working, and our \texttt{METHODS} §7 states the right rule: every number traces to a
+ deterministic re-runnable command.}\\
+\midrule
+\multicolumn{4}{@{}l}{\textbf{\color{alert}What AI cannot do for us}}\\
+\multicolumn{4}{@{}>{\raggedright\arraybackslash}p{16.6cm}@{}}{%
+ \no~reduce photon shot noise \quad
+ \no~span a 2{,}600 bp repeat with a 233 bp read \quad
+ \no~detect a failed tile-cycle better than the 50-line script in \S10}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The one genuinely deep idea}
+
+Assembly and error correction are both a search for the most probable genome given the reads:
+\[
+\hat{X} \;=\; \arg\max_{X}\;\underbrace{P(\text{reads}\mid X)}_{\text{what the machine measured}}\;\times\;
+\underbrace{P(X)}_{\text{what we expected beforehand}}
+\]
+Coverage supplies the first term. \textbf{A good prior supplies the second --- and a sharp enough
+prior substitutes for coverage.} That is why reference-guided analysis needs far less data than
+\emph{de novo} assembly: the reference \emph{is} a prior.
+
+\begin{plain}
+If you already know roughly what the answer should look like, you need less evidence to confirm it.
+That is true in the lab and it is true in mathematics. A genome language model is an attempt to
+supply that ``roughly know'' for organisms where we have no close reference.
+\end{plain}
+
+\begin{alertbox}[title={The warning that matters specifically for AMR work}]
+A learned prior pulls the estimate \textbf{toward what was common in its training data}.
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=8pt,
+            text width=7.3cm,align=left,minimum height=2.9cm}]
+ \node[b=bio] (a) at (-4.25,0)
+   {\textbf{\color{bio}Where the prior helps}\\[4pt]
+    The isolate belongs to a common, well-sampled lineage. Most of the genome is exactly what the model has seen thousands of
+    times. The prior is right, and it saves data.};
+ \node[b=alert] (b) at (4.25,0)
+   {\textbf{\color{alert}Where the prior hurts}\\[4pt]
+    A \emph{novel} resistance allele. A new SCC\emph{mec} junction. A rearranged plasmid.\\[3pt]
+    {\scriptsize The model has never seen it, so it will confidently smooth it into the nearest thing
+    it has seen.}};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\bfseries\itshape
+AMR research is the study of what is not yet common.\\
+The novel findings are precisely the ones a learned prior will most reliably damage.
+\end{center}
+\vspace{3pt}
+Our \texttt{METHODS} §7 already says ``no result is a model assertion''. The extension worth adopting
+as team policy: \textbf{a learned prior is a model assertion smuggled into the data layer.} If we ever
+adopt AI-assisted assembly or error correction, any novel call must be re-verified against the raw
+reads without the model in the loop.
+\end{alertbox}

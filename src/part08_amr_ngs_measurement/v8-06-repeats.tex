@@ -1,0 +1,97 @@
+\clearpage
+\renewcommand{\sectioncolor}{sand}
+\section{The 38 contigs: what coverage already tells us about copy number}
+\markboth{Repeats and copy number}{}
+
+\noindent\textbf{\color{sand}The biology question:} \emph{why does a single circular chromosome come
+back as 38 pieces, and how many copies of each repeat are really there?}
+
+\subsection{The answer is sitting in the contig names}
+
+SPAdes writes the $k$-mer coverage into every contig header. Our eight large contigs
+($>100$ kb) average \textbf{29.35}. Divide any contig's coverage by that number and you get its
+\textbf{copy number}.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=15.4cm,height=6.4cm,
+  xlabel={\footnotesize contig length (bp, log scale)},
+  ylabel={\footnotesize coverage $\div$ 29.35 = copies},
+  xmode=log, xmin=140,xmax=700000, ymin=0.5, ymax=9.2,
+  ytick={1,2,3,4,5,6,7,8}, tick label style={font=\scriptsize}, label style={font=\footnotesize},
+  grid=major, grid style={slate!18,line width=0.3pt}, axis line style={slate!60},
+  clip=false]
+ \addplot[only marks,mark=*,mark size=2.0pt,color=bio] coordinates
+  {(479695,0.869)(392086,0.999)(357380,1.131)(319865,1.088)(296338,1.211)(293857,0.852)
+   (235429,0.894)(169873,0.953)(62040,1.026)(39185,1.060)(37993,1.219)(35067,1.041)
+   (20291,1.166)(15145,1.114)(13219,1.001)(1937,2.221)(683,1.372)(634,1.302)
+   (411,1.472)(332,1.070)(303,1.260)(278,1.169)(243,0.286)(237,0.255)(171,1.664)};
+ \addplot[only marks,mark=square*,mark size=2.6pt,color=alert] coordinates
+  {(19885,3.307)(3121,6.845)(2600,8.268)(1610,6.107)(625,2.077)(553,2.038)(407,2.117)
+   (380,2.765)(351,3.781)(351,1.483)(324,3.390)(233,6.829)(181,3.018)};
+ \draw[slate,dashed,line width=0.7pt] (axis cs:140,1)--(axis cs:700000,1);
+ \node[font=\scriptsize,text=slate,anchor=south west] at (axis cs:150,1.04) {single copy};
+ \node[font=\scriptsize\bfseries,text=alert,anchor=west] at (axis cs:3400,8.30) {NODE\_18 $\approx$ 8 copies (2.6 kb)};
+ \node[font=\scriptsize\bfseries,text=alert,anchor=west] at (axis cs:4200,6.85) {NODE\_17 $\approx$ 7 copies (3.1 kb)};
+ \node[font=\scriptsize\bfseries,text=alert,anchor=west] at (axis cs:24000,3.31) {NODE\_14 $\approx$ 3 copies (19.9 kb)};
+ \node[font=\scriptsize,text=bio,anchor=east] at (axis cs:420000,0.80) {the 8 big contigs};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 6.}\; Every contig in \texttt{spades\_assembly/contigs.fasta}, plotted by length and
+inferred copy number. Green circles: single copy. Red squares: collapsed repeats. The two contigs
+sitting below 0.3 (NODE\_34, NODE\_35) are low-coverage fragments, probably contaminant or chimeric.
+\end{minipage}\end{center}
+
+\begin{labbox}[title={What is actually missing from our assembly}]
+\begin{center}\small
+\begin{tabular}{@{}l r r r@{}}
+\toprule
+\rowcolor{sand!20}
+& \textbf{stored in the FASTA} & \textbf{present in the cell} & \textbf{difference}\\
+\midrule
+repeat sequence & 32{,}207 bp & $\approx$ 124{,}696 bp & \textbf{$\approx$ 92 kb collapsed}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{3pt}
+Our assembly totals 2{,}803{,}313 bp. A closed chromosome of this lineage is typically $\approx$ 2.75--2.85 Mb
+\emph{including} all repeat copies. The $\approx$92 kb we are storing once instead of 6--8 times is
+exactly why the assembly is in 38 pieces: \textbf{the assembler cannot tell which copy connects to
+which neighbour.}
+\end{labbox}
+
+\subsection{Counting copies does not need 71$\times$}
+
+\begin{center}\small
+\begin{tabular}{@{}l r r r r r@{}}
+\toprule
+\rowcolor{sand!20}
+\textbf{Contig} & \textbf{Length} & \textbf{Copies} & \textbf{CV at 71.6$\times$} & \textbf{CV at 20$\times$} & \textbf{CV at 10$\times$}\\
+\midrule
+NODE\_14 & 19{,}885 & 3 & 0.74 \% & 1.40 \% & 1.98 \%\\
+NODE\_17 & 3{,}121 & 7 & 1.22 \% & 2.31 \% & 3.27 \%\\
+NODE\_18 & 2{,}600 & 8 & 1.25 \% & 2.37 \% & 3.35 \%\\
+NODE\_20 & 1{,}610 & 6 & 1.84 \% & 3.47 \% & 4.91 \%\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 2.}\; Poisson counting precision, $\mathrm{CV}=1/\sqrt{k\,d\,L/\ell}$ with read length
+$\ell=233$. To tell $k$ copies from $k+1$ you need CV well below $1/2k$; every row clears that at
+10$\times$.
+\end{minipage}\end{center}
+
+\begin{dobox}[title={Action: report copy number with an interval, not a point}]
+This directly addresses \textbf{Limitation 3} in our own \texttt{METHODS\_v1.7.md}: \emph{``the
+$\varphi$Sa3 boundaries are inferred from gene positions, not from attL/attR detection. The
+$\sim$42.4 kb span is an estimate.''}\\[5pt]
+The coverage data supports a \emph{proper interval}. The right formulation is an
+\textbf{integer-constrained estimate}: copy numbers must be whole numbers, and they must balance at
+every junction of the assembly graph (what goes in must come out). Adding those two constraints to
+the Poisson likelihood turns a guess into a confidence interval --- and it runs in seconds on a
+graph this size.
+\end{dobox}

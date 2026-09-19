@@ -1,0 +1,60 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{The route, through books you already own}
+\markboth{The route}{}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  st/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!8,inner sep=8pt,
+             text width=3.55cm,align=left,minimum height=4.4cm},
+  ar/.style={-{Stealth[length=5.5pt,width=4.5pt]},line width=1.2pt,draw=bio!75}]
+ \node[st=bio]  (s1) at (0,0)     {\textbf{\color{bio}STAGE 1}\\\textbf{Operators \& the trace}\\[4pt]
+   {\scriptsize Axler §5 eigenvalues\\ §6 inner products\\ \textbf{§7.B spectral theorem}\\
+    \textbf{§7.C positive operators}\\ \textbf{§10.A trace}}\\[4pt]
+   {\scriptsize + Hoffman \& Kunze\\ + Olver ch.\ 8--10}};
+ \node[st=nano] (s2) at (4.25,0)  {\textbf{\color{nano}STAGE 2}\\\textbf{Integration $\to$ measure}\\[4pt]
+   {\scriptsize Apostol Vol.~2 ch.~11\\ Spivak, \textit{Calc.\ on Manifolds}\\[3pt]
+    then \textbf{Kuttler ch.~20--24}: measures, Lebesgue integral, $L^p$, Riesz}};
+ \node[st=sand] (s3) at (8.50,0)  {\textbf{\color{sand!80!black}STAGE 3}\\\textbf{Saddle point}\\[4pt]
+   {\scriptsize Radozycki Part III:\\ contour integrals,\\ Laurent series,\\ \textbf{the residue theorem},\\
+    Fourier series}\\[4pt]
+   {\scriptsize this is how $Z$ is \emph{evaluated} asymptotically}};
+ \node[st=quantum] (s4) at (12.75,0) {\textbf{\color{quantum}STAGE 4}\\\textbf{Probability}\\[4pt]
+   {\scriptsize Apostol Vol.~2\\ ch.~13 set functions\\ ch.~14 probability}\\[4pt]
+   {\scriptsize \textcolor{alert}{\textbf{the shelf runs thin here}} --- see §4}};
+ \foreach \a/\b in {s1/s2,s2/s3,s3/s4}{\draw[ar] (\a)--(\b);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; Four stages, all but the last fully covered by books already in the tree.
+\end{minipage}\end{center}
+
+\subsection{Stage 1 in detail --- the four pages that matter}
+
+I checked the actual contents of your copy of Axler. The three sections you need are:
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.4cm}c>{\raggedright\arraybackslash}p{9.6cm}@{}}
+\toprule
+\rowcolor{bio!13}
+\textbf{\color{bio}Axler section} & \textbf{p.} & \textbf{\color{bio}Why $Z=\operatorname{Tr}(e^{-\beta\hat H})$ needs it}\\
+\midrule
+\textbf{7.B The Spectral Theorem}\newline{\scriptsize Complex / Real} & 217 / 219 &
+ This is what lets you \emph{define} $e^{-\beta\hat H}$ at all --- you exponentiate the eigenvalues,
+ which requires an orthonormal eigenbasis to exist.\\
+\textbf{7.C Positive Operators} & 225 &
+ $e^{-\beta\hat H}$ \textbf{is} a positive operator. This is why $Z>0$, and why
+ $e^{-\beta U}/Z$ is a probability density rather than merely a function.\\
+\textbf{10.A Trace} & 296--299 &
+ ``Trace: a connection between operators and matrices'' --- basis independence is what makes
+ $\operatorname{Tr}(e^{-\beta\hat H})=\sum_n e^{-\beta E_n}$ a definition rather than a coincidence.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{haveit}[title={You can do Stage 1 this week}]
+Read Axler §7.B, §7.C and §10.A --- about 30 pages with the exercises. Then go straight to §5 of this
+dossier and compute a real partition function with nothing but those three results. That is the whole
+argument for starting at Face 3.
+\end{haveit}

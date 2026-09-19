@@ -1,0 +1,426 @@
+\clearpage
+\renewcommand{\sectioncolor}{csD}
+\section{Case Study 4 — \texorpdfstring{$e^{\pi i}+1=0$}{e\^{}(pi i)+1=0}}
+\markboth{Case Study 4 · How the ideas fit together}{}
+\noindent\chip{csD}{BOOK pp.\ 433--452}\;\chip{slate}{PDF pp.\ 452--471}\;\chip{csD}{DELIVERS: why the equation is true \emph{by virtue of what it means}}
+
+\vspace{6pt}
+\subsection{Dissolving the pseudo-question}
+
+\begin{critbox}[title={``What does it mean to multiply $e$ by itself $\pi i$ times?''}]
+\begin{center}\large\bfseries\color{crimson}
+Nothing. The question is malformed.
+\end{center}
+\begin{bookquote}{book p.~434 / pdf p.~453}
+\textit{$e^{\pi i}$ is not an instance of the self-multiplication function. It is, rather, a special
+case of the exponential function $w=e^{z}$, where $z=\pi i$.}
+\end{bookquote}
+\end{critbox}
+
+\noindent$\pi i$ is the \emph{point} $(0,\pi)$ in an input complex plane; the function $w=e^{z}$
+sends it to the point $(-1,0)$ in an output complex plane.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+%---- z-plane ----
+\begin{scope}[shift={(0,0)},scale=0.92]
+  \fill[csD!5,rounded corners=4pt] (-2.3,-2.3) rectangle (2.3,2.5);
+  \draw[slate!50,-{Stealth[length=4pt]}] (-2.05,0)--(2.05,0) node[right,font=\scriptsize]{$x$};
+  \draw[slate!50,-{Stealth[length=4pt]}] (0,-2.05)--(0,2.2) node[above,font=\scriptsize]{$yi$};
+  \fill[teal] (1.0,0) circle (2.2pt); \node[font=\scriptsize,below right=-3pt,text=teal] at (1.0,0) {$(1,0)$};
+  \fill[crimson] (0,1.62) circle (2.4pt);
+  \node[font=\scriptsize,right=3pt,text=crimson] at (0,1.62) {$\pi i=(0,\pi)$};
+  \fill[ink] (0,0) circle (1.6pt); \node[font=\scriptsize,below left=-3pt] at (0,0) {$0$};
+  \node[font=\small\bfseries,text=csD] at (0,-2.62) {the $z$-plane};
+\end{scope}
+%---- the arrow ----
+\draw[-{Stealth[length=8pt,width=7pt]},line width=1.6pt,draw=csD] (2.5,0)--(5.1,0);
+\node[font=\small,text=csD,above=2pt] at (3.8,0.08) {$w=e^{z}$};
+\node[font=\scriptsize,text=slate,below=2pt,align=center] at (3.8,-0.1)
+   {a map from one\\complex plane\\to another};
+%---- w-plane ----
+\begin{scope}[shift={(7.6,0)},scale=0.92]
+  \fill[csD!5,rounded corners=4pt] (-2.3,-2.3) rectangle (2.3,2.5);
+  \draw[slate!50,-{Stealth[length=4pt]}] (-2.05,0)--(2.05,0) node[right,font=\scriptsize]{$u$};
+  \draw[slate!50,-{Stealth[length=4pt]}] (0,-2.05)--(0,2.2) node[above,font=\scriptsize]{$vi$};
+  \fill[teal] (1.45,0) circle (2.2pt); \node[font=\scriptsize,below right=-3pt,text=teal] at (1.45,0) {$(e,0)$};
+  \fill[crimson] (-1.0,0) circle (2.4pt);
+  \node[font=\scriptsize,below left=-3pt,text=crimson] at (-1.0,0) {$(-1,0)$};
+  \fill[ink] (0.55,0) circle (1.6pt); \node[font=\scriptsize,above right=-3pt] at (0.55,0) {$(1,0)$};
+  \node[font=\small\bfseries,text=csD] at (0,-2.62) {the $w$-plane};
+\end{scope}
+%---- annotations ----
+\node[anchor=west,font=\scriptsize,text=slate,text width=5.2cm] at (10.35,1.15)
+  {$e^{z}$ sends $0\mapsto1$, \ $1\mapsto e$,\\ and --- the equation --- \ $\pi i\mapsto-1$.};
+\node[anchor=west,font=\scriptsize,text=crimson,text width=5.2cm] at (10.35,-0.35)
+  {\textbf{So $e^{\pi i}=-1$ is a single value of a function.} It is \emph{not} repeated
+   multiplication, and it never was.};
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 12.}\; The book's Figure CS\,4.1 \pg{434--435}{453--454}.
+\end{minipage}\end{center}
+
+\subsection{Their own anti-climax --- and why it matters}
+
+To their real credit, Lakoff \& Núñez immediately refuse to let the reader be impressed by this.
+
+\begin{bookquote}{book p.~434 / pdf p.~453}
+\textit{This ought to leave you cold.\ldots\ Numerically, all that is happening is that
+$3.141592654\ldots$ on the $y$-axis in one plane is being mapped by some function onto $-1$ on the
+$x$-axis in another\ldots\ From a purely numerical point of view, this has no interest at all!
+If all that is at issue is calculating values of functions and seeing which number maps onto which
+other number, the greatest equation of all time is a big bore! Euler was too smart to care about
+something that boring.}
+\end{bookquote}
+
+\begin{keybox}[title={The move that organises the rest of the case study}]
+The significance of $e^{\pi i}=-1$ is \textbf{conceptual, not numerical}. It is not given by the
+values computed for $w=e^{z}$. It lies in \emph{what the equation tells us about how the branches of
+mathematics are related} --- algebra to geometry, geometry to trigonometry, calculus to trigonometry,
+and complex arithmetic to all of them \pg{434}{453}.
+\end{keybox}
+
+\subsection{The Trigonometric Complex Plane blend}
+
+Case Study 1's \blend{Polar--Trigonometry blend} $\;\oplus\;$ Case Study 3's \blend{$90^{\circ}$
+Rotation-Plane blend}. The entailments are the trigonometric form of complex arithmetic:
+
+\begin{center}
+\begin{tcolorbox}[enhanced,width=0.95\textwidth,colback=csD!4,colframe=csD,boxrule=1pt,arc=3pt,
+  title={\bfseries Entailments in the blend \normalfont\itshape(book p.~437 / pdf p.~456)},
+  fonttitle=\bfseries,coltitle=white,colbacktitle=csD]
+\begin{center}
+$r\cos\theta=a$ \qquad $r(i\sin\theta)=bi$ \qquad
+$\underbrace{r\cis\theta}_{\text{\scriptsize notation}}:\;r(\cos\theta+i\sin\theta)=a+bi$
+\end{center}
+\vspace{2pt}
+\[
+(r_1\cis\alpha)\cdot(r_2\cis\beta)=(r_1r_2)\cis(\alpha+\beta)
+\quad\Longleftrightarrow\quad
+(a+bi)(c+di)=(ac-bd)+(ad+bc)i
+\]
+\end{tcolorbox}
+\end{center}
+
+\begin{warmbox}[title={Do not let the familiarity hide the metaphor}]
+\begin{bookquote}{book p.~438 / pdf p.~457}
+\textit{The complex plane, with complex addition and multiplication, has no inherent trigonometric
+structure. Complex arithmetic does not need trigonometry. Trigonometry is in another mathematical
+domain altogether. When we understand complex arithmetic in terms of trigonometry, we are
+conceptualizing one mathematical domain in terms of another, which is what conceptual metaphor does.}
+\end{bookquote}
+\end{warmbox}
+
+\clearpage
+\subsection{Two pieces of the function \texorpdfstring{$e^{z}$}{e\^{}z}}
+
+Since $e^{z}=e^{x+yi}=e^{x}\cdot e^{yi}$, the function splits into two halves that can be understood
+separately and then recombined.
+
+\noindent\begin{minipage}[t]{0.485\textwidth}
+\vspace{0pt}
+\textbf{\color{csD}(a)\; The $y=0$ slice: $e^{x}$ on the real axis}\\[4pt]
+\begin{tikzpicture}[font=\scriptsize]
+% z-plane axis
+\draw[slate!55,line width=1pt,-{Stealth[length=4pt]}] (-0.3,1.7)--(8.0,1.7);
+\foreach \x/\l in {0.6/{$-3$},1.8/{$-2$},3.0/{$-1$},4.2/{$0$},5.4/{$1$},6.6/{$2$},7.4/{$3$}}{
+  \fill[slate] (\x,1.7) circle (1.5pt); \node[above=2pt,font=\tiny] at (\x,1.7) {\l};}
+\node[anchor=east,font=\tiny\bfseries,text=slate] at (-0.35,1.7) {$z$};
+% w-plane axis (log scale look)
+\draw[slate!55,line width=1pt,-{Stealth[length=4pt]}] (-0.3,-0.6)--(8.0,-0.6);
+\node[anchor=east,font=\tiny\bfseries,text=slate] at (-0.35,-0.6) {$w$};
+\fill[ink] (0.6,-0.6) circle (1.5pt); \node[below=2pt,font=\tiny] at (0.6,-0.6) {$0$};
+\foreach \x/\l/\c in {3.55/{$1/e$}/teal,4.2/{$1$}/crimson,5.4/{$e$}/csD,6.55/{$e^{2}$}/csD,7.35/{$e^{3}$}/csD}{
+  \fill[\c] (\x,-0.6) circle (1.8pt); \node[below=2pt,font=\tiny,text=\c] at (\x,-0.6) {\l};}
+% arrows
+\foreach \a/\b in {3.0/3.55, 4.2/4.2, 5.4/5.4, 6.6/6.55, 7.4/7.35}{
+  \draw[purple!55,-{Stealth[length=3pt]},line width=0.5pt] (\a,1.55)--(\b,-0.42);}
+\draw[teal,-{Stealth[length=3pt]},line width=0.5pt] (1.8,1.55)--(3.15,-0.42);
+\draw[teal,-{Stealth[length=3pt]},line width=0.5pt] (0.6,1.55)--(2.9,-0.42);
+% brackets
+\draw[decorate,decoration={brace,amplitude=3.5pt},teal,line width=0.7pt] (0.62,-1.15)--(4.12,-1.15);
+\node[font=\tiny,text=teal,below=3pt,text width=3.6cm,align=center] at (2.35,-1.2)
+  {the whole negative half-line squeezed into $(0,1)$};
+\draw[decorate,decoration={brace,amplitude=3.5pt},csD,line width=0.7pt] (4.3,-1.15)--(7.9,-1.15);
+\node[font=\tiny,text=csD,below=3pt,text width=3.4cm,align=center] at (6.1,-1.2)
+  {the positive half stretched out to $\infty$};
+\node[font=\tiny,text=purple] at (4.2,0.55) {arithmetic $\to$ geometric progressions};
+\end{tikzpicture}
+\\[26pt]
+{\footnotesize\color{slate}Label each image point with its pre-image and you have literally drawn a
+\textbf{slide rule} --- the logarithm of Case Study 2 reappearing as a picture \pg{441}{460}, the
+book's Figure CS\,4.5.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.475\textwidth}
+\vspace{0pt}
+\textbf{\color{csD}(b)\; The wrapping function $f(\theta)=\cos\theta+i\sin\theta$}\\[4pt]
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,scale=0.95]
+% segment
+\draw[slate!60,line width=1.1pt] (-2.6,2.5)--(2.6,2.5);
+\foreach \x/\l/\c in {-2.6/{$-\pi$}/crimson,-1.3/{$-\pi/2$}/purple,0/{$0$}/teal,
+                      1.3/{$\pi/2$}/csD,2.6/{$\pi$}/crimson}{
+  \fill[\c] (\x,2.5) circle (2pt); \node[above=2pt,font=\tiny,text=\c] at (\x,2.5) {\l};}
+\node[anchor=east,font=\tiny,text=slate] at (-2.75,2.5) {$[-\pi,\pi]$};
+% circle
+\draw[csD,line width=1.2pt] (0,0) circle (1.3);
+\draw[slate!35,-{Stealth[length=3pt]}] (-1.75,0)--(1.75,0);
+\draw[slate!35,-{Stealth[length=3pt]}] (0,-1.75)--(0,1.75);
+\fill[teal]    (1.3,0)  circle (2.2pt); \node[font=\tiny,text=teal,right=2pt]   at (1.3,0)  {$(1,0)$};
+\fill[csD]     (0,1.3)  circle (2.2pt); \node[font=\tiny,text=csD,above right=-1pt] at (0,1.3)  {$i$};
+\fill[crimson] (-1.3,0) circle (2.4pt); \node[font=\tiny,text=crimson,left=2pt]  at (-1.3,0) {$-1$};
+\fill[purple]  (0,-1.3) circle (2.2pt); \node[font=\tiny,text=purple,below right=-1pt] at (0,-1.3) {$-i$};
+% wrap arrows
+\draw[teal!60,dotted,-{Stealth[length=3.5pt]},line width=0.7pt] (0,2.32)--(1.24,0.10);
+\draw[csD!60,dotted,-{Stealth[length=3.5pt]},line width=0.7pt] (1.3,2.32)--(0.12,1.26);
+\draw[crimson!60,dotted,-{Stealth[length=3.5pt]},line width=0.7pt]
+   (2.6,2.32) .. controls (2.55,1.35) and (-0.4,1.05) .. (-1.24,0.10);
+\draw[crimson!60,dotted,-{Stealth[length=3.5pt]},line width=0.7pt]
+   (-2.6,2.32) .. controls (-2.55,1.20) .. (-1.36,0.14);
+\draw[purple!60,dotted,-{Stealth[length=3.5pt]},line width=0.7pt]
+   (-1.3,2.32) .. controls (-1.75,0.55) and (-0.9,-1.05) .. (-0.14,-1.26);
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+{\footnotesize\color{slate}The segment is \textbf{wrapped around the unit circle}. Both $\pi$ and
+$-\pi$ land on $(-1,0)$ --- that \emph{is} periodicity. Points a distance $\pi$ apart map to points
+related by $\times(-1)$; points $\pi/2$ apart, by $\times i$. \textbf{Case Study 3's rotation
+metaphor is now doing visible work inside a trigonometric object} \pg{439--440}{458--459}.}
+\end{minipage}
+
+\vspace{10pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 13.}\; The two halves of $e^{z}=e^{x}\cdot e^{yi}$.
+\end{minipage}\end{center}
+
+\clearpage
+\subsection{Why \texorpdfstring{$e^{iy}=\cos y+i\sin y$}{e\^{}(iy) = cos y + i sin y}}
+
+The standard route is via Taylor series, and the book runs it honestly: two conceptually different
+rules turn out to have the \emph{same derivatives at $0$}, cycling with period four.
+
+\begin{center}\small
+\begin{tabular}{@{}c >{\raggedright\arraybackslash}p{4.4cm} >{\raggedright\arraybackslash}p{3.6cm} c >{\raggedright\arraybackslash}p{3.3cm}@{}}
+\toprule
+\rowcolor{csD!12}
+& \multicolumn{2}{l}{\textbf{\color{csD}$f(y)=\cos y+i\sin y$}} &
+  \multicolumn{2}{l}{\textbf{\color{csD}$f(y)=e^{yi}$}}\\
+\rowcolor{csD!12}
+$n$ & derivative & at $y=0$ & derivative & at $y=0$\\
+\midrule
+0 & $\cos y+i\sin y$   & $1$  & $e^{yi}$        & $1$\\
+1 & $-\sin y+i\cos y$  & $i$  & $i\,e^{yi}$     & $i$\\
+2 & $-\cos y-i\sin y$  & $-1$ & $-e^{yi}$       & $-1$\\
+3 & $\sin y-i\cos y$   & $-i$ & $-i\,e^{yi}$    & $-i$\\
+\rowcolor{gold!22}
+4 & $\cos y+i\sin y$ \;\textbf{(back to start)} & $1$ & $e^{yi}$ \;\textbf{(back to start)} & $1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 5.}\; The two derivative cycles \pg{445--446}{464--465}. Same column of values
+$\Rightarrow$ same Taylor series $\Rightarrow$ same set of ordered pairs.
+\end{minipage}\end{center}
+
+\begin{keybox}[title={What the ``$=$'' in $e^{iy}=\cos y+i\sin y$ actually means}]
+This is the cognitive gloss that generalises far beyond Euler's formula. Under the metaphor
+\meta{A Function Is a Set of Ordered Pairs}, the equals sign does \textbf{not} say that the two sides
+express the same idea.
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  r/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=7pt,
+            text width=4.6cm,align=center,minimum height=1.5cm}]
+ \node[r=csD]  (L) at (-5.0,0) {\textbf{rule 1}\\$e^{yi}$\\[2pt]{\scriptsize an exponential: maps sums to products}};
+ \node[r=csA]  (R) at ( 5.0,0) {\textbf{rule 2}\\$\cos y+i\sin y$\\[2pt]{\scriptsize a trigonometric sum on the unit circle}};
+ \node[rounded corners=4pt,fill=gold!20,draw=gold!80!black,line width=1pt,inner sep=7pt,
+       text width=4.4cm,align=center,minimum height=1.5cm] (S) at (0,0)
+       {\textbf{one referent}\\the same \emph{set of ordered pairs}};
+ \draw[-{Stealth[length=5pt]},line width=1.1pt,draw=csD] (L)--(S);
+ \draw[-{Stealth[length=5pt]},line width=1.1pt,draw=csA] (R)--(S);
+\end{tikzpicture}
+\end{center}
+\vspace{-3pt}
+\begin{bookquote}{book p.~446 / pdf p.~465}
+\textit{The ``$=$'' means that the two conceptually different mapping rules on the two sides of the
+equal sign have the same referent, the same set of ordered pairs.}
+\end{bookquote}
+\textbf{Worth internalising:} much of the apparent magic of mathematical identities is the collapse of
+\emph{same rule} into \emph{same graph}. The book flags this back to Chapter 16, where ``$=$'' is
+shown to relate ideas that are cognitively very different.
+\end{keybox}
+
+\noindent Setting $y=\pi$ and using $\cos\pi=-1$ (the Trigonometry metaphor, Case Study 1) and
+$\sin\pi=0$:
+\[
+e^{\pi i}=\cos\pi+i\sin\pi=-1+0i=-1
+\qquad\Longrightarrow\qquad
+\boxed{\;e^{\pi i}+1=0\;}
+\]
+
+\clearpage
+\subsection{Euler's blend, and the answer that was worth waiting for}
+
+The Taylor-series story tells you \emph{that} the equation holds. It does not tell you \emph{why it
+should}. The book's own verdict on its own exposition is disarming:
+
+\begin{bookquote}{book p.~446 / pdf p.~465}
+\textit{At first, all this sounds like mumbo-jumbo.\ldots\ Okay. But again, why does it matter that
+$e^{y i}=-1$ when $y=\pi$? And what does it mean?}
+\end{bookquote}
+
+\noindent The answer comes in two parts: a blend, and then --- finally --- four shared properties.
+
+\subsubsection{Euler's blend: five domains}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  d/.style={rounded corners=4pt,draw=csD,line width=1pt,fill=csD!8,inner sep=6pt,
+            text width=2.9cm,align=center,minimum height=1.9cm},
+  ar/.style={-{Stealth[length=5pt,width=4pt]},line width=1pt,draw=csD!75}]
+\node[d] (D1) at (0,0)     {\textbf{1. Power series}\\[3pt]$\sum a_n z^{n}$\\{\scriptsize via the BMI}};
+\node[d] (D2) at (3.55,0)  {\textbf{2. Taylor series}\\[3pt]$\sum\frac{f^{(n)}(0)}{n!}z^{n}$\\{\scriptsize via the BMI}};
+\node[d] (D3) at (7.10,1.35){\textbf{3. Exponential}\\[3pt]$f(\theta)=e^{i\theta}$};
+\node[d] (D4) at (7.10,-1.35){\textbf{4. Trig.\ complex plane}\\[3pt]$f(\theta)=\cos\theta+i\sin\theta$};
+\node[d,draw=gold!80!black,fill=gold!14] (D5) at (11.0,0)
+   {\textbf{5. Sets of ordered pairs}\\[3pt]$\{(\theta,f(\theta))\}$};
+\node[rounded corners=5pt,fill=deepblue,text=white,inner sep=7pt,font=\small\bfseries] (EQ) at (14.9,0)
+   {$e^{\pi i}+1=0$};
+\draw[ar] (D1)--(D2);
+\draw[ar] (D2)--(D3); \draw[ar] (D2)--(D4);
+\draw[ar] (D3)--(D5); \draw[ar] (D4)--(D5);
+\draw[-{Stealth[length=6pt,width=5pt]},line width=1.3pt,draw=deepblue] (D5)--(EQ);
+\node[font=\scriptsize,text=slate,anchor=north,text width=5cm,align=center] at (1.8,-1.15)
+   {2 is a special case of 1, so the whole Power-Series blend comes along};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 14.}\; Euler's blend \pg{447}{466}. The book names it ``partly in honor of Euler and
+partly because we suspect that he must have had, at least intuitively and unconsciously, an implicit
+understanding of the relationships between the branches of classical mathematics that the blend
+represents.''
+\end{minipage}\end{center}
+
+\subsubsection{The real answer: four properties, held in common}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  fn/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!9,inner sep=7pt,
+             text width=4.3cm,align=center,minimum height=1.35cm},
+  pr/.style={rounded corners=3pt,draw=teal,line width=0.9pt,fill=teal!7,inner sep=6pt,
+             text width=6.4cm,align=left,minimum height=1.15cm},
+  a1/.style={-{Stealth[length=4.5pt]},line width=0.85pt,draw=csD!70},
+  a2/.style={-{Stealth[length=4.5pt]},line width=0.85pt,draw=csA!80}]
+\node[fn=csD] (L) at (-5.9,0.0)  {$e^{iy}$\\{\scriptsize an exponential}};
+\node[fn=csA] (R) at ( 5.9,0.0)  {$\cos y+i\sin y$\\{\scriptsize a trigonometric sum}};
+\node[pr] (p1) at (0,2.55) {\textbf{1.} maps \textbf{sums onto products}\\{\scriptsize $e^{a+b}=e^ae^b$\; ;\; $\cis(\alpha+\beta)=\cis\alpha\cdot\cis\beta$}};
+\node[pr] (p2) at (0,0.85) {\textbf{2.} \textbf{changes in exact proportion to its size}\\{\scriptsize entailed by 1, via the factoring step of Case Study 2}};
+\node[pr] (p3) at (0,-0.85){\textbf{3.} is \textbf{periodic}\\{\scriptsize \meta{Recurrence Is Circularity} + the unit circle}};
+\node[pr,draw=crimson,fill=crimson!6] (p4) at (0,-2.55)
+   {\textbf{4.} is \textbf{self-regulating}: $f''=-f$, \;$f''''=f$\\{\scriptsize acceleration is the negative of size}};
+\foreach \n in {p1,p2,p3,p4}{\draw[a1] (L)--(\n); \draw[a2] (R)--(\n);}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 15.}\; The idea analysis of the identity \pg{448--450}{467--469}. Two functions
+characterised by \emph{different combinations of concepts} entail \emph{exactly the same properties}.
+\end{minipage}\end{center}
+
+\begin{keybox}[title={The sentence the whole book is built to deliver}]
+\begin{bookquote}{book p.~450 / pdf p.~469}
+\textit{Though they are characterized by different combinations of concepts, they entail, by virtue
+of what they mean, exactly the same properties. From the perspective of mathematical idea analysis,
+this is why they are equal.}
+\end{bookquote}
+\end{keybox}
+
+\subsubsection{Self-regulation, made visible}
+
+Property 4 is the one that is easiest to state and hardest to \emph{see}. $f''=-f$ means the
+acceleration is the negative of the size: as the function grows, its deceleration grows, until growth
+stops and reverses.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=12.6cm,height=5.0cm,
+  axis lines=middle, xmin=-0.4,xmax=13.2,ymin=-1.55,ymax=1.65,
+  xtick={0,3.14159,6.28318,9.42477,12.56637},
+  xticklabels={$0$,$\pi$,$2\pi$,$3\pi$,$4\pi$},
+  ytick={-1,1}, tick label style={font=\tiny}, axis line style={slate!60},
+  legend style={font=\tiny,draw=none,fill=none,at={(0.5,1.30)},anchor=north,legend columns=3},
+  clip=false]
+ \addplot[csD,line width=1.3pt,domain=-0.2:13.1,samples=280]{cos(deg(x))};
+ \addlegendentry{$f=\cos y$ \;(size)}
+ \addplot[amber,line width=1.1pt,dashed,domain=-0.2:13.1,samples=280]{-sin(deg(x))};
+ \addlegendentry{$f'$ \;(rate)}
+ \addplot[crimson,line width=1.1pt,dotted,domain=-0.2:13.1,samples=280]{-cos(deg(x))};
+ \addlegendentry{$f''=-f$ \;(acceleration)}
+ \draw[slate!35,line width=0.4pt] (axis cs:-0.4,0)--(axis cs:13.2,0);
+ \node[font=\tiny,text=crimson,align=center] at (axis cs:1.75,-1.32)
+   {size positive $\Rightarrow$\\acceleration negative};
+ \node[font=\tiny,text=csD,align=center] at (axis cs:4.35,1.32)
+   {size negative $\Rightarrow$\\acceleration positive};
+ \draw[crimson,line width=0.6pt,-{Stealth[length=3pt]}] (axis cs:1.55,-1.05)--(axis cs:0.95,-0.15);
+ \draw[csD,line width=0.6pt,-{Stealth[length=3pt]}] (axis cs:4.35,1.07)--(axis cs:4.2,0.18);
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 16.}\; ``The self-regulating character comes from the fact that the acceleration is
+the negative of the size'' \pg{448}{467}. This is the harmonic oscillator, and the book's
+contribution is to give it a \emph{conceptual} rather than merely formal presence inside $e^{i\theta}$.
+\end{minipage}\end{center}
+
+\clearpage
+\subsection{The philosophical punchline}
+
+\begin{ideabox}[title={Why $e$, $\pi$, $i$, 1 and 0 --- and not 192{,}563{,}947.9853294867}]
+\begin{bookquote}{book p.~450--451 / pdf p.~469--470}
+\textit{They are not mere numbers; they are the arithmetizations of concepts.\ldots\ Unlike, say,
+192,563,947.9853294867, these numbers have conceptual meanings in a system of common, important
+nonmathematical concepts, like change, acceleration, recurrence, and self-regulation.}
+\end{bookquote}
+\end{ideabox}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  sym/.style={circle,fill=#1,text=white,font=\large\bfseries,inner sep=6.5pt},
+  con/.style={rounded corners=3pt,draw=#1,line width=0.9pt,fill=#1!8,inner sep=6pt,
+              text width=3.1cm,align=center,minimum height=1.25cm}]
+\node[sym=csB]      (e)  at (0,0)    {$e$};
+\node[sym=csA]      (pi) at (3.5,0)  {$\pi$};
+\node[sym=csC]      (i)  at (7.0,0)  {$i$};
+\node[sym=slate]    (one)at (10.5,0) {$1$};
+\node[sym=deepblue] (zer)at (14.0,0) {$0$};
+\node[con=csB]      at (0,-1.85)    {\textbf{change}\\{\scriptsize growth proportional to size}};
+\node[con=csA]      at (3.5,-1.85)  {\textbf{recurrence}\\{\scriptsize periodicity, half a period}};
+\node[con=csC]      at (7.0,-1.85)  {\textbf{rotation}\\{\scriptsize cyclicity, $i^{4}=1$}};
+\node[con=slate]    at (10.5,-1.85) {\textbf{multiplicative identity}\\{\scriptsize wholes \& parts}};
+\node[con=deepblue] at (14.0,-1.85) {\textbf{additive identity}\\{\scriptsize the empty collection}};
+\foreach \n in {e,pi,i,one,zer}{\draw[-{Stealth[length=4pt]},line width=0.8pt,draw=slate!60] (\n)--++(0,-1.05);}
+\node[rounded corners=4pt,fill=deepblue,text=white,inner sep=8pt,text width=15.6cm,align=center,
+      font=\small] at (7.0,-3.75)
+  {These concepts matter in everyday life. \textbf{That} is why these numbers keep turning up ---
+   and why the equation that binds them is worth caring about.};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 17.}\; The closing argument of Part VI \pg{450--451}{469--470}.
+\end{minipage}\end{center}
+
+\begin{keybox}[title={The last words of Part VI}]
+\begin{bookquote}{book p.~451 / pdf p.~470}
+\textit{It is no accident that our branches of mathematics are linked in the way they are. Those
+conceptual connections---via conceptual metaphors and blends---express ideas that matter to us. The
+way the branches of mathematics are interrelated is a consequence of what is important to us in our
+everyday lives and how we conceptualize those concerns. The various branches of mathematics
+mathematicize our concerns. The mechanism for doing so is the all too human conceptual metaphor and
+blending.}
+\end{bookquote}
+\end{keybox}

@@ -1,0 +1,62 @@
+\clearpage
+\renewcommand{\sectioncolor}{alert}
+\section{The evidence trap --- and why your notebook opens with it}
+\markboth{The evidence trap}{}
+
+Cells 1--2 of the notebook are logic. But §0, the very first markdown cell, exists to break one
+habit before it forms.
+
+\begin{warnbox}[title={The habit: mistaking verification for proof}]
+Your companion notebook prints
+\begin{cellbox}
+ns=3:  Tr(T\^{}ns) == lam\_+\^{}ns + lam\_-\^{}ns  ->  True\\
+ns=5:  ...  True\\
+ns=8:  ...  True
+\end{cellbox}
+\vspace{4pt}
+Three \bk{True}s feel conclusive. They are three facts about three numbers. The theorem claims
+something about \textbf{every} $N$, of which there are infinitely many.
+\end{warnbox}
+
+\begin{bookbox}[title={Devlin's killer example, §3.1 --- read this before you ever trust a pattern}]
+\begin{quote}\itshape
+``Proving a mathematical statement is much more than gathering evidence in its favor\ldots\ the
+Goldbach Conjecture\ldots\ It is possible to run computer programs to check the statement for many
+specific even numbers, and to date (July 2012) it has been verified for all numbers up to and beyond
+$1.6\times10^{18}$ (1.6 quintillion). Most mathematicians believe it to be true. \textbf{But it has
+not yet been proved.}''
+\end{quote}
+\end{bookbox}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+ \draw[slate!55,line width=1.2pt,-{Stealth[length=5pt]}] (0,0)--(15.2,0);
+ \foreach \x/\l in {0.6/{$10^{0}$},3.2/{$10^{6}$},5.8/{$10^{12}$},8.4/{$1.6\times10^{18}$}}{
+  \draw[slate!55] (\x,-0.12)--(\x,0.12); \node[font=\scriptsize,below=3pt] at (\x,-0.1) {\l};}
+ \fill[bio,opacity=0.22,rounded corners=2pt] (0.3,-0.3) rectangle (8.4,0.3);
+ \node[font=\scriptsize\bfseries,text=bio] at (4.3,0.62) {verified by computer};
+ \fill[alert,opacity=0.14,rounded corners=2pt] (8.4,-0.3) rectangle (15.0,0.3);
+ \node[font=\scriptsize\bfseries,text=alert] at (11.7,0.62) {unknown --- infinitely many cases remain};
+ \draw[alert,line width=1.4pt,dashed] (8.4,-0.75)--(8.4,0.95);
+ \node[font=\scriptsize,text=slate,anchor=north,text width=13cm,align=center] at (7.6,-1.05)
+  {Goldbach's conjecture. \textbf{No finite amount of green closes the red.}
+   The same picture applies to \bk{ns=3,5,8}.};
+\end{tikzpicture}
+\end{center}
+\vspace{10pt}
+
+\begin{bookbox}[title={Diedrichs \& Lovett name the error, §2.3.6}]
+\begin{quote}\itshape
+``\textbf{Try a Few Examples:} Sometimes, running examples with the objects in question allows us to
+discern patterns\ldots\ The patterns generally do not constitute a proof, so simply claiming `This
+pattern continues' is a form of \textbf{faulty generalization}.''
+\end{quote}
+So examples are \emph{encouraged} --- as a way to find the proof. They are just never the proof.
+\end{bookbox}
+
+\begin{dobox}[title={The one sentence to carry}]
+\begin{center}\itshape\large
+Checking is a search. Proving is an argument.\\
+A search over an infinite set never terminates.
+\end{center}
+\end{dobox}

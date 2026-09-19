@@ -1,0 +1,117 @@
+\clearpage
+\renewcommand{\sectioncolor}{shelf}
+\section{The four-library audit}
+\markboth{The four-library audit}{}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm}rr>{\raggedright\arraybackslash}p{8.3cm}@{}}
+\toprule
+\rowcolor{shelf!14}
+\textbf{Library} & \textbf{books} & \textbf{size} & \textbf{what it contributes to $Z$}\\
+\midrule
+\bk{Pure\_Maths\_TC\_SelfStudy} & 153 & 552\,MB &
+ operators (Axler LADR), measure (Axler MIRA, Kuttler, Le Gall), \textbf{Feynman's statistical mechanics}\\
+\bk{TensoQi101} & 121 & 462\,MB &
+ the entire quantum side: \textbf{Shankar}, Sakurai, Nielsen \& Chuang, Schumacher, \textbf{4 DFT texts}\\
+\bk{QBIT-HIS} & 66 & 1.1\,GB &
+ \textbf{quantum statistical mechanics} (Attard, Bru \& Pedra) and \textbf{statistical mechanics of the cell} (PBoC2, Bressloff)\\
+\rowcolor{slate!7}
+\bk{qm-qi-qml} & 341 & 404\,MB &
+ quantum machine learning and MIT 8.04 course material. \textbf{Little that is new for $Z$}\\
+\midrule
+\textbf{total} & \textbf{681} & \textbf{2.5\,GB} & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Coverage map, corrected}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  row/.style={anchor=east,font=\scriptsize,text=slate,align=right,text width=4.5cm},
+  cell/.style={rounded corners=2pt,minimum width=2.0cm,minimum height=0.70cm,
+               align=center,font=\scriptsize,text=white,inner sep=3pt},
+  bk/.style={anchor=west,font=\scriptsize,text=slate,align=left,text width=9.4cm}]
+\node[font=\scriptsize\bfseries,text=shelf,anchor=east] at (0,0.80) {what $Z$ needs};
+\node[font=\scriptsize\bfseries,text=shelf,anchor=center] at (1.6,0.80) {status};
+\node[font=\scriptsize\bfseries,text=shelf,anchor=west] at (3.0,0.80) {which book, and which library};
+\foreach \topic/\st/\col/\book/\y in {%
+  {operators, spectral thm, trace}/{FULL}/bio/{Axler \textit{LADR} §7.B, 7.C, 10.A \;\textcolor{sand!70!black}{[PM]}}/0,
+  {measure \& Lebesgue integral}/{FULL}/bio/{\textbf{Axler \textit{MIRA} 2022} · Le Gall · Kuttler 20--24 \;\textcolor{sand!70!black}{[PM]}}/-0.84,
+  {probability \& stochastic proc.}/{FULL}/bio/{Le Gall · Lauritzen \;\textcolor{sand!70!black}{[PM]} · \textbf{Bressloff 1--2} \;\textcolor{qbit}{[QB]}}/-1.68,
+  {complex analysis, saddle point}/{FULL}/bio/{Radozycki Part III \;\textcolor{sand!70!black}{[PM]}}/-2.52,
+  {classical statistical mechanics}/{FULL}/bio/{\textbf{Feynman ch.\,1,\,5} \;\textcolor{sand!70!black}{[PM]} · \textbf{PBoC2 ch.\,6} \;\textcolor{qbit}{[QB]} · Shankar §21.2 \;\textcolor{tenso}{[TQ]}}/-3.36,
+  {quantum mechanics}/{FULL}/bio/{Shankar · Sakurai · Griffiths · Binney \& Skinner \;\textcolor{tenso}{[TQ]}}/-4.20,
+  {density operators, vN entropy}/{FULL}/bio/{N\&C §2.4, §11.3 · Schumacher ch.\,8, §19.5 \;\textcolor{tenso}{[TQ]}}/-5.04,
+  {quantum statistical mechanics}/{FULL}/bio/{\textbf{Attard 2016} · Feynman ch.\,2--3 · \textbf{Bru \& Pedra 2020} \;\textcolor{qbit}{[QB]}}/-5.88,
+  {electronic structure, $U(x)$}/{FULL}/bio/{4 DFT texts incl.\ a Harvard practical guide \;\textcolor{tenso}{[TQ]}}/-6.72,
+  {open quantum systems}/{PARTIAL}/sand/{N\&C ch.\,8 (Kraus, not HEOM) · Khrennikov \emph{(contested)}}/-7.56,
+  {Markov-chain mixing times}/{NONE}/alert/{--- nothing in any of the four libraries}/-8.40,
+  {molecular simulation, free energy}/{NONE}/alert/{--- GROMACS 2023.3 is built, but no text}/-9.24}{
+  \node[row] at (0,\y) {\topic};
+  \node[cell,fill=\col] at (1.6,\y) {\st};
+  \node[bk] at (3.0,\y) {\book};}
+\draw[slate!40,line width=0.7pt] (-4.7,-7.98)--(12.6,-7.98);
+\node[font=\scriptsize,text=slate,anchor=west] at (-4.7,-9.85) {\textbf{[PM]} Pure\_Maths \quad \textbf{[TQ]} TensoQi101 \quad \textbf{[QB]} QBIT-HIS};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; Corrected coverage. Nine of twelve layers are fully covered by books you already
+own. The line separates what you can study tomorrow from what must be acquired. Compare v1.0, which
+showed three of ten red.
+\end{minipage}\end{center}
+
+\subsection{The three finds}
+
+\begin{haveit}[title={1 · \bk{QBIT-HIS} --- you had already built the library for this}]
+66 books, 1.1\,GB, and the most relevant folder you own. For $Z$ specifically:
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{8.0cm}r>{\raggedright\arraybackslash}p{6.4cm}@{}}
+\toprule
+\rowcolor{qbit!12}
+\textbf{Book} & \textbf{pp} & \textbf{role}\\
+\midrule
+Attard, \textit{Quantum Statistical Mechanics from First Principles} (2016) & 285 & exactly the title\\
+Attard, \textit{Entropy Beyond the Second Law} (2023) & --- & non-equilibrium; Part IX Gap 2\\
+Bru \& de Siqueira Pedra, \textit{C*-Algebras and Math.\ Foundations of Quantum Stat.\ Mech.} (2020) & 497 & \textbf{the rigorous destination}\\
+\rowcolor{qbit!7}
+Phillips et al., \textit{Physical Biology of the Cell} 2ed (2012) & 1089 & ch.~6 \textit{Entropy Rules!} --- Boltzmann distribution, free-energy minimisation, \textbf{statistical mechanics of gene expression}\\
+\rowcolor{qbit!7}
+Bressloff, \textit{Stochastic Processes in Cell Biology} Vols 1--2 (2022) & 773 + & the definitive treatment\\
+Barato \& Seifert, thermodynamic uncertainty relation (1502.05944) & 11 & cited in Part IX --- you had the preprint\\
+Khrennikov, \textit{Open Quantum Systems in Biology\ldots} (2023) & 371 & Part IX Tier 3 \emph{(idiosyncratic; read as a proposal)}\\
+\bk{Protein-DNA-Search/} --- Mirny 2009, first-passage under restart & 7 files & statistical mechanics of molecular search\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{haveit}
+
+\begin{haveit}[title={2 · \bk{TensoQi101} --- the quantum half, complete}]
+I grepped every PDF over 1\,MB for the phrase \emph{``partition function''}:
+\begin{center}\small
+\begin{tabular}{@{}rl@{}}
+\toprule
+\rowcolor{tenso!14}
+\textbf{hits} & \textbf{book}\\
+\midrule
+\textbf{14} & \textbf{Shankar, \textit{Principles of Quantum Mechanics} 2ed (1994)} --- 696 pp\\
+8 & Binney \& Skinner, \textit{The Physics of Quantum Mechanics} (Oxford 2013)\\
+6 & Schumacher \& Westmoreland (2010) · Sakurai \& Napolitano 3ed (2021)\\
+2 & Nielsen \& Chuang (710 pp) · Vedral\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+Plus the operator-theoretic apparatus: \textbf{N\&C §2.1.8} (operator functions --- how $e^{-\beta\hat H}$
+is defined), \textbf{§2.4} (density operator), \textbf{§11.3} (von Neumann entropy), \textbf{ch.~8}
+(quantum noise: Kraus/operator-sum, amplitude and phase damping --- 101 occurrences of
+Lindblad/master-equation/Kraus). Schumacher \textbf{§19.5} is titled \emph{Entropy and thermodynamics}.
+\end{haveit}
+
+\begin{warmbox}[title={3 · \bk{qm-qi-qml} --- large, but not for this}]
+341 files, of which roughly ten are books; the remainder is MIT 8.04 OCW material (Zwiebach). A
+keyword search for statistical mechanics, thermodynamics, entropy, measure, probability, stochastic,
+Ising, Monte Carlo, Boltzmann, Gibbs, partition, open quantum systems, density matrix and Lindblad
+returned \textbf{no title matches}. Valuable for quantum machine learning; not a source for $Z$.
+\end{warmbox}

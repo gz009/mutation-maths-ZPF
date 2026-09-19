@@ -1,0 +1,67 @@
+# ============================================================================
+#  mutation-maths-ZPF — .gitignore
+#  RULE 1: no third-party book PDFs, ever. They are copyrighted and they are
+#          large. This repo carries only documents created in this project.
+# ============================================================================
+
+# ---- Reference-book folders (never commit) ---------------------------------
+Z_Ref_Books/
+Maths_Proof_Skill/
+Foundation_Math_Books_z/
+**/*_Ref_Books/
+**/*_Books_z/
+books/
+Books/
+library/
+Library/
+
+# ---- Belt and braces: no PDF anywhere except the ones this project produced -
+*.pdf
+!docs/*.pdf
+# (if you add a new produced PDF, put it in docs/ — nowhere else is tracked)
+
+# ---- Other publication formats that a scanned book might arrive as ---------
+*.djvu
+*.epub
+*.mobi
+*.chm
+
+# ---- LaTeX build artefacts -------------------------------------------------
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+*.auxlock
+*.dpth
+*.md5
+*.run.xml
+*-blx.bib
+
+# ---- Jupyter / Python ------------------------------------------------------
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.sage/
+
+# ---- macOS -----------------------------------------------------------------
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ---- Scratch ---------------------------------------------------------------
+scratch/
+tmp/
+*.tmp

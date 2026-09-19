@@ -1,0 +1,108 @@
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[bio!92!black] (current page.north west) rectangle
+       ([yshift=-11.6cm]current page.north east);
+  \begin{scope}
+    \clip (current page.north west) rectangle ([yshift=-11.6cm]current page.north east);
+    \draw[white,opacity=0.06,step=0.5cm]
+      ([yshift=-11.6cm]current page.north west) grid (current page.north east);
+  \end{scope}
+
+  % ---- emblem: scale ladder with a helix and an orbital ----
+  \begin{scope}
+  \clip (current page.north west) rectangle ([yshift=-11.6cm]current page.north east);
+  \begin{scope}[shift={([xshift=15.25cm,yshift=-5.35cm]current page.north west)},scale=0.93]
+    % nested scale rings
+    \foreach \r/\o in {4.15/0.10, 3.25/0.13, 2.35/0.16, 1.45/0.20}{
+       \draw[white,opacity=\o,line width=1pt] (0,0) circle (\r);}
+    % orbital lobes (quantum)
+    \draw[gold,line width=1.2pt,opacity=0.9] (0,0) ellipse (1.35 and 0.42);
+    \begin{scope}[rotate=60]\draw[gold,line width=1.2pt,opacity=0.9] (0,0) ellipse (1.35 and 0.42);\end{scope}
+    \begin{scope}[rotate=120]\draw[gold,line width=1.2pt,opacity=0.9] (0,0) ellipse (1.35 and 0.42);\end{scope}
+    \fill[white] (0,0) circle (2.4pt);
+    % helix
+    \begin{scope}[shift={(0,0)}]
+      \foreach \k in {0,...,26}{
+        \pgfmathsetmacro{\yy}{-3.35+\k*0.25}
+        \pgfmathsetmacro{\xa}{1.05*sin(\k*27)}
+        \pgfmathsetmacro{\xb}{1.05*sin(\k*27+180)}
+        \draw[white,opacity=0.26,line width=0.5pt] (\xa,\yy)--(\xb,\yy);
+      }
+      \draw[white,opacity=0.45,line width=1pt,domain=0:26,samples=90,variable=\k]
+        plot ({1.05*sin(\k*27)},{-3.35+\k*0.25});
+      \draw[rose,opacity=0.55,line width=1pt,domain=0:26,samples=90,variable=\k]
+        plot ({1.05*sin(\k*27+180)},{-3.35+\k*0.25});
+    \end{scope}
+  \end{scope}
+  \end{scope}
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-2.0cm]current page.north west)
+    {\fontsize{10}{12}\selectfont\color{gold}\textsc{part vii --- a companion to the part vi dossier}\\[2pt]
+     \fontsize{9}{11}\selectfont\color{white!70}study dossier $\cdot$ foundations self-study};
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt,text width=12.2cm]
+    at ([xshift=2.05cm,yshift=-3.35cm]current page.north west)
+    {\fontsize{33}{38}\selectfont\bfseries Beyond the Reach\\of the Body?\\[12pt]
+     \fontsize{16}{20}\selectfont\color{white!92}
+     Inventing mathematics for the nano-, quantum-\\and cellular scale\\[11pt]
+     \fontsize{10.5}{14.5}\selectfont\color{white!76}\normalfont
+     If mathematics is embodied, is it capped by our cognition?\\
+     A precise answer, five historical escapes, a repeatable method,\\
+     and an audit of what is actually missing.};
+
+  % ---- three levers strip ----
+  \foreach \i/\c/\t/\s in {0/nano/{LEVER 1}/{Extend the body\\\scriptsize instruments \& sensorimotor loops},
+                           1/quantum/{LEVER 2}/{Re-ground the abstraction\\\scriptsize diagrammatic calculi},
+                           2/sand/{LEVER 3}/{Externalise the bookkeeping\\\scriptsize machines \& proof assistants}}{
+    \node[anchor=north west,inner sep=0pt]
+      at ([xshift={2.05cm+\i*5.72cm},yshift=-13.0cm]current page.north west)
+      {\begin{tikzpicture}
+         \node[fill=\c,text=white,rounded corners=4pt,minimum width=5.3cm,
+               minimum height=2.05cm,align=left,inner sep=10pt,anchor=north west,
+               font=\footnotesize] at (0,0) {\textbf{\normalsize \t}\\[4pt]\s};
+       \end{tikzpicture}};}
+
+  % ---- the correction, front and centre ----
+  \node[anchor=north west,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-16.0cm]current page.north west)
+    {\begin{tikzpicture}
+       \node[draw=gold,line width=1.1pt,rounded corners=3pt,fill=gold!7,
+             text width=16.35cm,align=left,inner sep=13pt,font=\small,anchor=north west] at (0,0)
+         {\textbf{\color{ink}The correction this dossier turns on.}\;
+          Lakoff \& Núñez's thesis constrains the \emph{route}, not the \emph{destination}. Every
+          mathematical concept must be \textbf{reachable} from grounded experience by a chain of
+          metaphors and blends. It need not be \textbf{picturable}.\\[6pt]
+          {\footnotesize\color{slate}Nobody visualises an infinite-dimensional Hilbert space, a
+          non-commutative torus, or an $\infty$-groupoid. All three are computed with, daily,
+          without error --- because mathematics re-grounds in a \emph{different} body of
+          experience when vision runs out.}};
+     \end{tikzpicture}};
+
+  % ---- provenance ----
+  \node[anchor=north west,inner sep=0pt,text width=16.6cm,align=left,font=\footnotesize,text=ink]
+    at ([xshift=2.05cm,yshift=-20.45cm]current page.north west)
+    {\color{bio}\textbf{\normalsize What is in this dossier}\\[5pt]
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{nano}{\textbf{$\blacksquare$}}\; a line-by-line audit of a second AI's answer to the same question\\[3pt]
+       \textcolor{quantum}{\textbf{$\blacksquare$}}\; five documented escapes past intuition, with dates
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{bio}{\textbf{$\blacksquare$}}\; a five-move method you can actually run\\[3pt]
+       \textcolor{sand}{\textbf{$\blacksquare$}}\; what mathematics already exists for the cell, by name and date
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{ember}{\textbf{$\blacksquare$}}\; an honest ledger of quantum biology's evidence\\[3pt]
+       \textcolor{crimson}{\textbf{$\blacksquare$}}\; the bottleneck that is \emph{not} mathematics
+     \end{minipage}};
+
+  \node[anchor=south west,align=left,text=slate,font=\scriptsize,inner sep=0pt,text width=16.9cm]
+    at ([xshift=2.05cm,yshift=2.05cm]current page.south west)
+    {\color{bio}\rule{16.9cm}{1.2pt}\\[6pt]
+     Companion to \textit{$e^{\pi i}+1=0$ --- The Cognitive Structure of Classical Mathematics}.\;
+     Every historical claim carries a name and a year; every contested claim is marked as contested.\\
+     Incorporates and audits a response supplied by the reader from another AI assistant; personal names
+     in that text have been removed.};
+\end{tikzpicture}
+\end{titlepage}

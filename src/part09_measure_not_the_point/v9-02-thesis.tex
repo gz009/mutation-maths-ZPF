@@ -1,0 +1,96 @@
+\clearpage
+\renewcommand{\sectioncolor}{indigo}
+\section{Three problems, one shape}
+\markboth{Three problems, one shape}{}
+
+You named three things: apparently random mutation, realistic docking and dynamics, and what
+AlphaFold\,3 did or did not solve. They look like three fields. They are one mathematical failure,
+and the failure has a precise form.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  hd/.style={rounded corners=4pt,fill=#1,text=white,inner sep=7pt,text width=4.6cm,align=center,
+             font=\small\bfseries,minimum height=1.0cm},
+  pt/.style={rounded corners=4pt,draw=sand!85!black,line width=1.1pt,fill=sand!12,inner sep=7pt,
+             text width=4.6cm,align=center,minimum height=2.15cm},
+  ms/.style={rounded corners=4pt,draw=measure,line width=1.2pt,fill=measure!9,inner sep=7pt,
+             text width=4.6cm,align=center,minimum height=2.45cm},
+  dn/.style={-{Stealth[length=5.5pt,width=4.5pt]},line width=1.1pt,draw=slate!70}]
+
+% --- column headers ---
+\node[hd=quantum] (h1) at (-5.5,0)  {MUTATION};
+\node[hd=nano]    (h2) at (0,0)     {DOCKING \& AFFINITY};
+\node[hd=ember]   (h3) at (5.5,0)   {STRUCTURE PREDICTION};
+
+% --- row label: what we compute ---
+\node[anchor=east,font=\scriptsize\bfseries,text=sand!75!black,align=right,text width=2.4cm]
+  at (-8.2,-2.05) {WHAT WE\\CAN COMPUTE\\{\normalfont\scriptsize a \emph{point}}};
+\node[pt] (p1) at (-5.5,-2.05) {a rate constant\\[4pt]$\mu \approx 10^{-10}$ per bp\\per generation};
+\node[pt] (p2) at (0,-2.05)    {a pose\\[4pt]$\hat{x}_{\text{ligand}}\in\mathbb{R}^{3n}$\\{\scriptsize plus an empirical score}};
+\node[pt] (p3) at (5.5,-2.05)  {a structure\\[4pt]$\hat{x}\in\mathbb{R}^{3N}$\\{\scriptsize AlphaFold\,2 / 3}};
+
+% --- row label: what biology needs ---
+\node[anchor=east,font=\scriptsize\bfseries,text=measure,align=right,text width=2.4cm]
+  at (-8.2,-5.0) {WHAT BIOLOGY\\ACTUALLY NEEDS\\{\normalfont\scriptsize a \emph{measure}}};
+\node[ms] (m1) at (-5.5,-5.0) {a \textbf{random intensity field}\\[4pt]$\lambda(x,t)$ over genome and time\\[3pt]{\scriptsize driven by chromatin, replication timing, stress --- and, underneath, by quantum tunnelling}};
+\node[ms] (m2) at (0,-5.0)    {a \textbf{ratio of integrals}\\[4pt]$\Delta G=-k_BT\ln\dfrac{Z_{\text{bound}}}{Z_{\text{free}}}$\\[3pt]{\scriptsize dominated by entropy: water and configurational freedom}};
+\node[ms] (m3) at (5.5,-5.0)  {a \textbf{measure and its generator}\\[4pt]$\mu(x)\propto e^{-\beta U(x)}$ \; and \; $\mathcal{P}_t$\\[3pt]{\scriptsize the ensemble, and the rates between its basins}};
+
+\foreach \a/\b in {h1/p1,h2/p2,h3/p3}{\draw[dn] (\a)--(\b);}
+\foreach \a/\b in {p1/m1,p2/m2,p3/m3}{\draw[dn,draw=measure] (\a)--(\b);}
+
+% --- the convergence ---
+\node[rounded corners=5pt,fill=indigo,text=white,inner sep=10pt,text width=13.2cm,align=center,
+      font=\small] (Z) at (0,-8.15)
+  {\textbf{\large All three reduce to the same integral}\\[6pt]
+   $Z=\displaystyle\int_{\mathbb{R}^{3N}} e^{-\beta U(x)}\,dx$\\[6pt]
+   {\footnotesize and evaluating it is \textbf{\#P-hard}}};
+\foreach \n in {m1,m2,m3}{\draw[-{Stealth[length=6pt,width=5pt]},line width=1.3pt,draw=indigo] (\n)--(Z);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; The centrepiece of this dossier. Read it downward. The top row is what each field
+delivers today; the second row is what the biology actually is; the bottom is why the second row is
+hard. \textbf{Nothing in the middle row is a modelling preference. Each is the literal mathematical
+object the biology consists of.}
+\end{minipage}\end{center}
+
+\begin{thesisbox}[title={The thesis, stated once}]
+\begin{center}\itshape\large
+In every case we have a good theory of the individual object,\\and no tractable theory of the measure
+over those objects,\\or of the operator that evolves that measure in time.
+\end{center}
+\vspace{2pt}
+A structure predictor returns a point. Biology needs $(\mu,\mathcal{P}_t)$. A docking program returns
+a pose. Biology needs $\Delta G$, which is a ratio of integrals over $\mu$. A mutation model returns a
+constant. Biology needs a stochastic field. \textbf{The gap is the same gap three times.}
+\end{thesisbox}
+
+\subsection{Why this is not a complaint that ``biology is complicated''}
+
+It is a specific, nameable, provable computational obstruction with a specific mathematical
+consequence, and that distinction matters --- because obstructions can be attacked and complexity
+cannot.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.9cm}>{\raggedright\arraybackslash}p{8.7cm}@{}}
+\toprule
+\rowcolor{alert!10}
+\textbf{\color{alert}The vague version (not useful)} & \textbf{\color{bio}The precise version (attackable)}\\
+\midrule
+``Cells are too complex to model.'' &
+ $Z$ is \#P-hard, so we substitute $\arg\max_x e^{-\beta U(x)}$ for $\int e^{-\beta U(x)}dx$ ---
+ a \emph{mode} for a \emph{measure}.\\
+``Docking scoring functions are inaccurate.'' &
+ $\Delta G$ is a small difference of large numbers whose dominant terms are entropic, and entropy
+ \emph{is} $\ln Z$.\\
+``AlphaFold doesn't capture dynamics.'' &
+ It estimates a mode of $\mu$. It does not estimate $\mu$, and it does not estimate the transfer
+ operator $\mathcal{P}_t$ that governs transitions between the modes.\\
+``Mutations are random.'' &
+ They are a Cox process --- a Poisson process whose intensity is itself a random field --- with a
+ partly quantum-mechanical substrate.\\
+\bottomrule
+\end{tabular}
+\end{center}

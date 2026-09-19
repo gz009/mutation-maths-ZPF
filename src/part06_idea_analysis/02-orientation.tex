@@ -1,0 +1,86 @@
+%============ ORIENTATION ============
+\section{Orientation: what Part VI is actually for}
+\markboth{Orientation}{Orientation}
+
+Parts I--V of \textit{Where Mathematics Comes From} build an apparatus. \textbf{Part VI is the stress
+test.} Lakoff \& Núñez take the single most revered formula in classical mathematics and ask whether
+their method --- \emph{mathematical idea analysis} --- can say something about it that axioms,
+definitions, theorems and proofs cannot.
+
+The opening move is rhetorical but surgical: Benjamin Peirce, one of Harvard's leading nineteenth\-/century
+mathematicians, lecturing on Euler's proof and confessing that he had proved something he did not
+understand. Part VI is a sustained argument that \textbf{proof is not understanding}, and that
+understanding has a describable structure built from three mechanisms the book has already
+introduced.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+   mech/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!7,text width=4.55cm,
+                align=left,inner sep=8pt,minimum height=2.35cm,anchor=north west}]
+  \node[mech=purple] (a) at (0,0)
+    {\textbf{\color{purple}Grounding metaphors}\\[3pt]
+     Map \emph{bodily, pre-mathematical} experience onto mathematics.\\[3pt]
+     \textit{e.g.} \meta{Arithmetic Is Object Construction}};
+  \node[mech=skyblue] (b) at (5.05,0)
+    {\textbf{\color{skyblue}Linking metaphors}\\[3pt]
+     Map one \emph{mathematical} domain onto another, exporting inference.\\[3pt]
+     \textit{e.g.} \meta{Functions Are Numbers}};
+  \node[mech=teal] (c) at (10.1,0)
+    {\textbf{\color{teal}Conceptual blends}\\[3pt]
+     Fuse two domains into a third with \emph{emergent} entities and entailments.\\[3pt]
+     \textit{e.g.} the \blend{Unit Circle blend}};
+  \node[anchor=north,text width=14.6cm,align=center,font=\scriptsize\itshape,text=slate]
+     at (7.325,-2.62) {plus the \textbf{BMI}, the Basic Metaphor of Infinity, wherever a limit appears};
+\end{tikzpicture}
+\end{center}
+
+\vspace{2pt}
+\subsection{The standard of success they set themselves}
+
+This is worth copying into the front of your notebook, because it is the yardstick against which the
+rest of the Part must be measured.
+
+\begin{keybox}[title={Requirements for an adequate mathematical idea analysis \normalfont\itshape(book p.~436 / pdf p.~455)}]
+Of an equation, definition, axiom or theorem, an idea analysis must give:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item the \textbf{metaphor-and-blend structure} that makes it true \emph{relative to that structure};
+  \item the \textbf{conceptual relationships} among the elements that appear in, or are presupposed by, it;
+  \item the \textbf{ideas expressed by the symbols};
+  \item the \textbf{grounding} of the concepts used in the analysis.
+\end{enumerate}
+\end{keybox}
+
+\noindent The consequence they draw immediately is the most philosophically loaded sentence in Part VI:
+
+\begin{bookquote}{book p.~436 / pdf p.~455}
+\textit{The ``truth'' of an equation, axiom, or theorem depends on what it means. That is, truth is
+relative to a conceptual structure\ldots\ Thus, $e^{\pi i}+1=0$ is not true of Euclidean geometry or
+the arithmetic of real numbers for an obvious reason: Those mathematical domains do not have the
+right idea structure to give meaning to the equation, much less to make it true.}
+\end{bookquote}
+
+\noindent I return to this claim --- and to the two very different readings it admits --- in
+\S\ref{sec:audit}.
+
+\subsection{Why this particular equation}
+
+Their own justification, stated on the Part-opening page, is that Euler's equation is a
+\emph{junction}: it is the one place where every branch of classical mathematics is forced into
+contact.
+
+\begin{bookquote}{book p.~381 / pdf p.~400}
+\textit{It brings together in one equation the most important numbers in mathematics: $e$, $\pi$,
+$i$, $1$, and $0$. In doing so, this one equation implicitly states a relationship among the
+branches of classical mathematics---arithmetic, algebra, geometry, analytic geometry, trigonometry,
+calculus, and complex variables.}
+\end{bookquote}
+
+\noindent And their statement of the problem is refreshingly blunt: the usual gloss on exponentiation
+simply \emph{cannot} be what is going on.
+
+\begin{warmbox}[title={The problem, stated precisely \normalfont\itshape(book p.~384 / pdf p.~403)}]
+$e^{\pi i}$ makes no sense as ``$e$ multiplied by itself $\pi$ times, and then $i$ times.''
+$\pi$ is an infinite decimal; $i=\sqrt{-1}$. \textbf{``What could `$\sqrt{-1}$ times' possibly mean?''}
+A different answer is required --- one that follows from the \emph{conceptual content} of
+$e$, $\pi$, $i$ and $-1$.
+\end{warmbox}

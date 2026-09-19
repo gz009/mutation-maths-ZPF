@@ -1,0 +1,70 @@
+\clearpage
+\renewcommand{\sectioncolor}{moss}
+\section{How to use this against your own shelf}
+\markboth{Study plan}{}
+
+You are reading Part VI inside a foundations self-study programme, alongside Stewart \& Tall,
+Courant \& Robbins, Mac Lane, Devlin, Tao and a shelf of logic texts. Part VI is not a substitute for
+any of them. It is the \textbf{counterweight}: the book that asks \emph{why these axioms and not
+others}, where the formal texts ask \emph{what follows from these axioms}.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  bk/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=7pt,
+             text width=4.9cm,align=left,minimum height=2.1cm},
+  lnk/.style={-{Stealth[length=5pt]},line width=1pt,draw=moss}]
+\node[rounded corners=5pt,fill=moss,text=white,inner sep=8pt,font=\small\bfseries,
+      text width=4.5cm,align=center] (P6) at (0,0) {Part VI\\{\scriptsize idea analysis}};
+\node[bk=csB] (t1) at (-6.15,2.45)
+  {\textbf{\color{csB!80!black}Read CS\,2 \S3.3 (the 7 steps) beside}\\
+   {\scriptsize any rigorous treatment of the derivative --- Stewart \& Tall, or a real-analysis text}};
+\node[bk=csC] (t2) at ( 6.15,2.45)
+  {\textbf{\color{csC}Read CS\,3 against a formal construction of $\mathbb{C}$}\\
+   {\scriptsize $\mathbb{R}^{2}$ with a multiplication rule, or $\mathbb{R}[x]/(x^{2}+1)$}};
+\node[bk=deepblue] (t3) at (-6.15,-2.45)
+  {\textbf{\color{deepblue}Use the 4-point checklist (p.~436) as an exercise generator}\\
+   {\scriptsize write the idea analysis of: the $\varepsilon$--$\delta$ limit, a group, a quotient space}};
+\node[bk=slate] (t4) at ( 6.15,-2.45)
+  {\textbf{\color{slate}Keep Mac Lane nearby as the antidote}\\
+   {\scriptsize \textit{Mathematics: Form and Function} argues the opposite tendency}};
+\foreach \n in {t1,t2,t3,t4}{\draw[lnk] (P6)--(\n);}
+\end{tikzpicture}
+\end{center}
+
+\subsection{A concrete four-session plan}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.35cm}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{6.2cm}@{}}
+\toprule
+\rowcolor{moss!14}
+\textbf{\color{moss}Session} & \textbf{\color{moss}Read} & \textbf{\color{moss}Do} & \textbf{\color{moss}Question to answer in writing}\\
+\midrule
+\textbf{1} & CS\,1, book pp.~383--398 & Redraw the three-stage Unit Circle blend from memory &
+  Which properties of $\sin$ and $\cos$ are \emph{entailments} of the blend, and which are
+  definitions?\\
+\textbf{2} & CS\,2, book pp.~399--419 \newline{\scriptsize (incl.\ the appendix)} &
+  Re-derive $b=\lim(1+1/n)^{n}$ from ``$e^x$ is its own derivative'' without looking &
+  Where exactly does ``maps sums to products'' enter the derivative calculation?\\
+\textbf{3} & CS\,3, book pp.~420--432 &
+  Build $\mathbb{C}$ twice: once by rotation, once as $\mathbb{R}[x]/(x^{2}+1)$ &
+  Which ``arbitrary'' clauses of the formal construction does the rotation story \emph{predict},
+  and which does it not?\\
+\rowcolor{moss!6}
+\textbf{4} & CS\,4, and above all pp.~446--451 &
+  Write out the four shared properties and check each one for both functions &
+  Is ``they entail the same properties'' a \emph{reason} for the identity, or a
+  \emph{restatement} of it?\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 6.}\; Session 4's question is the one worth arguing with yourself about. My own answer
+is: a reason, but only under the weak reading of \textsf{LEAK 6}.
+\end{minipage}\end{center}
+
+\begin{ideabox}[title={If you are short on time}]
+\textbf{CS\,2 and CS\,3 carry the most original content.} CS\,1 is setup you can skim once you have
+the three-stage figure. CS\,4's payoff section --- ``What Are the Ideas?'', book pp.~446--451 /
+pdf pp.~465--470 --- can be read almost standalone once you have CS\,1--3 in hand.
+\end{ideabox}

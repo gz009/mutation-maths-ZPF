@@ -1,0 +1,38 @@
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+ \fill[lab] (current page.north west) rectangle ([yshift=-3.6cm]current page.north east);
+ \node[anchor=north west,text=white,align=left,inner sep=0pt]
+   at ([xshift=2.05cm,yshift=-1.30cm]current page.north west)
+   {\fontsize{25}{28}\selectfont\bfseries Contents\\[5pt]
+    \fontsize{9.5}{12}\selectfont\color{white!72}\normalfont
+    Every number recomputed from our own sequencing files.};
+ \node[anchor=north east,inner sep=0pt]
+   at ([xshift=-2.05cm,yshift=-1.25cm]current page.north east)
+   {\fontsize{14}{17}\selectfont\bfseries\color{gold}BIO-BIO-1 $\cdot$ PART VIII};
+\end{tikzpicture}
+\vspace*{2.05cm}
+
+{\hypersetup{linkcolor=ink}
+\renewcommand{\contentsname}{}
+\setcounter{tocdepth}{2}
+\vspace{-3.35cm}
+\small
+\setlength{\parskip}{0pt}
+\tableofcontents
+}
+
+\vfill
+\noindent\begin{tikzpicture}[font=\footnotesize]
+ \node[rounded corners=4pt,fill=sand!10,draw=sand!80!black,line width=0.9pt,inner sep=10pt,
+       text width=16.5cm,align=left] {
+   \textbf{\color{lab}If you do not enjoy mathematics --- read it in this order}\\[6pt]
+   \textbf{\S1} is one page and needs no mathematics at all. It is the whole argument.\\[3pt]
+   \textbf{\S9} is five things to do, ranked. Start at number 1; it is already written for you.\\[3pt]
+   \textbf{\S10} is the script. Copy, paste, run.\\[6pt]
+   Everything in between is the evidence. Each section opens with \textbf{the biology question} it
+   answers, and each piece of mathematics is followed by an
+   \colorbox{sand!30}{\textbf{\scriptsize IN PLAIN WORDS}} box that says the same thing without symbols.
+   \textbf{You can skip every equation in this document and lose nothing.}};
+\end{tikzpicture}
+\vspace{4pt}
+\clearpage

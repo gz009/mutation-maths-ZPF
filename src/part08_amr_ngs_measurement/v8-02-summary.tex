@@ -1,0 +1,50 @@
+\clearpage
+\renewcommand{\sectioncolor}{lab}
+\section{One page, no mathematics}
+\markboth{One-page summary}{}
+
+If you read nothing else in this document, read this page. Everything here was measured on our own
+sequencing run.
+
+\begin{labbox}[title={What we found}]
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.7em]
+\item \textbf{Half our sequencing errors come from four moments on the flow cell.}
+  Four \emph{tile-cycles} out of 7{,}028 produced 38\,\% of all base errors. Add the 843 worst
+  genomic positions and you account for \textbf{51\,\% of every error in the run, from under 0.1\,\%
+  of the data}.
+\item \textbf{The machine reported those bad bases as excellent.} On tile 1113 at cycle 85,
+  \textbf{99.3\,\% of bases were wrong} --- and 658 of them were labelled \textbf{Q39}, meaning
+  ``1 mistake in 8{,}000''. The instrument was wrong about its own confidence by roughly ten
+  thousandfold.
+\item \textbf{FastQC could not see it}, because FastQC reads the machine's own quality claim, and the
+  machine's claim was the thing that was wrong.
+\item \textbf{More coverage cannot fix this. It makes it worse.} Where the local error rate is above
+  50\,\%, every extra read votes for the wrong base. At 71$\times$ depth the wrong answer wins with
+  probability 0.999.
+\item \textbf{Once those two faults are removed, our quality scores are excellent}
+  --- measured Q32.47 against a reported Q32.27. \textbf{The data is good. The error model was not.}
+\item \textbf{About 50$\times$ of our 71.6$\times$ coverage is insurance, not information.} Coverage,
+  accuracy and repeat-counting together need roughly 20--25$\times$.
+\end{enumerate}
+\end{labbox}
+
+\begin{dobox}[title={What to do about it --- five things, in order}]
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.7em]
+\item \textbf{Run the tile-cycle check on every run and mask what it flags.} We already wrote the
+  script. It is 50 lines. It removes 38\,\% of our errors and costs nothing. \ev{\S10}
+\item \textbf{Add ``which tile, which cycle'' to any quality recalibration.} One missing term.
+\item \textbf{Stop using percent-identity thresholds to separate real genes from look-alikes.} This
+  is what produced the wrong PVL call in report v1.0. There is a correct replacement. \ev{\S7}
+\item \textbf{Report copy number with error bars}, not as a point estimate --- this is the
+  $\varphi$Sa3 boundary problem in our own Limitations. \ev{\S5}
+\item \textbf{Do not buy more Illumina depth.} If we need a closed genome, we need \emph{longer
+  reads}, not more of the same. That limit is mathematically proven, not a matter of effort. \ev{\S6}
+\end{enumerate}
+\end{dobox}
+
+\begin{alertbox}[title={And one warning about AI}]
+AI tools that ``correct'' or ``polish'' sequence work by nudging your data toward what is
+\emph{common} in their training set. \textbf{AMR research is the study of what is not yet common.}
+A novel resistance allele or a rearranged plasmid is exactly the case where such a tool is most
+confident and most wrong. Full discussion in \S8.
+\end{alertbox}

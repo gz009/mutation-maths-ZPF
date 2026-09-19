@@ -1,0 +1,40 @@
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+ \fill[bio!92!black] (current page.north west) rectangle ([yshift=-3.6cm]current page.north east);
+ \node[anchor=north west,text=white,align=left,inner sep=0pt]
+   at ([xshift=2.05cm,yshift=-1.35cm]current page.north west)
+   {\fontsize{25}{28}\selectfont\bfseries Contents\\[5pt]
+    \fontsize{9.5}{12}\selectfont\color{white!72}\normalfont
+    Every historical claim carries a name and a year.};
+ \node[anchor=north east,inner sep=0pt]
+   at ([xshift=-2.05cm,yshift=-1.30cm]current page.north east)
+   {\fontsize{15}{18}\selectfont\bfseries\color{gold}PART VII};
+\end{tikzpicture}
+\vspace*{2.05cm}
+
+{\hypersetup{linkcolor=ink}
+\renewcommand{\contentsname}{}
+\setcounter{tocdepth}{2}
+\vspace{-3.35cm}
+\small
+\setlength{\parskip}{0pt}
+\tableofcontents
+}
+
+\vfill
+\noindent\begin{tikzpicture}[font=\scriptsize]
+ \node[rounded corners=4pt,fill=paper,draw=slate!40,line width=0.7pt,inner sep=9pt,
+       text width=16.55cm,align=left] {
+   \textbf{\color{bio}\footnotesize Provenance and conventions}\\[5pt]
+   This dossier answers a question put by the reader and audits a long response to the same question
+   supplied from another AI assistant. \textbf{Personal names appearing in that pasted text --- two
+   students --- have been removed throughout.} The pasted text is referred to as ``the pasted text''
+   and is quoted only in short, attributed fragments.\\[5pt]
+   \yes\ correct \quad \pt\ partly correct or imprecise \quad \no\ incorrect or misleading
+   \quad\;$\cdot$\quad
+   \meta{purple small caps} $=$ a metaphor \quad\;$\cdot$\quad
+   \colorbox{bio}{\textcolor{white}{\bfseries\ green\ }}\,a move you can run \quad
+   \colorbox{crimson}{\textcolor{white}{\bfseries\ red\ }}\,a caution or correction};
+\end{tikzpicture}
+\vspace{4pt}
+\clearpage

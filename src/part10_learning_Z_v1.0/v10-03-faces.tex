@@ -1,0 +1,66 @@
+\clearpage
+\renewcommand{\sectioncolor}{measure}
+\section{What \texorpdfstring{$Z$}{Z} is: three faces}
+\markboth{Three faces of Z}{}
+
+\[
+Z=\int e^{-\beta U(x)}\,dx \qquad\text{(classical)}
+\qquad\qquad
+Z=\operatorname{Tr}\!\left(e^{-\beta \hat H}\right)=\sum_n e^{-\beta E_n}\qquad\text{(quantum)}
+\]
+
+These look like different objects. They are one object wearing three hats, and each hat corresponds
+to a different part of your shelf.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  f/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!8,inner sep=9pt,
+            text width=4.9cm,align=left,minimum height=5.1cm}]
+ \node[rounded corners=5pt,fill=measure,text=white,inner sep=9pt,font=\small\bfseries] (Z) at (0,3.55)
+   {$Z$};
+ \node[f=nano]    (a) at (-5.55,0) {\textbf{\color{nano}FACE 1 --- a measure}\\[5pt]
+   $\mu(dx)=\dfrac{e^{-\beta U(x)}}{Z}\,dx$\\[5pt]
+   $Z$ is the \textbf{normaliser} that turns a weight into a probability.\\[5pt]
+   {\scriptsize \textbf{Needs:} measure theory, Lebesgue integration\\
+    \textbf{You have:} Kuttler ch.~20--24}};
+ \node[f=sand]    (b) at (0,0) {\textbf{\color{sand!80!black}FACE 2 --- a generating function}\\[5pt]
+   $F=-k_BT\ln Z$, and every moment is a derivative of $\ln Z$.\\[5pt]
+   It is a \textbf{Laplace transform}; $F$ and $S$ are \textbf{Legendre transforms} of each other.\\[5pt]
+   {\scriptsize \textbf{Needs:} convexity, saddle point, residues\\
+    \textbf{You have:} Radozycki III}};
+ \node[f=bio]     (c) at (5.55,0) {\textbf{\color{bio}FACE 3 --- a trace}\\[5pt]
+   $Z=\operatorname{Tr}\!\left(e^{-\beta\hat H}\right)$\\[5pt]
+   A \textbf{spectral} object: exponentiate the eigenvalues of a self-adjoint operator, then add them up.\\[5pt]
+   {\scriptsize \textbf{Needs:} spectral theorem, positive operators, trace\\
+    \textbf{You have:} Axler §7.B, 7.C, 10.A}};
+ \foreach \n in {a,b,c}{\draw[-{Stealth[length=5.5pt]},line width=1.2pt,draw=measure] (Z)--(\n);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 2.}\; The three faces, each mapped to a book you already own.
+\textbf{Start with Face 3} --- it is the one your shelf covers most completely, and it is the one that
+turns into a concrete calculation fastest.
+\end{minipage}\end{center}
+
+\begin{keyidea}[title={Why Face 3 first, precisely}]
+$e^{-\beta\hat H}$ is not a formal symbol. It is an operator, and it exists because:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item $\hat H$ is \textbf{self-adjoint}, so by the \textbf{spectral theorem} (Axler §7.B, p.~217 for
+ the complex case) it has an orthonormal eigenbasis with real eigenvalues $E_n$;
+\item you may therefore \emph{define} $e^{-\beta\hat H}$ by exponentiating each eigenvalue;
+\item the result is a \textbf{positive operator} (Axler §7.C, p.~225) --- which is exactly why
+ $Z>0$ and why $\mu$ is a genuine probability measure;
+\item and $\operatorname{Tr}$ is basis-independent (Axler §10.A, p.~296--299), so
+ $\operatorname{Tr}(e^{-\beta\hat H})=\sum_n e^{-\beta E_n}$ without choosing coordinates.
+\end{enumerate}
+\textbf{Four pages of Axler and you have constructed the quantum partition function.} No physics
+book required for this step.
+\end{keyidea}
+
+\begin{plain}
+The partition function is one number that summarises every way a system can arrange itself, weighted
+by how likely each arrangement is. Once you have it, every measurable quantity --- energy, entropy,
+heat capacity, binding affinity --- is a derivative of its logarithm. That is why it is called the
+\emph{partition} function: it tells you how probability is partitioned across states.
+\end{plain}

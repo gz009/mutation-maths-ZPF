@@ -1,0 +1,213 @@
+\renewcommand{\sectioncolor}{nano}
+\section{Audit of the second AI's response}
+\markboth{Audit of the second response}{}
+
+You supplied a long answer to the same question from another assistant. Personal names have been
+removed from it here. It is a good answer --- substantially correct, well organised, and it reaches
+the right headline conclusion. What follows is a precise audit: what it gets right, what it gets
+right for the wrong reason, and what it leaves out. The omissions are the actionable part.
+
+\subsection{Scorecard}
+
+\begin{center}\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.0cm} c >{\raggedright\arraybackslash}p{9.1cm}@{}}
+\toprule
+\rowcolor{nano!13}
+\textbf{\color{nano}Claim in the pasted text} & & \textbf{\color{nano}Verdict}\\
+\midrule
+Mathematics began from human-scale experience (counting, land, motion, circles) & \yes &
+  Correct, and exactly Part VI's grounding metaphors.\\
+``Mathematics is not trapped inside human-scale physics'' & \yes &
+  The right headline. Same conclusion this dossier reaches.\\
+The need is for \emph{new languages and representations}, not necessarily new mathematics & \yes &
+  Well judged, and more precise than the question presumed.\\
+\rowcolor{crimson!7}
+$i=\sqrt{-1}$ offered as an example of escaping intuition & \no &
+  \textbf{Self-undermining.} Case Study 3 is the book's flagship demonstration that $i$ \emph{is}
+  grounded --- in mental rotation. See \S\ref{ss:i}.\\
+\rowcolor{crimson!7}
+``Formal symbolic reasoning can exceed human intuition'' & \pt &
+  Right conclusion, \textbf{wrong mechanism}. Symbol pushing is not disembodied; it is re-grounded.
+  The difference changes what you should do. See \S\ref{ss:mech}.\\
+A protein is simultaneously structure, dynamics, landscape, stochastic object, information carrier,
+network node, evolutionary object & \yes &
+  Genuinely useful framing, and the strongest original observation in the piece.\\
+Scale span $10^{-10}$\,m to $1$\,m; $10^{-15}$\,s upward & \yes &
+  Correct. Made precise in \S\ref{sec:target}, with which mathematics covers which band.\\
+Ingredients already exist: stochastic calculus, graphs, dynamical systems, information theory,
+topology, statistical mechanics, quantum mechanics & \pt &
+  True but \textbf{unsourced and generic}. Every one of these has a specific, dated result that did
+  the actual work. Named in \S\ref{sec:target} and the appendix.\\
+Category theory: relations and transformations as primary & \yes &
+  Correct, and the right instinct. This is Move 2 of the method.\\
+\rowcolor{bio!10}
+``Property of X'' must become ``Property of X $|$ Context C'' & \yes\yes &
+  \textbf{The best idea in the piece.} It already has a precise mathematical home the text does not
+  name. See \S\ref{ss:context}.\\
+Emergence: micro rules $\to$ macro behaviour needs better mathematics & \yes &
+  Correct; this is a genuine open problem, not a gap in anyone's education.\\
+Cells are open, far-from-equilibrium systems & \yes &
+  Correct, and the sharpest real gap. Named results exist; a general variational principle does not.\\
+Open quantum systems, not textbook isolated QM & \yes &
+  Correct. But the evidence base needs grading --- see \S\ref{sec:qbio}.\\
+\rowcolor{crimson!7}
+Quantum biology presented without grading the evidence & \no &
+  Photosynthetic ``long-lived electronic coherence'' was substantially revised after 2007. A student
+  given this uncritically will be misled.\\
+AI: data $\to$ pattern $\to$ conjecture $\to$ human+machine proof & \yes &
+  Correct, and there is now real evidence for it. Named in \S\ref{sec:ai}.\\
+``AI may discover $F(X)=\text{constant}$'' & \pt &
+  Plausible, but offered with no example. Two real ones exist. \S\ref{sec:ai}.\\
+The ten-step research loop & \pt &
+  Sound but generic --- it would fit any field. It lacks the one step that is specific to the
+  embodiment problem: \textbf{audit the failing metaphor}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 1.}\;\yes\ correct \quad \pt\ partly correct or imprecise \quad \no\ incorrect or
+misleading \quad \yes\yes\ correct and undervalued by its own author.
+\end{minipage}\end{center}
+
+\subsection{The $i=\sqrt{-1}$ example is self-undermining}\label{ss:i}
+
+The pasted text writes: \textit{``There is no ordinary physical pile containing $i$ apples''} --- and
+offers this as evidence that mathematics escapes intuition.
+
+\begin{critbox}[title={Why this is exactly backwards}]
+The observation is true and the conclusion drawn from it is wrong. \textbf{Case Study 3 of the very
+book in question spends thirteen pages showing that $i$ \emph{is} grounded} --- not in collections of
+apples, but in \meta{Multiplication by $-1$ Is Rotation by $180^{\circ}$}, extended to
+\meta{Rotation by $90^{\circ}$ Is Multiplication by $i$}.
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  n/.style={rounded corners=3pt,draw=#1,line width=0.9pt,fill=#1!8,inner sep=6pt,
+            text width=3.35cm,align=center,minimum height=1.3cm}]
+ \node[n=crimson] (a) at (0,0)     {\textbf{fails} the collection grounding\\{\scriptsize no pile of $i$ apples}};
+ \node[n=crimson] (b) at (4.0,0)   {\textbf{fails} the magnitude grounding\\{\scriptsize not linearly ordered}};
+ \node[n=bio]     (c) at (8.4,0)   {\textbf{succeeds} on the rotation grounding\\{\scriptsize mental rotation, $R_{-1}$}};
+ \node[n=bio]     (d) at (12.8,0)  {therefore \textbf{$i$ is grounded}, and the complex plane is derived};
+ \draw[-{Stealth[length=4.5pt]},line width=0.9pt,draw=slate] (a)--(b);
+ \draw[-{Stealth[length=4.5pt]},line width=0.9pt,draw=slate] (b)--(c);
+ \draw[-{Stealth[length=4.5pt]},line width=0.9pt,draw=bio] (c)--(d);
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+$i$ is not an example of mathematics leaving the body. \textbf{It is the book's cleanest example of
+mathematics finding a different part of the body to stand on} --- which is the whole lesson, and the
+whole method. Getting this backwards costs you the technique.
+\end{critbox}
+
+\subsection{Right conclusion, wrong mechanism --- and why that matters}\label{ss:mech}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  bx/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!7,inner sep=8pt,
+             text width=7.5cm,align=left,minimum height=3.9cm}]
+ \node[bx=sand] (a) at (-4.35,0)
+   {\textbf{\color{sand}The pasted text's mechanism}\\[4pt]
+    \emph{``Formal symbolic reasoning can exceed human intuition.''}\\[6pt]
+    Implied prescription: \textbf{be more formal.} Retreat into symbols and away from meaning.\\[6pt]
+    {\scriptsize Problem: this is Benjamin Peirce's position --- proof without understanding. Part VI
+    is a book-length argument against it.}};
+ \node[bx=bio] (b) at (4.35,0)
+   {\textbf{\color{bio}The mechanism that actually operates}\\[4pt]
+    Symbol manipulation is \emph{itself} grounded --- in the hand and eye moving marks around.\\[6pt]
+    Implied prescription: \textbf{build a better calculus to manipulate.}\\[6pt]
+    {\scriptsize This is a constructive instruction. It tells you to invent Feynman diagrams, string
+    diagrams, the ZX-calculus --- see Move 3.}};
+ \draw[-{Stealth[length=6pt]},line width=1.3pt,draw=slate] (-0.5,0)--(0.5,0);
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; The same conclusion, reached two ways, yielding two completely different
+instructions. Only the right-hand one is actionable.
+\end{minipage}\end{center}
+
+\subsection{The best idea in the piece already has a name}\label{ss:context}
+
+The pasted text proposes, almost apologetically (\textit{``That sounds philosophical''}):
+\[
+\text{Property of } X \qquad\longrightarrow\qquad \text{Property of } X \mid \text{Context } C
+\]
+and notes that a protein behaves differently depending on location, binding partners,
+phosphorylation state, cell type, temperature, pH and expression state.
+
+\begin{movebox}[title={This is not philosophy --- it is contextuality, and it is a theorem}]
+The mathematics of ``properties that are locally well-defined but have no consistent global
+assignment'' exists and is precise. \textbf{Abramsky \& Brandenburger (2011)} showed that quantum
+contextuality and non-locality are exactly the obstruction to gluing local sections of a
+\textbf{presheaf} into a global section --- a cohomological obstruction.
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+ % three contexts overlapping, no global section
+ \begin{scope}
+  \fill[nano,opacity=0.18] (0,0) circle (1.25);
+  \fill[quantum,opacity=0.18] (1.7,0) circle (1.25);
+  \fill[sand,opacity=0.22] (0.85,-1.45) circle (1.25);
+  \draw[nano,line width=1pt] (0,0) circle (1.25);
+  \draw[quantum,line width=1pt] (1.7,0) circle (1.25);
+  \draw[sand!80!black,line width=1pt] (0.85,-1.45) circle (1.25);
+  \node[font=\scriptsize,text=nano] at (-0.75,0.85) {$C_1$};
+  \node[font=\scriptsize,text=quantum] at (2.45,0.85) {$C_2$};
+  \node[font=\scriptsize,text=sand!70!black] at (0.85,-2.55) {$C_3$};
+  \node[font=\scriptsize,text=crimson,align=center] at (0.85,-0.5) {no global\\section};
+ \end{scope}
+ \node[anchor=west,text width=11.6cm,font=\footnotesize,text=slate] at (3.8,-0.7)
+  {Each context $C_i$ admits a perfectly consistent local assignment of properties. \textbf{No single
+   global assignment restricts correctly to all of them.} That is contextuality, and it is measured
+   by a sheaf cohomology class.\\[5pt]
+   \textcolor{bio}{\textbf{Why this matters for your question:}} a protein whose properties are
+   well-defined per assay but not jointly is \emph{formally the same situation}. The mathematics is
+   already built. It has simply not been carried across to molecular biology in earnest.\\[5pt]
+   \textcolor{ember}{\textbf{This is a live, tractable research direction}} --- and it is the single
+   most valuable thing in the text you pasted, which is why it deserved a name and a citation rather
+   than an apology.};
+\end{tikzpicture}
+\end{center}
+\end{movebox}
+
+\subsection{What the pasted text leaves out entirely}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5.3cm}>{\raggedright\arraybackslash}p{11.4cm}@{}}
+\toprule
+\rowcolor{ember!12}
+\textbf{\color{ember}Omission} & \textbf{\color{ember}Why it is the actionable part}\\
+\midrule
+\textbf{Instruments as mathematics-generators} &
+ The pipeline given is Experiment $\to$ Data $\to$ AI $\to$ Conjecture. It never notes that
+ \emph{instruments create new intuitions}. The STM (1981) and AFM (1986) put atoms into a
+ sensorimotor loop, and new mathematics followed within a decade. This is Lever 1, and it is missing.\\
+\textbf{Diagrammatic re-grounding} &
+ No Feynman diagrams, no Penrose notation, no string diagrams, no ZX-calculus. This is historically
+ the highest-yield move for exactly this problem, and it is absent. This is Lever 2.\\
+\textbf{Names and dates} &
+ ``Some of the ingredients already exist'' --- which, by whom, when? Feinberg's deficiency theorems,
+ Hopfield's kinetic proofreading, Jarzynski and Crooks, HEOM, Abramsky--Brandenburger. Without these
+ a student cannot start reading tomorrow.\\
+\rowcolor{crimson!7}
+\textbf{The measurement bottleneck} &
+ For most of molecular and cellular biology \emph{right now}, the binding constraint is not
+ mathematics --- it is that we cannot watch single molecules inside a living cell at sufficient
+ spatial \emph{and} temporal resolution simultaneously. Inventing mathematics for data you cannot
+ take is the wrong order of operations.\\
+\textbf{An operational test for ``we need new mathematics''} &
+ The ten-step loop says ``identify the failure'' but not how. The metaphor audit (Move 1) is the
+ missing instrument.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warmbox}[title={A note on style, offered for your students' sake}]
+The pasted text makes heavy use of boxed displays such as
+$\boxed{\textbf{Matter}+\textbf{Information}+\textbf{Probability}+\textbf{Geometry}+\textbf{Life}}$.
+This is effective rhetoric and there is nothing wrong with it as motivation. But it is worth teaching
+explicitly that \textbf{a box around a list of nouns is not a theorem, and ``$+$'' between fields is
+not an operation.} Part VI's whole discipline is the refusal to let notation stand in for structure.
+A student who learns to write the box before they can write the definition has learned the wrong
+lesson from Euler.
+\end{warmbox}

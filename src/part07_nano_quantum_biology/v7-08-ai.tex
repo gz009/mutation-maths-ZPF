@@ -1,0 +1,72 @@
+\clearpage
+\renewcommand{\sectioncolor}{ember}
+\section{AI as the new instrument --- what is actually established}\label{sec:ai}
+\markboth{AI as instrument}{}
+
+The pasted text's most forward-looking claim is that AI may discover invariants humans would miss,
+and that mathematics will become a human--machine partnership. This is correct, and unlike the rest
+of that section it can be supported with specific results rather than expectation.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  p/.style={rounded corners=3pt,draw=#1,line width=0.95pt,fill=#1!9,inner sep=6pt,
+            text width=2.62cm,align=center,minimum height=1.6cm},
+  ar/.style={-{Stealth[length=5pt,width=4pt]},line width=1.1pt,draw=ember!75}]
+ \node[p=slate]   (a) at (0,0)     {\textbf{experiment}\\{\scriptsize instruments, Move 4}};
+ \node[p=slate]   (b) at (3.28,0)  {\textbf{data}\\{\scriptsize petabytes}};
+ \node[p=ember]   (c) at (6.56,0)  {\textbf{machine pattern search}\\{\scriptsize high-dim.\ spaces}};
+ \node[p=sand]    (d) at (9.84,0)  {\textbf{human conjecture}\\{\scriptsize ``why?''}};
+ \node[p=quantum] (e) at (13.12,0) {\textbf{proof}\\{\scriptsize human $+$ assistant}};
+ \node[p=bio]     (f) at (16.1,0)  {\textbf{new structure}};
+ \foreach \x/\y in {a/b,b/c,c/d,d/e,e/f}{\draw[ar] (\x)--(\y);}
+ \node[font=\scriptsize,text=crimson,align=center,anchor=north] at (8.0,-1.15)
+   {\textbf{the step that is genuinely new} --- and the step that still requires a human is
+    \emph{``why?''}};
+ \draw[crimson!60,line width=0.7pt] (6.56,-0.85)--(6.56,-1.1);
+ \draw[crimson!60,line width=0.7pt] (9.84,-0.85)--(9.84,-1.1);
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{11.9cm}@{}}
+\toprule
+\rowcolor{ember!13}
+\textbf{\color{ember}Claim in the pasted text} & \textbf{\color{ember}The actual evidence for it}\\
+\midrule
+``AI may discover that data follows a previously unnoticed invariant'' &
+ \textbf{Davies et al., \textit{Nature}, 2021} --- ``Advancing mathematics by guiding human intuition
+ with AI''. Machine-learned attribution pointed to two genuine results: a new relationship between
+ knot invariants (algebraic and geometric), and a conjecture in representation theory on Kazhdan--Lusztig
+ polynomials. \textbf{Both were then proved by humans.} This is exactly the loop above, and it has
+ already run.\\
+ & \textbf{Symbolic regression} --- e.g.\ AI~Feynman (Udrescu \& Tegmark, 2020): recovering closed-form
+ physical laws from data. Works well on clean physics; degrades on noisy biology.\\
+\addlinespace[2pt]
+``AI can operate in 10{,}000-dimensional spaces without visualising them'' &
+ \textbf{AlphaFold2} (Jumper et al., \textit{Nature}, 2021). Also \textbf{Boltzmann generators}
+ (Noé et al., \textit{Science}, 2019) --- learning to sample equilibrium ensembles directly, bypassing
+ long molecular dynamics; and \textbf{cryoDRGN} (Zhong et al., \textit{Nature Methods}, 2021) for
+ continuous conformational heterogeneity in cryo-EM.\\
+\addlinespace[2pt]
+``Formal systems then determine whether the claim is true'' &
+ \textbf{Lean and mathlib}; the \textbf{Liquid Tensor Experiment} (posed Dec 2020, completed Jul 2022).\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 4.}\; The pasted text's AI section is the part that most needed citations and had none.
+With them, it becomes a research programme rather than an aspiration.
+\end{minipage}\end{center}
+
+\begin{critbox}[title={Two cautions worth passing to your students}]
+\textbf{1. Prediction is not understanding.} AlphaFold2 predicts structures superbly and explains
+folding not at all. It is an instrument, in exactly the sense of Move 4 --- and like every instrument
+it generates phenomena that then need a theory. Treating a trained model as if it were a theory is
+the modern form of Benjamin Peirce's error.\\[5pt]
+\textbf{2. The ``why?'' step has not been automated.} In the \textit{Nature} 2021 work, the machine
+supplied a \emph{signal}; humans supplied the concept, the conjecture and the proof. The loop
+currently has a human-shaped hole in the middle of it, and Part VI is a book about what fills that
+hole.
+\end{critbox}

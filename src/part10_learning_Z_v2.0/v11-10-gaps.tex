@@ -1,0 +1,98 @@
+\clearpage
+\renewcommand{\sectioncolor}{alert}
+\section{What is actually still missing}
+\markboth{What is still missing}{}
+
+The v1.0 list had five books. Four were already yours. \textbf{Two remain.}
+
+\begin{center}\small
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{3.6cm}>{\raggedright\arraybackslash}p{5.2cm}>{\raggedright\arraybackslash}p{6.3cm}@{}}
+\toprule
+\rowcolor{alert!12}
+\textbf{\#} & \textbf{\color{alert}Gap} & \textbf{\color{alert}Get} & \textbf{\color{alert}Why}\\
+\midrule
+\rowcolor{bio!8}
+\textbf{1} & \textbf{Markov-chain mixing times} &
+ \textbf{Levin \& Peres}, \textit{Markov Chains and Mixing Times} \newline{\scriptsize (the authors host a free PDF)} &
+ The only thing that explains §6 \emph{quantitatively}. You now have Le Gall and Bressloff for
+ stochastic processes, but neither treats mixing time --- which is the exact quantity that makes
+ sampling $Z$ fail.\\
+\textbf{2} & \textbf{Free-energy methods in simulation} &
+ \textbf{Frenkel \& Smit}, \textit{Understanding Molecular Simulation} &
+ \textbf{You have GROMACS 2023.3 compiled and no text for the mathematics it implements.} Umbrella
+ sampling, thermodynamic integration, free-energy perturbation --- the practical route from $Z$ to a
+ binding affinity.\\
+\midrule
+\multicolumn{4}{@{}l}{\textbf{\color{slate}Optional, only if you pursue the Tier 3 problem}}\\
+--- & HEOM / strong-coupling open systems & Breuer \& Petruccione, \textit{The Theory of Open Quantum
+ Systems} & Goes beyond N\&C ch.~8's Kraus formalism into master equations proper.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{haveit}[title={Books v1.0 told you to buy that you already own}]
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.3cm}>{\raggedright\arraybackslash}p{9.1cm}@{}}
+\toprule
+\rowcolor{bio!12}
+\textbf{v1.0 said ``buy''} & \textbf{Where it already was}\\
+\midrule
+Chandler or Kardar, statistical mechanics & \textbf{Feynman, \textit{Statistical Mechanics}} --- \bk{Module\_8}. Arguably better than either for your purposes, because ch.~2--3 go straight to the density matrix\\
+Grimmett \& Stirzaker, probability & \textbf{Le Gall} (409 pp) and \textbf{Lauritzen} --- \bk{Module\_8}\\
+Reed \& Simon, functional analysis & \textbf{Axler \textit{MIRA}} (430 pp) --- \bk{Module\_5}; and \textbf{Bru \& Pedra} for the operator-algebra end --- \bk{QBIT-HIS}\\
+Hall or Sakurai, quantum mechanics & \textbf{Sakurai \& Napolitano 3ed} (+ 2 solution manuals), Shankar, Griffiths, Townsend, Binney \& Skinner --- \bk{TensoQi101}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{haveit}
+
+\clearpage
+\section{A twelve-week plan, revised}
+\markboth{Twelve-week plan}{}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.4cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{5.1cm}@{}}
+\toprule
+\rowcolor{bio!14}
+\textbf{\color{bio}Weeks} & \textbf{\color{bio}Read} & \textbf{\color{bio}Do} & \textbf{\color{bio}Question to answer in writing}\\
+\midrule
+\textbf{1--2} & Axler \textit{LADR} §5--7, §10.A; then \textbf{N\&C §2.1.8} &
+ Prove $\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N$ &
+ Why does $e^{-\beta\hat H}$ need the spectral theorem to exist?\\
+\textbf{3} & --- & \textbf{Run the notebook}; exercises 1--3 &
+ At what $N$ does brute force stop on your laptop? Extrapolate to $N=60$.\\
+\rowcolor{tenso!7}
+\textbf{4} & \textbf{Shankar §21.2} &
+ Re-derive the Ising $Z$ his way &
+ What exactly is being Wick-rotated, and why does dimension go up by one?\\
+\textbf{5--6} & \textbf{Feynman} ch.~1 (\textit{The Partition Function}), ch.~2, ch.~5 &
+ Do §5.2 by hand; read §5.4 (Onsager) without trying to follow every step &
+ Why is 1D solvable and 2D a landmark?\\
+\rowcolor{qbit!7}
+\textbf{7--8} & \textbf{PBoC2 ch.~6 \textit{Entropy Rules!}} &
+ Work the gene-expression model &
+ Which of Part IX Fig.~2's six quantities can you now compute for a real cell?\\
+\textbf{9} & \textbf{N\&C §2.4, §11.3, ch.~8} &
+ Write $\rho=e^{-\beta\hat H}/Z$ and verify $\mathrm{Tr}\,\rho=1$ &
+ Where does positivity get used, exactly?\\
+\textbf{10} & \textbf{Axler \textit{MIRA}} ch.~1--3 (or Le Gall) &
+ Verify $\mu(dx)=e^{-\beta U}dx/Z$ is a probability measure &
+ In what sense does a positive operator \emph{determine} a measure?\\
+\rowcolor{bio!8}
+\textbf{11--12} & \textbf{Levin \& Peres} ch.~1--4 \newline{\scriptsize (the one book to acquire)} &
+ Notebook exercise 4: autocorrelation time vs $\xi$ &
+ \textbf{Restate §6 in the language of mixing times.}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 5.}\; \textbf{One book to acquire; eleven weeks from your own shelves.} At the end you
+can read Part IX §7 on Boltzmann generators and know precisely what problem it solves.
+\end{minipage}\end{center}
+
+\begin{plain}
+The plan is one week longer than it needs to be on purpose. Weeks 4 and 5--6 cover the same
+calculation twice, from quantum mechanics and from statistical mechanics. That redundancy is the
+point: it is the difference between knowing a derivation and knowing an object.
+\end{plain}

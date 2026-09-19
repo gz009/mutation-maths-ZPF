@@ -1,0 +1,69 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{The payoff --- the theorem, assembled \ \ \cell{19}}
+\markboth{The assembled theorem}{}
+
+Everything in §5 was preparation for this. The notebook's §9 states and proves the theorem your
+Ising notebooks had only checked.
+
+\begin{dobox}[title={Theorem}]
+For the 1D Ising transfer matrix $T$ and \textbf{every} $N\ge1$,
+\[\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N.\]
+\end{dobox}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+ s/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=8pt,
+           text width=7.3cm,align=left,minimum height=1.9cm},
+ lic/.style={rounded corners=3pt,fill=#1,text=white,inner sep=5pt,font=\scriptsize\bfseries,
+             text width=3.3cm,align=center},
+ ar/.style={-{Stealth[length=5pt]},line width=1.1pt,draw=slate!70}]
+ \node[s=proof] (s1) at (-3.0,0)     {\textbf{Step 1.} $T$ is real and symmetric.};
+ \node[lic=proof] at (5.1,0) {\textbf{direct proof} (§5.1)};
+ \node[s=proof] (s2) at (-3.0,-2.35) {\textbf{Step 2.} Hence there is an \emph{orthonormal} basis of
+   eigenvectors. Write $P$ for that basis and $D=\operatorname{diag}(\lambda_+,\lambda_-)$, so
+   $P^{-1}TP=D$.};
+ \node[lic=nano] at (5.1,-2.35) {\textbf{Axler 7.29}\\Real Spectral Theorem};
+ \node[s=proof] (s3) at (-3.0,-4.70) {\textbf{Step 3.} $P^{-1}T^NP=(P^{-1}TP)^N=D^N$, and $D^N$ is
+   diagonal with entries $\lambda_\pm^N$.};
+ \node[lic=sand] at (5.1,-4.70) {\textbf{induction} (§5.6)};
+ \node[s=bio] (s4) at (-3.0,-7.05)   {\textbf{Step 4.} The trace is unchanged by a change of basis,
+   so $\operatorname{Tr}(T^N)=\operatorname{Tr}(D^N)=\lambda_+^N+\lambda_-^N$. $\blacksquare$};
+ \node[lic=bio] at (5.1,-7.05) {\textbf{Axler 10.A}\\trace is basis-free};
+ \foreach \a/\b in {s1/s2,s2/s3,s3/s4}{\draw[ar] (\a)--(\b);}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; Four steps, each licensed by something named. \textbf{That is what a proof looks
+like.} It holds for $N=10^{100}$ with no further work --- which no amount of computation could give
+you.
+\end{minipage}\end{center}
+
+\begin{warnbox}[title={The gap left deliberately open}]
+Step 3 used $(P^{-1}AP)^N=P^{-1}A^NP$ \textbf{without proving it}. That is not an oversight --- it is
+notebook \textbf{exercise 6}, and it is your first genuine induction.
+
+Try it before reading on. Base case $N=1$ is immediate; for the step, insert $PP^{-1}=I$ in the
+middle and watch it telescope.
+\end{warnbox}
+
+\begin{techbox}[title={One theorem, three languages --- \cell{22}, the notebook's §11}]
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{8.6cm}>{\raggedright\arraybackslash}p{4.6cm}@{}}
+\toprule
+\rowcolor{proof!13}
+& \textbf{\color{proof}statement} & \textbf{\color{proof}lives in}\\
+\midrule
+\textbf{Pure} & a self-adjoint operator on a finite-dimensional real inner-product space has an
+ orthonormal eigenbasis & Axler 7.29\\
+\textbf{Applied} & the free energy is $-\frac1\beta\ln\lambda_+$ and $\xi=1/\ln(\lambda_+/\lambda_-)$ &
+ Feynman ch.~5; PBoC2 ch.~6\\
+\textbf{Computational} & \bk{T0.eigenmatrix\_right()} returns $(D,P)$ with $P$ orthogonal & Sage\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{3pt}
+The \textbf{pure} statement licenses the applied one. The \textbf{computational} one only checks
+instances. Losing track of which you are doing is the commonest error in computational science.
+\end{techbox}

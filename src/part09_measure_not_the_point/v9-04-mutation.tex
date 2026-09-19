@@ -1,0 +1,148 @@
+\clearpage
+\renewcommand{\sectioncolor}{quantum}
+\section{``Apparent random'' mutation --- the word \emph{apparent} is doing real work}
+\markboth{Mutation}{}
+
+Your phrasing was exact. Mutation is \emph{apparently} random on two independent levels, and they
+need separating because they sit in different tiers.
+
+\subsection{Level 1 --- not uniform in space or time}
+\noindent\Ttwo\;\emph{established; the mathematics exists and is simply not used here.}\medskip
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{8.4cm}>{\raggedright\arraybackslash}p{8.2cm}@{}}
+\toprule
+\rowcolor{quantum!12}
+\textbf{\color{quantum}Finding} & \textbf{\color{quantum}Evidence}\\
+\midrule
+Mismatch repair efficiency tracks chromatin state, so mutation rate varies more than two-fold across
+ the genome & Supek \& Lehner, \textit{Nature} \textbf{521}, 81 (2015)\\
+$\sim$80+ distinct mutational signatures decompose the 96-channel substitution spectrum &
+ Alexandrov et al., \textit{Nature} \textbf{500} (2013); PCAWG, \textit{Nature} \textbf{578} (2020)\\
+CpG deamination produces $\sim$10-fold local hotspots & Lindahl, \textit{Nature} \textbf{362}, 709 (1993)\\
+Mutation rate is \emph{regulated}: stress induces error-prone polymerases (SOS response) &
+ Rosenberg and successors --- mutation rate is a controlled variable, not a constant\\
+\rowcolor{alert!7}
+Mutation bias correlates with gene essentiality in \textit{Arabidopsis} & Monroe et al.,
+ \textit{Nature} \textbf{602} (2022) --- \textbf{contested}; treat as unsettled\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tier2}[title={The wrong object, and the right one}]
+Standard practice models mutation as a \textbf{homogeneous Poisson process} with rate $\mu$. If the
+rate varies across the genome and over time, the correct object is a \textbf{Cox process} --- a
+Poisson process whose intensity is itself a random field:
+\[
+\lambda(x,t)\;=\;\lambda_0\,\exp\!\big(f(\text{chromatin},\,\text{replication timing},\,\text{transcription},\,\text{stress})\big)
+\]
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize]
+% homogeneous
+\node[anchor=east,font=\scriptsize\bfseries,text=slate] at (-0.3,1.5) {POISSON};
+\draw[slate!50,line width=1pt] (0,1.5)--(15.2,1.5);
+\foreach \x in {0.8,2.1,3.4,4.0,5.6,6.9,8.1,9.4,10.2,11.6,12.9,14.3}{
+  \draw[slate,line width=1.1pt] (\x,1.33)--(\x,1.67);}
+\node[anchor=west,font=\scriptsize,text=slate] at (15.4,1.5) {};
+% cox
+\node[anchor=east,font=\scriptsize\bfseries,text=measure] at (-0.3,0.0) {COX};
+\draw[measure!35,line width=0.8pt,smooth,domain=0:15.2,samples=140]
+  plot (\x,{0.45*sin(\x*38)+0.30*sin(\x*97+40)+0.55});
+\draw[slate!50,line width=1pt] (0,0)--(15.2,0);
+\foreach \x in {0.5,0.7,2.8,3.0,3.1,3.3,5.9,7.8,7.9,8.0,8.2,8.35,10.4,12.7,12.8,13.0,13.15,13.3,14.9}{
+  \draw[measure,line width=1.1pt] (\x,-0.17)--(\x,0.17);}
+\node[anchor=north,font=\scriptsize,text=measure,align=center] at (7.6,-0.42)
+  {events cluster where the \emph{intensity field} is high --- hotspots, fragile sites, kataegis};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\textbf{Why this is not academic, for your AMR work:} if the intensity is a field rather than a
+constant, the expected waiting time to a resistance mutation is \emph{not} $1/\mu$. Clustered
+intensity makes rare-but-fast emergence far more likely than a Poisson model predicts. That changes
+stewardship and dosing predictions, and the mathematics (log-Gaussian Cox processes, Hawkes processes
+for clustered events) is completely standard and completely unused here.
+\end{tier2}
+
+\subsection{Level 2 --- the quantum substrate}
+\noindent\Tthree\;\emph{this is where the mathematics genuinely runs out.}\medskip
+
+This is where your question actually points, and it has a precise, citable literature.
+
+\begin{evidence}[title={Löwdin's proposal, and its modern treatment}]
+\textbf{Löwdin (1963)}, \textit{Rev.\ Mod.\ Phys.} \textbf{35}, 724, proposed that point mutations
+arise from \textbf{proton tunnelling} across the hydrogen bonds of a base pair, producing rare
+\textbf{tautomers} (G\*--C\*, A\*--T\*) that mispair when the replication fork arrives.
+
+\textbf{Slocombe, Sacchi \& Al-Khalili}, \textit{Communications Physics} \textbf{5}, 109 (2022) ---
+\emph{``An open quantum systems approach to proton tunnelling in DNA''} --- treated the G--C proton
+transfer as a double well coupled to a thermal bath and found the tautomeric population reaches
+$\approx 1.7\times10^{-4}$, equilibrating on \textbf{sub-picosecond} timescales: orders of magnitude
+faster and more populated than a classical over-barrier estimate.
+\end{evidence}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% double well
+\begin{scope}[shift={(0,0)}]
+ \draw[slate!50,-{Stealth[length=4pt]}] (-3.3,0)--(3.5,0) node[right,font=\scriptsize]{proton position};
+ \draw[slate!50,-{Stealth[length=4pt]}] (-3.3,0)--(-3.3,3.0) node[above,font=\scriptsize]{energy};
+ \draw[quantum,line width=1.5pt,domain=-2.75:2.75,samples=180,smooth]
+   plot (\x,{0.38*(\x*\x-2.6)*(\x*\x-2.6)/2.6 + 0.35});
+ % levels
+ \draw[bio,line width=1.2pt] (-2.15,0.62)--(-1.05,0.62);
+ \node[font=\scriptsize,text=bio,anchor=east] at (-2.2,0.62) {canonical};
+ \draw[alert,line width=1.2pt] (1.05,0.62)--(2.15,0.62);
+ \node[font=\scriptsize,text=alert,anchor=west] at (2.2,0.62) {tautomer};
+ % tunnelling arrow
+ \draw[measure,line width=1.4pt,dashed,-{Stealth[length=5pt]}] (-1.15,0.62)--(1.15,0.62);
+ \node[font=\scriptsize\bfseries,text=measure,anchor=south] at (0,0.70) {tunnelling};
+ \node[font=\scriptsize,text=slate,anchor=north] at (0,2.55) {barrier $\gg k_BT$};
+ \draw[slate,line width=0.6pt,{Stealth[length=3pt]}-{Stealth[length=3pt]}] (0,0.68)--(0,2.45);
+ % bath
+ \foreach \i in {0,...,9}{
+   \draw[nano!60,line width=0.5pt] ({-2.7+\i*0.6},-0.45) sin ({-2.4+\i*0.6},-0.25) cos ({-2.1+\i*0.6},-0.45);}
+ \node[font=\scriptsize,text=nano,anchor=north] at (0,-0.62)
+   {the bath: ordered water, counterions, the helix itself --- \textbf{strongly coupled, structured, non-Markovian}};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 4.}\; The Löwdin picture as an open quantum system. Everything hard is in the bath:
+it is not weak, not memoryless, and not generic.
+\end{minipage}\end{center}
+
+\begin{tier3}[title={What mathematics is actually missing here}]
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.85cm}>{\raggedright\arraybackslash}p{5.85cm}>{\raggedright\arraybackslash}p{4.85cm}@{}}
+\toprule
+\rowcolor{alert!12}
+\textbf{\color{alert}Missing object} & \textbf{\color{alert}Why it is hard} & \textbf{\color{alert}State of the art}\\
+\midrule
+Non-Markovian dynamics at \emph{strong} coupling &
+ Lindblad needs weak coupling \emph{and} memorylessness --- both violated. HEOM is numerically exact
+ but scales exponentially in bath complexity &
+ \textbf{Genuinely open.} No tractable general theory\\
+Decoherence in \emph{structured} environments &
+ Tegmark-style estimates assume a generic bath. DNA's environment is ordered and correlated &
+ No theory\\
+\rowcolor{alert!6}
+Quantum-origin error meeting a \emph{classical} proofreader &
+ Kinetic proofreading (Hopfield 1974) is entirely classical. There is no theory of a classical
+ corrector acting on a quantum-origin error &
+ \textbf{Not even properly posed}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tier3}
+
+\begin{critbox}[title={Be careful here --- and tell your students the same}]
+The tunnelling is real physics. \textbf{The link to mutation is not closed.} The tautomer must
+survive until the replication fork arrives \emph{and} the polymerase must misread it, and tautomer
+lifetimes are short. Most spontaneous mutation is attributed to replication error, deamination and
+oxidative damage, not tunnelling.
+
+This is the same epistemic situation as the photosynthesis coherence claims in Part VII: genuine
+quantum mechanics, unproven functional consequence. \textbf{Mark it as open, work on it if you want
+to do mathematics, and do not cite it as established.}
+\end{critbox}

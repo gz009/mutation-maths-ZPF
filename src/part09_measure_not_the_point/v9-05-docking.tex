@@ -1,0 +1,126 @@
+\clearpage
+\renewcommand{\sectioncolor}{nano}
+\section{Docking and dynamics: the error is entropic}
+\markboth{Docking}{}
+
+Docking's weakness is not geometry. Poses are usually roughly right. The failure is in the number
+attached to the pose, and the reason is arithmetic before it is chemistry.
+
+\subsection{A small difference of two enormous numbers}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+\def\S{0.00055}   % kcal -> cm
+\foreach \y/\lab/\val/\c in {1.6/{protein $+$ ligand, unbound}/{$\approx -12{,}000$ kcal/mol}/nano,
+                             0.7/{the complex, bound}/{$\approx -12{,}010$ kcal/mol}/nano}{
+  \fill[\c,opacity=0.25,rounded corners=2pt] (0,\y-0.22) rectangle (13.2,\y+0.22);
+  \draw[\c,line width=0.9pt,rounded corners=2pt] (0,\y-0.22) rectangle (13.2,\y+0.22);
+  \node[font=\scriptsize,anchor=west] at (0.15,\y) {\lab};
+  \node[font=\scriptsize\bfseries,anchor=east] at (13.05,\y) {\val};}
+\fill[alert,rounded corners=2pt] (0,-0.32) rectangle (0.62,0.12);
+\draw[alert,line width=1pt,rounded corners=2pt] (0,-0.32) rectangle (0.62,0.12);
+\node[font=\scriptsize\bfseries,text=alert,anchor=west] at (0.80,-0.10)
+  {$\Delta G_{\text{bind}} \approx -10$ kcal/mol \ \ --- \ \ what we actually want, at \textbf{0.08\,\%} of the size of the terms it is a difference of};
+\node[anchor=north,font=\scriptsize,text=slate,text width=13.0cm,align=center] at (6.6,-0.65)
+  {a 1\,\% error in either large number is a \textbf{120 kcal/mol} error in the answer --- so scoring
+   functions cannot be built by computing the two terms and subtracting};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 5.}\; Illustrative magnitudes, to scale. This is why empirical scoring functions are
+fitted regressions rather than physics: the physics route requires cancellation to five significant
+figures.
+\end{minipage}\end{center}
+
+\noindent And the part that will not cancel is entropic:
+\[
+\Delta G_{\text{bind}} \;=\; \underbrace{\Delta H}_{\text{computable-ish}} \;-\; T\underbrace{\Delta S}_{\textbf{the problem}}
+\qquad\text{and}\qquad S \;=\; -\frac{\partial F}{\partial T},\quad F=-k_BT\ln Z .
+\]
+\textbf{Entropy \emph{is} $\ln Z$.} So docking's central difficulty is the same villain as §2.
+
+\subsection{The two entropy terms that dominate, and neither is solved}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{6.0cm}@{}}
+\toprule
+\rowcolor{nano!13}
+\textbf{\color{nano}Term} & \textbf{\color{nano}Why it dominates} & \textbf{\color{nano}Best available, and its limit}\\
+\midrule
+\textbf{Desolvation} \newline (ordered water) &
+ Displacing structured water from a binding site can supply most of the affinity. The water is
+ \emph{part of the receptor}, and it is invisible in most crystal structures. &
+ Inhomogeneous solvation theory --- WaterMap, Abel et al., \textit{JACS} \textbf{130}, 2817 (2008).
+ \textbf{No rigorous tractable theory of which waters are displaceable, and at what cost.}\\
+\textbf{Configurational entropy} &
+ Both partners lose conformational freedom on binding. This is an integral over a $3N$-dimensional
+ manifold. &
+ Free energy perturbation: $\sim$1 kcal/mol accuracy demonstrated (Wang et al., \textit{JACS}
+ \textbf{137}, 2695, 2015) --- but \textbf{GPU-days per ligand \emph{pair}}, and only between
+ chemically similar ligands, because the alchemical path must be smooth.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The other wall: fifteen orders of magnitude}
+
+Binding \emph{kinetics} --- residence time $1/k_{\text{off}}$ --- predicts clinical efficacy better
+than affinity does for many targets. It is also far harder, because it is a rare-event problem.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+\draw[slate!55,line width=1.2pt,-{Stealth[length=5pt]}] (0,0)--(15.4,0);
+\foreach \i/\lab in {0/{$10^{-15}$},1.9/{$10^{-12}$},3.8/{$10^{-9}$},5.7/{$10^{-6}$},
+                     7.6/{$10^{-3}$},9.5/{$1$},11.4/{$10^{3}$},13.3/{$10^{6}$}}{
+  \draw[slate!55] (\i,-0.12)--(\i,0.12);
+  \node[font=\scriptsize,below=3pt] at (\i,-0.1) {\lab};}
+\node[font=\scriptsize,text=slate,anchor=north] at (7.7,-0.75) {seconds (log scale)};
+\foreach \x/\y/\lab/\c in {0.0/0.62/{MD timestep}/nano, 1.3/1.12/{bond vibration}/nano,
+                           3.2/0.62/{side-chain rotation}/nano, 5.4/1.12/{loop motion}/sand,
+                           7.9/0.62/{domain motion, folding}/sand,
+                           10.4/1.12/{\textbf{drug residence time}}/alert,
+                           12.6/0.62/{enzyme turnover to cell cycle}/alert}{
+  \fill[\c] (\x,0) circle (2.2pt);
+  \draw[\c!70,line width=0.6pt] (\x,0.08)--(\x,\y-0.14);
+  \node[font=\scriptsize,text=\c!75!black,anchor=south] at (\x,\y-0.10) {\lab};}
+\draw[alert,line width=1.3pt,decorate,decoration={brace,amplitude=5pt,mirror}] (0.05,-1.15)--(11.3,-1.15);
+\node[font=\scriptsize\bfseries,text=alert,anchor=north,align=center] at (5.7,-1.35)
+  {\textbf{15 orders of magnitude} --- brute force would need $\sim10^{17}$ timesteps};
+\end{tikzpicture}
+\end{center}
+\vspace{6pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 6.}\; The sampling gap. Enhanced sampling closes part of it by biasing the measure;
+it does not close it by brute force, and it never will.
+\end{minipage}\end{center}
+
+\subsection{Where genuinely new mathematics has already landed \nopagebreak}
+
+\noindent This is the encouraging part of your question: the answer is that it \emph{is} happening.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{5.8cm}@{}}
+\toprule
+\rowcolor{bio!13}
+\textbf{\color{bio}Advance} & \textbf{\color{bio}The mathematics} & \textbf{\color{bio}Why it matters}\\
+\midrule
+\textbf{E(3)-equivariant networks} \newline MACE (Batatia et al., NeurIPS 2022); NequIP; Allegro &
+ Equivariant message passing built on \textbf{higher-order tensor products of irreducible
+ representations of $E(3)$} (Thomas et al.\ 2018; \texttt{e3nn}) &
+ DFT-level accuracy at near-classical cost. \textbf{Representation theory doing load-bearing work in
+ a force field.} This one genuinely worked.\\
+\textbf{Boltzmann generators} \newline Noé et al., \textit{Science} \textbf{365}, eaaw1147 (2019) &
+ \textbf{Normalizing flows}: learn an invertible $f$ from a Gaussian to the Boltzmann measure, with
+ tractable Jacobian, then reweight to exactness &
+ \textbf{A direct assault on $Z$.} Sample the measure without running the trajectory. See §7.\\
+\textbf{Learned collective variables} \newline VAMPnets (Mardt et al., \textit{Nat Commun} \textbf{9}, 5, 2018) &
+ \textbf{Koopman / transfer-operator} spectral theory (Wu \& Noé, \textit{J Nonlinear Sci}
+ \textbf{30}, 2020) &
+ Finds the slow coordinates instead of guessing them. See §6.\\
+Metadynamics \newline Laio \& Parrinello, \textit{PNAS} \textbf{99}, 12562 (2002) &
+ Adaptive history-dependent bias on a free-energy surface &
+ Mature and widely used; the CV-choice problem is precisely what VAMPnets repair.\\
+\bottomrule
+\end{tabular}
+\end{center}

@@ -1,0 +1,399 @@
+\clearpage
+\renewcommand{\sectioncolor}{csB}
+\section{Case Study 2 — What is \texorpdfstring{$e$}{e}?}
+\markboth{Case Study 2 · What is $e$?}{}
+\noindent\chip{csB}{BOOK pp.\ 399--419}\;\chip{slate}{PDF pp.\ 418--438}\;\chip{csB}{DELIVERS: $e$ as a \emph{concept}, and why it is 2.71828\ldots}
+
+\vspace{6pt}
+\subsection{Demolition: exponentiation is not self-multiplication}
+
+\begin{critbox}[title={The confusion that survives into university teaching}]
+$2^{2/3}$ is \textbf{not} $2$ multiplied by itself two-thirds of a time. $2^{\pi}$ is \textbf{not} $2$
+multiplied by itself $3.14159\ldots$ times.
+\begin{bookquote}{book p.~404 / pdf p.~423}
+\textit{The exponential mapping for a base $b$ is defined as specified above, but it is not
+self-multiplication.}
+\end{bookquote}
+Self-multiplication is a \emph{special case that happens to coincide on the integers}, and it rests
+on a \emph{different} metaphor --- \meta{Arithmetic Is Object Construction} (a whole made of equal
+parts). Hence the symbol ``$2^5$'' is conceptually \textbf{ambiguous}.
+\end{critbox}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  rd/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=8pt,
+             text width=6.6cm,align=center}]
+  \node[fill=ink,text=white,rounded corners=4pt,inner sep=8pt,font=\large\bfseries] (sym) at (0,1.9) {$2^5$};
+  \node[font=\scriptsize,text=slate,right=5pt] at (0.6,1.9) {one symbol, two ideas};
+  \node[rd=teal] (l) at (-4.4,0) {\textbf{\color{teal}Object-construction reading}\\[3pt]
+     $2\cdot2\cdot2\cdot2\cdot2$\\[3pt]
+     {\scriptsize a \emph{whole} made of five equal \emph{parts}}\\[2pt]
+     {\scriptsize grounding metaphor: \meta{Arithmetic Is Object Construction}}};
+  \node[rd=csB] (r) at (4.4,0) {\textbf{\color{csB!80!black}Exponential-mapping reading}\\[3pt]
+     $\mathrm{Exp}_2(5)$\\[3pt]
+     {\scriptsize ``$5$ is the \emph{input}; $2$ says what $1$ maps to''}\\[2pt]
+     {\scriptsize the only reading available for $2^{\pi}$, $2^{2/3}$, $2^{i}$}};
+  \draw[-{Stealth[length=5pt]},line width=1pt,draw=teal]  (sym)--(l);
+  \draw[-{Stealth[length=5pt]},line width=1pt,draw=csB]   (sym)--(r);
+  \node[font=\scriptsize,text=crimson,align=center] at (4.4,-1.95)
+     {\textbf{Only this branch survives}\\into $e^{\pi i}$};
+  \draw[crimson,-{Stealth[length=4pt]},line width=0.8pt] (4.4,-1.55)--(4.4,-1.32);
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 5.}\; The ambiguity of exponential notation \pg{404}{423}. The book proposes writing
+$\mathrm{Exp}_b(x)$ precisely because the ordinary notation \emph{hides} the asymmetry between
+$b$ and $x$.
+\end{minipage}\end{center}
+
+\begin{ideabox}[title={Where $b$ and $x$ actually live --- and why $b^0=1$}]
+In ``$b^x$'' the two symbols are not on the same footing at all:
+\[
+\underbrace{b}_{\text{\color{crimson}in the \textbf{range}}}{}^{\textstyle\underbrace{x}_{\text{\color{teal}in the \textbf{domain}}}}
+\qquad\text{---}\qquad
+b\;\text{is merely \emph{the number that }} 1 \text{\emph{ maps onto}.}
+\]
+So $b^0=1$ is not a convention and not ``$b$ multiplied by itself zero times'' (which is nonsense).
+It says: \textbf{the exponential sends the additive identity $0$ to the multiplicative identity $1$}
+--- true for every base, which is why $b^0=1$ always.
+\begin{bookquote}{book p.~405 / pdf p.~424}
+\textit{The way that the exponential function is written---``$b^x$''---is misleading. It is done that
+way for the purpose of ease of calculation, for those cases where self-multiplication will happen to
+allow you to calculate the value of the function.}
+\end{bookquote}
+\end{ideabox}
+
+\subsection{What a logarithm really is}
+
+Not ``the inverse of a power'', but a \textbf{mapping that lets you multiply by adding} --- in modern
+terms a group homomorphism $(\mathbb{R}^{+},\times)\to(\mathbb{R},+)$. Napier's labour was tabulating it;
+the slide rule is the physical instrument of the same idea.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,scale=0.98]
+% ---------- domain line (multiplicative) ----------
+\draw[csB,line width=1.5pt,-{Stealth[length=5pt]}] (0.2,2.2)--(15.5,2.2);
+\node[anchor=east,font=\scriptsize\bfseries,text=csB,align=right] at (0.05,2.2)
+  {DOMAIN\\{\scriptsize$(\mathbb{R}^{+},\times)$}};
+\foreach \x/\l in {1.3/{$\tfrac1{100}$},3.35/{$\tfrac1{10}$},5.4/{$1$},7.45/{$10$},
+                   9.5/{$100$},11.55/{$1{,}000$},13.6/{$10{,}000$}}{
+  \fill[csB] (\x,2.2) circle (2pt); \node[above=4pt,font=\scriptsize] at (\x,2.2) {\l};}
+% ---------- range line (additive) ----------
+\draw[teal,line width=1.5pt,-{Stealth[length=5pt]}] (0.2,-0.95)--(15.5,-0.95);
+\node[anchor=east,font=\scriptsize\bfseries,text=teal,align=right] at (0.05,-0.95)
+  {RANGE\\{\scriptsize$(\mathbb{R},+)$}};
+\foreach \x/\l in {1.3/{$-2$},3.35/{$-1$},5.4/{$0$},7.45/{$1$},
+                   9.5/{$2$},11.55/{$3$},13.6/{$4$}}{
+  \fill[teal] (\x,-0.95) circle (2pt); \node[below=4pt,font=\scriptsize] at (\x,-0.95) {\l};}
+% ---------- mapping arrows ----------
+\foreach \x in {1.3,3.35,5.4,7.45,9.5,11.55,13.6}{
+  \draw[purple!45,-{Stealth[length=3.5pt]},line width=0.55pt] (\x,2.0)--(\x,-0.75);}
+\node[font=\scriptsize,text=purple,fill=white,inner sep=1.5pt] at (2.33,0.62) {$\log$};
+\node[font=\scriptsize,text=slate,align=center,fill=white,inner sep=2pt] at (5.4,0.62)
+  {\textbf{$\log$: products $\mapsto$ sums}\\[1pt]
+   $1\mapsto0$,\quad $b\mapsto1$,\quad $b^{n}\mapsto n$};
+% ---------- worked example : 10 x 100 = 1000 ----------
+\foreach \x in {7.45,9.5}{\draw[crimson,line width=1.1pt] (\x,2.2) circle (4.5pt);
+                          \draw[crimson,line width=1.1pt] (\x,-0.95) circle (4.5pt);}
+\draw[crimson,line width=1.3pt] (11.55,2.2) circle (5.5pt);
+\draw[crimson,line width=1.3pt] (11.55,-0.95) circle (5.5pt);
+% brace under range
+\draw[decorate,decoration={brace,amplitude=4pt,mirror},crimson,line width=0.8pt]
+   (7.45,-1.55)--(9.5,-1.55);
+\node[font=\scriptsize,text=crimson,below=4pt] at (8.47,-1.62) {\textbf{add}: $1+2=3$};
+\draw[crimson,line width=1pt,-{Stealth[length=4.5pt]}]
+   (9.75,-1.95) .. controls (10.9,-2.05) and (11.55,-1.9) .. (11.55,-1.42);
+% up arrow: inverse log
+\draw[crimson,line width=1.1pt,-{Stealth[length=5pt]}] (12.15,-0.95) -- (12.15,2.05);
+\node[font=\scriptsize,text=crimson,anchor=west] at (12.28,0.62) {$\log^{-1}$};
+% top annotation
+\node[font=\scriptsize,text=crimson,align=center] at (9.5,3.52)
+   {\textbf{multiply}:\; $10\times100=1{,}000$};
+\draw[crimson,line width=0.7pt,dashed] (9.5,3.30)--(9.5,3.06);
+\draw[crimson,line width=0.7pt,dashed] (7.45,2.96)--(11.55,2.96);
+\draw[crimson,line width=0.7pt,dashed] (7.45,2.96)--(7.45,2.80);
+\draw[crimson,line width=0.7pt,dashed] (11.55,2.96)--(11.55,2.80);
+\end{tikzpicture}
+\end{center}
+\vspace{-3pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 6.}\; The logarithm mapping, base 10 \pg{400--402}{419--421} (the book's Figures
+CS\,2.1--2.2). The four constraints listed in the middle \textbf{completely and uniquely determine
+every value} of the mapping --- though, as the book notes, they do not by themselves give an
+algorithm for computing it.
+\end{minipage}\end{center}
+
+\noindent The exponential is simply this mapping run backwards: $0\mapsto1$, $1\mapsto b$,
+$n\mapsto b^n$, \textbf{sums $\mapsto$ products}. Cognitively, Lakoff \& Núñez read it as the
+arithmetization of the metaphor \meta{Multiplication Is Addition} \pg{405}{424}.
+
+\clearpage
+\subsection{The seven-step mathematicization of change}
+
+For a foundations student this is the single most valuable page in Part VI. Before differential
+calculus can be ``the mathematics of change'', \textbf{seven} conceptual moves must already have been
+made --- and by the time you meet them in a calculus course they have all been internalised
+invisibly.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  st/.style={rounded corners=3pt,draw=csB,line width=0.9pt,fill=csB!8,
+             text width=7.15cm,align=left,inner sep=6pt},
+  num/.style={circle,fill=csB,text=white,font=\scriptsize\bfseries,inner sep=3pt},
+  dn/.style={-{Stealth[length=5pt,width=4pt]},line width=1pt,draw=csB!70}]
+\node[st] (s1) at (0,0) {\textbf{Time is distance.}\; The everyday metaphor: \emph{we're coming up on
+  Christmas}, \emph{a long way to the end of the project}.};
+\node[st] (s2) at (0,-1.62) {\textbf{Motion $\to$ two independent dimensions}, distance and
+  time-as-distance.};
+\node[st] (s3) at (0,-3.24) {\textbf{\meta{Logical Independence Is Geometrical Orthogonality}} ---
+  this is what makes them \emph{axes}.};
+\node[st] (s4) at (0,-5.10) {\textbf{Motion becomes a function $\mathbb{R}\to\mathbb{R}$.}\; The motion
+  itself does not survive: it becomes a \emph{set of pairs} $(t,l)$. Continuity is supplied
+  metaphorically by Weierstrass's preservation-of-closeness.};
+\node[st] (s5) at (0,-7.00) {\textbf{Average speed becomes a ratio of numbers.}\; ``Average speed, of
+  course, does not occur in the world.''};
+\node[st] (s6) at (0,-8.86) {\textbf{\meta{Instantaneous Speed Is Average Speed over an Interval of
+  Infinitely Small Size}} --- which itself requires the \textbf{BMI}.};
+\node[st] (s7) at (0,-10.72) {\textbf{\meta{Change Is Motion}}, to generalise from speed of motion to
+  rate of change \emph{überhaupt}.};
+\foreach \i in {1,...,7}{\node[num] at ($(s\i.west)+(-0.42,0)$) {\i};}
+\foreach \a/\b in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6,s6/s7}{\draw[dn] (\a)--(\b);}
+% right-hand commentary
+\node[anchor=north west,text width=6.9cm,align=left,font=\scriptsize,text=slate]
+   at (4.35,0.62)
+   {\textbf{\color{csB!80!black}\normalsize Read the stack downward.}\\[4pt]
+    Each step is a \emph{substitution}: something directly perceived is replaced by something
+    calculable. Motion is perceived directly, by motion detectors in the visual system. Nothing in
+    the final object --- a set of ordered pairs of real numbers --- moves.\\[7pt]
+    \textbf{\color{crimson}What happens if you forget they are metaphors:}};
+\node[anchor=north west,inner sep=0pt] at (4.35,-2.85)
+ {\begin{minipage}{6.9cm}
+  \begin{bookquote}{Russell, \textit{Principles of Mathematics} 1903, p.~473; quoted book p.~408 / pdf p.~427}
+  \textit{Motion consists merely in the occupation of different places at different times, subject to
+  continuity.\ldots\ There is no transition from place to place, no consecutive moment or consecutive
+  position, no such thing as velocity except in the sense of a real number, which is the limit of a
+  certain set of quotients.}
+  \end{bookquote}
+  \end{minipage}};
+\node[anchor=north west,text width=6.9cm,align=left,font=\scriptsize,text=slate] at (4.35,-8.15)
+   {Lakoff \& Núñez call this \textbf{``pathological literalness''} --- mistaking the output of the
+    metaphor chain for the thing itself. Their diagnosis:\\[4pt]
+    \textit{``His view that thought was mathematical logic blinded him to the metaphorical mechanisms
+    of mind needed to go from the normal human concept of change to a conceptualization of change in
+    Weierstrass's mathematics.''}\\[3pt]
+    \hfill\textsc{book p.~408 / pdf p.~427}};
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 7.}\; The seven steps \pg{407--408}{426--427}. Keep this beside any rigorous
+treatment of the derivative: it is an inventory of everything you silently import when you say
+``calculus is the mathematics of change''.
+\end{minipage}\end{center}
+
+\clearpage
+\subsection{The derivation --- and the exact location of the hinge}
+
+Now the payoff. Differentiate a general exponential and watch where the whole of Part VI turns.
+
+\begin{center}
+\begin{tcolorbox}[enhanced,width=0.97\textwidth,colback=white,colframe=csB,boxrule=1pt,arc=3pt,
+   title={\bfseries Differentiating $b^{x}$ --- the load-bearing step is coloured},
+   fonttitle=\bfseries,coltitle=white,colbacktitle=csB]
+\begin{align*}
+\frac{d}{dx}b^{x}
+ &= \lim_{\Delta x\to 0}\frac{b^{\,x+\Delta x}-b^{x}}{\Delta x} &&\text{\footnotesize derivative metaphor + BMI}\\[4pt]
+ &= \lim_{\Delta x\to 0}\frac{\textcolor{crimson}{\boldsymbol{b^{x}\cdot b^{\Delta x}}}-b^{x}}{\Delta x}
+   &&\textcolor{crimson}{\text{\footnotesize\textbf{THE HINGE: available }\emph{only}\textbf{ because}}}\\[-3pt]
+ & &&\textcolor{crimson}{\text{\footnotesize\textbf{the exponential maps sums}\,$\mapsto$\,\textbf{products}}}\\[4pt]
+ &= \lim_{\Delta x\to 0}\frac{b^{x}\left(b^{\Delta x}-1\right)}{\Delta x} &&\text{\footnotesize group the common factor}\\[4pt]
+ &= b^{x}\cdot\underbrace{\lim_{\Delta x\to 0}\frac{b^{\Delta x}-1}{\Delta x}}_{\textstyle \text{\normalsize a constant, call it }C}
+   &&\text{\footnotesize $b^{x}$ contains no $\Delta x$, so it leaves the limit}\\[10pt]
+ &= \;\boldsymbol{C\,b^{x}} &&
+\end{align*}
+\end{tcolorbox}
+\end{center}
+
+\begin{ideabox}[title={The intellectual centre of gravity of the whole Part}]
+\begin{center}
+\begin{tikzpicture}[font=\small]
+ \node[rounded corners=4pt,fill=csB!15,draw=csB,line width=1pt,inner sep=8pt,text width=4.85cm,align=center]
+   (A) at (-4.35,0) {maps \textbf{sums $\mapsto$ products}\\[2pt]{\scriptsize $b^{x+y}=b^{x}b^{y}$}};
+ \node[rounded corners=4pt,fill=teal!12,draw=teal,line width=1pt,inner sep=8pt,text width=4.85cm,align=center]
+   (B) at (4.35,0) {\textbf{rate of change $\propto$ size}\\[2pt]{\scriptsize $\frac{d}{dx}b^{x}=C\,b^{x}$}};
+ \draw[{Stealth[length=7pt]}-{Stealth[length=7pt]},line width=1.4pt,draw=crimson] (A)--(B)
+    node[midway,above=3pt,font=\scriptsize,text=crimson,align=center]{\textbf{mutually}\\\textbf{entailing}}
+    node[midway,below=3pt,font=\scriptsize,text=crimson,align=center]{via one\\algebraic step};
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+A function that maps sums onto products \emph{necessarily} changes in proportion to its own size, and
+conversely. The two ideas meet at a single line of algebra. Everything in Case Study 4 --- including
+why $\cos y+i\sin y$ turns out to be an exponential at all --- runs through this junction.
+\end{ideabox}
+
+\begin{keybox}[title={The concept of $e$, stated before any number is computed}]
+\begin{center}\large
+\textit{``$e$'' is the base of the exponential function for which $C=1$:\\[4pt]
+the function whose \textbf{rate of change is identical to itself}.}
+\end{center}
+\vspace{-2pt}
+\hfill{\footnotesize\color{slate}\textsc{book p.~410--411 / pdf p.~429--430}}\\[4pt]
+Equivalently, unpacked into the book's own summary box \pg{415}{434}: $e^{x}$ is the function that
+\;\textbf{(i)} maps sums onto products, \;\textbf{(ii)} maps $1$ onto $2.718281828459045\ldots$,
+\;\textbf{(iii)} is its own derivative, \;\textbf{(iv)} changes in exact proportion to its size.
+\end{keybox}
+
+\clearpage
+\subsection{Why 2.718281828459045\ldots? The Power-Series blend}
+
+Euler's own route to the number goes through power series, and the book's job is to make explicit the
+blend that is taken for granted whenever a textbook differentiates a series term by term. It fuses
+\textbf{six} domains.
+
+\begin{center}\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{2.35cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{3.1cm}@{}}
+\toprule
+\rowcolor{csB!16}
+\textbf{\color{csB!75!black}1 Wholes \& parts} & \textbf{\color{csB!75!black}2 Numbers} &
+\textbf{\color{csB!75!black}3 Functions} & \textbf{\color{csB!75!black}4 Infinite sums}\newline{\scriptsize via BMI} &
+\textbf{\color{csB!75!black}5 Power series}\newline{\scriptsize via BMI} & \textbf{\color{csB!75!black}6 Calculus applied}\\
+\midrule
+Whole & resulting number $c$ & composite function $h(x)$ &
+infinite sum $S=\sum_{k=0}^{\infty}a_k$ & function at infinity $F(x)=\sum a_k x^k$ &
+derivative at infinity $F'(x)=\sum k\,a_k x^{k-1}$\\
+\addlinespace[2pt]
+Parts & operand numbers $a,b$ & component functions $f(x),g(x)$ &
+finite terms $a_k$ & finite terms $a_k x^k$ & derivatives of finite terms $k\,a_k x^{k-1}$\\
+\addlinespace[2pt]
+part--whole relation & $a+b=c$ & $f(x)+g(x)=h(x)$ &
+$a_{k-1}+a_k$ & $a_{k-1}x^{k-1}+a_kx^{k}$ & $(k{-}1)a_{k-1}x^{k-2}+k\,a_kx^{k-1}$\\
+\addlinespace[2pt]
+\rowcolor{csB!7}
+--- & partial sum & partial sum of functions & $S_n=\sum_{k=0}^{n}a_k$ &
+$F_n(x)=\sum_{k=0}^{n}a_kx^k$ & $F'_n(x)=\sum_{k=0}^{n}k\,a_kx^{k-1}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 3.}\; The Power-Series blend \pg{413}{432}. Column 1$\to$2 is \meta{Arithmetic Is Object
+Construction}; 2$\to$3 is \meta{Functions Are Numbers} (from Case Study 1); 2$\to$4 is the \textbf{BMI};
+4$\to$5 is \meta{Functions Are Numbers} again, now applied to infinite sums; 6 applies differentiation
+to an object that only exists because of columns 1--5.
+\end{minipage}\end{center}
+
+\subsubsection{The series is forced, not guessed}
+
+Starting from ``$e^x$ is its own derivative'' plus $\frac{d}{dx}a_nx^{n}=n\,a_nx^{n-1}$, each term
+must be the derivative of the term after it. And $x=0$ kills every term but the first, while
+$e^{0}=1$, so $a_0=1$. Everything else cascades:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,node distance=0pt,
+  trm/.style={rounded corners=3pt,fill=csB!10,draw=csB,line width=0.8pt,inner sep=6pt,minimum height=0.95cm},
+  bk/.style={-{Stealth[length=5pt]},line width=1pt,draw=crimson}]
+\node[trm] (t0) at (0,0) {$1$};
+\node[trm] (t1) at (2.1,0) {$x$};
+\node[trm] (t2) at (4.5,0) {$\dfrac{x^{2}}{2!}$};
+\node[trm] (t3) at (7.1,0) {$\dfrac{x^{3}}{3!}$};
+\node[trm] (t4) at (9.7,0) {$\dfrac{x^{4}}{4!}$};
+\node[font=\small] (dots) at (11.7,0) {$+\;\cdots$};
+\foreach \a/\b in {t1/t0,t2/t1,t3/t2,t4/t3}{
+  \draw[bk] (\a) to[out=140,in=40] node[midway,above=1pt,font=\scriptsize,text=crimson]{$\frac{d}{dx}$} (\b);}
+\node[font=\scriptsize,text=slate,anchor=north,text width=13cm,align=center] at (5.8,-0.75)
+  {each term differentiates \emph{backwards} onto the previous one --- so fixing the first term fixes
+   the entire series};
+\node[font=\scriptsize,text=csB!75!black,anchor=east,align=right,text width=2.25cm] at (-0.72,0) {$a_0=1$\\because $e^{0}=1$};
+\end{tikzpicture}
+\end{center}
+
+\[
+\boxed{\;e^{x}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots\;}
+\qquad\Longrightarrow\qquad
+e=e^{1}=1+1+\frac{1}{2!}+\frac{1}{3!}+\cdots=2.718281828459045\ldots
+\]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=8.6cm,height=5.4cm,
+   xlabel={\footnotesize terms included, $n$}, ylabel={\footnotesize partial sum},
+   xmin=0.5,xmax=8.5,ymin=1.8,ymax=2.95,
+   xtick={1,2,3,4,5,6,7,8}, ytick={2.0,2.2,2.4,2.6,2.718281828,2.9},
+   yticklabels={$2.0$,$2.2$,$2.4$,$2.6$,$e$,$2.9$},
+   tick label style={font=\tiny}, label style={font=\footnotesize},
+   grid=major, grid style={slate!18,line width=0.3pt},
+   axis line style={slate!60},
+   title={\footnotesize\bfseries\color{csB!75!black}$\sum_{k=0}^{n-1}1/k!\;\to\;e$}]
+ \addplot[crimson,dashed,line width=1pt,domain=0.5:8.5,samples=2]{2.718281828};
+ \addplot[csB,line width=1.2pt,mark=*,mark size=1.9pt,mark options={fill=csB}]
+   coordinates {(1,1)(2,2)(3,2.5)(4,2.6666667)(5,2.7083333)(6,2.7166667)(7,2.7180556)(8,2.7182540)};
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[width=8.6cm,height=5.4cm,
+   xlabel={\footnotesize $n$}, ylabel={\footnotesize $(1+1/n)^{n}$},
+   xmin=0,xmax=210,ymin=1.9,ymax=2.85,
+   xtick={1,50,100,150,200}, ytick={2.0,2.2,2.4,2.6,2.718281828},
+   yticklabels={$2.0$,$2.2$,$2.4$,$2.6$,$e$},
+   tick label style={font=\tiny}, label style={font=\footnotesize},
+   grid=major, grid style={slate!18,line width=0.3pt},
+   axis line style={slate!60},
+   title={\footnotesize\bfseries\color{csB!75!black}the textbook limit, converging \emph{much} more slowly}]
+ \addplot[crimson,dashed,line width=1pt,domain=0:210,samples=2]{2.718281828};
+ \addplot[teal,line width=1.2pt,domain=1:205,samples=120]{(1+1/x)^x};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 8.}\; Two routes to the same number \pg{414--419}{433--438}. The contrast is itself an
+argument of the book's: the power series comes \emph{out of the concept} (``$e^x$ is its own
+derivative''), whereas $(1+1/n)^{n}$ is normally handed to students as a definition with no
+explanation. Note also how much faster the factorial series converges.
+\end{minipage}\end{center}
+
+\subsection{The appendix: the best-argued pages in Part VI}
+
+\begin{warmbox}[title={The question textbooks never ask \normalfont\itshape(book p.~416 / pdf p.~435)}]
+\begin{bookquote}{book p.~416 / pdf p.~435}
+\textit{Why should this particular limit, $\lim_{n\to\infty}(1+\frac1n)^{n}$, be the base of the
+exponential function that is its own derivative?}
+\end{bookquote}
+\end{warmbox}
+
+\noindent Their answer is a five-link chain, and it starts from the \emph{meaning} of $e$, not from a
+definition:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  stp/.style={rounded corners=3pt,draw=csB,line width=0.9pt,fill=csB!8,inner sep=5pt,
+              text width=2.72cm,align=center,minimum height=1.95cm},
+  ar/.style={-{Stealth[length=5.5pt,width=4.5pt]},line width=1.1pt,draw=csB!75}]
+\node[stp] (p1) at (0,0)     {$e^{x}$ is its own derivative, so the derivative at $x=1$ is $b$};
+\node[stp] (p2) at (3.70,0)  {average change\\[3pt]$\dfrac{b^{1+q}-b}{q}\;\to\;b$};
+\node[stp] (p3) at (7.40,0)  {use $b^{1+q}=b\cdot b^{q}$, factor out $b$:\\[3pt]$\dfrac{b^{q}-1}{q}=1$};
+\node[stp] (p4) at (11.10,0) {solve for $b$:\\[3pt]$b^{q}=1+q$\\[3pt]$b=(1+q)^{1/q}$};
+\node[stp,draw=crimson,fill=crimson!8] (p5) at (14.80,0)
+   {set $q=\tfrac1n$:\\[3pt]$b=\lim\limits_{n\to\infty}\!\bigl(1+\tfrac1n\bigr)^{\!n}$};
+\foreach \a/\b in {p1/p2,p2/p3,p3/p4,p4/p5}{\draw[ar] (\a)--(\b);}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 9.}\; The derivation of the familiar limit \emph{from} the concept of $e$
+\pg{416--419}{435--438}. The book's own summary of what the result rests on: ``(1) what $e$ means,
+(2) the metaphors for mathematicizing change, (3) the limit metaphor, which is a special case of the
+BMI, (4) some simple algebraic manipulations.''
+\end{minipage}\end{center}
+
+\begin{ideabox}[title={Their moral, and it is a good one}]
+\begin{bookquote}{book p.~419 / pdf p.~438}
+\textit{A system of conceptual metaphors and blends characterizes systematic relationships between
+concepts and formulas. We have to understand the nature of that system if we are to understand the
+mathematical ideas embodied by the formulas.}
+\end{bookquote}
+\end{ideabox}

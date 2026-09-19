@@ -1,0 +1,85 @@
+\clearpage
+\renewcommand{\sectioncolor}{shelf}
+\section{The audit: what is actually on the shelf}
+\markboth{The audit}{}
+
+I searched all \textbf{144} book-files in \bk{/Users/zaman/Pure\_Maths\_TC\_SelfStudy} for anything
+on statistics, thermodynamics, quantum, physics, probability, measure, functional analysis, Hilbert,
+operators, entropy, stochastic, Markov or Monte Carlo.
+
+\begin{missing}[title={The blunt finding}]
+The only matches were a 1993 essay on mathematics-and-theoretical-physics culture, and the two
+dossiers I wrote you. \textbf{There is no statistical mechanics, no quantum mechanics, no probability
+theory and no stochastic processes on this shelf.} Six of the eight numbered modules are empty
+directories:
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\rowcolor{alert!10}
+Module\_3 DEs \& PDEs & Module\_4 Diff.\ Geometry & Module\_5 Real Analysis & \textbf{empty}\\
+Module\_6 Complex Analysis & \textbf{Module\_7 Stochastic Calculus} & \textbf{Module\_8 Math.\ Statistics} & \textbf{empty}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+The two in bold are exactly the ones this topic needs.
+\end{missing}
+
+\subsection{Coverage map}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  row/.style={anchor=east,font=\scriptsize,text=slate},
+  cell/.style={rounded corners=2pt,minimum width=2.55cm,minimum height=0.78cm,
+               align=center,font=\scriptsize,text=white,inner sep=3pt}]
+\foreach \c/\x in {{what $Z$ needs}/0, {on the shelf?}/3.1, {which book}/8.3}{
+  \node[font=\scriptsize\bfseries,text=shelf,anchor=west] at (\x,0.75) {\c};}
+\foreach \topic/\st/\col/\book/\y in {%
+  {operators, spectral theorem}/{FULL}/bio/{Axler 2015 §7.B, 7.C, 10.A · Hoffman \& Kunze 1971}/0,
+  {inner product spaces}/{FULL}/bio/{Axler §6 · Olver \& Shakiban ch.\ 3--4}/-0.92,
+  {eigenvalues, diagonalisation}/{FULL}/bio/{Axler §5 · Olver ch.\ 8--10 · Kuttler ch.\ 6--7}/-1.84,
+  {multivariable integration}/{FULL}/bio/{Apostol Vol.~2 ch.\ 11 · Spivak, \textit{Calculus on Manifolds}}/-2.76,
+  {measure \& Lebesgue integral}/{FULL}/bio/{\textbf{Kuttler ch.\ 20--24} (in the LA folder!)}/-3.68,
+  {complex analysis, residues}/{FULL}/bio/{Radozycki Part III}/-4.60,
+  {probability}/{PARTIAL}/sand/{Apostol Vol.~2 ch.\ 13--14 only}/-5.52,
+  {Markov chains, MCMC}/{NONE}/alert/{--- Module\_7 is empty}/-6.44,
+  {statistical mechanics}/{NONE}/alert/{--- nothing on the shelf}/-7.36,
+  {quantum mechanics}/{NONE}/alert/{--- nothing on the shelf}/-8.28}{
+  \node[row] at (-0.2,\y) {\topic};
+  \node[cell,fill=\col] at (4.4,\y) {\st};
+  \node[anchor=west,font=\scriptsize,text=slate] at (5.85,\y) {\book};}
+\draw[slate!35,line width=0.6pt] (-5.3,-5.05)--(15.6,-5.05);
+\node[font=\scriptsize\itshape,text=slate,anchor=west] at (-5.25,-5.98) {};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; Coverage of the prerequisites for $Z$. The line divides what you can study
+tomorrow from what you would have to acquire.
+\end{minipage}\end{center}
+
+\begin{haveit}[title={The find of the audit}]
+\bk{Module\_1\_Linear\_Algebra/more-libgen-finds-LA\_Books/}\\
+\bk{\quad Linear\_Algebra\_n\_Analysis\_\_by\_Kenneth\_Kuttler\_2020.pdf}
+
+It is filed as a linear algebra book. Its last five chapters are:
+\begin{center}\small
+\begin{tabular}{@{}cl@{}}
+\toprule
+\rowcolor{bio!12}
+\textbf{Ch.} & \textbf{Title}\\
+\midrule
+20 & Abstract Measures and Measurable Functions\\
+21 & The Abstract Lebesgue Integral\\
+22 & Measures From Positive Linear Functionals\\
+23 & The $L^p$ Spaces\\
+24 & Representation Theorems\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{3pt}
+\textbf{That is a complete measure theory course sitting in your linear algebra folder.} Chapter 22
+is the aptest of all: ``measures from positive linear functionals'' is the Riesz representation
+theorem --- the statement that \emph{a positive operator determines a measure}. That is Face 1 and
+Face 3 of $Z$ (next section) meeting in one theorem.
+\end{haveit}

@@ -1,0 +1,74 @@
+\clearpage
+\renewcommand{\sectioncolor}{ember}
+\section{AlphaFold\,3: exactly what it cracked, and what it left untouched}
+\markboth{AlphaFold}{}
+
+I do not want to undersell this. AF2 and AF3 are a genuine landmark. But the precise statement of
+what was solved is what tells you where to work next.
+
+\subsection{What AF3 is, mathematically}
+
+\begin{evidence}[title={Abramson et al., \textit{Nature} \textbf{630}, 493 (May 2024)}]
+AF2's structure module used \textbf{Invariant Point Attention} --- SE(3)-equivariant attention over
+per-residue frames (a rotation and a translation per residue), so the prediction is independent of
+how you orient the whole molecule.
+
+\textbf{AF3 replaced that module with a diffusion model operating directly on atomic coordinates},
+and extended coverage to nucleic acids, ligands, ions and modified residues. Equivariance is traded
+for a generative denoiser plus data augmentation.
+\end{evidence}
+
+\noindent Note the irony, and it is a useful one: \textbf{AF3's structure module is already a
+generative model of a distribution} --- it just gets collapsed to a single ranked output. The
+machinery for producing a measure is partly there; what is missing is that the model is not trained
+to make that measure the \emph{Boltzmann} measure.
+
+\subsection{The honest ledger}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{5.9cm}>{\raggedright\arraybackslash}p{6.2cm}@{}}
+\toprule
+\rowcolor{ember!13}
+\textbf{\color{ember}Left untouched} & \textbf{\color{ember}Why it matters} & \textbf{\color{ember}State of play}\\
+\midrule
+\textbf{Conformational ensembles} &
+ Function lives in the ensemble: allostery, cryptic pockets, induced fit &
+ MSA-subsampling hacks (Del Alamo et al., \textit{eLife} \textbf{11}, e75751, 2022); AlphaFlow and
+ ensemble emulators are early and unvalidated\\
+\textbf{Free energies and affinities} &
+ AF3 returns a \emph{pose}, not $\Delta G$ &
+ Affinity prediction remains the open problem; see §4\\
+\textbf{Effect of a point mutation} &
+ A single substitution barely changes the MSA, so the prediction barely moves &
+ AF2 performs poorly on $\Delta\Delta G$ of stability --- repeatedly documented\\
+\textbf{Intrinsic disorder} &
+ $\sim$30\,\% of the human proteome &
+ Low-pLDDT spaghetti: honest, but not usable\\
+\rowcolor{ember!7}
+\textbf{Kinetics} &
+ Folding paths, transition states, residence time --- the actual pharmacological variable &
+ Entirely outside the model\\
+\textbf{Novel folds, shallow MSAs} &
+ Performance degrades where there is no family to lean on &
+ \textbf{The same failure mode flagged for AMR in Part VII:} a learned prior regresses the novel
+ toward the common\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tier3}[title={The one-sentence statement}]
+\begin{center}\itshape\large
+AlphaFold solved a \emph{structure} problem.\\
+Biology needs an \emph{ensemble-and-rate} problem solved.
+\end{center}
+\vspace{2pt}
+These are different mathematical objects. Formally, what is missing is the Boltzmann measure $\mu$
+and the \textbf{transfer operator} $\mathcal{P}_t$ that propagates it. A structure predictor returns
+a point. Biology needs $(\mu,\mathcal{P}_t)$ --- and the second one has barely been started.
+\end{tier3}
+
+\begin{plain}
+AlphaFold gave us a very good photograph of a machine. What we need is a film of it working, and a
+measurement of how fast each part moves. A photograph is not a bad film --- it is a different kind of
+object, and no amount of sharpening turns one into the other.
+\end{plain}

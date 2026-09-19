@@ -1,0 +1,178 @@
+\clearpage
+\renewcommand{\sectioncolor}{crimson}
+\section{Assessment: what holds up, and where it leaks}\label{sec:audit}
+\markboth{Assessment}{}
+
+A dossier that only reported the book's claims would be of no use to you. What follows is my own
+audit. I have separated it into what I take to be \textbf{secure}, and \textbf{six specific places
+where the argument does not carry the weight put on it}. Read the second list with a pencil.
+
+\subsection{Secure --- and genuinely worth having}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.7cm}>{\raggedright\arraybackslash}p{6.35cm}>{\raggedright\arraybackslash}p{9.4cm}@{}}
+\toprule
+\rowcolor{moss!14}
+& \textbf{\color{moss}Claim} & \textbf{\color{moss}Why it stands}\\
+\midrule
+\textbf{1} & Exponentiation $\neq$ self-multiplication; $\mathrm{Exp}_b(x)$ exposes the domain/range
+  asymmetry & A real conceptual confusion, and the reframing makes $b^0=1$ stop being a convention.
+  Nothing here depends on the metaphor theory being right.\\
+\textbf{2} & ``Maps sums to products'' and ``rate of change $\propto$ size'' are \emph{mutually
+  entailing}, and the entailment is localised in one algebraic step &
+  This is a genuine mathematical insight served as a conceptual one. It is checkable and it is correct.\\
+\textbf{3} & The rotation derivation of $\mathbb{C}$: addition from Euclid's parallelogram, $i$ from
+  giving $90^{\circ}$ an arithmetic correlate &
+  Better motivation than ``consider $\mathbb{R}[x]/(x^2+1)$'' --- and it predicts, rather than
+  stipulates, the multiplication rule.\\
+\textbf{4} & $\pi$ has two meanings (ratio; half-period) linked by metaphor, not coincidence &
+  Makes sense of why $\pi$ appears in Fourier analysis, signal processing and Euler's formula at all.\\
+\rowcolor{moss!6}
+\textbf{5} & ``$=$'' in $e^{iy}=\cos y+i\sin y$ asserts \emph{co-reference of distinct rules}, not
+  identity of ideas & Generalises far beyond Euler. This is the single most transferable idea in
+  Part VI.\\
+\rowcolor{moss!6}
+\textbf{6} & The self-regulation reading of $f''=-f$ & Gives the harmonic oscillator a conceptual
+  presence inside $e^{i\theta}$ instead of a merely formal one.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Six places the argument leaks}
+
+\begin{critbox}[title={\textsf{LEAK 1} \; A circularity in the Taylor-series demonstration \normalfont\itshape(book p.~446 / pdf p.~465)}]
+To compute the derivatives of $f(y)=e^{yi}$ the book writes $f'(y)=i\,e^{yi}$, citing the real-case
+rule $\frac{d}{dy}e^{yc}=c\,e^{yc}$. \textbf{But the complex exponential has not been defined at that
+point in the text} --- defining it is precisely what the Taylor-series argument is supposed to
+accomplish.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  n/.style={rounded corners=3pt,draw=crimson,line width=0.9pt,fill=crimson!7,inner sep=6pt,
+            text width=3.6cm,align=center,minimum height=1.1cm}]
+ \node[n] (a) at (0,0) {we want to \emph{establish} what $e^{yi}$ is};
+ \node[n] (b) at (4.7,0) {so we differentiate $e^{yi}$ four times};
+ \node[n] (c) at (9.4,0) {which \emph{assumes} $\frac{d}{dy}e^{yi}=i\,e^{yi}$};
+ \draw[-{Stealth[length=4.5pt]},line width=1pt,draw=crimson] (a)--(b);
+ \draw[-{Stealth[length=4.5pt]},line width=1pt,draw=crimson] (b)--(c);
+ \draw[-{Stealth[length=4.5pt]},line width=1pt,draw=crimson] (c) to[out=60,in=120] (a);
+ \node[font=\scriptsize,text=crimson] at (4.7,1.35) {circular};
+\end{tikzpicture}
+\end{center}
+\textbf{The standard fix:} \emph{define} $e^{z}:=\sum_{n\ge0}z^{n}/n!$ and derive everything from
+there. But then the ``idea analysis'' is reconstructing a \emph{definition}, not discovering a fact
+--- a weaker and more honest claim than the one the chapter makes.
+\end{critbox}
+
+\begin{critbox}[title={\textsf{LEAK 2} \; Analyticity is waved through}]
+``Under certain conditions for convergence'' appears \emph{once}, in passing \pg{442}{461}. But
+\[\text{same derivatives at }0\;\Longrightarrow\;\text{same Taylor series}\;\Longrightarrow\;\text{same function}\]
+is \textbf{false} for smooth-but-not-analytic functions. The standard counterexample:
+\[
+g(x)=\begin{cases} e^{-1/x^{2}}, & x\neq0\\ 0,& x=0\end{cases}
+\qquad g^{(n)}(0)=0 \text{ for all } n, \text{ yet } g\not\equiv0 .
+\]
+The conclusion \emph{is} true in Euler's case --- but the reason it is true is analytic, not
+metaphorical, and the book does not supply it.
+\end{critbox}
+
+\begin{warmbox}[title={\textsf{LEAK 3} \; The $90^{\circ}$ metaphor underdetermines $i$ --- and this is interesting}]
+Rotate counterclockwise and you get $i$; rotate clockwise and you get $-i$. \textbf{Both satisfy
+$n^{2}=-1$.} The book does not flag the ambiguity.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize]
+ \draw[slate!35,-{Stealth[length=3pt]}] (-1.5,0)--(1.5,0);
+ \draw[slate!35,-{Stealth[length=3pt]}] (0,-1.5)--(0,1.5);
+ \draw[slate!25,dashed] (0,0) circle (1.05);
+ \fill[teal] (0,1.05) circle (2pt); \node[font=\tiny,text=teal,right=2pt] at (0,1.05) {$i$};
+ \fill[purple] (0,-1.05) circle (2pt); \node[font=\tiny,text=purple,right=2pt] at (0,-1.05) {$-i$};
+ \draw[teal,line width=1pt,-{Stealth[length=4pt]}] (1.2,0.12) arc (6:84:1.21);
+ \draw[purple,line width=1pt,-{Stealth[length=4pt]}] (1.2,-0.12) arc (-6:-84:1.21);
+ \node[anchor=west,text width=11.7cm,font=\footnotesize,text=slate] at (2.1,0)
+   {But this is \textbf{not a flaw in the mathematics} --- it is exactly complex conjugation, the
+    non-trivial automorphism of $\mathbb{C}$ over $\mathbb{R}$. I would count it as evidence
+    \emph{for} the program: the metaphor's residual ambiguity tracks a real algebraic symmetry.
+    Worth a margin note in your copy.};
+\end{tikzpicture}
+\end{center}
+\end{warmbox}
+
+\begin{critbox}[title={\textsf{LEAK 4} \; ``$i$ as a metaphorical proportionality factor'' is hand-waving}]
+At \pg{448}{467}, item 1(c), the book says the derivative of $e^{yi}$ is proportional to the function
+``with $i$ being the factor expressing that proportionality'' and adds, parenthetically, ``\emph{Here
+the `proportion' is metaphorical: It is $\sqrt{-1}=i$. We will discuss the meaning of this
+metaphorical value below.}'' The discussion that follows (self-regulation) is good, but it never
+explains \textbf{in what sense $\sqrt{-1}$ is a proportion}. A proportion is a ratio of magnitudes,
+and the book has spent Case Study 3 arguing at length that $i$ has no magnitude. The gap is left open.
+\end{critbox}
+
+\begin{critbox}[title={\textsf{LEAK 5} \; Post-hoc reconstruction is presented with the authority of data}]
+The blends arrive as tables, in the format of findings. But \textbf{nothing in Part VI is an
+experiment}. Two very different claims are never separated:
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  cl/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=8pt,
+             text width=7.4cm,align=left,minimum height=2.5cm}]
+ \node[cl=crimson] (s) at (-4.1,0)
+   {\textbf{\color{crimson}STRONG claim}\\[3pt] \emph{This is the conceptual structure present in a
+    mathematician's mind.}\\[4pt]
+    {\scriptsize Would need converging evidence: priming studies, gesture analysis, error patterns,
+     neuroimaging. None is offered in Part VI.}};
+ \node[cl=moss] (w) at (4.1,0)
+   {\textbf{\color{moss}WEAK claim}\\[3pt] \emph{This is a coherent rational reconstruction that
+    explains why the axioms look as they do.}\\[4pt]
+    {\scriptsize Fully supported by the text --- and still valuable.}};
+ \node[font=\scriptsize,text=slate,align=center,text width=16cm] at (0,-2.55)
+   {The chapters read as if establishing the strong claim while in fact delivering the weak one.
+    \textbf{Read Part VI as a philosophy of mathematical understanding, not as cognitive science of
+    mathematicians.} Mathematicians' reviews of the book have pressed on exactly this point, and also
+    on scattered technical slips elsewhere in the volume.};
+\end{tikzpicture}
+\end{center}
+\end{critbox}
+
+\begin{critbox}[title={\textsf{LEAK 6} \; ``Truth is relative to a conceptual structure'' is undefended}]
+The claim at \pg{436}{455} admits two readings, and the book does not choose:
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{8.3cm} >{\raggedright\arraybackslash}p{8.3cm}@{}}
+\toprule
+\rowcolor{crimson!10}
+\textbf{\color{moss}Defensible reading} & \textbf{\color{crimson}Indefensible reading}\\
+\midrule
+The \emph{meaningfulness} of a sentence is relative to a conceptual structure. $e^{\pi i}+1=0$ says
+nothing inside Euclidean geometry because the symbols have no referents there. &
+The \emph{truth} of a sentence is relative to a conceptual structure --- so the equation could have
+come out otherwise had we conceptualised differently.\\
+\addlinespace[3pt]
+\textcolor{moss}{Uncontroversial, and enough for everything Part VI actually needs.} &
+\textcolor{crimson}{A strong anti-realist thesis, asserted rather than argued.}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+The rhetoric of the chapter leans on the second; the arguments only ever establish the first.
+\end{critbox}
+
+\subsection{Net verdict}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=8pt,
+            text width=5.05cm,align=left,minimum height=3.3cm}]
+ \node[b=moss] (a) at (-5.75,0)
+   {\textbf{\color{moss}Take it as}\\[4pt]
+    $\bullet$ a theory of \textbf{mathematical understanding}\\[2pt]
+    $\bullet$ a generator of better motivations for definitions\\[2pt]
+    $\bullet$ a discipline for asking ``why \emph{these} axioms?''};
+ \node[b=amber] (b) at (0,0)
+   {\textbf{\color{amber!80!black}Do not take it as}\\[4pt]
+    $\bullet$ empirical cognitive science\\[2pt]
+    $\bullet$ a replacement for proof\\[2pt]
+    $\bullet$ a settled philosophy of mathematical truth};
+ \node[b=deepblue] (c) at (5.75,0)
+   {\textbf{\color{deepblue}Density of original content}\\[4pt]
+    \textbf{CS 2} and \textbf{CS 3} carry the most.\\[2pt]
+    \textbf{CS 1} is setup.\\[2pt]
+    \textbf{CS 4} mostly re-runs standard analysis; its payoff is
+    \S\,``What Are the Ideas?'', pp.~446--451.};
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,28 @@
+\definecolor{bio}{HTML}{1B7F5C}\definecolor{nano}{HTML}{0E7C9D}\definecolor{ember}{HTML}{C1502E}
+\definecolor{sand}{HTML}{B8860B}\definecolor{alert}{HTML}{B3261E}\definecolor{indigo}{HTML}{2E2A6B}
+\definecolor{measure}{HTML}{8E3B62}\definecolor{proof}{HTML}{4A3B8C}\definecolor{bookcol}{HTML}{6B4423}
+\newtcolorbox{bookbox}[1][]{enhanced,breakable,colback=bookcol!5,colframe=bookcol,boxrule=0pt,
+ leftrule=3.5pt,arc=2pt,left=9pt,right=9pt,top=7pt,bottom=7pt,fonttitle=\bfseries\color{white},
+ coltitle=white,attach boxed title to top left={xshift=8pt,yshift=-9pt},
+ boxed title style={colback=bookcol,arc=2pt,boxrule=0pt},#1}
+\newtcolorbox{techbox}[1][]{enhanced,breakable,colback=proof!5,colframe=proof,boxrule=0pt,
+ leftrule=3.5pt,arc=2pt,left=9pt,right=9pt,top=7pt,bottom=7pt,fonttitle=\bfseries\color{white},
+ coltitle=white,attach boxed title to top left={xshift=8pt,yshift=-9pt},
+ boxed title style={colback=proof,arc=2pt,boxrule=0pt},#1}
+\newtcolorbox{warnbox}[1][]{enhanced,breakable,colback=alert!5,colframe=alert,boxrule=0pt,
+ leftrule=3.5pt,arc=2pt,left=9pt,right=9pt,top=7pt,bottom=7pt,fonttitle=\bfseries\color{white},
+ coltitle=white,attach boxed title to top left={xshift=8pt,yshift=-9pt},
+ boxed title style={colback=alert,arc=2pt,boxrule=0pt},#1}
+\newtcolorbox{dobox}[1][]{enhanced,breakable,colback=bio!6,colframe=bio,boxrule=0pt,
+ leftrule=3.5pt,arc=2pt,left=9pt,right=9pt,top=7pt,bottom=7pt,fonttitle=\bfseries\color{white},
+ coltitle=white,attach boxed title to top left={xshift=8pt,yshift=-9pt},
+ boxed title style={colback=bio,arc=2pt,boxrule=0pt},#1}
+\newtcolorbox{cellbox}[1][]{enhanced,breakable,colback=ink,colframe=slate,boxrule=0.8pt,arc=2pt,
+ fontupper=\ttfamily\scriptsize\color{white},left=8pt,right=8pt,top=6pt,bottom=6pt,#1}
+\newcommand{\bk}[1]{{\footnotesize\texttt{#1}}}
+\newcommand{\cell}[1]{\colorbox{proof}{\textcolor{white}{\scriptsize\bfseries\,CELL~#1\,}}}
+\fancyhead[L]{\footnotesize\color{slate}\textsc{Proof Techniques}\,$\cdot$\,\textsc{Tutorial Companion}}
+\hypersetup{pdftitle={Proof Techniques from Zero --- tutorial companion to the Sage 10.9 notebook},
+ pdfsubject={Building proof skill from eight books, applied to the Ising partition function},
+ pdfkeywords={mathematical proof, induction, contradiction, counterexample, Devlin, Diedrichs Lovett,
+ Tao, Thurston, Halmos, SageMath, spectral theorem}}

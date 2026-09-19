@@ -1,0 +1,97 @@
+\clearpage
+\renewcommand{\sectioncolor}{nano}
+\section{The redundancy ledger: what we generate, what we keep}
+\markboth{The redundancy ledger}{}
+
+\noindent\textbf{\color{nano}The biology question:} \emph{we sequenced one small bacterium. Why did
+that take 146 megabytes?}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+\foreach \y/\w/\c/\lab/\num/\note in {%
+  0/11.0/nano/{RAW FASTQ, on disk}/{145.8 MB}/{858{,}085 reads $\cdot$ 200{,}631{,}460 bases},
+  -1.72/8.4/nano/{BASES SURVIVING TRIMMING}/{200.58 Mb}/{99.86\,\% kept --- trimming removed almost nothing},
+  -3.44/4.2/bio/{THE GENOME, AS 2-BIT}/{0.70 MB}/{2{,}803{,}313 bp in 38 contigs},
+  -5.16/2.3/sand/{THE BIOLOGY}/{118 gene calls}/{$+$ MLST type, $+$ S84L, $+$ S80F, $+$ $\varphi$Sa3}}{
+  \fill[\c,opacity=0.20,rounded corners=3pt] (-\w/2,\y-0.46) rectangle (\w/2,\y+0.46);
+  \draw[\c,line width=1pt,rounded corners=3pt] (-\w/2,\y-0.46) rectangle (\w/2,\y+0.46);
+  \node[font=\scriptsize\bfseries,text=\c!70!black] at (0,\y+0.20) {\lab};
+  \node[font=\small\bfseries] at (0,\y-0.19) {\num};
+  \node[font=\scriptsize,text=slate] at (0,\y-0.75) {\note};}
+\foreach \y in {-0.95,-2.67,-4.39}{
+  \draw[slate,line width=1pt,-{Stealth[length=5pt]}] (0,\y+0.05)--(0,\y-0.20);}
+\node[rounded corners=4pt,fill=alert!12,draw=alert,line width=1.1pt,inner sep=7pt,
+      text width=4.05cm,align=center,font=\footnotesize] at (6.45,-3.9)
+  {\textbf{\color{alert}\large 208 : 1}\\[3pt] bytes of raw data generated\\per byte of genome kept};
+\node[rounded corners=4pt,fill=bio!10,draw=bio,line width=1pt,inner sep=7pt,
+      text width=4.05cm,align=center,font=\footnotesize] at (-6.45,-3.9)
+  {\textbf{\color{bio}1.24 MB : 1}\\[3pt] raw data per \emph{gene call}\\that reached the report};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 1.}\; The run ledger. Sources: \texttt{METHODS\_v1.7.md} §1, \texttt{fastp} report,
+QUAST report, and the five database screens in §4.2.
+\end{minipage}\end{center}
+
+\subsection{Where 71.6$\times$ coverage actually goes}
+
+Depth of coverage $= 200{,}631{,}460 \div 2{,}803{,}313 = \mathbf{71.6\times}$. Here is what each
+part of it is buying --- each row computed from our own numbers.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  xbar stacked, width=15.4cm, height=5.3cm,
+  xmin=0, xmax=76, xlabel={\footnotesize depth of coverage ($\times$)},
+  ytick=\empty, y=1.1cm, bar width=22pt,
+  axis line style={slate!60}, tick label style={font=\scriptsize},
+  label style={font=\footnotesize},
+  legend style={font=\scriptsize,draw=none,fill=none,at={(0.5,-0.30)},anchor=north,legend columns=3},
+  xmajorgrids, grid style={slate!18,line width=0.3pt},
+  nodes near coords align={anchor=center},
+]
+\addplot+[fill=bio!70,draw=bio!70!black] coordinates {(11,0)};       \addlegendentry{consensus accuracy: 11$\times$}
+\addplot+[fill=nano!60,draw=nano!70!black] coordinates {(13,0)};     \addlegendentry{Poisson gap closure: +13$\times$ (to 24$\times$)}
+\addplot+[fill=sand!70,draw=sand!80!black] coordinates {(24,0)};     \addlegendentry{non-uniformity margin: +24$\times$ (to 48$\times$)}
+\addplot+[fill=alert!45,draw=alert] coordinates {(23.6,0)};          \addlegendentry{\textbf{insurance: +23.6$\times$ (to 71.6$\times$)}}
+\node[font=\scriptsize\bfseries,text=alert] at (axis cs:59.8,0.55) {this band measures nothing};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{-6pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 2.}\; Decomposition of 71.6$\times$. The red band is not wasted --- our own
+over-trimming experiment (QC tutorial Part 7) showed it absorbed an 8.7$\times$ loss without changing
+a single conclusion. But it is \textbf{insurance against our own decisions}, not measurement of the
+genome.
+\end{minipage}\end{center}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.0cm}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{7.4cm}@{}}
+\toprule
+\rowcolor{nano!13}
+\textbf{\color{nano}What it buys} & \textbf{\color{nano}Depth needed} & \textbf{\color{nano}Evidence, from our data}\\
+\midrule
+Consensus accuracy at our clean error rate $e=5.67\times10^{-4}$ & \textbf{7--11$\times$} &
+ at 11$\times$, P(consensus wrong) $=1.5\times10^{-17}$ $\Rightarrow$ $4\times10^{-11}$ wrong bases genome-wide\\
+Closing Poisson coverage gaps & \textbf{20--25$\times$} &
+ at 20$\times$, expected uncovered bases $=5.8\times10^{-3}$ over 2.8 Mb\\
+Counting repeat copies & \textbf{$\sim$10$\times$} &
+ NODE\_18 (2{,}600 bp, 8 copies): counting CV $=3.35\,\%$ at 10$\times$ --- easily splits 8 from 9\\
+GC / Tn5 coverage non-uniformity margin & $\times$2--3 on the above & the one genuinely unavoidable multiplier\\
+\rowcolor{alert!7}
+Insurance against a bad analysis choice & \textbf{measured: 8.7$\times$ absorbed} &
+ QC tutorial Part 7: aggressive trimming cost 8.7$\times$ and 22 extra contigs; every call survived\\
+\rowcolor{alert!12}
+Defeating a failed tile-cycle & \textbf{impossible at any depth} & see \S4 --- this is the important one\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{plain}
+We are sequencing the genome about three times more deeply than the biology needs. That is a
+reasonable safety margin and I am not suggesting we cut it blindly. But it is worth knowing that the
+margin is protecting us from \emph{our own processing choices}, not from the bacterium --- and that
+against the one failure mode that actually bit us, the margin does nothing at all.
+\end{plain}

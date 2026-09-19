@@ -1,0 +1,156 @@
+%============================================================
+%  Where Mathematics Comes From -- Part VI : Idea Analysis
+%  Study dossier. Engine: pdflatex.
+%============================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage[margin=2.05cm,top=2.3cm,bottom=2.3cm,headsep=14pt]{geometry}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{amsmath,amssymb,amsthm}
+\let\Bbbk\relax
+\usepackage{newtxtext,newtxmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,shapes.misc,
+                decorations.pathreplacing,decorations.markings,decorations.pathmorphing,
+                backgrounds,fit,patterns,shadows.blur,mindmap,angles,quotes,
+                math,intersections,through}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage[hidelinks,bookmarksnumbered]{hyperref}
+\hypersetup{
+  pdftitle={e^{pi i}+1=0 --- The Cognitive Structure of Classical Mathematics},
+  pdfsubject={A step-by-step analysis of Part VI of Lakoff \& Nunez, Where Mathematics Comes From},
+  pdfkeywords={mathematical idea analysis, conceptual metaphor, conceptual blend, Euler's identity,
+    analytic geometry, trigonometry, exponential, complex numbers, foundations of mathematics},
+  pdfcreator={pdfLaTeX}}
+\usepackage{bookmark}
+
+%------------------------------------------------------------
+%  PALETTE
+%------------------------------------------------------------
+\definecolor{ink}      {HTML}{16213E}
+\definecolor{paper}    {HTML}{FDFCF8}
+\definecolor{deepblue} {HTML}{123C69}
+\definecolor{skyblue}  {HTML}{2E86AB}
+\definecolor{crimson}  {HTML}{A63446}
+\definecolor{teal}     {HTML}{11897D}
+\definecolor{amber}    {HTML}{D98E04}
+\definecolor{purple}   {HTML}{6B4E9E}
+\definecolor{moss}     {HTML}{4F772D}
+\definecolor{rose}     {HTML}{C84B67}
+\definecolor{slate}    {HTML}{5B6C7F}
+\definecolor{gold}     {HTML}{C9A227}
+
+% case-study accent colours
+\definecolor{csA}{HTML}{2E86AB}   % CS1 geometry/trigonometry
+\definecolor{csB}{HTML}{D98E04}   % CS2 e
+\definecolor{csC}{HTML}{A63446}   % CS3 i
+\definecolor{csD}{HTML}{6B4E9E}   % CS4 synthesis
+
+%------------------------------------------------------------
+%  SECTION STYLING
+%------------------------------------------------------------
+\newcommand{\sectioncolor}{deepblue}
+
+\titleformat{\section}[hang]
+  {\normalfont\LARGE\bfseries\color{\sectioncolor}}
+  {\raisebox{-2pt}{\tikz{\node[fill=\sectioncolor,text=white,rounded corners=3pt,
+     inner xsep=7pt,inner ysep=4pt,font=\Large\bfseries]{\thesection};}}}
+  {10pt}{}[{\vspace{2pt}\color{\sectioncolor}\titlerule[1.1pt]}]
+
+\titleformat{\subsection}[hang]
+  {\normalfont\large\bfseries\color{\sectioncolor}}
+  {\color{\sectioncolor}\thesubsection}{9pt}{}
+
+\titleformat{\subsubsection}[hang]
+  {\normalfont\normalsize\bfseries\color{slate}}
+  {\thesubsubsection}{8pt}{}
+
+\titlespacing*{\section}{0pt}{20pt}{10pt}
+\titlespacing*{\subsection}{0pt}{13pt}{5pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{\sectioncolor}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\footnotesize\color{slate}\textsc{Lakoff \& Núñez}\,$\cdot$\,\textsc{Part VI}}
+\fancyhead[R]{\footnotesize\color{slate}\nouppercase{\leftmark}}
+\fancyfoot[C]{\footnotesize\color{slate}\thepage}
+
+%------------------------------------------------------------
+%  BOXES
+%------------------------------------------------------------
+\newtcolorbox{ideabox}[1][]{
+  enhanced, breakable, colback=teal!5, colframe=teal, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=teal,arc=2pt,boxrule=0pt},
+  #1}
+
+\newtcolorbox{keybox}[1][]{
+  enhanced, breakable, colback=deepblue!6, colframe=deepblue, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=deepblue,arc=2pt,boxrule=0pt},
+  #1}
+
+\newtcolorbox{critbox}[1][]{
+  enhanced, breakable, colback=crimson!5, colframe=crimson, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=crimson,arc=2pt,boxrule=0pt},
+  #1}
+
+\newtcolorbox{warmbox}[1][]{
+  enhanced, breakable, colback=amber!8, colframe=amber!90!black, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=amber!90!black,arc=2pt,boxrule=0pt},
+  #1}
+
+% verbatim quotation from the book, with page evidence
+\newtcolorbox{bookquote}[1]{
+  enhanced, breakable, colback=paper, colframe=slate!45, boxrule=0.6pt,
+  arc=1pt, left=26pt, right=12pt, top=8pt, bottom=8pt,
+  borderline west={2.6pt}{0pt}{gold},
+  overlay={\node[anchor=north west,text=gold,font=\fontsize{26}{26}\selectfont]
+     at ([xshift=7pt,yshift=-1pt]frame.north west) {``};},
+  after upper={\par\vspace{3pt}\hfill{\footnotesize\color{slate}\textsc{#1}}}}
+
+% small inline "evidence" tag
+\newcommand{\ev}[1]{{\footnotesize\color{slate}\textsc{[#1]}}}
+\newcommand{\pg}[2]{{\footnotesize\color{slate}\,(book p.~#1\,/\,pdf p.~#2)}}
+
+% metaphor name
+\newcommand{\meta}[1]{\textsc{\textcolor{purple}{#1}}}
+\newcommand{\blend}[1]{\textsc{\textcolor{skyblue}{#1}}}
+
+% chip / badge
+\newcommand{\chip}[2]{\tikz[baseline=(X.base)]{\node[fill=#1,text=white,rounded corners=2.5pt,
+   inner xsep=4.5pt,inner ysep=2pt,font=\scriptsize\bfseries](X){#2};}}
+
+\setlist[itemize]{leftmargin=1.25em,itemsep=2.5pt,topsep=3.5pt}
+\setlist[enumerate]{leftmargin=1.45em,itemsep=2.5pt,topsep=3.5pt}
+
+\newcommand{\cis}{\operatorname{cis}}
+\renewcommand{\arraystretch}{1.25}
+
+% figure caption styling
+\usepackage[font=small,labelfont={bf,color=deepblue},textfont=it,width=0.92\textwidth]{caption}

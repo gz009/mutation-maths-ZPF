@@ -1,0 +1,117 @@
+\clearpage
+\renewcommand{\sectioncolor}{indigo}
+\section{The bridge to Part IX}
+\markboth{The bridge}{}
+
+Everything in §5 and §6 generalises, and the generalisation is exactly what Part IX was about.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.6cm}>{\raggedright\arraybackslash}p{8.9cm}@{}}
+\toprule
+\rowcolor{indigo!12}
+\textbf{\color{indigo}Here --- 1D Ising} & \textbf{\color{indigo}There --- molecular systems (Part IX)}\\
+\midrule
+$T$, a $2\times2$ \textbf{transfer matrix} & $\mathcal{P}_t$, the \textbf{transfer operator} on conformation space\\
+$Z=\operatorname{Tr}(T^N)$, a sum over $2^N$ states & $Z=\int e^{-\beta U(x)}dx$, uncountably many states\\
+largest eigenvalue $\lambda_+$ $\Rightarrow$ free energy & leading eigenvector $\Rightarrow$ the \textbf{equilibrium measure} $\mu$\\
+gap $\lambda_+/\lambda_-$ $\Rightarrow$ correlation length $\xi$ & remaining eigenvalues $\Rightarrow$ \textbf{relaxation timescales} $t_i=-\tau/\ln\lambda_i$\\
+eigenvectors of a $2\times2$ matrix & eigenvectors $\Rightarrow$ the \textbf{slow collective variables} (what VAMPnets learn)\\
+\rowcolor{alert!7}
+MCMC fails when $\xi\gtrsim N$ & MCMC fails when barriers $\gg k_BT$ --- \textbf{the same mechanism}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keyidea}[title={The sentence to keep}]
+\begin{center}\itshape\large
+It is called a transfer \emph{operator} because it is the continuum limit\\of the transfer
+\emph{matrix} you just diagonalised.
+\end{center}
+\vspace{2pt}
+When Part IX said \emph{``the leading eigenvector is the equilibrium measure, and the remaining
+eigenvalues give the relaxation timescales''}, that was not an analogy. It is literally Table 2 of
+this dossier, with $2\times2$ replaced by infinite-dimensional.
+\end{keyidea}
+
+\subsection{What the Ising route does \emph{not} teach you}
+
+Being straight, so you do not over-learn from one example:
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.6cm}>{\raggedright\arraybackslash}p{8.9cm}@{}}
+\toprule
+\rowcolor{alert!10}
+\textbf{\color{alert}What it does not show} & \textbf{\color{alert}Where to get it}\\
+\midrule
+\textbf{Why computing $Z$ is \#P-hard.} In 1D it is not hard --- the transfer matrix is exact. &
+ 2D (Onsager 1944) and higher. Kardar has the transfer-matrix route into 2D.\\
+Phase transitions. 1D short-range systems cannot order at $T>0$. & Chandler ch.\ 5; Kardar on the
+ Ising model in $d\ge2$ and the renormalisation group.\\
+Continuous configuration space. Here the state space is finite. & Chandler on classical fluids;
+ then Part IX §4 on configurational entropy.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+\section{A twelve-week plan}
+\markboth{Twelve-week plan}{}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{5.2cm}>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{5.0cm}@{}}
+\toprule
+\rowcolor{bio!14}
+\textbf{\color{bio}Weeks} & \textbf{\color{bio}Read} & \textbf{\color{bio}Do} & \textbf{\color{bio}Question to answer in writing}\\
+\midrule
+\textbf{1--2} & Axler §5, §6, §7.B, §7.C, §10.A &
+ Prove $\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N$ from basis-independence of the trace &
+ Why does $e^{-\beta\hat H}$ need the spectral theorem to even be defined?\\
+\textbf{3} & --- &
+ \textbf{Run the companion notebook.} Do exercises 1--3 &
+ At what $N$ does brute force become impossible on your laptop? Extrapolate to $N=60$.\\
+\textbf{4--5} & Chandler ch.\ 1--3 \newline{\scriptsize (the one book to buy)} &
+ Re-derive $f$, $u$, $C$ for the Ising chain without looking &
+ Which of the six quantities in Part IX Fig.~2 can you now compute yourself?\\
+\textbf{6--7} & Radozycki III: contour integrals, residues &
+ Evaluate a Gaussian integral by contour deformation; then by saddle point &
+ What \emph{is} the saddle-point approximation approximating?\\
+\textbf{8--9} & Kuttler ch.\ 20--21 &
+ Write down $\mu(dx)=e^{-\beta U}dx/Z$ as a measure and verify it is a probability measure &
+ Where exactly does positivity of $e^{-\beta\hat H}$ get used?\\
+\textbf{10} & Kuttler ch.\ 22 (Riesz) &
+ --- &
+ In what sense does a positive operator \emph{determine} a measure?\\
+\textbf{11--12} & Levin \& Peres ch.\ 1--4 \newline{\scriptsize (the second book to buy)} &
+ Notebook exercise 4: measure autocorrelation time vs $\xi$ &
+ \textbf{Restate §6 of this dossier in the language of mixing times.}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 4.}\; Two books purchased, ten weeks of reading you already own. At the end of week 12
+you can read Part IX §7 (Boltzmann generators) and know precisely what problem it is solving.
+\end{minipage}\end{center}
+
+\begin{haveit}[title={The companion notebook}]
+\bk{Partition\_Function\_Study/Partition\_Function\_01\_Ising\_Transfer\_Matrix.ipynb}\\[5pt]
+17 cells --- 9 exposition, 8 code. Runs end to end on \texttt{numpy} alone; plots are optional and it
+degrades gracefully if \texttt{matplotlib} is absent. Every cell was executed before delivery.
+
+\begin{center}\small
+\begin{tabular}{@{}cl@{}}
+\toprule
+\rowcolor{bio!12}
+\textbf{§} & \textbf{Contents}\\
+\midrule
+1--2 & the model; deriving the transfer matrix from the Boltzmann weight\\
+3 & \textbf{Method B} --- brute force over all $2^N$ states, and the agreement table\\
+4 & thermodynamics: $f$, $u$, $C$ from $\ln\lambda_+$\\
+5 & the eigenvalue gap and the correlation length\\
+6--7 & \textbf{Method C} --- Metropolis, and the ergodicity failure test\\
+8 & the bridge table to Part IX\\
+9 & six exercises, including ``find the $2^N$ wall'' and the 2D transfer matrix\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{haveit}

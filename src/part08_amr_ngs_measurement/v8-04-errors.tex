@@ -1,0 +1,133 @@
+\clearpage
+\renewcommand{\sectioncolor}{alert}
+\section{The finding: our errors are not scattered}
+\markboth{Errors are not noise}{}
+
+\noindent\textbf{\color{alert}The biology question:} \emph{we trust a base call because the machine
+said Q37. Should we?}
+
+\subsection{Half of every error in the run comes from almost nowhere}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% --- horizontal proportion bar: share of errors ---
+\node[font=\scriptsize\bfseries,text=slate,anchor=east] at (-0.25,1.55) {SHARE OF ERRORS};
+\def\W{15.6}
+\foreach \x/\w/\c/\t in {0/0.130/alert/{13.0\%}, 0.130/0.380/ember/{38.0\%}, 0.510/0.490/bio/{49.0\%}}{
+  \fill[\c,rounded corners=1.5pt] ({\x*\W},1.25) rectangle ({(\x+\w)*\W},1.85);
+  \node[font=\scriptsize\bfseries,text=white] at ({(\x+\w/2)*\W},1.55) {\t};}
+% --- share of measurement space ---
+\node[font=\scriptsize\bfseries,text=slate,anchor=east] at (-0.25,0.35) {SHARE OF THE RUN};
+\fill[slate!25,rounded corners=1.5pt] (0,0.05) rectangle (\W,0.65);
+\fill[alert] (0,0.05) rectangle (0.0047*\W,0.65);
+\fill[ember] (0.0047*\W,0.05) rectangle (0.0056*\W,0.65);
+\node[font=\scriptsize\bfseries,text=slate] at (7.9,0.35) {99.91\% of the data --- and only 49\% of the errors};
+\draw[alert,line width=0.8pt] (0.003*\W,0.05)--(0.003*\W,-0.45);
+\node[font=\scriptsize,text=alert,anchor=north west] at (0.0,-0.45)
+  {\textbf{0.09\,\%} of the run $\longrightarrow$ \textbf{51\,\%} of all errors};
+% --- legend ---
+\node[anchor=north west,font=\scriptsize,text width=15.6cm,align=left] at (0,-1.15)
+ {\textcolor{alert}{$\blacksquare$}~\textbf{843 genomic positions} --- 0.030\,\% of the genome, 3{,}664 mismatches\\[2pt]
+  \textcolor{ember}{$\blacksquare$}~\textbf{4 tile-cycles} --- 0.057\,\% of $28\times251$, 10{,}743 mismatches\\[2pt]
+  \textcolor{bio}{$\blacksquare$}~everything else --- 13{,}859 mismatches};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; Recomputed from \texttt{handbook\_illumina/results/02\_empirical\_errors.json}.
+Total substitutions in the aligned sample: 28{,}266 over 24{,}487{,}683 aligned bases.
+\end{minipage}\end{center}
+
+\begin{plain}
+Imagine grading 7{,}028 exam papers and finding that four of them account for nearly 40\,\% of all the
+mistakes in the whole pile. You would not respond by grading every paper four more times. You would
+find those four papers. That is the entire argument of this document.
+\end{plain}
+
+\subsection{The four bad moments, named}
+
+\begin{center}\small
+\begin{tabular}{@{}c c r r r >{\raggedright\arraybackslash}p{5.3cm}@{}}
+\toprule
+\rowcolor{alert!12}
+\textbf{Cycle} & \textbf{Tile} & \textbf{Error rate} & \textbf{Other tiles} & \textbf{Excess} &
+\textbf{Reported Q of the wrong bases}\\
+\midrule
+\rowcolor{alert!7}
+85 & 1113 & \textbf{99.33 \%} & 0.0436 \% & \textbf{2{,}279$\times$} & 879 at Q20, \textbf{658 at Q39}\\
+16 & 2111 & 69.61 \% & 0.0318 \% & 2{,}186$\times$ & \textbf{1{,}071 at Q38}, 357 at Q20\\
+ 8 & 1101 & 68.21 \% & 0.0409 \% & 1{,}667$\times$ & \textbf{1{,}038 at Q37}, 929 at Q20\\
+93 & 2113 & 49.89 \% & 0.0517 \% & 964$\times$ & 526 at Q20, 483 at Q18\\
+\midrule
+50 & 1114 & 0.12 \% & 0.0400 \% & 3$\times$ & (borderline --- not masked)\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 1.}\; From \texttt{02b\_spike\_cycles.json}. Note the substitution spectra are
+\emph{structured}, not random: cycle 8 is dominated by A$>$T (1{,}147) and T$>$C (894); cycle 16 by
+T$>$C (1{,}116) and A$>$T (825). That is an optics or chemistry channel failure signature, not
+stochastic noise.
+\end{minipage}\end{center}
+
+\begin{alertbox}[title={The part that should worry us: the confidence was wrong, not just the base}]
+On tile 1113 at cycle 85, \textbf{99.3\,\% of bases were wrong}. Of those wrong bases, \textbf{658
+carried a reported quality of Q39} --- the instrument's claim that it makes one mistake per 8{,}000
+bases.
+\[
+\underbrace{\text{claimed error rate } 1.3\times10^{-4}}_{\text{Q39}}
+\qquad\text{versus}\qquad
+\underbrace{\text{actual error rate } 0.993}_{\text{measured}}
+\qquad\Longrightarrow\qquad
+\textbf{7{,}600}\times\text{ over-confident}
+\]
+\textbf{Every downstream tool believed that Q39.} Trimming kept those bases. The assembler weighted
+them. The variant logic trusted them.
+\end{alertbox}
+
+\subsection{Why FastQC did not catch it}
+
+FastQC's ``Per tile sequence quality'' module issued a single \texttt{WARN} for ``one tile-cycle out
+of 28 $\times$ 251''. There were at least four catastrophic ones.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  n/.style={rounded corners=3pt,draw=#1,line width=1pt,fill=#1!8,inner sep=7pt,
+            text width=3.5cm,align=center,minimum height=1.6cm}]
+ \node[n=slate] (a) at (0,0)     {FastQC reads the \textbf{machine's own quality claim}};
+ \node[n=alert] (b) at (4.3,0)   {but the quality claim \textbf{was the thing that was wrong}};
+ \node[n=slate] (c) at (8.6,0)   {the only way to see it is to \textbf{align reads back and count real mismatches}};
+ \node[n=ember] (d) at (13.2,0)  {which needs an assembly --- \textbf{built from the faulty reads}};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[-{Stealth[length=5pt]},line width=1pt,draw=slate] (\x)--(\y);}
+ \draw[ember,line width=1.1pt,dashed,-{Stealth[length=5pt]}] (d.south) to[out=-90,in=-90,looseness=0.45] (c.south);
+ \node[font=\scriptsize\bfseries,text=ember] at (10.9,-1.55) {circular};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 4.}\; The detection circularity. This is why the fault is invisible to routine QC and
+why it needs a deliberate, separate check --- which is \S10.
+\end{minipage}\end{center}
+
+\subsection{The good news, and it is genuinely good}
+
+\begin{dobox}[title={Once the two faults are removed, our quality scores are excellent}]
+\begin{center}\small
+\begin{tabular}{@{}l r r l@{}}
+\toprule
+\rowcolor{bio!13}
+\textbf{Data used} & \textbf{Measured Q} & \textbf{Reported Q} & \textbf{Verdict}\\
+\midrule
+everything (raw) & 29.38 & 32.22 & 2$\times$ worse than claimed\\
+minus 843 bad positions & 29.98 & 32.24 & still 1.8$\times$ worse\\
+\rowcolor{bio!8}
+minus bad positions \emph{and} 4 tile-cycles & \textbf{32.47} & \textbf{32.27} & \textbf{calibrated to 0.2 Q}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{3pt}
+\textbf{The chemistry is fine. The optics are fine. The base caller is fine.} What is not fine is the
+assumption that errors are spread evenly --- and that assumption lives in our \emph{analysis}, not in
+the instrument.
+\end{dobox}

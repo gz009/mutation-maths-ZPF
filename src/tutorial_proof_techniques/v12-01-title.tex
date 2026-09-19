@@ -1,0 +1,53 @@
+\begin{titlepage}\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+ \fill[proof] (current page.north west) rectangle ([yshift=-10.4cm]current page.north east);
+ \begin{scope}\clip (current page.north west) rectangle ([yshift=-10.4cm]current page.north east);
+  \draw[white,opacity=0.05,step=0.42cm] ([yshift=-10.4cm]current page.north west) grid (current page.north east);
+  \begin{scope}[shift={([xshift=14.6cm,yshift=-5.2cm]current page.north west)}]
+   \node[text=white,opacity=0.9,font=\small,align=center] at (0,2.3) {the gap this document closes};
+   \node[draw=rose,line width=1pt,rounded corners=3pt,text=rose,font=\ttfamily\scriptsize,
+         align=left,inner sep=7pt] at (0,1.2) {ns=3: True\\ns=5: True\\ns=8: True};
+   \draw[white,opacity=0.5,line width=1pt,-{Stealth[length=5pt]}] (0,0.35)--(0,-0.4);
+   \node[text=white,opacity=0.55,font=\scriptsize] at (0,-0.75) {is \emph{not}};
+   \draw[white,opacity=0.5,line width=1pt,-{Stealth[length=5pt]}] (0,-1.1)--(0,-1.85);
+   \node[draw=gold,line width=1.1pt,rounded corners=3pt,text=gold,font=\small,inner sep=8pt]
+        at (0,-2.4) {$\forall N\in\mathbb{N}$};
+  \end{scope}\end{scope}
+ \node[anchor=north west,text=white,align=left,inner sep=0pt]
+  at ([xshift=2.05cm,yshift=-1.8cm]current page.north west)
+  {\fontsize{10}{12}\selectfont\color{gold}\textsc{tutorial companion $\cdot$ assumes no proof background}\\[2pt]
+   \fontsize{9}{11}\selectfont\color{white!70}to \bk{Proof\_Techniques\_01\_Sage\_10.9\_From\_Pure\_to\_Applied.ipynb}};
+ \node[anchor=north west,text=white,align=left,inner sep=0pt,text width=11.6cm]
+  at ([xshift=2.05cm,yshift=-3.1cm]current page.north west)
+  {\fontsize{40}{44}\selectfont\bfseries Writing Proofs,\\from Zero\\[11pt]
+   \fontsize{13.5}{18}\selectfont\color{white!92}
+   A 22-cell notebook, explained --- with the\\method drawn from eight books on your shelf\\[10pt]
+   \fontsize{10}{14}\selectfont\color{white!76}\normalfont
+   Devlin $\cdot$ Diedrichs \& Lovett $\cdot$ Stewart \& Tall $\cdot$ Tao\\
+   Halmos $\cdot$ O'Leary $\cdot$ Rado\.zycki $\cdot$ Thurston\\
+   \textbf{2{,}164 pages, of which you read 134.}};
+ \foreach \i/\c/\t/\s in {0/bio/{6}/{proof techniques,\\each fully worked},
+                          1/nano/{9}/{steps for \emph{finding}\\a proof (Tao)},
+                          2/sand/{22}/{notebook cells,\\each explained},
+                          3/alert/{1}/{trap: a CAS\\that says False}}{
+  \node[anchor=north west,inner sep=0pt]
+   at ([xshift={2.05cm+\i*4.28cm},yshift=-11.6cm]current page.north west)
+   {\begin{tikzpicture}\node[fill=\c,text=white,rounded corners=4pt,minimum width=3.95cm,
+     minimum height=2.15cm,align=left,inner sep=10pt,anchor=north west,font=\scriptsize] at (0,0)
+     {{\fontsize{22}{23}\selectfont\bfseries \t}\\[5pt]\s};\end{tikzpicture}};}
+ \node[anchor=north west,inner sep=0pt] at ([xshift=2.05cm,yshift=-14.6cm]current page.north west)
+  {\begin{tikzpicture}\node[draw=gold,line width=1.1pt,rounded corners=3pt,fill=gold!7,
+    text width=16.35cm,align=left,inner sep=13pt,font=\small,anchor=north west] at (0,0)
+    {\textbf{\color{ink}The one idea.}\;
+     Your Sage notebook prints \bk{True} three times and it feels like proof. It is not. Devlin's own
+     book gives the killer example: \textbf{the Goldbach Conjecture has been verified for every even
+     number up to 1.6 quintillion and remains unproved.}\\[6pt]
+     {\footnotesize\color{slate}Checking is a \emph{search}. Proving is an \emph{argument}. This
+     document teaches the six arguments you need, then assembles them into one real theorem about
+     the partition function you are already computing.}};\end{tikzpicture}};
+ \node[anchor=south west,align=left,text=slate,font=\scriptsize,inner sep=0pt,text width=16.9cm]
+  at ([xshift=2.05cm,yshift=2.05cm]current page.south west)
+  {\color{proof}\rule{16.9cm}{1.2pt}\\[6pt]
+   Every quotation below was extracted from your own copy of the book named, in
+   \bk{Partition\_Function\_Study/Maths\_Proof\_Skill/}. Section numbers are as printed in those files.};
+\end{tikzpicture}\end{titlepage}

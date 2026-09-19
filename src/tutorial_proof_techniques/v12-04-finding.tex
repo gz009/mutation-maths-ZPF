@@ -1,0 +1,78 @@
+\clearpage
+\renewcommand{\sectioncolor}{nano}
+\section{How to \emph{find} a proof --- Tao's nine steps}
+\markboth{Finding a proof}{}
+
+The techniques in §5 tell you what a finished proof looks like. They do not tell you how to get one.
+For that your shelf has Terence Tao's \textit{Solving Mathematical Problems}
+(\bk{04\_Problem\_Strategy}), whose Chapter 1 lays out a sequence you can actually follow when stuck.
+
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+ s/.style={rounded corners=3pt,draw=#1,line width=0.9pt,fill=#1!8,inner sep=6pt,
+           text width=4.75cm,align=left,minimum height=1.25cm},
+ num/.style={circle,fill=#1,text=white,font=\scriptsize\bfseries,inner sep=2.6pt}]
+\foreach \i/\txt/\y/\c in {%
+ 1/{\textbf{Understand the problem.} What kind is it? Find, prove, or evaluate?}/0/nano,
+ 2/{\textbf{Understand the data.} What is given, and how do the objects interact?}/-1.45/nano,
+ 3/{\textbf{Understand the objective.} What exactly must be produced?}/-2.90/nano,
+ 4/{\textbf{Select good notation.} Represent data and objective as simply as possible.}/-4.35/sand,
+ 5/{\textbf{Write down what you know}; draw a diagram.}/-5.80/sand}{
+ \node[s=\c] (a\i) at (0,\y) {\txt}; \node[num=\c] at (-2.75,\y) {\i};}
+\foreach \i/\txt/\y/\c in {%
+ 6/{\textbf{Modify the problem slightly.} Special cases, relaxed hypotheses.}/0/bio,
+ 7/{\textbf{Modify the problem significantly.} A more aggressive reformulation.}/-1.45/bio,
+ 8/{\textbf{Prove results about the question.} Data exists to be used.}/-2.90/bio,
+ 9/{\textbf{Simplify, exploit data, reach tactical goals.}}/-4.35/bio,
+ {}/{\textcolor{proof}{\textbf{Then write it up} using a technique from §5.}}/-5.80/proof}{
+ \node[s=\c] at (6.6,\y) {\txt};
+ \ifx\i\empty\else\node[num=\c] at (3.85,\y) {\i};\fi}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 2.}\; Tao's sequence, from \textit{Solving Mathematical Problems} ch.~1. Steps 1--5
+are setup; 6--9 are attack. \textbf{Read Tao after you have been stuck}, not before --- the advice
+only lands once you have felt the need for it.
+\end{minipage}\end{center}
+
+\begin{bookbox}[title={Diedrichs \& Lovett's honest warning, §2.3.6}]
+\begin{quote}\itshape
+``There is \textbf{no universal strategy} to prove or disprove any given mathematical statement. One
+of the challenges of advanced mathematics is that the work becomes less and less algorithmic the
+further one advances. Proving mathematical statements \textbf{requires creativity}\ldots\ Nonetheless,
+there are a few common things to try.''
+\end{quote}
+Their two suggestions: \textbf{modify an example or other proof}, and \textbf{try a few examples}
+(with the faulty-generalization caveat from §3).
+\end{bookbox}
+
+\begin{techbox}[title={And the part nobody tells beginners --- D\&L §2.3.6}]
+\begin{quote}\itshape
+``Though it may take considerable work to find a proof of a statement, \textbf{we do not include in
+the proof all of the ideas, mental movements, dead ends, or examples that led up to our proof.}''
+\end{quote}
+This is why published proofs look effortless and yours will not. \textbf{The finished proof is not a
+record of how you found it.} Expect the search to be messy; write the result clean.
+\end{techbox}
+
+\begin{dobox}[title={Worked: how §9's theorem was actually found}]
+Using Tao's numbering, on the theorem $\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N$:
+\begin{center}\small
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{13.4cm}@{}}
+\toprule
+\rowcolor{nano!12}
+\textbf{step} & \textbf{what happened}\\
+\midrule
+1--3 & Objective: a formula for $\operatorname{Tr}(T^N)$. Data: $T$ is $2\times2$, real, symmetric.\\
+4 & Notation: call the eigenvalues $\lambda_\pm$ rather than carrying $2\cosh\beta$ around.\\
+5 & Wrote $T$ out; noticed the symmetry immediately.\\
+6 & \textbf{Modified slightly:} tried $N=1,2$ by hand. $\operatorname{Tr}(T)=\lambda_++\lambda_-$ --- suggestive.\\
+8 & \textbf{Proved a result about the question:} $T$ symmetric $\Rightarrow$ orthonormal eigenbasis (Axler 7.29). This was the key move.\\
+9 & Simplified: in the eigenbasis $T^N$ is trivially diagonal; trace is basis-independent (10.A). Done.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{2pt}
+The write-up in §7 is four lines. The search was not.
+\end{dobox}

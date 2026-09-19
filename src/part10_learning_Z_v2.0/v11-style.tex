@@ -1,0 +1,42 @@
+\definecolor{bio}    {HTML}{1B7F5C}
+\definecolor{quantum}{HTML}{5B3A9B}
+\definecolor{nano}   {HTML}{0E7C9D}
+\definecolor{ember}  {HTML}{C1502E}
+\definecolor{sand}   {HTML}{B8860B}
+\definecolor{lab}    {HTML}{15616D}
+\definecolor{alert}  {HTML}{B3261E}
+\definecolor{indigo} {HTML}{2E2A6B}
+\definecolor{measure}{HTML}{8E3B62}
+\definecolor{shelf}  {HTML}{6B4423}
+
+\newtcolorbox{haveit}[1][]{enhanced, breakable, colback=bio!5, colframe=bio, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=bio,arc=2pt,boxrule=0pt}, #1}
+\newtcolorbox{missing}[1][]{enhanced, breakable, colback=alert!5, colframe=alert, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=alert,arc=2pt,boxrule=0pt}, #1}
+\newtcolorbox{keyidea}[1][]{enhanced, breakable, colback=indigo!5, colframe=indigo, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=indigo,arc=2pt,boxrule=0pt}, #1}
+\newtcolorbox{plain}[1][]{enhanced, breakable, colback=sand!10, colframe=sand!80!black,
+  boxrule=0.8pt, arc=3pt, left=46pt,right=10pt,top=7pt,bottom=7pt,
+  overlay={\node[anchor=north west,text=sand!80!black,font=\scriptsize\bfseries,align=center,
+     text width=36pt] at ([xshift=5pt,yshift=-6pt]frame.north west) {IN\\PLAIN\\WORDS};}, #1}
+\newcommand{\yes}{\textcolor{bio}{\textbf{\checkmark}}}
+\newcommand{\no}{\textcolor{alert}{\textbf{$\times$}}}
+\newcommand{\pt}{\textcolor{sand}{\textbf{$\sim$}}}
+\newcommand{\bk}[1]{{\footnotesize\texttt{#1}}}
+\fancyhead[L]{\footnotesize\color{slate}\textsc{Learning }$Z$\,$\cdot$\,\textsc{Part X}\,$\cdot$\,\textsc{v2.0}}
+\hypersetup{pdftitle={Learning Z v2.0 --- the partition function, across all four of your libraries},
+  pdfsubject={Part X: a route to statistical mechanics through the Pure Maths self-study shelf},
+  pdfkeywords={partition function, transfer matrix, Ising model, spectral theorem, trace,
+    measure theory, Monte Carlo, mixing time, Axler, Kuttler}}
+
+\definecolor{qbit}{HTML}{7A1F3D}
+\definecolor{tenso}{HTML}{1F5673}

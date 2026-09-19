@@ -1,0 +1,64 @@
+\clearpage
+\renewcommand{\sectioncolor}{alert}
+\section{The CAS boundary --- what Sage cannot do \ \ \cell{21}}
+\markboth{The CAS boundary}{}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+ b/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!7,inner sep=9pt,
+           text width=7.4cm,align=left,minimum height=5.0cm}]
+ \node[b=bio] (a) at (-4.3,0) {\textbf{\color{bio}\normalsize Sage CAN}\\[5pt]
+  $\bullet$\; \textbf{Falsify fast.} One counterexample kills a conjecture --- the cheapest
+  mathematics there is \cell{11}\\[4pt]
+  $\bullet$\; \textbf{Verify instances.} \bk{ns=3,5,8} before you attempt the general case\\[4pt]
+  $\bullet$\; \textbf{Do the algebra inside a proof.} \bk{exponentialize()} closed a hyperbolic
+  identity you would otherwise grind by hand\\[4pt]
+  $\bullet$\; \textbf{Suggest the closed form.} Compute, spot the pattern, \emph{then} prove it};
+ \node[b=alert] (b) at (4.3,0) {\textbf{\color{alert}\normalsize Sage CANNOT}\\[5pt]
+  $\bullet$\; \textbf{Prove $\forall n$.} Twenty checks are twenty facts \cell{17}\\[4pt]
+  $\bullet$\; \textbf{Tell you why.} \bk{True} is not an explanation\\[4pt]
+  $\bullet$\; \textbf{Choose the right lemma.} Nothing in Sage suggests ``invoke the spectral
+  theorem here''\\[4pt]
+  $\bullet$\; \textbf{Be trusted when it says \bk{False}.} See below --- this one has already
+  bitten you};
+\end{tikzpicture}
+\end{center}
+
+\subsection{The trap: a CAS that says \texttt{False} about a true statement}
+
+\cell{21} runs one expression through four simplification methods. The expression is
+\textbf{identically zero}.
+
+\begin{cellbox}
+the expression: -(e\^{}(2*beta) + 1)*e\^{}(-beta) + 2*cosh(beta)\\[4pt]
+\hspace*{2em}bool(expr == 0)                       -> False\\
+\hspace*{2em}bool(expr.simplify\_full() == 0)       -> False\\
+\hspace*{2em}bool(expr.canonicalize\_radical()==0)  -> False\\
+\hspace*{2em}bool(expr.exponentialize()...  == 0)  -> \textcolor{bio}{\textbf{True}}\\[4pt]
+substitute any number and see:\\
+\hspace*{2em}beta=0.3:  0.000e-12\\
+\hspace*{2em}beta=1.0: -4.441e-16\\
+\hspace*{2em}beta=2.5: -1.776e-15
+\end{cellbox}
+
+\begin{warnbox}[title={The moral, stated precisely}]
+\textbf{A CAS \bk{False} is not a disproof. It is a failure to simplify.}\\[4pt]
+Three of four methods failed on a true identity. Had you trusted the first, you would have concluded
+$\lambda_+\neq2\cosh\beta$ --- which is false, and would have wrecked every derivation downstream.\\[5pt]
+The converse is weaker than it looks too: a \bk{True} from a sound method verifies \emph{exactly what
+you asked}, over \emph{exactly the domain you declared}. Note that the notebook declares
+\bk{var('beta', domain='real')}. Drop that and the simplifications change.
+\end{warnbox}
+
+\begin{bookbox}[title={Thurston saw this coming, in 1994}]
+On the four-colour theorem, proved by exhaustive computer search:
+\begin{quote}\itshape
+``it evoked much controversy. I interpret the controversy as having little to do with doubt people
+had as to the veracity of the theorem or the correctness of the proof. Rather, it reflected a
+\textbf{continuing desire for human understanding} of a proof, in addition to knowledge that the
+theorem is true.''
+\end{quote}
+\textbf{That is the distinction this whole notebook is built around.} Sage can give you knowledge
+that a statement is true for the cases you checked. Understanding is a different commodity, and you
+have to make it yourself.
+\end{bookbox}

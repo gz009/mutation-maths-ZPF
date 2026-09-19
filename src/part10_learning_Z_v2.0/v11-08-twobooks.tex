@@ -1,0 +1,63 @@
+\clearpage
+\renewcommand{\sectioncolor}{tenso}
+\section{You own two treatments of this exact calculation}
+\markboth{Shankar and Feynman}{}
+
+The calculation in §5 is not something I invented for this dossier. Two books on your shelves do it,
+from opposite directions, and reading both is worth more than reading either twice.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!7,inner sep=9pt,
+            text width=7.3cm,align=left,minimum height=6.4cm}]
+ \node[b=tenso] (a) at (-4.35,0)
+   {\textbf{\color{tenso}\normalsize SHANKAR §21.2}\\
+    {\scriptsize \textit{Principles of Quantum Mechanics} 2ed, ch.~21 \emph{Path Integrals: Part II}, p.~627 --- \textcolor{tenso}{TensoQi101/Main\_Ref\_Texts}}\\[6pt]
+    Arrives from \textbf{quantum mechanics}. Verbatim from the text:\\[4pt]
+    {\scriptsize eq.~21.2.44 --- \textit{``Consider the partition function for a quantum system''}}\\[3pt]
+    {\scriptsize \textit{``The role of the action in the Feynman integral is played by the energy in the partition function.''}}\\[3pt]
+    {\scriptsize \textit{``The role of $\hbar$ is played by $T$.''}}\\[3pt]
+    {\scriptsize \textit{``The dimensionality goes up by 1 as we go from the quantum to the classical problem.''}}\\[3pt]
+    {\scriptsize eq.~21.2.59 --- \textit{``consider the Ising model in one dimension\ldots The partition function is\ldots''}} \\[5pt]
+    \textbf{Then solves for the free energy and correlation function, and maps it back to a quantum problem.}};
+ \node[b=sand] (b) at (4.35,0)
+   {\textbf{\color{sand!80!black}\normalsize FEYNMAN, \textit{STATISTICAL MECHANICS}}\\
+    {\scriptsize 371 pp --- \textcolor{sand!70!black}{Pure\_Maths/Module\_8}}\\[6pt]
+    Arrives from \textbf{statistical mechanics}. Chapter structure:\\[5pt]
+    {\scriptsize \textbf{1} Introduction to Statistical Mechanics\newline\hspace*{1em}\textbf{§1.1 The Partition Function}}\\[3pt]
+    {\scriptsize \textbf{2} Density Matrices\newline\hspace*{1em}§ Density Matrix in Statistical Mechanics (p.~47)}\\[3pt]
+    {\scriptsize \textbf{3} Path Integrals\newline\hspace*{1em}\textbf{§3.1 Path Integral Formation of the Density Matrix} (p.~72)\newline\hspace*{1em}§3.4 Variational Principle for the Path Integral}\\[3pt]
+    {\scriptsize \textbf{5} Order--Disorder Theory\newline\hspace*{1em}§5.2 Order--Disorder in One Dimension (p.~130)\newline\hspace*{1em}§5.3 Approximate Methods for Two Dimensions\newline\hspace*{1em}\textbf{§5.4 The Onsager Problem} (p.~136)}};
+ \draw[{Stealth[length=7pt]}-{Stealth[length=7pt]},line width=1.4pt,draw=measure] (-0.6,0)--(0.6,0);
+ \node[font=\scriptsize\bfseries,text=measure,align=center] at (0,0.55) {same};
+ \node[font=\scriptsize\bfseries,text=measure,align=center] at (0,-0.55) {object};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 6.}\; Two routes to one calculation. Shankar starts from $\mathrm{Tr}(e^{-\beta\hat H})$
+and arrives at a classical spin chain; Feynman starts from the classical partition function and
+arrives at the density matrix as a path integral. \textbf{They meet in the middle, at the 1D Ising
+model.}
+\end{minipage}\end{center}
+
+\begin{keyidea}[title={What §5 of this dossier adds, and what it does not}]
+The notebook gives you something neither book does: \textbf{the calculation done three ways with the
+numbers agreeing to $7.6\times10^{-13}$, and then the third method visibly failing.} That is the part
+you cannot get from reading.
+
+\textbf{What §5 does not teach}, and where to get it:
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{7.4cm}>{\raggedright\arraybackslash}p{9.0cm}@{}}
+\toprule
+\rowcolor{tenso!12}
+\textbf{Not shown in 1D} & \textbf{Where you already have it}\\
+\midrule
+Why computing $Z$ is \#P-hard --- in 1D it is not & \textbf{Feynman §5.3--5.4}: two dimensions, then \textbf{the Onsager problem}\\
+Phase transitions --- impossible in 1D with short range & \textbf{Feynman ch.~5}; \textbf{PBoC2 ch.~6} for the biological versions\\
+Continuous configuration space & \textbf{PBoC2} on ligand binding; \textbf{Bressloff Vol.~1}\\
+The quantum--classical correspondence & \textbf{Shankar §21.2} · \textbf{Feynman ch.~3}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keyidea}

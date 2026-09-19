@@ -1,0 +1,126 @@
+\clearpage
+\renewcommand{\sectioncolor}{nano}
+\section{The target: what exists, what is missing}\label{sec:target}
+\markboth{The target domain}{}
+
+Here I want to be realistic rather than inspiring. The pasted text is right that biology spans
+extraordinary scales. What it does not do is say \emph{which mathematics already covers which band},
+and \emph{where the coverage actually stops}.
+
+\subsection{The scale ladder, with coverage}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize]
+% --- spatial axis ---
+\draw[slate!55,line width=1.2pt,-{Stealth[length=5pt]}] (0,0)--(16.4,0);
+\node[anchor=east,font=\scriptsize\bfseries,text=slate,align=right] at (-0.15,0) {LENGTH};
+\foreach \x/\l/\n in {1.0/{$10^{-10}$\,m}/{atoms}, 4.1/{$10^{-9}$\,m}/{molecules},
+                      7.2/{$10^{-7}$\,m}/{complexes}, 10.3/{$10^{-6}$\,m}/{cells},
+                      13.4/{$10^{-3}$\,m}/{tissues}, 15.9/{$1$\,m}/{organism}}{
+  \draw[slate!55,line width=0.8pt] (\x,-0.12)--(\x,0.12);
+  \node[font=\scriptsize,above=3pt] at (\x,0.1) {\l};
+  \node[font=\scriptsize,text=slate,below=3pt] at (\x,-0.1) {\n};}
+% --- seams, drawn first so labels sit on top ---
+\foreach \x in {4.1,7.3,10.35}{
+  \draw[crimson!55,line width=1pt,dashed] (\x,-1.20)--(\x,-5.05);}
+% --- coverage bands ---
+\def\bandy{-1.55}
+\foreach \a/\b/\c/\t/\r in {%
+   0.5/4.6/quantum/{quantum chemistry, DFT, HEOM}/0,
+   3.6/8.0/nano/{molecular dynamics, force fields}/-0.78,
+   6.6/11.2/bio/{coarse-grained \& Markov state models}/-1.56,
+   9.5/14.2/sand/{reaction networks, stochastic kinetics}/-2.34,
+   12.6/16.3/ember/{reaction--diffusion, continuum}/-3.12}{
+  \fill[\c,opacity=0.20,rounded corners=3pt] (\a,{\bandy+\r-0.30}) rectangle (\b,{\bandy+\r+0.30});
+  \draw[\c,line width=0.9pt,rounded corners=3pt] (\a,{\bandy+\r-0.30}) rectangle (\b,{\bandy+\r+0.30});
+  \node[font=\scriptsize,text=\c!70!black] at ({(\a+\b)/2},{\bandy+\r}) {\t};}
+\node[font=\scriptsize,text=crimson,align=center,anchor=north] at (7.3,-5.15)
+  {\textbf{the seams} --- these are stitched by hybrid schemes (QM/MM, multiscale coupling),\\
+   \emph{not} bridged by a unified formalism. This is gap \textbf{(1)}.};
+\end{tikzpicture}
+\end{center}
+\vspace{4pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; Which mathematics covers which length scale. The overlaps are real; the
+\emph{transitions} are where the formalism changes character entirely, and nothing carries across
+them automatically.
+\end{minipage}\end{center}
+
+\subsection{What already exists and works --- by name and date}
+
+The pasted text says ``some of the ingredients already exist.'' Here are the specific results that
+did the actual work, so a student can start reading tomorrow.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.5cm}>{\raggedright\arraybackslash}p{11.7cm}@{}}
+\toprule
+\rowcolor{nano!13}
+\textbf{\color{nano}Problem} & \textbf{\color{nano}The mathematics that solved it}\\
+\midrule
+Network topology $\Rightarrow$ dynamics, \emph{without} knowing rate constants &
+ \textbf{Deficiency-zero and deficiency-one theorems} --- Horn \& Jackson 1972; Feinberg, 1972
+ onwards. A structural property of the reaction graph guarantees existence, uniqueness and stability
+ of equilibria. This is the outstanding example of mathematics tailored to molecular systems.\\
+Why DNA replication is more accurate than binding energies allow &
+ \textbf{Kinetic proofreading} --- Hopfield 1974 (PNAS); Ninio 1975. Error correction bought with
+ energy dissipation.\\
+Free energies from irreversible pulling &
+ \textbf{Jarzynski equality} 1997 (PRL); \textbf{Crooks fluctuation theorem} 1999 (PRE).\\
+Cost of precision in a driven system &
+ \textbf{Thermodynamic uncertainty relation} --- Barato \& Seifert 2015 (PRL).\\
+Small copy numbers, discrete molecules &
+ \textbf{Chemical master equation}; \textbf{Gillespie} stochastic simulation algorithm, 1976--77.\\
+Protein conformational dynamics from simulation &
+ \textbf{Markov state models}; \textbf{persistent homology} (Edelsbrunner, Letscher \& Zomorodian
+ 2002; Carlsson 2009) applied to folding trajectories and to cryo-EM heterogeneity.\\
+Strongly coupled, non-Markovian environments &
+ \textbf{HEOM} --- Tanimura \& Kubo 1989. Numerically exact; expensive.\\
+Composing biochemical modules &
+ \textbf{Applied category theory} --- Baez \& Pollard, \textit{A compositional framework for reaction
+ networks}, 2017; decorated cospans.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Where the mathematics genuinely runs out}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  g/.style={rounded corners=4pt,draw=crimson,line width=1.2pt,fill=crimson!6,inner sep=9pt,
+            text width=4.78cm,align=left,minimum height=4.55cm}]
+ \node[g] (g1) at (-5.75,0)
+   {\textbf{\color{crimson}GAP 1 --- Scale bridging}\\[4pt]
+    QM/MM hybrids are \emph{stitching}, not a unified formalism.\\[4pt]
+    There is no general theory of \textbf{what survives coarse-graining} for open, driven systems.\\[4pt]
+    {\scriptsize The renormalisation group is the nearest relative --- and it works beautifully at
+    equilibrium critical points, which is not where cells live.}};
+ \node[g] (g2) at (0,0)
+   {\textbf{\color{crimson}GAP 2 --- A variational principle far from equilibrium}\\[4pt]
+    At equilibrium, \emph{minimise free energy} organises everything.\\[4pt]
+    \textbf{There is no accepted analogue for driven systems.}\\[4pt]
+    {\scriptsize Maximum entropy production and related proposals remain contested. This is a genuine
+    open problem, not a gap in anyone's education.}};
+ \node[g] (g3) at (5.75,0)
+   {\textbf{\color{crimson}GAP 3 --- Non-Markovian open systems}\\[4pt]
+    No clean general theory.\\[4pt]
+    HEOM is powerful but is essentially numerically exact brute force.\\[4pt]
+    {\scriptsize Precisely the regime a chromophore in a warm protein actually occupies --- which is
+    why quantum biology is mathematically hard as well as experimentally hard.}};
+\end{tikzpicture}
+\end{center}
+
+\begin{critbox}[title={The bottleneck that is not mathematics --- read this before choosing a problem}]
+For most of molecular and cellular biology \textbf{right now}, the binding constraint is
+\textbf{measurement}, not mathematics. We cannot yet watch single molecules inside a living cell with
+sufficient spatial \emph{and} temporal resolution simultaneously. Inventing mathematics for data you
+cannot take is the wrong order of operations.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize]
+ \node[rounded corners=3pt,fill=sand!14,draw=sand!80!black,line width=0.9pt,inner sep=7pt,
+       text width=15.4cm,align=center]
+  {Which loops straight back to \textbf{Move 4}. If the constraint is measurement, then the highest-value
+   contribution available is often \emph{an instrument} --- and the instrument will generate the
+   mathematics, as the STM and AFM did.};
+\end{tikzpicture}
+\end{center}
+\end{critbox}

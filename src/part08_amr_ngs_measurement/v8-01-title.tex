@@ -1,0 +1,89 @@
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[lab] (current page.north west) rectangle ([yshift=-10.9cm]current page.north east);
+  \begin{scope}
+    \clip (current page.north west) rectangle ([yshift=-10.9cm]current page.north east);
+    \draw[white,opacity=0.05,step=0.42cm]
+      ([yshift=-10.9cm]current page.north west) grid (current page.north east);
+    % ---- emblem: flow-cell tile grid with 4 hot spots ----
+    \begin{scope}[shift={([xshift=15.0cm,yshift=-5.45cm]current page.north west)}]
+      \foreach \r in {0,...,13}{ \foreach \c in {0,...,7}{
+        \fill[white,opacity=0.10,rounded corners=0.4pt]
+          ({\c*0.44-1.55},{\r*0.30-2.0}) rectangle ({\c*0.44-1.20},{\r*0.30-1.80});}}
+      \foreach \rr/\cc in {2/1, 5/6, 9/0, 11/5}{
+        \fill[rose,opacity=0.95,rounded corners=0.4pt]
+          ({\cc*0.44-1.55},{\rr*0.30-2.0}) rectangle ({\cc*0.44-1.20},{\rr*0.30-1.80});
+        \draw[rose,opacity=0.45,line width=0.7pt]
+          ({\cc*0.44-1.75},{\rr*0.30-2.2}) rectangle ({\cc*0.44-1.00},{\rr*0.30-1.60});}
+      \node[text=white,opacity=0.55,font=\tiny,anchor=north] at (0.2,-2.35) {28 tiles $\times$ 251 cycles};
+      \node[text=rose,font=\tiny\bfseries,anchor=south] at (0.2,2.32) {4 failed tile-cycles};
+    \end{scope}
+  \end{scope}
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-1.85cm]current page.north west)
+    {\fontsize{10}{12}\selectfont\color{gold}\textsc{bio-bio-1 $\cdot$ amr r\&d maths $\cdot$ part viii}\\[2pt]
+     \fontsize{9}{11}\selectfont\color{white!70}a clinical isolate $\cdot$ \textit{Staphylococcus aureus} $\cdot$ short-read whole-genome sequencing};
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt,text width=12.0cm]
+    at ([xshift=2.05cm,yshift=-3.15cm]current page.north west)
+    {\fontsize{31}{36}\selectfont\bfseries Your Errors Are Not\\Noise\\[11pt]
+     \fontsize{15.5}{20}\selectfont\color{white!92}
+     What mathematics can actually fix in our\\NGS pipeline --- and what it provably cannot\\[10pt]
+     \fontsize{10.5}{14.5}\selectfont\color{white!76}\normalfont
+     Every number below was measured on \textbf{our own sequencing run}.\\
+     Nothing here is borrowed from a textbook or a paper.};
+
+  % headline stat strip
+  \foreach \i/\c/\t/\s in {0/alert/{51\%}/{of all base errors come from\\under \textbf{0.1\%} of the run},
+                           1/sand/{99.3\%}/{error rate on tile 1113,\\cycle 85 --- reported as \textbf{Q39}},
+                           2/nano/{208:1}/{raw data generated per\\byte of genome kept}}{
+    \node[anchor=north west,inner sep=0pt]
+      at ([xshift={2.05cm+\i*5.72cm},yshift=-12.25cm]current page.north west)
+      {\begin{tikzpicture}
+         \node[fill=\c,text=white,rounded corners=4pt,minimum width=5.3cm,
+               minimum height=2.25cm,align=left,inner sep=10pt,anchor=north west,
+               font=\footnotesize] at (0,0) {{\fontsize{21}{22}\selectfont\bfseries \t}\\[5pt]\s};
+       \end{tikzpicture}};}
+
+  \node[anchor=north west,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-15.3cm]current page.north west)
+    {\begin{tikzpicture}
+       \node[draw=gold,line width=1.1pt,rounded corners=3pt,fill=gold!7,
+             text width=16.35cm,align=left,inner sep=13pt,font=\small,anchor=north west] at (0,0)
+         {\textbf{\color{ink}The finding, in one sentence.}\;
+          Our data does not have an accuracy problem --- it has an \textbf{error-model} problem.
+          The pipeline assumes errors are scattered at random. They are not: they are concentrated,
+          structured, and reported by the instrument as \emph{high quality}.\\[6pt]
+          {\footnotesize\color{slate}Consequence: roughly \textbf{50$\times$ of our 71.6$\times$ coverage} is
+          paying for that wrong assumption --- and against the worst failures, extra coverage makes
+          the answer \emph{worse}, not better. That part is a theorem, not an opinion.}};
+     \end{tikzpicture}};
+
+  \node[anchor=north west,inner sep=0pt,text width=16.6cm,align=left,font=\footnotesize,text=ink]
+    at ([xshift=2.05cm,yshift=-19.6cm]current page.north west)
+    {\color{lab}\textbf{\normalsize Written for the whole team --- no mathematics background assumed}\\[5pt]
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{sand}{\textbf{$\blacksquare$}}\; every section opens with the \textbf{biology question}\\[3pt]
+       \textcolor{bio}{\textbf{$\blacksquare$}}\; every maths point has an \textsc{in plain words} box
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{nano}{\textbf{$\blacksquare$}}\; \S1 is a one-page summary you can act on alone\\[3pt]
+       \textcolor{alert}{\textbf{$\blacksquare$}}\; \S6 says plainly where maths \emph{cannot} help
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{quantum}{\textbf{$\blacksquare$}}\; \S9 is five actions, ranked by payoff\\[3pt]
+       \textcolor{ember}{\textbf{$\blacksquare$}}\; \S10 is a drop-in script --- copy, paste, run
+     \end{minipage}};
+
+  \node[anchor=south west,align=left,text=slate,font=\scriptsize,inner sep=0pt,text width=16.9cm]
+    at ([xshift=2.05cm,yshift=2.05cm]current page.south west)
+    {\color{lab}\rule{16.9cm}{1.2pt}\\[6pt]
+     Sources: \texttt{METHODS\_v1.7.md}, \texttt{TUTORIAL\_QC\_and\_Read\_Cleaning.md},
+     \texttt{handbook\_illumina/theory/}, \texttt{assembly\_results/quast\_report/},
+     \texttt{handbook\_illumina/results/02\_empirical\_errors.json} and
+     \texttt{02b\_spike\_cycles.json}.\\
+     Every figure is recomputed from those files. Companion to the Part VI and Part VII dossiers.};
+\end{tikzpicture}
+\end{titlepage}

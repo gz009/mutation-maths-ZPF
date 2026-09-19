@@ -1,0 +1,43 @@
+\definecolor{bio}    {HTML}{1B7F5C}
+\definecolor{quantum}{HTML}{6C3FA8}
+\definecolor{nano}   {HTML}{0E7C9D}
+\definecolor{ember}  {HTML}{C1502E}
+\definecolor{sand}   {HTML}{B8860B}
+\definecolor{lab}    {HTML}{15616D}
+\definecolor{alert}  {HTML}{B3261E}
+
+\newtcolorbox{labbox}[1][]{enhanced, breakable, colback=lab!5, colframe=lab, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=lab,arc=2pt,boxrule=0pt}, #1}
+
+\newtcolorbox{dobox}[1][]{enhanced, breakable, colback=bio!6, colframe=bio, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=bio,arc=2pt,boxrule=0pt}, #1}
+
+\newtcolorbox{alertbox}[1][]{enhanced, breakable, colback=alert!5, colframe=alert, boxrule=0pt,
+  leftrule=3.5pt, arc=2pt, left=9pt,right=9pt,top=7pt,bottom=7pt,
+  fonttitle=\bfseries\color{white}, coltitle=white,
+  attach boxed title to top left={xshift=8pt,yshift=-9pt},
+  boxed title style={colback=alert,arc=2pt,boxrule=0pt}, #1}
+
+% "for the biologist" translation strip
+\newtcolorbox{plain}[1][]{enhanced, breakable, colback=sand!10, colframe=sand!80!black,
+  boxrule=0.8pt, arc=3pt, left=46pt,right=10pt,top=7pt,bottom=7pt,
+  overlay={\node[anchor=north west,text=sand!80!black,font=\scriptsize\bfseries,align=center,
+     text width=36pt] at ([xshift=5pt,yshift=-6pt]frame.north west) {IN\\PLAIN\\WORDS};}, #1}
+
+\newcommand{\yes}{\textcolor{bio}{\textbf{\checkmark}}}
+\newcommand{\no}{\textcolor{alert}{\textbf{$\times$}}}
+\newcommand{\pt}{\textcolor{sand}{\textbf{$\sim$}}}
+\renewcommand{\ev}[1]{{\footnotesize\color{slate}\textsc{[#1]}}}
+
+\fancyhead[L]{\footnotesize\color{slate}\textsc{AMR R\&D Maths}\,$\cdot$\,\textsc{Bio-Bio-1}\,$\cdot$\,\textsc{Part VIII}}
+\hypersetup{
+  pdftitle={AMR R\&D Maths --- NGS Measurement Problems and What Mathematics Can Actually Fix},
+  pdfsubject={Bio-Bio-1 team dossier, NGS measurement problems, S. aureus short-read assembly},
+  pdfkeywords={AMR, NGS, Illumina, error model, tile-cycle failure, coverage, repeat resolution,
+    paralogue, ResFinder, VFDB, MLST, robust statistics, likelihood ratio}}

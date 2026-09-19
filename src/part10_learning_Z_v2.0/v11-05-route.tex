@@ -1,0 +1,55 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{The route, corrected --- eight stages, all but one from your own shelves}
+\markboth{The route}{}
+
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  st/.style={rounded corners=4pt,draw=#1,line width=1.1pt,fill=#1!8,inner sep=6pt,
+             text width=3.5cm,align=left,minimum height=3.15cm},
+  ar/.style={-{Stealth[length=5pt,width=4pt]},line width=1.1pt,draw=bio!75}]
+ \node[st=bio]    (a) at (0,0)      {\textbf{\color{bio}1 · OPERATORS}\\[3pt]Axler \textit{LADR}\\§7.B, §7.C, §10.A\\[3pt]\textcolor{sand!70!black}{Pure\_Maths}};
+ \node[st=tenso]  (b) at (4.45,0)   {\textbf{\color{tenso}2 · THE SAME SUM, TWICE}\\[3pt]\textbf{Shankar §21.2}\\Ising $\to$ path integral\\[3pt]\textcolor{tenso}{TensoQi101}};
+ \node[st=sand]   (c) at (8.90,0)   {\textbf{\color{sand!80!black}3 · STAT MECH}\\[3pt]\textbf{Feynman} ch.~1 (\textit{The Partition Function}), ch.~5\\[3pt]\textcolor{sand!70!black}{Pure\_Maths M8}};
+ \node[st=qbit]   (d) at (13.35,0)  {\textbf{\color{qbit}4 · STAT MECH OF A CELL}\\[3pt]\textbf{PBoC2 ch.~6}\\\textit{Entropy Rules!}\\[3pt]\textcolor{qbit}{QBIT-HIS}};
+ \node[st=tenso]  (e) at (0,-4.1)   {\textbf{\color{tenso}5 · QUANTUM}\\[3pt]N\&C §2.1.8, §2.4, §11.3, \textbf{ch.~8}\\[3pt]\textcolor{tenso}{TensoQi101}};
+ \node[st=bio]    (f) at (4.45,-4.1){\textbf{\color{bio}6 · MEASURE}\\[3pt]\textbf{Axler \textit{MIRA}} or Le Gall\\[3pt]\textcolor{sand!70!black}{Pure\_Maths M5/M8}};
+ \node[st=qbit]   (g) at (8.90,-4.1){\textbf{\color{qbit}7 · STOCHASTIC CELLS}\\[3pt]\textbf{Bressloff} Vol.~1\\[3pt]\textcolor{qbit}{QBIT-HIS/PBoC2}};
+ \node[st=alert]  (h) at (13.35,-4.1){\textbf{\color{alert}8 · THE RIGOROUS END}\\[3pt]Attard 2016\\\textbf{Bru \& Pedra 2020}\\[3pt]\textcolor{qbit}{QBIT-HIS}};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[ar] (\x)--(\y);}
+ \foreach \x/\y in {e/f,f/g,g/h}{\draw[ar] (\x)--(\y);}
+ \draw[ar] (d.south) to[out=-90,in=90,looseness=0.9] (e.north);
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 3.}\; The corrected route. \textbf{Every stage is a book you already own.} Only the
+Markov-mixing material (§9) has to be acquired, and it is free.
+\end{minipage}\end{center}
+
+\subsection{Stage 1 in detail --- the four pages that matter}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.2cm}c>{\raggedright\arraybackslash}p{9.8cm}@{}}
+\toprule
+\rowcolor{bio!13}
+\textbf{\color{bio}Axler \textit{LADR} section} & \textbf{p.} & \textbf{\color{bio}Why $Z=\operatorname{Tr}(e^{-\beta\hat H})$ needs it}\\
+\midrule
+\textbf{7.B The Spectral Theorem} & 217 / 219 &
+ lets you \emph{define} $e^{-\beta\hat H}$ at all --- you exponentiate eigenvalues, which needs an
+ orthonormal eigenbasis to exist\\
+\textbf{7.C Positive Operators} & 225 &
+ $e^{-\beta\hat H}$ \textbf{is} positive. Hence $Z>0$, and $e^{-\beta U}/Z$ is a probability density\\
+\textbf{10.A Trace} & 296--299 &
+ basis-independence makes $\operatorname{Tr}(e^{-\beta\hat H})=\sum_n e^{-\beta E_n}$ a definition,
+ not a coincidence\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{haveit}[title={Cross-check as you go}]
+Read \textbf{Nielsen \& Chuang §2.1.8} immediately afterwards. It states the same construction
+(``operator functions'') in about a page, in physicists' notation. Having the same theorem twice, in
+two vocabularies, is the fastest way to know you have actually understood it rather than memorised
+one presentation.
+\end{haveit}

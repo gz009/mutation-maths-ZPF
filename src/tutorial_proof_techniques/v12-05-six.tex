@@ -1,0 +1,181 @@
+\clearpage
+\renewcommand{\sectioncolor}{proof}
+\section{The six techniques, cell by cell}
+\markboth{The six techniques}{}
+
+Each technique below gives: its \textbf{shape} (the template you fill in), the \textbf{book sections}
+that drill it, the \textbf{notebook cell} that demonstrates it, and \textbf{when to reach for it}.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{5.3cm}>{\raggedright\arraybackslash}p{2.0cm}>{\raggedright\arraybackslash}p{5.3cm}@{}}
+\toprule
+\rowcolor{proof!13}
+\textbf{\color{proof}Technique} & \textbf{\color{proof}Books} & \textbf{\color{proof}Cell} & \textbf{\color{proof}Reach for it when\ldots}\\
+\midrule
+Direct proof & D\&L §2.2 ``Direct proofs'' · Devlin §3.3 & \cell{7} & the hypothesis gives you something to compute with\\
+Proof by cases & D\&L §2.3.1 · Devlin §3.3 & \cell{9} & the objects split naturally into finitely many kinds\\
+Counterexample & D\&L §1.5, §2.2 · Devlin §2.4 & \cell{11} & you suspect the claim is \emph{false}. \textbf{Try this first}\\
+Contrapositive & D\&L §2.2 ``proof by contrapositive'' & \cell{13} & the negation of the conclusion is easier to work with\\
+Contradiction & D\&L §2.3 · Devlin §3.2 & \cell{15} & the claim says something \emph{cannot} happen\\
+\rowcolor{proof!7}
+Induction & D\&L §4.5 · Devlin §3.5 & \cell{17} & the claim is indexed by $n\in\mathbb{N}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Technique 1 --- Direct proof \ \ \cell{7}}
+
+\begin{techbox}[title={Shape}]
+\textbf{To prove $p\Rightarrow q$:} assume $p$. Apply definitions and known theorems. Arrive at $q$.
+\end{techbox}
+
+\begin{bookbox}[title={D\&L §2.2, in their words}]
+\begin{quote}\itshape
+``In a direct proof of a conditional statement $p\to q$, we assume that $p$ is true, use rules of
+inference, when needed include as premises other propositions already proved, and conclude that $q$
+must be true.''
+\end{quote}
+\end{bookbox}
+
+\noindent\textbf{The notebook's example.} \emph{The Ising transfer matrix $T$ is symmetric.}
+
+\begin{quote}
+\textbf{Proof.} By definition $T(s,s')=\exp[\beta Jss'+\tfrac{\beta h}{2}(s+s')]$. Swapping $s$ and
+$s'$ leaves $ss'$ unchanged (multiplication commutes) and leaves $s+s'$ unchanged (addition
+commutes). So $T(s,s')=T(s',s)$. $\blacksquare$
+\end{quote}
+
+\textbf{What to notice.} Four lines. It used \textbf{the definition}, then \textbf{two known facts}.
+It stopped the moment it reached the claim. \cell{7} then has Sage print \bk{T.is\_symmetric()
+\textrightarrow\ True} --- which checks one $2\times2$ matrix, whereas the proof covers any number of
+spin states.
+
+\subsection{Technique 2 --- Proof by cases \ \ \cell{9}}
+
+\begin{techbox}[title={Shape}]
+Split all possibilities into finitely many cases that \textbf{cover everything}. Prove each
+separately.
+\end{techbox}
+
+\begin{bookbox}[title={D\&L §2.3.1 --- including a warning about taste}]
+\begin{quote}\itshape
+``A proof by cases is a proof of a universal statement that subdivides the universal set into a
+small number of subsets (cases) and provides a proof for each case separately. The adjective `small'
+is a value judgment. A proof involving 20 cases\ldots\ would seem \textbf{inelegant} by most
+mathematicians.''
+\end{quote}
+\end{bookbox}
+
+\noindent The notebook proves $\lambda_+\ge\lambda_-$ by splitting $\beta\ge0$ and $\beta<0$ ---
+\textbf{and then points out the cases were unnecessary}, since $\lambda_+-\lambda_-=2e^{-\beta}>0$
+for every real $\beta$. That is deliberate: \emph{look for the one-line argument before you split}.
+
+\subsection{Technique 3 --- Counterexample \ \ \cell{11}}
+
+\begin{techbox}[title={Shape}]
+\textbf{To disprove $\forall x\,P(x)$:} produce \textbf{one} $x$ for which $P(x)$ fails. Nothing else
+is required.
+\end{techbox}
+
+\noindent This is the cheapest technique in mathematics and the notebook makes you use it first.
+Three claims; two die.
+
+\begin{center}\small
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{7.0cm}>{\raggedright\arraybackslash}p{6.7cm}@{}}
+\toprule
+\rowcolor{alert!12}
+& \textbf{\color{alert}Claim} & \textbf{\color{alert}Verdict}\\
+\midrule
+1 & every diagonalisable matrix has orthogonal eigenvectors &
+ \textbf{FALSE.} $A=\left(\begin{smallmatrix}1&1\\0&2\end{smallmatrix}\right)$ is diagonalisable; its
+ eigenvectors $(1,1)$ and $(1,0)$ have \textbf{dot product 1}\\
+2 & every real symmetric matrix has distinct eigenvalues &
+ \textbf{FALSE.} The identity has eigenvalues $1,1$\\
+\rowcolor{bio!8}
+3 & every real symmetric matrix is diagonalisable &
+ \textbf{TRUE} --- and no search can establish it. This is Axler 7.29, and it takes six pages\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{dobox}[title={Why claim 1 is the one that matters to you}]
+It is exactly why Axler 7.29 says \textbf{orthonormal} and not merely ``a basis of eigenvectors''.
+Orthogonality is an extra gift that symmetry buys --- and it is what makes the trace argument in §7
+work without cross terms.
+
+\textbf{Claims 1 and 2 died to a single $2\times2$ matrix each. Claim 3 survived every search --- and
+surviving a search is not a proof.} That asymmetry is §3 of this document, made concrete.
+\end{dobox}
+
+\subsection{Technique 4 --- Contrapositive \ \ \cell{13}}
+
+\begin{techbox}[title={Shape}]
+$p\Rightarrow q$ is \emph{logically identical} to $\neg q\Rightarrow\neg p$. Prove whichever is
+easier.
+\end{techbox}
+
+\begin{bookbox}[title={D\&L §2.2}]
+\begin{quote}\itshape
+``A proof by contrapositive\ldots\ is a direct proof of the contrapositive $\neg q\to\neg p$. Since
+the contrapositive of a conditional statement is equivalent to the original\ldots\ proving
+$\neg q\to\neg p$ proves $p\to q$.''
+\end{quote}
+And on style: \emph{``The signal `We prove the contrapositive' signals to the reader our proof
+strategy.''} --- announce your technique. That is the communication half of Devlin's definition.
+\end{bookbox}
+
+\noindent \cell{13} prints the two truth-table columns side by side; they agree in all four rows.
+
+\subsection{Technique 5 --- Contradiction \ \ \cell{15}}
+
+\begin{techbox}[title={Shape}]
+Assume the \textbf{opposite} of what you want. Derive something impossible. Conclude the assumption
+was false.
+\end{techbox}
+
+\noindent\textbf{The notebook's example.} \emph{The 1D Ising chain has no phase transition at finite
+$\beta>0$.}
+
+\begin{quote}
+\textbf{Proof.} A phase transition means $f=-\frac1\beta\ln(2\cosh\beta)$ is non-analytic at some
+finite $\beta_c>0$. Suppose so. The only way $\ln(2\cosh\beta)$ can fail to be analytic is if
+$2\cosh\beta_c=0$. But $\cosh\beta=\tfrac12(e^\beta+e^{-\beta})$ is a sum of two strictly positive
+numbers, so $\cosh\beta_c>0$. Contradiction. $\blacksquare$
+\end{quote}
+
+\cell{15} corroborates with \bk{solve(2*cosh(beta)==0, beta) \textrightarrow\ []} --- an empty list,
+exactly as the argument predicted.
+
+\subsection{Technique 6 --- Induction \ \ \cell{17}}
+
+\begin{techbox}[title={Shape --- the one that beats infinity}]
+To prove $P(n)$ for all $n\ge1$:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{Base case:} prove $P(1)$.
+\item \textbf{Inductive step:} assume $P(k)$ for arbitrary $k$; prove $P(k+1)$ follows.
+\end{enumerate}
+Then $P(1)$ gives $P(2)$ gives $P(3)$\ldots\ forever. \textbf{Finite work, infinitely many claims.}
+\end{techbox}
+
+\noindent\textbf{The lemma your Ising notebook assumed without proof.}
+\emph{If $D$ is diagonal with entries $d_1,d_2$ then $D^n$ is diagonal with entries $d_1^n,d_2^n$.}
+
+\begin{quote}
+\textbf{Base case $n=1$.} $D^1=D$. \checkmark\\[3pt]
+\textbf{Inductive step.} Assume $D^k=\operatorname{diag}(d_1^k,d_2^k)$. Then
+$D^{k+1}=D^k\!\cdot\! D=\operatorname{diag}(d_1^kd_1,\,d_2^kd_2)=\operatorname{diag}(d_1^{k+1},d_2^{k+1})$,
+using only that diagonal matrices multiply entrywise. \checkmark\ $\blacksquare$
+\end{quote}
+
+\begin{warnbox}[title={\cell{17} is where the lesson lands}]
+The cell checks $n=1\ldots20$ and prints \bk{all diagonal? True}, then says:
+\begin{cellbox}
+*** READ THIS CAREFULLY ***\\
+Sage verified 20 cases. The lemma claims INFINITELY many.\\
+The 20 checks are evidence that we did not misstate it.\\
+The PROOF is the inductive step above - and only that.
+\end{cellbox}
+\vspace{4pt}
+\textbf{This is the single most important cell in the notebook.} Everything else is scaffolding for
+this distinction.
+\end{warnbox}

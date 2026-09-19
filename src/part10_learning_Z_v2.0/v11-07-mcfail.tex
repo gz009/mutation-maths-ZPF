@@ -1,0 +1,106 @@
+\clearpage
+\renewcommand{\sectioncolor}{alert}
+\section{Where Monte Carlo breaks --- measured}
+\markboth{Where Monte Carlo breaks}{}
+
+Now the method everyone actually uses on systems that are \emph{not} exactly solvable: Metropolis.
+Propose a spin flip, accept with probability $\min(1,e^{-\beta\Delta E})$, run long enough.
+
+\textbf{That last phrase is where everything goes wrong}, and the Ising model lets us measure exactly
+how wrong.
+
+\begin{keyidea}[title={A perfect test, because we know the answer exactly}]
+At $h=0$ the model is exactly symmetric under flipping every spin. Therefore
+\[
+\langle M\rangle = 0 \qquad\text{exactly, for every }\beta,\text{ every }N.
+\]
+No approximation, no limit. So: run several \emph{independent} chains and see whether they all return
+zero. \textbf{Every chain below runs the identical, correct algorithm. None of them is buggy.}
+\end{keyidea}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=15.2cm,height=6.6cm,
+  xlabel={\footnotesize $\beta=1/T$},
+  ylabel={\footnotesize per-chain $\langle M\rangle/N$},
+  xmin=0.3,xmax=3.25,ymin=-1.25,ymax=1.25,
+  xtick={0.5,1.0,1.5,2.0,2.5,3.0}, ytick={-1,-0.5,0,0.5,1},
+  tick label style={font=\scriptsize}, label style={font=\footnotesize},
+  grid=major, grid style={slate!18,line width=0.3pt}, axis line style={slate!60}, clip=false]
+ \addplot[only marks,mark=*,mark size=2.1pt,color=alert] coordinates {
+   (0.5,-0.002)(0.5,0.010)(0.5,0.008)(0.5,0.009)(0.5,-0.001)(0.5,-0.011)
+   (1.0,-0.021)(1.0,-0.013)(1.0,0.029)(1.0,0.014)(1.0,-0.037)(1.0,0.010)
+   (1.5,0.121)(1.5,-0.021)(1.5,-0.078)(1.5,0.126)(1.5,-0.026)(1.5,0.049)
+   (2.0,0.116)(2.0,0.486)(2.0,-0.749)(2.0,0.707)(2.0,0.311)(2.0,0.962)
+   (2.5,-0.162)(2.5,-0.950)(2.5,0.953)(2.5,-0.448)(2.5,-0.982)(2.5,-0.999)
+   (3.0,1.000)(3.0,-1.000)(3.0,-0.993)(3.0,-1.000)(3.0,-1.000)(3.0,-1.000)};
+ \draw[bio,line width=1.6pt] (axis cs:0.3,0)--(axis cs:3.25,0);
+ \node[font=\scriptsize\bfseries,text=bio,anchor=south west] at (axis cs:0.35,0.04)
+   {the true answer, exactly: $\langle M\rangle=0$};
+ \draw[slate!50,dashed,line width=0.8pt] (axis cs:1.75,-1.25)--(axis cs:1.75,1.25);
+ \node[font=\scriptsize\bfseries,text=bio,anchor=north] at (axis cs:1.0,-1.05) {chains agree};
+ \node[font=\scriptsize\bfseries,text=alert,anchor=north] at (axis cs:2.55,-1.05)
+   {chains disagree with each other \emph{and} with the truth};
+ \node[font=\scriptsize,text=slate,anchor=south] at (axis cs:2.0,1.08) {$\xi=27$};
+ \node[font=\scriptsize,text=slate,anchor=south] at (axis cs:2.5,1.08) {$\xi=74$};
+ \node[font=\scriptsize,text=slate,anchor=south] at (axis cs:3.0,1.08) {$\xi=202$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Figure 5.}\; Six independent Metropolis chains, $N=64$, 6{,}000 sweeps each. Measured for
+this dossier. At $\beta=3$ the chains report $\pm1$ when the exact answer is $0$.
+\end{minipage}\end{center}
+
+\begin{center}\small
+\begin{tabular}{@{}rrrl@{}}
+\toprule
+\rowcolor{alert!12}
+$\beta$ & $\xi$ & \textbf{spread across chains} & \textbf{verdict}\\
+\midrule
+0.5 & 1.30 & 0.021 & \textcolor{bio}{\textbf{ok}}\\
+1.0 & 3.67 & 0.066 & \textcolor{bio}{\textbf{ok}}\\
+1.5 & 10.03 & 0.203 & \textcolor{sand!80!black}{\textbf{poor}}\\
+2.0 & 27.30 & 1.710 & \textcolor{alert}{\textbf{BROKEN}}\\
+2.5 & 74.21 & 1.952 & \textcolor{alert}{\textbf{BROKEN}}\\
+\rowcolor{alert!8}
+3.0 & 201.71 & \textbf{2.000} & \textcolor{alert}{\textbf{BROKEN}}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 3.}\; A spread of 2.000 means some chains returned $+1$ and others $-1$ --- the maximum
+possible disagreement. An independent 8-chain run at 30{,}000 sweeps reproduced the same pattern.
+\end{minipage}\end{center}
+
+\begin{missing}[title={Why --- and it is the same mechanism as the whole of Part IX}]
+As $\beta$ grows, $\xi$ grows exponentially (Table 2). Once $\xi\gtrsim N$ the entire ring is a
+single domain, and to get from ``mostly up'' to ``mostly down'' the chain must pass through a
+high-energy configuration. The waiting time for that is $\sim e^{\beta\Delta E}$ ---
+\textbf{exponential in the barrier height}.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  n/.style={rounded corners=3pt,draw=#1,line width=0.9pt,fill=#1!8,inner sep=6pt,
+            text width=3.3cm,align=center,minimum height=1.25cm}]
+ \node[n=nano]  (a) at (0,0)     {temperature falls};
+ \node[n=sand]  (b) at (4.0,0)   {spectral gap closes\\$\lambda_+/\lambda_-\to1$};
+ \node[n=ember] (c) at (8.0,0)   {$\xi$ grows exponentially};
+ \node[n=alert] (d) at (12.3,0)  {barrier crossing time $\sim e^{\beta\Delta E}$\\\textbf{chain never mixes}};
+ \foreach \x/\y in {a/b,b/c,c/d}{\draw[-{Stealth[length=4.5pt]},line width=1pt,draw=slate] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+This is the quantitative form of the sentence in Part IX §2: \emph{``Monte Carlo converges at
+$O(n^{-1/2})$ provided it mixes. On a rugged landscape with barriers $\gg k_BT$, it does not mix.''}
+And it is the argument for Boltzmann generators: rather than \emph{crossing} the barrier, learn a
+change of variables in which there is no barrier to cross.
+\end{missing}
+
+\begin{plain}
+The lesson is not ``Monte Carlo is bad''. It is that a method can be provably correct, correctly
+implemented, and still give you a confidently wrong answer --- because ``run it long enough'' hid an
+exponential. You would never know, in a system where the true answer was not available. That is the
+situation in every protein simulation ever run.
+\end{plain}

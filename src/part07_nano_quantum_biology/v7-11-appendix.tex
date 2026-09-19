@@ -1,0 +1,99 @@
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Appendix: dated source ledger}
+\markboth{Source ledger}{}
+
+Every substantive claim in this dossier, with its origin. Contested items are marked.
+
+\begin{center}\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.35cm}>{\raggedright\arraybackslash}p{6.0cm}>{\raggedright\arraybackslash}p{9.2cm}@{}}
+\toprule
+\rowcolor{slate!14}
+\textbf{Year} & \textbf{Result} & \textbf{Who / where, and status}\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{quantum}Escapes past intuition}}\\
+1829--54 & Non-Euclidean geometry & Lobachevsky 1829; Bolyai 1832; Riemann 1854\\
+1868 & Pseudosphere model (the re-grounding) & Beltrami; later Klein and Poincaré disk models\\
+1932 & Hilbert-space formulation of QM & von Neumann, \textit{Math.\ Grundlagen der Quantenmechanik}\\
+1936 & Non-distributive quantum logic & Birkhoff \& von Neumann, \textit{Annals of Mathematics}\\
+1980s--94 & Non-commutative geometry & Connes; \textit{Noncommutative Geometry}, 1994\\
+2011 & Contextuality as a sheaf-theoretic obstruction & Abramsky \& Brandenburger, \textit{New J.\ Phys.}\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{bio}Diagrammatic re-grounding (Move 3)}}\\
+1948 & Feynman diagrams & Feynman\\
+1971 & Graphical tensor notation & Penrose\\
+2008--11 & ZX-calculus & Coecke \& Duncan; complete for qubit QM\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{sand}Instruments that generated mathematics (Move 4)}}\\
+1981 & Scanning tunnelling microscope & Binnig \& Rohrer; Nobel Prize 1986\\
+1986 & Atomic force microscope & Binnig, Quate \& Gerber\\
+1978 & Forced-unbinding model & Bell, \textit{Science}\\
+1997 & Dynamic force spectroscopy theory & Evans \& Ritchie, \textit{Biophys.\ J.}\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{nano}Mathematics that already works for molecular systems}}\\
+1972-- & Deficiency-zero / deficiency-one theorems & Horn \& Jackson 1972; Feinberg onwards\\
+1974--75 & Kinetic proofreading & Hopfield (PNAS) 1974; Ninio 1975\\
+1976--77 & Stochastic simulation algorithm & Gillespie\\
+1976 & Lindblad master equation & Lindblad; Gorini--Kossakowski--Sudarshan same year\\
+1989 & Hierarchical equations of motion (HEOM) & Tanimura \& Kubo\\
+1997 & Non-equilibrium work relation & Jarzynski, \textit{Phys.\ Rev.\ Lett.}\\
+1999 & Fluctuation theorem & Crooks, \textit{Phys.\ Rev.\ E}\\
+2002--09 & Persistent homology / TDA & Edelsbrunner, Letscher \& Zomorodian 2002; Carlsson 2009\\
+2015 & Thermodynamic uncertainty relation & Barato \& Seifert, \textit{Phys.\ Rev.\ Lett.}\\
+2017 & Compositional framework for reaction networks & Baez \& Pollard\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{ember}Machine-extended mathematics (Move 5)}}\\
+2019 & Boltzmann generators & Noé et al., \textit{Science}\\
+2020 & Symbolic regression for physical law & Udrescu \& Tegmark (AI~Feynman)\\
+2020--22 & Liquid Tensor Experiment & Scholze posed Dec 2020; completed in Lean Jul 2022\\
+2021 & AI-guided mathematical intuition & Davies et al., \textit{Nature} --- knot theory and
+ Kazhdan--Lusztig conjectures, both subsequently proved\\
+2021 & AlphaFold2 & Jumper et al., \textit{Nature}\\
+2021 & cryoDRGN, continuous conformational heterogeneity & Zhong et al., \textit{Nature Methods}\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{\color{crimson}Quantum biology --- graded}}\\
+1978 & Radical-pair magnetoreception proposed & Schulten et al. \;\textsc{strong, not closed}\\
+2000 & Decoherence argument against Orch-OR & Tegmark, \textit{Phys.\ Rev.\ E} \;\textsc{objection stands}\\
+2007 & ``Long-lived coherence'' in light harvesting & Engel et al., \textit{Nature}
+ \;\textsc{substantially revised}\\
+2016 & Magnetoreception review & Hore \& Mouritsen, \textit{Annu.\ Rev.\ Biophys.}\\
+2021 & Cryptochrome-4 magnetic sensitivity \emph{in vitro} & Xu et al., \textit{Nature}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Where to start tomorrow}
+
+If you want one entry point into each of the three levers, these are the ones I would pick for a
+reader with your background:
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{13.6cm}@{}}
+\toprule
+\rowcolor{slate!14}
+\textbf{Lever} & \textbf{Entry point}\\
+\midrule
+\textbf{\color{sand}1 · Body} & Single-molecule force spectroscopy: read Bell 1978, then Evans \&
+ Ritchie 1997, then Jarzynski 1997. Three short papers, and you will have watched an instrument
+ create a mathematics.\\
+\textbf{\color{quantum}2 · Re-ground} & Coecke \& Kissinger's diagrammatic treatment of quantum
+ theory. Start with the ZX rewrite rules and prove something small by pushing pictures.\\
+\textbf{\color{ember}3 · Externalise} & Lean and \texttt{mathlib}. Formalise one theorem you already
+ understand --- the point is to feel the difference between verified and understood.\\
+\rowcolor{bio!8}
+\textbf{\color{bio}The audit} & Feinberg's deficiency-zero theorem. It is the cleanest existing example
+ of mathematics built to fit molecular systems rather than borrowed from physics.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{12pt}
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=5pt,fill=bio!92!black,text=white,inner sep=13pt,text width=15.6cm,align=center]
+ {\mbox{\large\bfseries Extend the body \ $\cdot$ \ Re-ground the abstraction \ $\cdot$ \ Externalise the bookkeeping}\\[7pt]
+  \normalfont\small The embodiment of mathematics is not a ceiling. It is a specification of where
+  the next lever has to be placed.};
+\end{tikzpicture}
+\end{center}

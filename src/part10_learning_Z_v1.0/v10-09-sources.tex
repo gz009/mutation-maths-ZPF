@@ -1,0 +1,66 @@
+\clearpage
+\renewcommand{\sectioncolor}{slate}
+\section{Where everything came from}
+\markboth{Sources}{}
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.4cm}>{\raggedright\arraybackslash}p{10.2cm}@{}}
+\toprule
+\rowcolor{slate!14}
+\textbf{Claim} & \textbf{Source}\\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{\color{shelf}From your own shelf --- verified by opening the files}}\\
+144 book-files; Modules 3--8 empty & \bk{find} over \bk{/Users/zaman/Pure\_Maths\_TC\_SelfStudy}\\
+Axler §7.B p.~217/219, §7.C p.~225, §10.A p.~296 &
+ \bk{Module\_1\_Linear\_Algebra/Tensor-College-Referred-Books/}\newline\bk{Linear\_Algebra\_Done\_Right\_\_by\_Axler\_2015.pdf}\\
+Kuttler ch.~20--24: measures, Lebesgue, $L^p$, Riesz &
+ \bk{Module\_1\_Linear\_Algebra/more-libgen-finds-LA\_Books/}\newline\bk{Linear\_Algebra\_n\_Analysis\_\_by\_Kenneth\_Kuttler\_2020.pdf}\\
+Apostol Vol.~2 ch.~13 ``Set Functions and Elementary Probability'' &
+ \bk{Module\_2\_Multivariable\_Calculus/Tom\_M.Apostol\_\_Calculus\_Vol2\_MVC\_2dEd\_1975.pdf}\\
+Radozycki III: contour integrals, residues, Fourier series &
+ \bk{Foundation\_Math\_Books\_z/Solving\_Problems\_in\_Mathematical\_Analysis\_Part\_III\_\_2020.pdf}\\
+Olver \& Shakiban ch.~8--10 eigenvalues, incl.\ infinite dimensions &
+ \bk{Module\_1\_Linear\_Algebra/more-libgen-finds-LA\_Books/Applied\_Linear\_Algebra\_\_2018.pdf}\\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{\color{ember}Computed for this dossier}}\\
+Tables 1--3, Figures 4--5 & companion notebook; \texttt{numpy} 1.26.4, seeds fixed, fully reproducible\\
+Worst A-vs-B disagreement $7.56\times10^{-13}$ & 12 test cases, $N\in\{4,8,12,16\}$, $\beta\in\{0.2,0.5,1.0\}$\\
+Ergodicity failure & 6 chains $\times$ 6{,}000 sweeps; confirmed by an independent 8-chain, 30{,}000-sweep run\\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{\color{alert}Recommended acquisitions}}\\
+Chandler, \textit{Introduction to Modern Statistical Mechanics} (1987) & the one book to buy first\\
+Levin \& Peres, \textit{Markov Chains and Mixing Times} & why sampling $Z$ fails, quantitatively\\
+Grimmett \& Stirzaker, \textit{Probability and Random Processes} & fills \bk{Module\_8}\\
+Hall, \textit{Quantum Theory for Mathematicians} & picks up where Axler §7 stops\\
+Kardar, \textit{Statistical Physics of Particles} (2007) & transfer matrices in 2D, renormalisation group\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{How this dossier relates to the others}
+
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  d/.style={rounded corners=4pt,draw=#1,line width=1pt,fill=#1!8,inner sep=7pt,
+            text width=2.85cm,align=center,minimum height=2.3cm},
+  ar/.style={-{Stealth[length=4.5pt,width=3.5pt]},line width=1pt,draw=slate!70}]
+ \node[d=deepblue] (a) at (0,0)     {\textbf{Part VI}\\\textit{$e^{\pi i}+1=0$}\\{\scriptsize mathematics is built from embodied metaphor}};
+ \node[d=bio]      (b) at (3.45,0)  {\textbf{Part VII}\\\textit{Beyond the Reach of the Body?}\\{\scriptsize extend, re-ground, externalise}};
+ \node[d=lab]      (c) at (6.90,0)  {\textbf{Part VIII}\\\textit{Your Errors Are Not Noise}\\{\scriptsize Tier 1, on our AMR run}};
+ \node[d=indigo]   (d) at (10.35,0) {\textbf{Part IX}\\\textit{The Measure, Not the Point}\\{\scriptsize where the maths runs out}};
+ \node[d=shelf]    (e) at (13.80,0) {\textbf{Part X}\\\textit{Learning $Z$}\\{\scriptsize how to get there from your own shelf}};
+ \foreach \x/\y in {a/b,b/c,c/d,d/e}{\draw[ar] (\x)--(\y);}
+\end{tikzpicture}
+\end{center}
+
+\vspace{14pt}
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=5pt,fill=indigo,text=white,inner sep=13pt,text width=15.6cm,align=center]
+ {\mbox{\large\bfseries $2^{N}$ configurations collapse to two numbers.}\\[7pt]
+  \normalfont\small
+  That is the partition function in one sentence, and three sections of a linear algebra book you
+  already own are enough to prove it. Everything after that --- measures, rates, why sampling fails,
+  why Boltzmann generators exist --- is the same idea in more dimensions.};
+\end{tikzpicture}
+\end{center}

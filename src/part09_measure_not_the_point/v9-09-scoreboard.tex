@@ -1,0 +1,96 @@
+\clearpage
+\renewcommand{\sectioncolor}{indigo}
+\section{The scoreboard}
+\markboth{The scoreboard}{}
+
+The honest sort. This is the table to argue with.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5.6cm}c>{\raggedright\arraybackslash}p{9.4cm}@{}}
+\toprule
+\rowcolor{indigo!12}
+\textbf{\color{indigo}Problem} & \textbf{\color{indigo}Tier} & \textbf{\color{indigo}What is actually blocking it}\\
+\midrule
+Mutation as a non-uniform random field & \Ttwo &
+ Cox and Hawkes processes exist and are standard. Nobody is using them in AMR emergence modelling.\\
+\rowcolor{alert!6}
+Proton tunnelling $\to$ mutation & \Tthree &
+ Non-Markovian dynamics at strong coupling in a structured bath. \textbf{No tractable theory exists.}\\
+\rowcolor{alert!6}
+Docking: water and desolvation & \Tthree &
+ No rigorous tractable theory of which waters are displaceable, and at what free-energy cost.\\
+\rowcolor{alert!6}
+Docking: configurational entropy & \Tthree &
+ $Z$ is \#P-hard. Boltzmann generators are the live attack; scaling unsolved.\\
+Force-field accuracy & \textbf{solved-ish} &
+ E(3)-equivariant ML potentials (MACE, NequIP) reached DFT accuracy at classical cost.
+ \textbf{This one genuinely worked.}\\
+Protein conformational ensembles & \Ttwo$\to$\Tthree &
+ Koopman/VAMP theory exists; generative ensemble models are new and largely unvalidated.\\
+\rowcolor{alert!6}
+Binding kinetics, $k_{\text{off}}$ & \Tthree &
+ Rare events spanning 15 orders of magnitude in time.\\
+Long-timescale MD & \textbf{not maths} &
+ Hardware. \textbf{Do not send a mathematician.}\\
+\rowcolor{alert!6}
+Multiscale coupling QM $\to$ MM $\to$ continuum & \Tthree &
+ Mori--Zwanzig gives an exact but intractable memory kernel. Learning it is open.\\
+Paralogue vs orthologue calling \ev{Part VIII §7} & \Tone &
+ Likelihood ratios and profile HMMs. Engineering.\\
+Structured instrument error \ev{Part VIII} & \Tone &
+ Robust statistics. A 50-line script.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\begin{center}\begin{minipage}{0.93\textwidth}\footnotesize\color{slate}
+\textbf{Table 1.}\; \Tone\ existing statistics applied correctly \quad \Ttwo\ deep mathematics that
+exists but has not been carried across \quad \Tthree\ mathematics that does not yet exist.
+\end{minipage}\end{center}
+
+\section{Where I would bet}
+\markboth{Where to bet}{}
+
+Three directions, ranked by how likely I think each is to produce something genuinely new within a
+decade.
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  b/.style={rounded corners=4pt,draw=#1,line width=1.3pt,fill=#1!8,inner sep=9pt,
+            text width=5.05cm,align=left,minimum height=4.95cm}]
+ \node[b=measure] (a) at (-5.7,0)
+   {\textbf{\color{measure}\normalsize 1 · Generative samplers of Boltzmann measures}\\[5pt]
+    Normalizing flows, diffusion and flow matching used not to \emph{predict a structure} but to
+    \emph{sample a distribution} with correct statistical weights.\\[5pt]
+    {\scriptsize \textbf{Why:} it attacks $Z$, the common villain in all three of your problems.}\\[4pt]
+    {\scriptsize \textbf{Horizon:} usable output in $\sim$2 years.}};
+ \node[b=bio] (b) at (0,0)
+   {\textbf{\color{bio}\normalsize 2 · Transfer-operator learning for kinetics}\\[5pt]
+    Koopman theory is mature; VAMPnets showed it can be learned from short simulations; almost nobody
+    in pharmacology uses it.\\[5pt]
+    {\scriptsize \textbf{Why:} predicting $k_{\text{off}}$ rather than $\Delta G$ would change drug
+    discovery more than better docking would.}\\[4pt]
+    {\scriptsize \textbf{Horizon:} usable output in $\sim$2 years.}};
+ \node[b=alert] (c) at (5.7,0)
+   {\textbf{\color{alert}\normalsize 3 · Open quantum systems in warm structured environments}\\[5pt]
+    Proton tunnelling in DNA, radical-pair magnetoreception and enzymatic hydrogen tunnelling are the
+    \emph{same} mathematical problem in three biological costumes.\\[5pt]
+    {\scriptsize \textbf{Why:} it is the only one where the mathematics genuinely does not exist.}\\[4pt]
+    {\scriptsize \textbf{Horizon:} decade-scale. Highest risk, highest novelty.}};
+\end{tikzpicture}
+\end{center}
+
+\begin{plain}[breakable=false]
+If a student wants to \emph{do mathematics}, send them to number 3. If a student wants to
+\emph{change what the lab can measure within a PhD}, send them to number 1 or 2. Both are honourable;
+confusing them wastes years.
+\end{plain}
+
+\begin{critbox}[title={And the caution I keep repeating, because it keeps being true}]
+For most of what a molecular biology lab does day to day, the binding constraint is still
+\textbf{measurement}, not mathematics. Part VIII made that case with your own sequencing data: half
+the errors came from four moments on a flow cell, and no new mathematics was required to find them.
+
+\textbf{New mathematics is the right answer to a specific, well-posed, blocked calculation.} It is
+almost never the right answer to ``our results are noisy''.
+\end{critbox}

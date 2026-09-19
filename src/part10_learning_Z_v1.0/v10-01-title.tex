@@ -1,0 +1,86 @@
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[indigo] (current page.north west) rectangle ([yshift=-11.0cm]current page.north east);
+  \begin{scope}
+    \clip (current page.north west) rectangle ([yshift=-11.0cm]current page.north east);
+    \draw[white,opacity=0.05,step=0.42cm]
+      ([yshift=-11.0cm]current page.north west) grid (current page.north east);
+    % emblem: a 2x2 matrix raised to N, collapsing to two eigenvalues
+    \begin{scope}[shift={([xshift=14.4cm,yshift=-5.6cm]current page.north west)}]
+      \node[text=white,opacity=0.92,font=\Large] at (0,1.55)
+        {$Z=\mathrm{Tr}\!\left(T^{N}\right)$};
+      \draw[gold,line width=1.1pt,rounded corners=2pt] (-1.65,-0.62) rectangle (1.65,0.92);
+      \node[text=gold,font=\small] at (0,0.15)
+        {$\begin{pmatrix} e^{\beta(J+h)} & e^{-\beta J}\\[2pt] e^{-\beta J} & e^{\beta(J-h)}\end{pmatrix}$};
+      \draw[white,opacity=0.6,line width=1pt,-{Stealth[length=5pt]}] (0,-0.78)--(0,-1.45);
+      \node[text=rose,font=\normalsize] at (0,-1.95) {$\lambda_+^{\,N}+\lambda_-^{\,N}$};
+      \node[text=white,opacity=0.55,font=\scriptsize,align=center] at (0,-2.72)
+        {$2^{N}$ configurations\\collapse to two numbers};
+    \end{scope}
+  \end{scope}
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-1.9cm]current page.north west)
+    {\fontsize{10}{12}\selectfont\color{gold}\textsc{part x $\cdot$ a companion to part ix}\\[2pt]
+     \fontsize{9}{11}\selectfont\color{white!70}a route through the books already on your shelf};
+
+  \node[anchor=north west,text=white,align=left,inner sep=0pt,text width=11.4cm]
+    at ([xshift=2.05cm,yshift=-3.2cm]current page.north west)
+    {\fontsize{44}{48}\selectfont\bfseries Learning $Z$\\[12pt]
+     \fontsize{14.5}{19}\selectfont\color{white!92}
+     The partition function --- what it is, and\\how to get to it from where you are\\[11pt]
+     \fontsize{10.5}{14.5}\selectfont\color{white!76}\normalfont
+     An audit of all 144 books in \bk{Pure\_Maths\_TC\_SelfStudy},\\
+     a staged route through the ones that matter,\\
+     and one worked calculation that lands exactly on Part~IX.};
+
+  \foreach \i/\c/\t/\s in {0/bio/{COVERED}/{operators, spectral theorem,\\trace, measure theory},
+                           1/sand/{PARTIAL}/{probability --- two chapters\\of Apostol Vol.~2},
+                           2/alert/{ABSENT}/{stat.\ mech., quantum,\\stochastic processes}}{
+    \node[anchor=north west,inner sep=0pt]
+      at ([xshift={2.05cm+\i*5.72cm},yshift=-12.35cm]current page.north west)
+      {\begin{tikzpicture}
+         \node[fill=\c,text=white,rounded corners=4pt,minimum width=5.3cm,
+               minimum height=2.15cm,align=left,inner sep=10pt,anchor=north west,
+               font=\footnotesize] at (0,0) {{\fontsize{14}{15}\selectfont\bfseries \t}\\[5pt]\s};
+       \end{tikzpicture}};}
+
+  \node[anchor=north west,inner sep=0pt]
+    at ([xshift=2.05cm,yshift=-15.3cm]current page.north west)
+    {\begin{tikzpicture}
+       \node[draw=gold,line width=1.1pt,rounded corners=3pt,fill=gold!7,
+             text width=16.35cm,align=left,inner sep=13pt,font=\small,anchor=north west] at (0,0)
+         {\textbf{\color{ink}The finding of the audit.}\;
+          Your shelf has \textbf{no} statistical mechanics, \textbf{no} quantum mechanics and
+          \textbf{no} stochastic processes --- Modules 3 through 8 are empty directories.\\[6pt]
+          {\footnotesize\color{slate}\textbf{But it covers the prerequisites unusually well}, and one
+          book is filed in the wrong place: \bk{Linear\_Algebra\_n\_Analysis\_\_by\_Kenneth\_Kuttler\_2020.pdf},
+          sitting in your linear algebra folder, contains a complete measure theory course in its last
+          five chapters. Route, gaps and a three-week worked calculation follow.}};
+     \end{tikzpicture}};
+
+  \node[anchor=north west,inner sep=0pt,text width=16.6cm,align=left,font=\footnotesize,text=ink]
+    at ([xshift=2.05cm,yshift=-19.6cm]current page.north west)
+    {\color{indigo}\textbf{\normalsize What is in this dossier}\\[5pt]
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{indigo}{\textbf{$\blacksquare$}}\; a coverage map of all 144 books\\[3pt]
+       \textcolor{measure}{\textbf{$\blacksquare$}}\; the three faces of $Z$
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{bio}{\textbf{$\blacksquare$}}\; a staged route, chapter by chapter\\[3pt]
+       \textcolor{alert}{\textbf{$\blacksquare$}}\; the gap list, and what to buy first
+     \end{minipage}\hfill
+     \begin{minipage}[t]{5.25cm}\raggedright
+       \textcolor{ember}{\textbf{$\blacksquare$}}\; 1D Ising, computed three ways\\[3pt]
+       \textcolor{sand}{\textbf{$\blacksquare$}}\; a twelve-week plan
+     \end{minipage}};
+
+  \node[anchor=south west,align=left,text=slate,font=\scriptsize,inner sep=0pt,text width=16.9cm]
+    at ([xshift=2.05cm,yshift=2.05cm]current page.south west)
+    {\color{indigo}\rule{16.9cm}{1.2pt}\\[6pt]
+     Every number in \S5 and \S6 was computed for this dossier and is reproducible from the companion
+     notebook \bk{Partition\_Function\_01\_Ising\_Transfer\_Matrix.ipynb}, which runs end to end on
+     \texttt{numpy} alone.};
+\end{tikzpicture}
+\end{titlepage}

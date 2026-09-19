@@ -1,0 +1,133 @@
+\clearpage
+\renewcommand{\sectioncolor}{bio}
+\section{What to actually do}\label{sec:do}
+\markboth{What to do}{}
+
+\subsection{Where the original worry is legitimate}
+
+I do not want to talk you entirely out of it. A residue is real, and it is worth naming precisely so
+that it can be worked around rather than worried about.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5.3cm}>{\raggedright\arraybackslash}p{11.4cm}@{}}
+\toprule
+\rowcolor{crimson!11}
+\textbf{\color{crimson}Residual limit} & \textbf{\color{crimson}What it actually costs}\\
+\midrule
+A speed and reliability tax &
+ Unintuitive mathematics takes longer to invent, is harder to check, and is taught badly. The
+ parallel postulate cost roughly two millennia, and 39 more years between the symbolic escape and
+ the drawable model. \textbf{This is an embodiment effect and it is expensive.}\\
+Ceilings unrelated to embodiment &
+ Gödel-type incompleteness, and computational intractability, bind any mind. Many-body quantum
+ simulation is exponentially hard for reasons that have nothing to do with how brains work.\\
+\rowcolor{crimson!6}
+A selection effect &
+ We may be systematically failing to notice mathematics we never invented. As stated this is
+ unfalsifiable; hold it lightly, but it is not nothing.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Four things one person can do}
+
+\begin{movebox}[title={1. Do not try to invent ``the mathematics of the cell''}]
+Historically, mathematics that works for a new domain is invented by people forced to compute
+\emph{one specific blocked thing}.
+\begin{center}
+\begin{tikzpicture}[font=\scriptsize,
+  h/.style={rounded corners=3pt,draw=bio,line width=0.85pt,fill=bio!8,inner sep=6pt,
+            text width=3.15cm,align=center,minimum height=1.3cm}]
+ \node[h] at (0,0)     {\textbf{Fourier}\\{\scriptsize had a heat equation}};
+ \node[h] at (3.9,0)   {\textbf{Heaviside}\\{\scriptsize had a telegraph cable}};
+ \node[h] at (7.8,0)   {\textbf{Feynman}\\{\scriptsize had a QED calculation}};
+ \node[h] at (11.7,0)  {\textbf{Feinberg}\\{\scriptsize had a reaction network}};
+ \node[h,draw=crimson,fill=crimson!8] at (15.6,0) {\textbf{you}\\{\scriptsize need one blocked calculation}};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\textbf{Pick one calculation you cannot currently do, and invent only what it needs.} Generality is
+what you discover afterwards, by stripping the biology out (the pasted text's step 7 --- which is
+correct, but comes seventh for a reason).
+\end{movebox}
+
+\begin{movebox}[title={2. Run the metaphor audit as a daily habit}]
+For any formalism you meet, run Part VI's four questions from p.~436 --- what blend makes this true,
+what relations does it presuppose, what do the symbols mean, where is it grounded --- and then add a
+fifth that belongs to this dossier:
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=4pt,fill=bio!12,draw=bio,line width=1.1pt,inner sep=10pt,
+      text width=15.2cm,align=center,font=\itshape]
+ {\textbf{Which grounding in this formalism is the one that will break at $10^{-9}$\,m?}};
+\end{tikzpicture}
+\end{center}
+\end{movebox}
+
+\begin{movebox}[title={3. Learn the three languages built for post-intuitive domains}]
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{5.6cm}>{\raggedright\arraybackslash}p{6.5cm}@{}}
+\toprule
+\rowcolor{bio!13}
+\textbf{\color{bio}Language} & \textbf{\color{bio}What it replaces} & \textbf{\color{bio}Why it matters here}\\
+\midrule
+\textbf{Category theory} & composition, not collection &
+ cells are relational and compositional, not set-like\\
+\textbf{Sheaves} & local data, global obstruction &
+ context-dependent identity --- \S\ref{ss:context}\\
+\textbf{A diagrammatic calculus}\newline{\scriptsize string diagrams, ZX} & re-grounds computation in hand and eye &
+ Move 3, the highest-yield move in the history of this problem\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{movebox}
+
+\begin{movebox}[title={4. Treat instruments as mathematics-generators, not just data sources}]
+Every new sensorimotor loop into a new scale has produced new mathematics within roughly a decade.
+If you are choosing between building a theory for data that exists and building a way to see
+something nobody has seen, the historical record favours the second more often than
+mathematicians like to admit.
+\end{movebox}
+
+\subsection{The one-sentence answer}
+
+\begin{center}
+\begin{tikzpicture}
+\node[rounded corners=5pt,fill=bio!92!black,text=white,inner sep=13pt,text width=15.8cm,align=center]
+ {\large You cannot escape embodiment, and you do not need to.\\[7pt]
+  \normalsize\normalfont
+  \textbf{Extend the body} with instruments; \textbf{re-ground the abstraction} with diagrammatic
+  calculi; \textbf{externalise the bookkeeping} to machines.\\[5pt]
+  That three-part move has worked every time it has been tried.};
+\end{tikzpicture}
+\end{center}
+
+\subsection{The question worth giving your students}
+
+The pasted text ends by proposing a question for two of your mentees. Their names have been removed
+here, but the question itself is the best line in the piece and deserves sharpening:
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,
+  q/.style={rounded corners=4pt,draw=#1,line width=1.2pt,fill=#1!7,inner sep=10pt,
+            text width=7.45cm,align=left,minimum height=3.1cm}]
+ \node[q=crimson] (a) at (-4.35,0)
+   {\textbf{\color{crimson}Not}\\[5pt]
+    \textit{\large ``How much mathematics can you memorise?''}\\[5pt]
+    {\scriptsize Tests retrieval. Predicts nothing about research capability.}};
+ \node[q=bio] (b) at (4.35,0)
+   {\textbf{\color{bio}But}\\[5pt]
+    \textit{\large ``When the mathematics you know fails to explain nature, can you find the
+    assumption that is doing the damage?''}\\[5pt]
+    {\scriptsize Tests the metaphor audit --- Move 1, and the one skill the whole method rests on.}};
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\noindent The pasted version asks whether a student can \emph{``invent a better representation.''}
+That is Move 3, and it is the right ambition --- but it is the second step. \textbf{You cannot invent
+a better representation until you have located which embodied assumption the current one is smuggling
+in.} Newton needed calculus because he had first noticed that the available mathematics could not
+express instantaneous change; Connes needed non-commutative geometry because he had first noticed
+that ``space is a set of points'' was the offending premise.
+
+Teach the diagnosis before the cure.
