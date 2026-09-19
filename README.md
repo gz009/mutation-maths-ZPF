@@ -4,11 +4,16 @@
 
 $$Z=\sum_{\text{states}} e^{-\beta E}\qquad\text{classical}\qquad\qquad Z=\operatorname{Tr}\!\left(e^{-\beta\hat H}\right)\qquad\text{quantum}$$
 
-A self-study record: ten study dossiers, four Jupyter notebooks and the LaTeX
-that produces them, working from *why our mathematics is shaped the way it is*
-(Lakoff & Núñez) towards *what mathematics the nano/quantum scale of biology
-actually needs* — and then down into the one object that keeps appearing:
+A self-study record: seven documents (five study dossiers, Parts VI–X, with
+Part X in two versions, plus a proof-techniques tutorial), four Jupyter notebooks
+and the LaTeX that produces them, working from *why our mathematics is shaped the
+way it is* (Lakoff & Núñez) towards *what mathematics the nano/quantum scale of
+biology actually needs* — and then down into the one object that keeps appearing:
 the partition function $Z$.
+
+> **Correction.** Earlier versions of this README, and the initial commit
+> message (`f6c9096`), said "ten study dossiers". There are seven documents, as
+> listed below.
 
 Everything here was **built from source in this project**. Nothing here is a
 scanned book. See [What is deliberately absent](#what-is-deliberately-absent).
